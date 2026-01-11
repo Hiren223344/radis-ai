@@ -43,4 +43,8 @@ const GlobalStatus = () => {
   );
 };
 
+<<<<<<< Updated upstream
 export default GlobalStatus;
+=======
+export default GlobalStatus;
+>>>>>>> Stashed changes

@@ -183,6 +183,40 @@
 
   .pill-button:hover {
     background-color: var(--accent);
+<<<<<<< Updated upstream
+=======
+  }
+
+  .ranking-item-number {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    width: 1.5rem;
+  }
+
+  .chart-container {
+    height: 300px;
+    width: 100%;
+    position: relative;
+  }
+
+  .app-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: cover;
+    background-color: var(--muted);
+  }
+
+  .search-bar {
+    background-color: #f1f5f9;
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 300px;
+>>>>>>> Stashed changes
   }
 
   .ranking-item-number {

@@ -1,5 +1,6 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Copy, Search } from 'lucide-react';
@@ -20,6 +21,8 @@ const Tag = ({ label, color = '#64748b' }: { label: string; color?: string }) =>
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import React from 'react';
 import { Copy } from 'lucide-react';
 
@@ -35,6 +38,7 @@ const Tag = ({ label, color = '#64748b' }: TagProps) => (
   </div>
 );
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 const ModelList = () => {
@@ -64,6 +68,8 @@ const ModelList = () => {
   );
 
   if (loading) return <div className="p-20 text-center text-muted-foreground">Loading models...</div>;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -222,7 +228,10 @@ const ModelList = () => {
         <div className="relative search-bar group flex items-center bg-slate-50 border border-border rounded-md px-3 py-2 focus-within:ring-1 focus-within:ring-slate-400 focus-within:bg-white transition-all">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           <Search className="w-4 h-4 text-slate-400 mr-2" />
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -236,8 +245,11 @@ const ModelList = () => {
             className="bg-transparent border-none outline-none text-[14px] w-full placeholder:text-slate-400"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -249,7 +261,10 @@ const ModelList = () => {
       <div className="flex items-center justify-between mb-10 text-[13px] text-slate-11 font-medium">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div>{filteredModels.length} models</div>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -261,6 +276,7 @@ const ModelList = () => {
         </div>
       </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
       <div className="flex flex-col divide-y divide-border">
@@ -308,6 +324,8 @@ const ModelList = () => {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       <div className="flex flex-col">
         {models.map((model, index) => (
           <ModelCard key={index} {...model} />
@@ -319,8 +337,12 @@ const ModelList = () => {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default ModelList;
 export default ModelList;
+=======
+export default ModelList;
+>>>>>>> Stashed changes
 =======
 export default ModelList;
 >>>>>>> Stashed changes
