@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 "use client";
 import React from 'react';
 import { Search, Scale, LayoutGrid, List, ChevronDown } from 'lucide-react';
@@ -21,6 +22,8 @@ const ModelsHeader = ({ modelCount = 0 }: { modelCount?: number }) => {
             </button>
             <button className="p-2 bg-slate-100 text-foreground">
 =======
+=======
+>>>>>>> Stashed changes
 import React from 'react';
 import { Search, LayoutGrid, List, ArrowUpDown, Scale } from 'lucide-react';
 
@@ -57,12 +60,16 @@ const ModelsHeader: React.FC = () => {
               <LayoutGrid className="size-4" />
             </button>
             <button className="p-2 bg-[#F1F5F9] text-[#020617] transition-colors">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
               <List className="size-4" />
             </button>
           </div>
         </div>
       </div>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       <div className="relative w-full">
         <div className="flex items-center gap-2 rounded-lg h-10 w-full bg-slate-100 text-slate-500 border border-transparent focus-within:bg-white focus-within:border-slate-300 transition-all">
@@ -86,6 +93,8 @@ const ModelsHeader: React.FC = () => {
           <ChevronDown className="size-4 opacity-50" />
         </button>
 =======
+=======
+>>>>>>> Stashed changes
 
       {/* Large Search Input */}
       <div className="relative mb-6">
@@ -112,6 +121,9 @@ const ModelsHeader: React.FC = () => {
           <span className="font-medium">Most Popular</span>
           <ArrowUpDown className="size-3.5 text-[#64748B]" />
         </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </div>
     </div>
@@ -119,7 +131,11 @@ const ModelsHeader: React.FC = () => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default ModelsHeader;
+=======
+export default ModelsHeader;
+>>>>>>> Stashed changes
 =======
 export default ModelsHeader;
 >>>>>>> Stashed changes

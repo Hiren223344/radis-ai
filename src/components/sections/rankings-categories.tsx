@@ -8,6 +8,7 @@ import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { ChevronDown, Info, Tag } from 'lucide-react';
 
 /**
@@ -70,6 +71,8 @@ export default function RankingsCategories() {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { ChevronDown, Info, LayoutGrid, Languages, Code2, Maximize2, Wrench } from 'lucide-react';
 
 /**
@@ -105,6 +108,9 @@ const RankingSection = ({
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -126,6 +132,7 @@ const RankingSection = ({
         <div className="flex items-center md:items-start justify-between">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -167,6 +174,8 @@ const RankingSection = ({
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
               <Icon className="size-5 text-[#687076]" />
               <a href={`#${id}`} className="hover:underline">
                 <h2 className="text-[18px] font-medium text-[#0f172a]">{title}</h2>
@@ -189,6 +198,9 @@ const RankingSection = ({
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -210,6 +222,7 @@ const RankingSection = ({
         </div>
       </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -279,6 +292,8 @@ const RankingSection = ({
         ))}
       </div>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -378,6 +393,9 @@ export default function RankingsCategories() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

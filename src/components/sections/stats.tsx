@@ -1,73 +1,75 @@
 import React from 'react';
 
-const Stats = () => {
-  const statsData = [
+const StatsSection = () => {
+  const stats = [
     {
-      label: 'Monthly Tokens',
-      value: '25T',
-      href: '/rankings',
-      highlight: false,
+      value: "25T",
+      label: "Monthly Tokens",
+      href: "/rankings",
+      primary: false
     },
     {
-      label: 'Global Users',
-      value: '5M+',
+      value: "5M+",
+      label: "Global Users",
       href: null,
-      highlight: false,
+      primary: false
     },
     {
-      label: 'Active Providers',
-      value: '60+',
-      href: '/models',
-      highlight: false,
+      value: "60+",
+      label: "Active Providers",
+      href: "/models",
+      primary: false
     },
     {
-      label: 'Models',
-      value: '300+',
-      href: '/models',
-      highlight: true,
-    },
+      value: "300+",
+      label: "Models",
+      href: "/models",
+      primary: true
+    }
   ];
 
   return (
-    <div className="flex flex-col gap-8 md:gap-12 w-full">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto w-full px-6">
-        {statsData.map((stat, index) => {
+    <section className="w-full flex justify-center py-8 md:py-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 w-full max-w-6xl px-6 md:px-8">
+        {stats.map((stat, index) => {
           const Content = (
-            <div className="group/card rounded-xl transition-all duration-200 bg-card text-foreground border-none hover:scale-110 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),_0_4px_6px_-2px_rgba(0,0,0,0.05)] cursor-pointer">
-              <div className="p-4 md:p-6 lg:p-8">
-                <div className="flex flex-col items-center gap-1 md:gap-2 text-center">
-                  <p 
-                    className={`text-3xl md:text-4xl font-bold tracking-tight ${
-                      stat.highlight ? 'text-[#4f46e5]' : 'text-[#020617]'
-                    }`}
-                  >
-                    {stat.value}
-                  </p>
-                  <p className="text-xs md:text-sm text-[#64748b] whitespace-nowrap">
-                    {stat.label}
-                  </p>
-                </div>
-              </div>
+            <div className="p-4 md:p-6 flex flex-col items-center justify-center gap-1 md:gap-2">
+              <p 
+                className={`text-3xl md:text-[2.25rem] font-bold leading-none tabular-nums transition-transform duration-200 group-hover:scale-110 ${
+                  stat.primary ? 'text-[#6366f1]' : 'text-[#0f172a]'
+                }`}
+              >
+                {stat.value}
+              </p>
+              <p className="text-xs md:text-sm text-[#64748b] font-medium uppercase tracking-tight md:normal-case md:tracking-normal">
+                {stat.label}
+              </p>
             </div>
           );
+
+          const wrapperClasses = "group block rounded-xl transition-all duration-200 ease-in-out bg-white border-none hover:scale-110 hover:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.05),0_8px_10px_-6px_rgba(0,0,0,0.05)] cursor-default";
 
           if (stat.href) {
             return (
               <a 
                 key={index} 
                 href={stat.href} 
-                className="decoration-none no-underline block"
+                className={`${wrapperClasses} cursor-pointer`}
               >
                 {Content}
               </a>
             );
           }
 
-          return <div key={index}>{Content}</div>;
+          return (
+            <div key={index} className={wrapperClasses}>
+              {Content}
+            </div>
+          );
         })}
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Stats;
+export default StatsSection;

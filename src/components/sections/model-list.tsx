@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Copy, ExternalLink, Search } from 'lucide-react';
@@ -42,6 +43,8 @@ const ModelList = () => {
 
   if (loading) return <div className="p-20 text-center text-muted-foreground">Loading models...</div>;
 =======
+=======
+>>>>>>> Stashed changes
 import React from 'react';
 import { Copy } from 'lucide-react';
 
@@ -184,6 +187,9 @@ const ModelList = () => {
       meta: ["33K context", "$0.10/M input tokens", "$0.30/M output tokens"]
     }
   ];
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   return (
@@ -210,21 +216,30 @@ const ModelList = () => {
 
       <div className="mb-8">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div className="relative flex items-center bg-slate-50 border border-border rounded-md px-3 py-2 focus-within:ring-1 focus-within:ring-slate-400 focus-within:bg-white transition-all">
           <Search className="w-4 h-4 text-slate-400 mr-2" />
 =======
+=======
+>>>>>>> Stashed changes
         <div className="relative search-bar group flex items-center bg-slate-50 border border-border rounded-md px-3 py-2 focus-within:ring-1 focus-within:ring-slate-400 focus-within:bg-white transition-all">
           <svg className="w-4 h-4 text-slate-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
           <input 
             type="text" 
             placeholder="Search" 
             className="bg-transparent border-none outline-none text-[14px] w-full placeholder:text-slate-400"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
           />
@@ -233,7 +248,11 @@ const ModelList = () => {
 
       <div className="flex items-center justify-between mb-10 text-[13px] text-slate-11 font-medium">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div>{filteredModels.length} models</div>
+=======
+        <div>607 models</div>
+>>>>>>> Stashed changes
 =======
         <div>607 models</div>
 >>>>>>> Stashed changes
@@ -243,6 +262,7 @@ const ModelList = () => {
         </div>
       </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       <div className="flex flex-col divide-y divide-border">
         {filteredModels.map((model) => (
@@ -284,10 +304,15 @@ const ModelList = () => {
           </div>
         )}
 =======
+=======
+>>>>>>> Stashed changes
       <div className="flex flex-col">
         {models.map((model, index) => (
           <ModelCard key={index} {...model} />
         ))}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </div>
     </div>
@@ -295,7 +320,11 @@ const ModelList = () => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default ModelList;
+=======
+export default ModelList;
+>>>>>>> Stashed changes
 =======
 export default ModelList;
 >>>>>>> Stashed changes

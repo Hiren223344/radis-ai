@@ -14,6 +14,7 @@ import {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Info } from "lucide-react";
 
 const marketShareData = [
@@ -238,6 +239,8 @@ export default MarketShare;
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { LayoutPanelLeft } from "lucide-react";
 
 /**
@@ -423,6 +426,10 @@ export default function MarketShareSection() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes
 =======

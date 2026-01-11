@@ -1,21 +1,25 @@
-import Navbar from "@/components/sections/navbar";
+import Navigation from "@/components/sections/navigation";
 import HeroSection from "@/components/sections/hero";
-import Features from "@/components/sections/features";
+import StatsSection from "@/components/sections/stats";
+import FeaturesGrid from "@/components/sections/features-grid";
 import FeaturedModels from "@/components/sections/featured-models";
+import FeaturedAgents from "@/components/sections/featured-agents";
 import OnboardingSteps from "@/components/sections/onboarding-steps";
-import BottomGrid from "@/components/sections/bottom-grid";
+import BottomContent from "@/components/sections/bottom-content";
 import Footer from "@/components/sections/footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/10 selection:text-primary">
-      <Navbar />
+      <Navigation />
       <main id="skip">
         <HeroSection />
-        <Features />
+        <StatsSection />
+        <FeaturesGrid />
         <FeaturedModels />
+        <FeaturedAgents />
         <OnboardingSteps />
-        <BottomGrid />
+        <BottomContent />
       </main>
       <Footer />
     </div>

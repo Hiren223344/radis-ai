@@ -7,40 +7,47 @@ interface AgentCardProps {
   logo: string;
   name: string;
   description: string;
+  href: string;
 }
 
-const AgentCard = ({ image, logo, name, description }: AgentCardProps) => {
+const AgentCard = ({ image, logo, name, description, href }: AgentCardProps) => {
   return (
-    <div className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-200 hover:border-primary hover:shadow-lg">
-      <div className="relative h-48 w-full overflow-hidden bg-slate-900 md:h-52">
+    <a 
+      href={href}
+      className="group flex flex-col overflow-hidden rounded-xl border border-[#E2E8F0] bg-white transition-all duration-200 hover:border-[#6366F1] hover:shadow-lg"
+    >
+      {/* Top Graphic Section */}
+      <div className="relative h-[200px] w-full overflow-hidden bg-[#0F172A]">
         <Image
           src={image}
           alt={`${name} preview`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
-          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
         />
       </div>
-      <div className="p-4 md:p-6 flex items-center gap-4">
-        <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-background border border-border">
+
+      {/* Bottom Content Section */}
+      <div className="flex flex-1 items-center gap-4 p-5">
+        <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
           <Image
             src={logo}
             alt={`${name} logo`}
-            width={32}
-            height={32}
-            className="object-contain"
+            width={24}
+            height={24}
+            className="h-6 w-6 object-contain"
           />
         </div>
         <div className="flex flex-col">
-          <h3 className="text-lg font-semibold leading-tight text-foreground">
+          <h3 className="text-[1.125rem] font-semibold leading-tight text-[#0F172A]">
             {name}
           </h3>
-          <p className="text-sm text-muted-foreground line-clamp-1">
+          <p className="text-[0.875rem] text-[#64748B] leading-snug">
             {description}
           </p>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
@@ -49,72 +56,54 @@ const FeaturedAgents = () => {
     {
       name: 'Replit',
       description: 'The easiest way to go from idea to app',
-      image: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_5.png',
-      logo: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_5.png', // Fallback to same asset if specific rounded logo not in list, usually these are extracted separately but using provided
+      image: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_1.png',
+      logo: 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://replit.com/&size=256',
+      href: '/apps/replit',
     },
     {
       name: 'BLACKBOXAI',
       description: 'AI agent for builders',
-      image: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_6.png',
-      logo: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_6.png',
+      image: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_2.png',
+      logo: 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.blackbox.ai/&size=256',
+      href: '/apps/blackbox-ai',
     },
     {
       name: 'Kilo Code',
       description: 'Everything you need for agentic development',
-      image: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_7.png',
-      logo: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_7.png',
+      image: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_3.png',
+      logo: 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://kilocode.com/&size=256',
+      href: '/apps/kilo-code',
     },
-  ];
-
-  // Specific logo mappings as the assets array provided has the large previews
-  // Using background-containing versions for the cards as they represent the brand visually
-  const agentData = [
-    {
-      ...agents[0],
-      logo: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_5.png'
-    },
-    {
-      ...agents[1],
-      logo: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_6.png'
-    },
-    {
-      ...agents[2],
-      logo: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_7.png'
-    }
   ];
 
   return (
-    <section className="w-full bg-background py-12 md:py-20 lg:py-24">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-          <div className="space-y-1">
-            <h2 className="flex items-center gap-2 group cursor-pointer text-2xl font-semibold tracking-tight md:text-3xl">
+    <section className="mx-auto w-full max-w-[1440px] px-6 py-20">
+      {/* Header */}
+      <div className="mb-8 flex items-end justify-between">
+        <div className="flex flex-col gap-2">
+          <div className="group flex items-center gap-1 cursor-pointer">
+            <h2 className="text-[1.5rem] font-semibold text-[#0F172A]">
               Featured Agents
-              <ChevronRight className="h-6 w-6 text-muted-foreground transition-transform group-hover:translate-x-1" />
             </h2>
-            <p className="text-sm text-muted-foreground md:text-base">
-              250k+ apps using OpenRouter with 4.2M+ users globally
-            </p>
+            <ChevronRight className="h-5 w-5 text-[#64748B] transition-transform group-hover:translate-x-0.5" />
           </div>
-          <a
-            href="/apps"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            View all →
-          </a>
+          <p className="text-[0.875rem] text-[#64748B]">
+            250k+ apps using OpenRouter with 4.2M+ users globally
+          </p>
         </div>
+        <a 
+          href="/apps"
+          className="text-sm font-medium text-[#64748B] hover:text-[#0F172A] transition-colors"
+        >
+          View all →
+        </a>
+      </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {agentData.map((agent) => (
-            <AgentCard
-              key={agent.name}
-              image={agent.image}
-              logo={agent.logo}
-              name={agent.name}
-              description={agent.description}
-            />
-          ))}
-        </div>
+      {/* Grid */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {agents.map((agent) => (
+          <AgentCard key={agent.name} {...agent} />
+        ))}
       </div>
     </section>
   );
