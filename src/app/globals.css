@@ -6,57 +6,59 @@
 
 @theme {
   --color-background: #ffffff;
-  --color-foreground: #020617;
+  --color-foreground: #111827;
 
   --color-card: #ffffff;
-  --color-card-foreground: #020617;
+  --color-card-foreground: #111827;
 
   --color-popover: #ffffff;
-  --color-popover-foreground: #020617;
+  --color-popover-foreground: #111827;
 
-  --color-primary: #4f46e5;
+  --color-primary: #111827;
   --color-primary-foreground: #ffffff;
 
-  --color-secondary: #f1f5f9;
-  --color-secondary-foreground: #0f172a;
+  --color-secondary: #f3f4f6;
+  --color-secondary-foreground: #111827;
 
-  --color-muted: #f8fafc;
-  --color-muted-foreground: #64748b;
+  --color-muted: #f9fafb;
+  --color-muted-foreground: #6b7280;
 
-  --color-accent: #f1f5f9;
-  --color-accent-foreground: #0f172a;
+  --color-accent: #f3f4f6;
+  --color-accent-foreground: #111827;
 
   --color-destructive: #ef4444;
   --color-destructive-foreground: #ffffff;
 
-  --color-border: #e2e8f0;
-  --color-input: #e2e8f0;
-  --color-ring: #4f46e5;
+  --color-border: #e5e7eb;
+  --color-input: #e5e7eb;
+  --color-ring: #111827;
 
-  --color-success: #22c55e;
-  --color-success-foreground: #ffffff;
+  --color-status-operational: #22c55e;
+  --color-status-operational-text: #15803d;
+  --color-status-operational-bg: rgba(34, 197, 94, 0.15);
+  --color-status-incident: #ef4444;
 
-  --color-chart-1: #4f46e5;
-  --color-chart-2: #22c55e;
+  --color-chart-1: #22c55e;
+  --color-chart-2: #ef4444;
   --color-chart-3: #f59e0b;
-  --color-chart-4: #7c3aed;
-  --color-chart-5: #ef4444;
+  --color-chart-4: #3b82f6;
+  --color-chart-5: #6366f1;
 
   --color-sidebar: #ffffff;
-  --color-sidebar-foreground: #64748b;
-  --color-sidebar-primary: #4f46e5;
+  --color-sidebar-foreground: #6b7280;
+  --color-sidebar-primary: #111827;
   --color-sidebar-primary-foreground: #ffffff;
-  --color-sidebar-accent: #f1f5f9;
-  --color-sidebar-accent-foreground: #0f172a;
-  --color-sidebar-border: #e2e8f0;
-  --color-sidebar-ring: #4f46e5;
+  --color-sidebar-accent: #f3f4f6;
+  --color-sidebar-accent-foreground: #111827;
+  --color-sidebar-border: #e5e7eb;
+  --color-sidebar-ring: #111827;
 
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-display: "Inter", system-ui, sans-serif;
 
-  --radius-lg: 12px;
-  --radius-md: 6px;
-  --radius-sm: 4px;
+  --radius-lg: 0.5rem;
+  --radius-md: 0.375rem;
+  --radius-sm: 0.125rem;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -85,38 +87,38 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: #e2e8f0;
+    border-color: #e5e7eb;
   }
 
   :root {
     --background: #ffffff;
-    --foreground: #020617;
+    --foreground: #111827;
     --card: #ffffff;
-    --card-foreground: #020617;
+    --card-foreground: #111827;
     --popover: #ffffff;
-    --popover-foreground: #020617;
-    --primary: #4f46e5;
+    --popover-foreground: #111827;
+    --primary: #111827;
     --primary-foreground: #ffffff;
-    --secondary: #f1f5f9;
-    --secondary-foreground: #0f172a;
-    --muted: #f8fafc;
-    --muted-foreground: #64748b;
-    --accent: #f1f5f9;
-    --accent-foreground: #0f172a;
+    --secondary: #f3f4f6;
+    --secondary-foreground: #111827;
+    --muted: #f9fafb;
+    --muted-foreground: #6b7280;
+    --accent: #f3f4f6;
+    --accent-foreground: #111827;
     --destructive: #ef4444;
     --destructive-foreground: #ffffff;
-    --border: #e2e8f0;
-    --input: #e2e8f0;
-    --ring: #4f46e5;
-    --radius: 0.75rem;
+    --border: #e5e7eb;
+    --input: #e5e7eb;
+    --ring: #111827;
+    --radius: 0.5rem;
     --sidebar-background: #ffffff;
-    --sidebar-foreground: #64748b;
-    --sidebar-primary: #4f46e5;
+    --sidebar-foreground: #6b7280;
+    --sidebar-primary: #111827;
     --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #f1f5f9;
-    --sidebar-accent-foreground: #0f172a;
-    --sidebar-border: #e2e8f0;
-    --sidebar-ring: #4f46e5;
+    --sidebar-accent: #f3f4f6;
+    --sidebar-accent-foreground: #111827;
+    --sidebar-border: #e5e7eb;
+    --sidebar-ring: #111827;
   }
 }
 
@@ -136,53 +138,73 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-semibold tracking-tight;
-  }
-
   h1 {
-    font-size: 3rem;
-    line-height: 1.2;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
   }
 
   h2 {
     font-size: 1.5rem;
-    line-height: 1.4;
-  }
-
-  h3 {
-    font-size: 1.125rem;
+    font-weight: 400;
     line-height: 1.5;
-  }
-
-  p {
-    line-height: 1.6;
+    color: #111827;
   }
 
   .container {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-    max-width: 1440px;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    max-width: 48rem;
   }
 
-  .font-tabular {
-    font-variant-numeric: tabular-nums;
-  }
-}
-
-@layer utilities {
-  .shadow-card {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  }
-  
-  .shadow-card-hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  .status-banner {
+    background-color: #22c55e;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 1.125rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 
-  .hero-gradient-mask {
-    mask-image: linear-gradient(to top, transparent, black 20%);
+  .uptime-bar {
+    height: 2rem;
+    width: 100%;
+    border-radius: 0.125rem;
+  }
+
+  .uptime-bar-green {
+    background-color: #22c55e;
+  }
+
+  .uptime-bar-red {
+    background-color: #ef4444;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #15803d;
+  }
+
+  .text-uptime-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .divider-line {
+    height: 1px;
+    background-color: #d1d5db;
+    flex-grow: 1;
+    margin: 0 0.5rem;
   }
 }
