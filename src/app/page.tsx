@@ -2,7 +2,6 @@ import Navbar from "@/components/sections/navbar";
 import HeroSection from "@/components/sections/hero";
 import Features from "@/components/sections/features";
 import FeaturedModels from "@/components/sections/featured-models";
-import FeaturedAgents from "@/components/sections/featured-agents";
 import OnboardingSteps from "@/components/sections/onboarding-steps";
 import BottomGrid from "@/components/sections/bottom-grid";
 import Footer from "@/components/sections/footer";
@@ -15,7 +14,6 @@ export default function Home() {
         <HeroSection />
         <Features />
         <FeaturedModels />
-        <FeaturedAgents />
         <OnboardingSteps />
         <BottomGrid />
       </main>
