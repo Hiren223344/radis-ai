@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { ChevronRight, Type, Image, FileText, Music, Video, Hash, DollarSign, Layers, Tag, Settings2, Sparkles } from 'lucide-react';
 
@@ -139,7 +141,6 @@ const SidebarFilters = () => {
         </div>
       </div>
       
-      {/* Scrollbar hide hack for internal div while keeping functionality */}
       <style jsx global>{`
         .no-scrollbar::-webkit-scrollbar {
           display: none;
