@@ -1,7 +1,11 @@
 import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Search, Scale, LayoutGrid, List, ChevronDown } from 'lucide-react';
+=======
+import { Search, LayoutGrid, List, ArrowUpDown, Scale } from 'lucide-react';
+>>>>>>> Stashed changes
 =======
 import { Search, LayoutGrid, List, ArrowUpDown, Scale } from 'lucide-react';
 >>>>>>> Stashed changes
@@ -12,6 +16,7 @@ import { Search, LayoutGrid, List, ArrowUpDown, Scale } from 'lucide-react';
 /**
  * ModelsHeader Component
  * 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
  * Clones the model listing header which includes:
@@ -32,6 +37,8 @@ export default function ModelsHeader() {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
  * Clones the header section of the models page which includes:
  * - "Models" title
  * - "Compare" action button
@@ -47,6 +54,9 @@ const ModelsHeader: React.FC = () => {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-[30px] font-semibold tracking-tight text-[#020617] leading-[1.2]">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -57,7 +67,11 @@ const ModelsHeader: React.FC = () => {
           {/* Compare Button */}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3 gap-2">
+=======
+          <button className="inline-flex items-center gap-2 px-3 h-9 text-[14px] font-medium border border-[#E2E8F0] rounded-md bg-white hover:bg-[#F1F5F9] transition-colors text-[#020617]">
+>>>>>>> Stashed changes
 =======
           <button className="inline-flex items-center gap-2 px-3 h-9 text-[14px] font-medium border border-[#E2E8F0] rounded-md bg-white hover:bg-[#F1F5F9] transition-colors text-[#020617]">
 >>>>>>> Stashed changes
@@ -70,6 +84,7 @@ const ModelsHeader: React.FC = () => {
           
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           {/* Layout Toggle Group */}
           <div className="inline-flex items-center rounded-md border border-input bg-background p-1 shadow-sm">
             <button className="inline-flex items-center justify-center rounded-sm px-2 py-1 text-sm font-medium transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 bg-accent text-accent-foreground shadow-none">
@@ -79,6 +94,8 @@ const ModelsHeader: React.FC = () => {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
           {/* View Toggle Group */}
           <div className="flex items-center border border-[#E2E8F0] rounded-md overflow-hidden bg-white">
             <button className="p-2 border-r border-[#E2E8F0] hover:bg-[#F1F5F9] text-[#64748B] hover:text-[#020617] transition-colors">
@@ -86,6 +103,9 @@ const ModelsHeader: React.FC = () => {
             </button>
             <button className="p-2 bg-[#F1F5F9] text-[#020617] transition-colors">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -95,6 +115,7 @@ const ModelsHeader: React.FC = () => {
         </div>
       </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
       {/* Search Bar */}
@@ -131,6 +152,8 @@ const ModelsHeader: React.FC = () => {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       {/* Large Search Input */}
       <div className="relative mb-6">
         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] pointer-events-none">
@@ -162,6 +185,10 @@ const ModelsHeader: React.FC = () => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+export default ModelsHeader;
+>>>>>>> Stashed changes
+=======
 export default ModelsHeader;
 >>>>>>> Stashed changes
 =======

@@ -4,6 +4,7 @@ import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { ExternalLink, Search } from 'lucide-react';
 
 const models = [
@@ -204,6 +205,8 @@ const ModelsList = () => {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { Copy, PlusCircle } from 'lucide-react';
 
 interface ModelMetaTag {
@@ -395,6 +398,9 @@ const ModelsList: React.FC = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

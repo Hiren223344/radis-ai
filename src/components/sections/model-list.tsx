@@ -1,6 +1,7 @@
 import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Copy, Gift, MoreHorizontal } from 'lucide-react';
 
 interface ModelBadgeProps {
@@ -15,6 +16,8 @@ const ModelBadge = ({ label, colorClass }: ModelBadgeProps) => (
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import { Copy } from 'lucide-react';
 
 interface TagProps {
@@ -27,6 +30,9 @@ const Tag = ({ label, color = '#64748b' }: TagProps) => (
     <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
     {label}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -34,6 +40,7 @@ const Tag = ({ label, color = '#64748b' }: TagProps) => (
 );
 
 interface ModelCardProps {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
   author: string;
@@ -89,6 +96,8 @@ const ModelCard = ({
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   name: string;
   author: string;
   tokens: string;
@@ -135,6 +144,9 @@ const ModelCard = ({ name, author, tokens, description, tags, meta, isFree }: Mo
                   </div>
                   +{tokens === "396B" ? "7" : tokens === "5.16B" ? "3" : "2"} categories
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -143,6 +155,7 @@ const ModelCard = ({ name, author, tokens, description, tags, meta, isFree }: Mo
             </div>
           )}
         </div>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
@@ -284,6 +297,8 @@ const ModelList = () => {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         <div className="text-[12px] font-medium text-slate-11 tabular-nums pt-1">
           {tokens} tokens
         </div>
@@ -359,6 +374,9 @@ const ModelList = () => {
       description: "Mistral Small Creative is an experimental small model designed for creative writing, narrative generation, roleplay and character-driven dialogue, general-purpose instruction following, and ...",
       meta: ["33K context", "$0.10/M input tokens", "$0.30/M output tokens"]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -366,6 +384,7 @@ const ModelList = () => {
   ];
 
   return (
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     <div className="flex flex-col w-full px-4 lg:px-0">
@@ -380,6 +399,8 @@ const ModelList = () => {
           <MoreHorizontal className="size-6" />
         </button>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     <div className="w-full max-w-screen-4xl mx-auto px-6 py-8">
@@ -429,6 +450,9 @@ const ModelList = () => {
           <ModelCard key={index} {...model} />
         ))}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

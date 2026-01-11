@@ -6,6 +6,7 @@ import { ChevronDown, Info, BarChart3 } from 'lucide-react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 interface ModelRanking {
   id: number;
   name: string;
@@ -50,6 +51,8 @@ const RankingsHero = () => {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 /**
  * RankingsHero Component
  * 
@@ -72,6 +75,9 @@ export default function RankingsHero() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -85,6 +91,7 @@ export default function RankingsHero() {
             <div className="flex flex-col gap-2 md:gap-5">
               <div className="flex items-center md:items-start justify-between">
                 <div className="flex flex-col gap-2">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -213,6 +220,8 @@ export default RankingsHero;
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                   {/* Section Title with Icon */}
                   <div className="flex items-center gap-2">
                     <BarChart3 className="size-5 text-[#64748B]" strokeWidth={2} />
@@ -258,6 +267,10 @@ export default RankingsHero;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes
 =======
