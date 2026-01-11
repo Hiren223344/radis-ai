@@ -6,6 +6,7 @@ import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { ExternalLink, Search } from 'lucide-react';
 
 const models = [
@@ -198,6 +199,8 @@ const ModelsList = () => {
           </div>
         ))}
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -403,6 +406,9 @@ const ModelsList: React.FC = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

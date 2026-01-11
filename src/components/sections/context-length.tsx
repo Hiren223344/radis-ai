@@ -6,6 +6,7 @@ import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { ChevronDown, BarChart2 } from 'lucide-react';
 
 const ContextLength = () => {
@@ -64,6 +65,8 @@ const ContextLength = () => {
             <span>1K - 10K tokens</span>
             <ChevronDown className="size-4 opacity-50 ml-2" />
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -155,6 +158,9 @@ export default function ContextLength() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -179,11 +185,14 @@ export default function ContextLength() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <div className="w-full">
         <div className="h-[300px] w-full relative flex items-end justify-between border-b border-[#e2e8f0] pb-8">
           {/* Y-Axis Labels */}
           <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-[11px] text-[#64748b] pointer-events-none">
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -207,6 +216,9 @@ export default function ContextLength() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -224,6 +236,7 @@ export default function ContextLength() {
             <span>600M</span>
             <span>400M</span>
             <span>200M</span>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -287,6 +300,8 @@ export default function ContextLength() {
 
 export default ContextLength;
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -387,6 +402,10 @@ function RankingRow({ model }: { model: ModelRanking }) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes
 =======

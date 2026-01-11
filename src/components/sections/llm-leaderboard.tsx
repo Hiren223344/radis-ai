@@ -2,7 +2,11 @@
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React, { useState } from "react";
+=======
+import React from "react";
+>>>>>>> Stashed changes
 =======
 import React from "react";
 >>>>>>> Stashed changes
@@ -18,6 +22,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 import { ChevronDown, Info, BarChart2 } from "lucide-react";
@@ -36,6 +41,8 @@ const chartData = [
 
 const leaderBoardItems = [
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import { ChevronDown, Info, BarChart3 } from "lucide-react";
@@ -62,6 +69,9 @@ const chartData = [
 
 const modelRankings = [
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -72,7 +82,12 @@ const modelRankings = [
     tokens: "521B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     change: 50,
+=======
+    change: "+50%",
+    changePositive: true,
+>>>>>>> Stashed changes
 =======
     change: "+50%",
     changePositive: true,
@@ -89,7 +104,12 @@ const modelRankings = [
     tokens: "369B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     change: 3,
+=======
+    change: "+3%",
+    changePositive: true,
+>>>>>>> Stashed changes
 =======
     change: "+3%",
     changePositive: true,
@@ -106,7 +126,12 @@ const modelRankings = [
     tokens: "421B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     change: 5,
+=======
+    change: "+5%",
+    changePositive: true,
+>>>>>>> Stashed changes
 =======
     change: "+5%",
     changePositive: true,
@@ -123,6 +148,7 @@ const modelRankings = [
     tokens: "309B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     change: 12,
   },
   {
@@ -132,6 +158,8 @@ const modelRankings = [
     tokens: "384B",
     change: 8,
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     change: "+12%",
@@ -145,6 +173,9 @@ const modelRankings = [
     change: "+8%",
     changePositive: true,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -156,7 +187,12 @@ const modelRankings = [
     tokens: "248B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     change: 52,
+=======
+    change: "+52%",
+    changePositive: true,
+>>>>>>> Stashed changes
 =======
     change: "+52%",
     changePositive: true,
@@ -173,7 +209,12 @@ const modelRankings = [
     tokens: "381B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     change: 39,
+=======
+    change: "+39%",
+    changePositive: true,
+>>>>>>> Stashed changes
 =======
     change: "+39%",
     changePositive: true,
@@ -190,7 +231,12 @@ const modelRankings = [
     tokens: "240B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     change: 26,
+=======
+    change: "+26%",
+    changePositive: true,
+>>>>>>> Stashed changes
 =======
     change: "+26%",
     changePositive: true,
@@ -207,7 +253,12 @@ const modelRankings = [
     tokens: "377B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     change: 127,
+=======
+    change: "+127%",
+    changePositive: true,
+>>>>>>> Stashed changes
 =======
     change: "+127%",
     changePositive: true,
@@ -222,6 +273,7 @@ const modelRankings = [
     name: "GLM 4.7",
     author: "z-ai",
     tokens: "165B",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     change: 43,
@@ -271,6 +323,8 @@ export default function LLMLeaderboard() {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     change: "+43%",
     changePositive: true,
   },
@@ -314,6 +368,9 @@ const LLMLeaderboard = () => {
                 strokeDasharray="0"
               />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -321,6 +378,7 @@ const LLMLeaderboard = () => {
                 dataKey="date"
                 axisLine={false}
                 tickLine={false}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
                 tick={{ 
@@ -332,11 +390,16 @@ const LLMLeaderboard = () => {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
                 fontSize={12}
                 tick={{ fill: "#64748B" }}
                 dy={10}
                 interval={Math.floor(chartData.length / 8)}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -344,6 +407,7 @@ const LLMLeaderboard = () => {
               <YAxis
                 axisLine={false}
                 tickLine={false}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
                 tickFormatter={(value) => (value > 0 ? `${value / 250}T` : "")}
@@ -369,6 +433,8 @@ const LLMLeaderboard = () => {
               <Bar dataKey="co45" stackId="a" fill="#8b5cf6" />
               <Bar dataKey="other" stackId="a" fill="#94a3b8" />
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 fontSize={12}
@@ -411,6 +477,9 @@ const LLMLeaderboard = () => {
                 radius={[2, 2, 0, 0]}
               />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -418,6 +487,7 @@ const LLMLeaderboard = () => {
           </ResponsiveContainer>
         </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
         {/* Leaderboard Grid */}
@@ -470,6 +540,8 @@ const LLMLeaderboard = () => {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         {/* Rankings List */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
           {modelRankings
@@ -511,6 +583,9 @@ const LLMLeaderboard = () => {
         <div className="flex justify-center mt-4">
           <button className="flex items-center gap-1 text-[12px] font-medium text-[#64748B] hover:text-[#0F172A] transition-colors">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -523,7 +598,13 @@ const LLMLeaderboard = () => {
   );
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
+=======
+};
+
+export default LLMLeaderboard;
+>>>>>>> Stashed changes
 =======
 };
 
