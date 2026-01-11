@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -9,6 +10,8 @@ import React from 'react';
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 import { ChevronDown, FileText, Info } from 'lucide-react';
 
 /**
@@ -82,6 +85,7 @@ export default function ContextLength() {
           <button className="pill-dropdown text-muted-foreground shadow-none hover:shadow-sm md:h-8 px-4 py-1.5 border flex items-center gap-2 rounded-full text-xs font-medium bg-white">
             <span>1K - 10K tokens</span>
             <ChevronDown className="size-4 opacity-50" />
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -91,10 +95,13 @@ export default function ContextLength() {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
           </button>
         </div>
       </div>
 
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -105,11 +112,14 @@ export default function ContextLength() {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
       {/* Chart Section */}
       <div className="w-full relative py-4">
         <div className="h-[320px] w-full flex flex-col justify-end">
           {/* Y-Axis Labels */}
           <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-[11px] text-slate-400 font-medium pointer-events-none">
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -119,10 +129,13 @@ export default function ContextLength() {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
             <span>800M</span>
             <span>600M</span>
             <span>400M</span>
             <span>200M</span>
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -133,6 +146,8 @@ export default function ContextLength() {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
           </div>
 
           {/* Bar Container */}
@@ -215,6 +230,7 @@ function RankingRow({ model }: { model: ModelRanking }) {
       </div>
     </div>
   );
+<<<<<<< Updated upstream
 }
 =======
 }
@@ -234,3 +250,6 @@ function RankingRow({ model }: { model: ModelRanking }) {
 }
 =======
 }
+=======
+}
+>>>>>>> Stashed changes

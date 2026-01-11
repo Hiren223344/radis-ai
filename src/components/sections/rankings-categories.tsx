@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -9,6 +10,8 @@ import React from 'react';
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 import { ChevronDown, Info, LayoutGrid, Languages, Code2, Maximize2, Wrench } from 'lucide-react';
 
 /**
@@ -36,6 +39,7 @@ const RankingSection = ({
 }) => {
   return (
     <div id={id} className="flex flex-col gap-10 scroll-mt-24">
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -45,10 +49,13 @@ const RankingSection = ({
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
       <div className="flex flex-col gap-2 md:gap-5">
         <div className="flex items-center md:items-start justify-between">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -59,6 +66,8 @@ const RankingSection = ({
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
               <Icon className="size-5 text-[#687076]" />
               <a href={`#${id}`} className="hover:underline">
                 <h2 className="text-[18px] font-medium text-[#0f172a]">{title}</h2>
@@ -73,6 +82,7 @@ const RankingSection = ({
           <button className="flex items-center justify-between whitespace-nowrap border border-[#e2e8f0] bg-white px-4 py-2 transition-colors hover:bg-[#f1f5f9]/60 focus:outline-none h-8 rounded-full text-[#64748b] text-[12px] font-medium shadow-none hover:shadow-sm w-32">
             <span>This Week</span>
             <ChevronDown className="size-4 opacity-50" />
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -82,10 +92,13 @@ const RankingSection = ({
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
           </button>
         </div>
       </div>
 
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -96,6 +109,8 @@ const RankingSection = ({
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
       {/* Placeholder for Data Visualizations based on provided screenshots */}
       <div className="w-full bg-white rounded-md flex flex-col items-center justify-center min-h-[320px]">
         {imageSrc ? (
@@ -171,6 +186,7 @@ export default function RankingsCategories() {
         icon={Wrench}
         imageSrc={assetsMap.toolcalls}
       />
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -180,6 +196,8 @@ export default function RankingsCategories() {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
     </section>
   );
 }

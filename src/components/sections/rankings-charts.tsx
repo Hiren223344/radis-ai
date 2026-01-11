@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -8,6 +9,8 @@
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 import React from 'react';
 import { 
   BarChart, 
@@ -246,6 +249,7 @@ const RankingsCharts = () => {
               </div>
             </div>
 
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -255,6 +259,8 @@ const RankingsCharts = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
           </div>
         </div>
       </div>

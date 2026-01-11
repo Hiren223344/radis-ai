@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -9,6 +10,8 @@ import React from 'react';
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 
 const GlobalStatus = () => {
   return (
@@ -18,6 +21,7 @@ const GlobalStatus = () => {
         style={{ 
           backgroundColor: '#22c55e', 
           boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' 
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -27,10 +31,13 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
         }}
       >
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -41,6 +48,8 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
             {/* Using a Lucide-like checkmark SVG as per common UI patterns for status pages */}
             <svg 
               className="h-6 w-6 text-white" 
@@ -61,6 +70,7 @@ const GlobalStatus = () => {
                 fontFamily: 'var(--font-display)', 
                 fontSize: '1.125rem', 
                 fontWeight: 500 
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -70,6 +80,8 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
               }}
             >
               All Systems Operational
@@ -78,6 +90,7 @@ const GlobalStatus = () => {
         </div>
       </div>
     </section>
+<<<<<<< Updated upstream
 =======
     </section>
 =======
@@ -98,6 +111,8 @@ const GlobalStatus = () => {
     </section>
 =======
     </section>
+=======
+>>>>>>> Stashed changes
   );
 };
 

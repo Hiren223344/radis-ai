@@ -10,11 +10,14 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 import { LayoutPanelLeft } from "lucide-react";
 
 /**
@@ -197,6 +200,7 @@ export default function MarketShareSection() {
       </div>
     </div>
   );
+<<<<<<< Updated upstream
 }
 =======
 }
@@ -206,3 +210,6 @@ export default function MarketShareSection() {
 }
 =======
 }
+=======
+}
+>>>>>>> Stashed changes

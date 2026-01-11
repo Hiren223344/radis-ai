@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+<<<<<<< Updated upstream
 =======
 import React from "react";
 =======
@@ -11,6 +12,8 @@ import React from "react";
 import React from "react";
 =======
 import React from "react";
+=======
+>>>>>>> Stashed changes
 import {
   BarChart,
   Bar,
@@ -20,11 +23,14 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 import { ChevronDown, Info, BarChart3 } from "lucide-react";
 
 const chartData = [
@@ -48,10 +54,13 @@ const chartData = [
 ];
 
 const modelRankings = [
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
   {
     rank: 1,
     name: "Claude Sonnet 4.5",
@@ -59,6 +68,7 @@ const modelRankings = [
     tokens: "521B",
     change: "+50%",
     changePositive: true,
+<<<<<<< Updated upstream
 =======
     change: "+50%",
     changePositive: true,
@@ -74,6 +84,8 @@ const modelRankings = [
 =======
     change: "+50%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 6,
@@ -82,6 +94,7 @@ const modelRankings = [
     tokens: "369B",
     change: "+3%",
     changePositive: true,
+<<<<<<< Updated upstream
 =======
     change: "+3%",
     changePositive: true,
@@ -97,6 +110,8 @@ const modelRankings = [
 =======
     change: "+3%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 2,
@@ -105,6 +120,7 @@ const modelRankings = [
     tokens: "421B",
     change: "+5%",
     changePositive: true,
+<<<<<<< Updated upstream
 =======
     change: "+5%",
     changePositive: true,
@@ -120,17 +136,22 @@ const modelRankings = [
 =======
     change: "+5%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 7,
     name: "DeepSeek V3.2",
     author: "deepseek",
     tokens: "309B",
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
     change: "+12%",
     changePositive: true,
   },
@@ -141,10 +162,13 @@ const modelRankings = [
     tokens: "384B",
     change: "+8%",
     changePositive: true,
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 8,
@@ -153,6 +177,7 @@ const modelRankings = [
     tokens: "248B",
     change: "+52%",
     changePositive: true,
+<<<<<<< Updated upstream
 =======
     change: "+52%",
     changePositive: true,
@@ -168,6 +193,8 @@ const modelRankings = [
 =======
     change: "+52%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 4,
@@ -176,6 +203,7 @@ const modelRankings = [
     tokens: "381B",
     change: "+39%",
     changePositive: true,
+<<<<<<< Updated upstream
 =======
     change: "+39%",
     changePositive: true,
@@ -191,6 +219,8 @@ const modelRankings = [
 =======
     change: "+39%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 9,
@@ -199,6 +229,7 @@ const modelRankings = [
     tokens: "240B",
     change: "+26%",
     changePositive: true,
+<<<<<<< Updated upstream
 =======
     change: "+26%",
     changePositive: true,
@@ -214,6 +245,8 @@ const modelRankings = [
 =======
     change: "+26%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 5,
@@ -222,6 +255,7 @@ const modelRankings = [
     tokens: "377B",
     change: "+127%",
     changePositive: true,
+<<<<<<< Updated upstream
 =======
     change: "+127%",
     changePositive: true,
@@ -237,17 +271,22 @@ const modelRankings = [
 =======
     change: "+127%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 10,
     name: "GLM 4.7",
     author: "z-ai",
     tokens: "165B",
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
     change: "+43%",
     changePositive: true,
   },
@@ -290,36 +329,48 @@ const LLMLeaderboard = () => {
                 stroke="#E2E8F0"
                 strokeDasharray="0"
               />
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
               <XAxis
                 dataKey="date"
                 axisLine={false}
                 tickLine={false}
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
                 fontSize={12}
                 tick={{ fill: "#64748B" }}
                 dy={10}
                 interval={Math.floor(chartData.length / 8)}
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
                 fontSize={12}
                 tick={{ fill: "#64748B" }}
                 tickFormatter={(value) => (value === 0 ? "" : `${value}T`)}
@@ -359,19 +410,25 @@ const LLMLeaderboard = () => {
                 fill="#10B981"
                 radius={[2, 2, 0, 0]}
               />
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
             </BarChart>
           </ResponsiveContainer>
         </div>
 
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
         {/* Rankings List */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
           {modelRankings
@@ -412,10 +469,13 @@ const LLMLeaderboard = () => {
 
         <div className="flex justify-center mt-4">
           <button className="flex items-center gap-1 text-[12px] font-medium text-[#64748B] hover:text-[#0F172A] transition-colors">
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
             Show more
             <ChevronDown className="size-4" />
           </button>
@@ -425,6 +485,7 @@ const LLMLeaderboard = () => {
   );
 };
 
+<<<<<<< Updated upstream
 export default LLMLeaderboard;
 =======
 };
@@ -446,3 +507,6 @@ export default LLMLeaderboard;
 };
 
 export default LLMLeaderboard;
+=======
+export default LLMLeaderboard;
+>>>>>>> Stashed changes
