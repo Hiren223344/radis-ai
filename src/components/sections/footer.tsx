@@ -4,6 +4,7 @@ import { Sun } from 'lucide-react';
 
 /**
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
  * Footer component for the OpenRouter Home page.
  */
 const Footer = () => {
@@ -64,6 +65,8 @@ const Footer = () => {
             <Sun className="w-4 h-4" />
           </button>
 =======
+=======
+>>>>>>> Stashed changes
  * Footer component for the OpenRouter Status page.
  * Features a divider, a centered theme toggle icon, and "Powered by OnlineOrNot" branding.
  * Tailored to match the clean, minimalist "Status Page" utility aesthetic.
@@ -104,6 +107,9 @@ const Footer = () => {
               />
             </a>
           </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         </div>
       </div>

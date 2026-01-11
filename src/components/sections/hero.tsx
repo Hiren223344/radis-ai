@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 "use client";
 import React from 'react';
 import Image from 'next/image';
@@ -92,6 +93,17 @@ import React from "react";
  */
 const Hero = () => {
   return (
+=======
+import React from "react";
+
+/**
+ * Hero component for the OpenRouter Rankings page.
+ * Clones the main heading "AI Model Rankings" with pixel-perfect accuracy
+ * according to the provided design system and computed styles.
+ */
+const Hero = () => {
+  return (
+>>>>>>> Stashed changes
     <section className="w-full flex-col items-center bg-background px-6 pt-0 lg:pt-8">
       {/* 
         Container wrapping the main heading. 
@@ -117,6 +129,9 @@ const Hero = () => {
           >
             AI Model Rankings
           </h1>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         </div>
       </div>
@@ -125,7 +140,11 @@ const Hero = () => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default Hero;
+=======
+export default Hero;
+>>>>>>> Stashed changes
 =======
 export default Hero;
 >>>>>>> Stashed changes

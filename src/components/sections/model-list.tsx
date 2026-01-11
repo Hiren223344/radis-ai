@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Copy, Search } from 'lucide-react';
@@ -16,6 +17,8 @@ interface Model {
 
 const Tag = ({ label, color = '#64748b' }: { label: string; color?: string }) => (
 =======
+=======
+>>>>>>> Stashed changes
 import React from 'react';
 import { Copy } from 'lucide-react';
 
@@ -25,6 +28,9 @@ interface TagProps {
 }
 
 const Tag = ({ label, color = '#64748b' }: TagProps) => (
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-border bg-white text-[11px] font-medium text-slate-11">
     <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
@@ -32,6 +38,7 @@ const Tag = ({ label, color = '#64748b' }: TagProps) => (
   </div>
 );
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 const ModelList = () => {
   const [models, setModels] = useState<Model[]>([]);
@@ -61,6 +68,8 @@ const ModelList = () => {
 
   if (loading) return <div className="p-20 text-center text-muted-foreground">Loading models...</div>;
 =======
+=======
+>>>>>>> Stashed changes
 interface ModelCardProps {
   name: string;
   author: string;
@@ -188,6 +197,9 @@ const ModelList = () => {
       meta: ["33K context", "$0.10/M input tokens", "$0.30/M output tokens"]
     }
   ];
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   return (
@@ -198,7 +210,11 @@ const ModelList = () => {
           <div className="flex items-center gap-1 rounded-md border border-border p-1">
             <button className="flex items-center gap-2 px-3 py-1 text-[12px] font-medium text-slate-11 hover:bg-slate-50 transition-colors border-r border-border">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2"><path d="M16 3H21V8M8 21H3V16M21 3L14.5 link.5M3 21L9.5 14.5M3 3H8L3 8V3ZM21 21H16L21 16V21Z" /></svg>
+=======
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2"><path d="M16 3H21V8M8 21H3V16M21 3L14.5 9.5M3 21L9.5 14.5M3 3H8L3 8V3ZM21 21H16L21 16V21Z" /></svg>
+>>>>>>> Stashed changes
 =======
               <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2"><path d="M16 3H21V8M8 21H3V16M21 3L14.5 9.5M3 21L9.5 14.5M3 3H8L3 8V3ZM21 21H16L21 16V21Z" /></svg>
 >>>>>>> Stashed changes
@@ -219,7 +235,13 @@ const ModelList = () => {
       <div className="mb-8">
         <div className="relative search-bar group flex items-center bg-slate-50 border border-border rounded-md px-3 py-2 focus-within:ring-1 focus-within:ring-slate-400 focus-within:bg-white transition-all">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           <Search className="w-4 h-4 text-slate-400 mr-2" />
+=======
+          <svg className="w-4 h-4 text-slate-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+>>>>>>> Stashed changes
 =======
           <svg className="w-4 h-4 text-slate-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -230,8 +252,11 @@ const ModelList = () => {
             placeholder="Search" 
             className="bg-transparent border-none outline-none text-[14px] w-full placeholder:text-slate-400"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
           />
@@ -240,7 +265,11 @@ const ModelList = () => {
 
       <div className="flex items-center justify-between mb-10 text-[13px] text-slate-11 font-medium">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div>{filteredModels.length} models</div>
+=======
+        <div>607 models</div>
+>>>>>>> Stashed changes
 =======
         <div>607 models</div>
 >>>>>>> Stashed changes
@@ -250,6 +279,7 @@ const ModelList = () => {
         </div>
       </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       <div className="flex flex-col divide-y divide-border">
         {filteredModels.map((model) => (
@@ -293,10 +323,15 @@ const ModelList = () => {
           </div>
         )}
 =======
+=======
+>>>>>>> Stashed changes
       <div className="flex flex-col">
         {models.map((model, index) => (
           <ModelCard key={index} {...model} />
         ))}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </div>
     </div>
@@ -304,7 +339,11 @@ const ModelList = () => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default ModelList;
+=======
+export default ModelList;
+>>>>>>> Stashed changes
 =======
 export default ModelList;
 >>>>>>> Stashed changes
