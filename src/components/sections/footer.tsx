@@ -3,8 +3,14 @@ import { Sun } from 'lucide-react';
 import Image from 'next/image';
 
 /**
+<<<<<<< Updated upstream
  * Footer component for the OpenRouter website.
  * Features a divider, a centered theme toggle icon, and "Powered by OnlineOrNot" branding.
+=======
+ * Footer component for the OpenRouter Status page.
+ * Features a divider, a centered theme toggle icon, and "Powered by OnlineOrNot" branding.
+ * Tailored to match the clean, minimalist "Status Page" utility aesthetic.
+>>>>>>> Stashed changes
  */
 const Footer = () => {
   return (
@@ -14,7 +20,11 @@ const Footer = () => {
         <div className="w-full h-px bg-gray-200 dark:bg-zinc-800 mb-8" />
 
         <div className="flex flex-col items-center justify-center space-y-6">
+<<<<<<< Updated upstream
           {/* Theme Toggle Button (Visual only) */}
+=======
+          {/* Theme Toggle Button (Visual only as per design) */}
+>>>>>>> Stashed changes
           <button 
             type="button"
             className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"

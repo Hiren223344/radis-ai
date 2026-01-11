@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 "use client";
 import React, { useState } from "react";
+=======
+import React from 'react';
+>>>>>>> Stashed changes
 import Link from 'next/link';
 import { Search } from 'lucide-react';
 
