@@ -41,26 +41,26 @@ interface AppData {
 }
 
 const apps: AppData[] = [
-  { rank: 1, name: "Janitor AI", description: "Character chat and creation", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_1.png", tokens: "45.7B tokens" },
-  { rank: 2, name: "Kilo Code", description: "AI coding agent for VS Code", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_2.png", tokens: "45.5B tokens" },
-  { rank: 3, name: "liteLLM", description: "Open-source library to simplify L...", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_3.png", tokens: "30.1B tokens" },
-  { rank: 4, name: "BLACKBOXAI", description: "AI agent for builders", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_4.png", tokens: "27.8B tokens" },
-  { rank: 5, name: "Roo Code", description: "A whole dev team of AI agents in ...", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_5.png", tokens: "27.6B tokens" },
-  { rank: 6, name: "Cline", description: "Autonomous coding agent right in...", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_6.png", tokens: "18.5B tokens" },
-  { rank: 7, name: "Lemonade", description: "new", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_7.png", tokens: "9.96B tokens", isNew: true },
-  { rank: 8, name: "HammerAI", description: "Chat with AI characters for free", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_8.png", tokens: "8.48B tokens" },
-  { rank: 9, name: "SillyTavern", description: "LLM frontend for power users", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_9.png", tokens: "8.22B tokens" },
-  { rank: 10, name: "Claude", description: "The AI for problem solvers", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_10.png", tokens: "4.97B tokens" },
-  { rank: 11, name: "New API", description: "Unified AI framework", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_11.png", tokens: "4.68B tokens" },
-  { rank: 12, name: "Chub AI", description: "GenAl for everyone", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_12.png", tokens: "4.4B tokens" },
-  { rank: 13, name: "Sophia's LoreBary", description: "new", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_13.png", tokens: "4.1B tokens", isNew: true },
-  { rank: 14, name: "JobLeads LLM", description: "Use AI to find jobs for you", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_14.png", tokens: "3.99B tokens" },
-  { rank: 15, name: "Stock Qualitative Screen...", description: "new", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_15.png", tokens: "3.98B tokens", isNew: true },
-  { rank: 16, name: "Portkey AI", description: "Control panel for AI apps", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_16.png", tokens: "2.75B tokens" },
-  { rank: 17, name: "OpenCharacter", description: "Open-source recreation of the ol...", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_17.png", tokens: "2.64B tokens" },
-  { rank: 18, name: "GDevelop", description: "AI-powered game engine", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_18.png", tokens: "2.06B tokens" },
-  { rank: 19, name: "Pax Historia", description: "An alternate history sandbox game", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_19.png", tokens: "2.04B tokens" },
-  { rank: 20, name: "JuicyChat", description: "new", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_20.png", tokens: "1.91B tokens", isNew: true },
+  { rank: 1, name: "Janitor AI", description: "Character chat and creation", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_1.png", tokens: "45.7B tokens" },
+  { rank: 2, name: "Kilo Code", description: "AI coding agent for VS Code", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_2.png", tokens: "45.5B tokens" },
+  { rank: 3, name: "liteLLM", description: "Open-source library to simplify L...", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_3.png", tokens: "30.1B tokens" },
+  { rank: 4, name: "BLACKBOXAI", description: "AI agent for builders", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_4.png", tokens: "27.8B tokens" },
+  { rank: 5, name: "Roo Code", description: "A whole dev team of AI agents in ...", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_5.png", tokens: "27.6B tokens" },
+  { rank: 6, name: "Cline", description: "Autonomous coding agent right in...", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_6.png", tokens: "18.5B tokens" },
+  { rank: 7, name: "Lemonade", description: "new", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_7.png", tokens: "9.96B tokens", isNew: true },
+  { rank: 8, name: "HammerAI", description: "Chat with AI characters for free", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_8.png", tokens: "8.48B tokens" },
+  { rank: 9, name: "SillyTavern", description: "LLM frontend for power users", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_9.png", tokens: "8.22B tokens" },
+  { rank: 10, name: "Claude", description: "The AI for problem solvers", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_10.png", tokens: "4.97B tokens" },
+  { rank: 11, name: "New API", description: "Unified AI framework", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_11.png", tokens: "4.68B tokens" },
+  { rank: 12, name: "Chub AI", description: "GenAl for everyone", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_12.png", tokens: "4.4B tokens" },
+  { rank: 13, name: "Sophia's LoreBary", description: "new", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_13.png", tokens: "4.1B tokens", isNew: true },
+  { rank: 14, name: "JobLeads LLM", description: "Use AI to find jobs for you", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_14.png", tokens: "3.99B tokens" },
+  { rank: 15, name: "Stock Qualitative Screen...", description: "new", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_15.png", tokens: "3.98B tokens", isNew: true },
+  { rank: 16, name: "Portkey AI", description: "Control panel for AI apps", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_16.png", tokens: "2.75B tokens" },
+  { rank: 17, name: "OpenCharacter", description: "Open-source recreation of the ol...", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_17.png", tokens: "2.64B tokens" },
+  { rank: 18, name: "GDevelop", description: "AI-powered game engine", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_18.png", tokens: "2.06B tokens" },
+  { rank: 19, name: "Pax Historia", description: "An alternate history sandbox game", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_19.png", tokens: "2.04B tokens" },
+  { rank: 20, name: "JuicyChat", description: "new", icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_20.png", tokens: "1.91B tokens", isNew: true },
 ];
 
 const TopApps: React.FC = () => {
@@ -81,7 +81,7 @@ const TopApps: React.FC = () => {
           <p className="text-[12px] font-medium text-[#64748B]">
             Largest public apps{" "}
             <a href="#" className="underline decoration-[#64748B]/30 hover:decoration-[#64748B]">opting into</a>
-            {" "}usage tracking on OpenRouter
+            {" "}usage tracking on Radison
           </p>
         </div>
 

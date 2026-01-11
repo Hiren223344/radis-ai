@@ -72,7 +72,7 @@ export default function RankingsLeaderboard() {
           </div>
           
           <div className="flex items-center gap-1.5 text-[14px] text-muted-foreground mb-4">
-            Token usage across models on OpenRouter
+            Token usage across models on Radison
             <Info className="size-3.5" />
           </div>
         </div>

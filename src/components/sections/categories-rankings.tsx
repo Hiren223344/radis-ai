@@ -108,7 +108,7 @@ const CategoriesSection: React.FC = () => {
               </a>
             </div>
             <p className="text-xs font-medium text-slate-500 hidden md:flex items-center gap-1">
-              Compare models by usecase on OpenRouter
+              Compare models by usecase on Radison
               <Info className="inline h-4 w-4 text-slate-400 cursor-pointer" />
             </p>
           </div>

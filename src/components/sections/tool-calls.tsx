@@ -38,7 +38,7 @@ export default function ToolCalls() {
               </a>
             </div>
             <p className="text-xs font-medium text-slate-500 hidden md:block">
-              Tool usage across models on OpenRouter
+              Tool usage across models on Radison
             </p>
           </div>
         </div>

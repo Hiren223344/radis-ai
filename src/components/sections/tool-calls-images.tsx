@@ -4,7 +4,7 @@ import { Settings2, Image as ImageIcon } from 'lucide-react';
 /**
  * ToolCallsAndImagesSection Component
  * 
- * Clones the "Tool Calls" and "Images" sections from the OpenRouter Rankings page.
+ * Clones the "Tool Calls" and "Images" sections from the Radison Rankings page.
  * These are 100% stacked bar charts showing model distribution for specific capabilities.
  */
 
@@ -154,7 +154,7 @@ export default function ToolCallsAndImagesSection() {
       <CapabilitySection
         id="tool-calls"
         title="Tool Calls"
-        subtitle="Tool usage across models on OpenRouter"
+        subtitle="Tool usage across models on Radison"
         icon={Settings2}
         data={TOOL_CALLS_DATA}
       />
@@ -162,7 +162,7 @@ export default function ToolCallsAndImagesSection() {
       <CapabilitySection
         id="images"
         title="Images"
-        subtitle="Total images processed on OpenRouter"
+        subtitle="Total images processed on Radison"
         icon={ImageIcon}
         data={IMAGES_DATA}
       />

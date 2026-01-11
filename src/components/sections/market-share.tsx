@@ -45,7 +45,7 @@ import { LayoutPanelLeft } from "lucide-react";
  * Market Share Section Component
  *
  * Implements a 100% stacked bar chart for token share by model author.
- * Matches UI styling and typography from the OpenRouter Rankings page.
+ * Matches UI styling and typography from the Radison Rankings page.
  */
 
 // Mock data representing the market share over time
@@ -130,7 +130,7 @@ export default function MarketShareSection() {
               </a>
             </div>
             <p className="text-xs font-medium text-[#64748B] hidden md:block">
-              Compare OpenRouter token share by model author
+              Compare Radison token share by model author
             </p>
           </div>
         </div>

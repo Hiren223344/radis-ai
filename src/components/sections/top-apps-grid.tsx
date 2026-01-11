@@ -96,7 +96,7 @@ export default function TopAppsGrid() {
             Top Apps
           </h2>
           <p className="text-[13px] text-[#64748b]">
-            Largest public apps <span className="text-[#4f46e5] cursor-pointer hover:underline">opting into</span> usage tracking on OpenRouter
+            Largest public apps <span className="text-[#4f46e5] cursor-pointer hover:underline">opting into</span> usage tracking on Radison
           </p>
         </div>
         

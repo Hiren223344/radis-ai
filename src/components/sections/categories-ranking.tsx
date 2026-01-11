@@ -77,7 +77,7 @@ const CategoriesRanking: React.FC = () => {
               </a>
             </div>
             <p className="text-xs font-medium text-slate-500 hidden md:flex items-center gap-1">
-              Compare models by usecase on OpenRouter
+              Compare models by usecase on Radison
               <Info className="h-3 w-3 text-slate-400 cursor-help" />
             </p>
           </div>

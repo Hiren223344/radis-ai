@@ -113,7 +113,7 @@ export default function RankingsHero() {
                   {/* Description - Visible on Desktop */}
                   <div className="hidden md:flex items-center gap-1.5">
                     <p className="text-[12px] font-medium text-[#64748B]">
-                      Token usage across models on OpenRouter
+                      Token usage across models on Radison
                     </p>
                     <button 
                       className="inline-flex items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none"

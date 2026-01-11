@@ -155,7 +155,7 @@ export default function LanguageUsageCharts() {
     <div className="w-full bg-white pt-12 pb-24">
       <StackedBarSection 
         title="Languages" 
-        subtitle="Compare models by natural language on OpenRouter"
+        subtitle="Compare models by natural language on Radison"
         data={languagesData}
         icon={Languages}
         dropdownOption="English"
@@ -163,7 +163,7 @@ export default function LanguageUsageCharts() {
       
       <StackedBarSection 
         title="Programming" 
-        subtitle="Compare models by programming language on OpenRouter"
+        subtitle="Compare models by programming language on Radison"
         data={programmingData}
         icon={Code}
         dropdownOption="Python"

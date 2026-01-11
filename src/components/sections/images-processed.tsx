@@ -37,7 +37,7 @@ const ImagesProcessedSection = () => {
                 </a>
               </div>
               <p className="text-[12px] font-medium text-[#64748B] hidden md:block">
-                Total images processed on OpenRouter
+                Total images processed on Radison
               </p>
             </div>
           </div>

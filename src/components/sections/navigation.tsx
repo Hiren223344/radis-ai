@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Search } from "lucide-react";
 
 /**
- * Navigation component for OpenRouter.
+ * Navigation component for Radison.
  * Features a pixel-perfect recreation of the sticky header with Logo, 
  * functional-looking search bar, menu links, and rounded sign-up button.
  */
@@ -48,13 +48,13 @@ export default function Navigation() {
                   <svg
                     viewBox="0 0 512 512"
                     className="size-4 fill-foreground stroke-foreground"
-                    aria-label="OpenRouter Logo"
+                    aria-label="Radison Logo"
                   >
                     <path d="M256 0L476.9 127.5V384.5L256 512L35.1 384.5V127.5L256 0ZM256 64.9L87.1 162.5V349.5L256 447.1L424.9 349.5V162.5L256 64.9Z" />
                     <circle cx="256" cy="256" r="64" />
                   </svg>
                 </div>
-                <span className="text-foreground font-medium">OpenRouter</span>
+                <span className="text-foreground font-medium">Radison</span>
               </div>
             </a>
 

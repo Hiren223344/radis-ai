@@ -36,7 +36,7 @@ import React from 'react';
 import { ChevronDown, FileText, Info } from 'lucide-react';
 
 /**
- * ContextLength component replicates the "Context Length" section of the OpenRouter Rankings page.
+ * ContextLength component replicates the "Context Length" section of the Radison Rankings page.
  * It features a grouped/stacked bar chart representing requests by prompt and completion length,
  * along with a ranking list of models most active in the selected context window.
  */
@@ -56,7 +56,7 @@ interface ModelRanking {
 }
 
 const SECTION_TITLE = "Context Length";
-const SECTION_DESCRIPTION = "Requests by prompt & completion length on OpenRouter";
+const SECTION_DESCRIPTION = "Requests by prompt & completion length on Radison";
 
 const CHART_DATA: ChartBarData[] = [
   { date: "Jul 21, 2025", values: [{ color: "#FF1F9D", height: 120 }, { color: "#0088FF", height: 40 }, { color: "#00C49F", height: 20 }, { color: "#FFBB28", height: 15 }] },

@@ -41,7 +41,7 @@ const LanguageRankings = () => {
               </a>
             </div>
             <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 hidden md:flex">
-              Compare models by natural language on OpenRouter
+              Compare models by natural language on Radison
               <Info className="size-3.5 text-muted-foreground cursor-help" />
             </div>
           </div>

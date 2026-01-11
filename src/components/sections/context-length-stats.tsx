@@ -40,7 +40,7 @@ const ContextLengthStats = () => {
               </a>
             </div>
             <p className="text-xs font-medium text-slate-500 hidden md:block">
-              Requests by prompt & completion length on OpenRouter
+              Requests by prompt & completion length on Radison
               <Info className="inline h-4 w-4 ml-1 text-muted-foreground cursor-help" />
             </p>
           </div>

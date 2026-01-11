@@ -36,7 +36,7 @@ export default function ProgrammingSection() {
               </a>
             </div>
             <p className="text-[12px] font-medium text-[#64748b] hidden md:flex items-center gap-1">
-              Compare models by programming language on OpenRouter
+              Compare models by programming language on Radison
               <HelpCircle className="size-4 text-muted-foreground" />
             </p>
           </div>

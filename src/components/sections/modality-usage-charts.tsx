@@ -112,7 +112,7 @@ const ToolCallsSection = () => {
   return (
     <ModalityChart
       title="Tool Calls"
-      description="Tool usage across models on OpenRouter"
+      description="Tool usage across models on Radison"
       icon={<Wrench className="size-4 text-muted-foreground" />}
       data={toolCallsData}
     />
@@ -127,7 +127,7 @@ const ImagesSection = () => {
   return (
     <ModalityChart
       title="Images"
-      description="Total images processed on OpenRouter"
+      description="Total images processed on Radison"
       icon={<ImageIcon className="size-4 text-muted-foreground" />}
       data={imagesData}
     />

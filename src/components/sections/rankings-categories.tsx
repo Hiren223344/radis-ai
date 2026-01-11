@@ -238,10 +238,10 @@ export default function RankingsCategories() {
   // Mapping the specific assets provided in the prompt to the correct sections
   // Using the fallback assets if specific ones aren't clearly labeled
   const assetsMap = {
-    categories: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_8.png",
-    languages: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_9.png",
-    programming: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_10.png",
-    context: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/images/images_11.png",
+    categories: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_8.png",
+    languages: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_9.png",
+    programming: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_10.png",
+    context: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/images/images_11.png",
     toolcalls: "" // Fallback to placeholder
   };
 
@@ -251,7 +251,7 @@ export default function RankingsCategories() {
       <RankingSection 
         id="categories"
         title="Categories"
-        subtitle="Compare models by usecase on OpenRouter"
+        subtitle="Compare models by usecase on Radison"
         icon={LayoutGrid}
         imageSrc={assetsMap.categories}
       />
@@ -260,7 +260,7 @@ export default function RankingsCategories() {
       <RankingSection 
         id="languages"
         title="Languages"
-        subtitle="Compare models by natural language on OpenRouter"
+        subtitle="Compare models by natural language on Radison"
         icon={Languages}
         imageSrc={assetsMap.languages}
       />
@@ -269,7 +269,7 @@ export default function RankingsCategories() {
       <RankingSection 
         id="programming"
         title="Programming"
-        subtitle="Compare models by programming language on OpenRouter"
+        subtitle="Compare models by programming language on Radison"
         icon={Code2}
         imageSrc={assetsMap.programming}
       />
@@ -278,7 +278,7 @@ export default function RankingsCategories() {
       <RankingSection 
         id="context-length"
         title="Context Length"
-        subtitle="Requests by prompt & completion length on OpenRouter"
+        subtitle="Requests by prompt & completion length on Radison"
         icon={Maximize2}
         imageSrc={assetsMap.context}
       />
@@ -287,7 +287,7 @@ export default function RankingsCategories() {
       <RankingSection 
         id="tool-calls"
         title="Tool Calls"
-        subtitle="Tool usage across models on OpenRouter"
+        subtitle="Tool usage across models on Radison"
         icon={Wrench}
         imageSrc={assetsMap.toolcalls}
       />

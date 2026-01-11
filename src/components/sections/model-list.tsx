@@ -49,7 +49,7 @@ const ModelList = () => {
   useEffect(() => {
     const fetchModels = async () => {
       try {
-        const url = process.env.NEXT_PUBLIC_MODELS_URL || "https://openrouter.ai/api/v1/models";
+        const url = process.env.NEXT_PUBLIC_MODELS_URL || "https://radison.ai/api/v1/models";
         const res = await fetch(url);
         const data = await res.json();
         setModels(data.data || []);

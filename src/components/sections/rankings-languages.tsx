@@ -51,7 +51,7 @@ const RankingsLanguages = () => {
               </a>
             </div>
             <p className="text-[12px] font-medium text-[#64748B] hidden md:flex items-center gap-1">
-              Compare models by natural language on OpenRouter
+              Compare models by natural language on Radison
               <Info className="h-4 w-4 text-slate-400 cursor-help" />
             </p>
           </div>

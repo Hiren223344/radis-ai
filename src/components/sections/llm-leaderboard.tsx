@@ -580,7 +580,7 @@ const LLMLeaderboard = () => {
               </a>
             </div>
             <p className="text-[12px] font-medium text-[#64748B] flex items-center gap-1">
-              Token usage across models on OpenRouter
+              Token usage across models on Radison
               <Info className="size-3.5 inline text-[#64748B] opacity-70" />
             </p>
           </div>

@@ -84,7 +84,7 @@ const FeaturedModels = () => {
   useEffect(() => {
     const fetchModels = async () => {
       try {
-        const url = process.env.NEXT_PUBLIC_MODELS_URL || "https://openrouter.ai/api/v1/models";
+        const url = process.env.NEXT_PUBLIC_MODELS_URL || "https://radison.ai/api/v1/models";
         const res = await fetch(url);
         const data = await res.json();
         // Just take the first 3 models as "featured"
@@ -129,7 +129,7 @@ const FeaturedModels = () => {
               key={index} 
               name={model.name}
               provider={model.id.split('/')[0]}
-              providerLogo={`https://openrouter.ai/favicon.ico`} // Fallback logo
+              providerLogo={`https://radison.ai/favicon.ico`} // Fallback logo
               tokens={`${(model.context_length / 1000).toFixed(0)}k`}
               trend={`$${(Number(model.pricing.prompt) * 1000000).toFixed(2)} / $${(Number(model.pricing.completion) * 1000000).toFixed(2)}`}
             />

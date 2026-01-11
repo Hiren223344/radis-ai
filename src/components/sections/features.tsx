@@ -15,20 +15,20 @@ const Features = () => {
               </div>
               <div className="absolute inset-2 grid grid-cols-5 gap-2 p-4 transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-1">
                 {[
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Microsoft-4.svg",
+                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/Microsoft-4.svg",
                   "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://nvidia.com/&size=256",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/icons/Meta-1.png",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/GoogleGemini-2.svg",
+                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/Meta-1.png",
+                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/GoogleGemini-2.svg",
                   "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://nova.amazon.com/&size=256",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/icons/DeepSeek-2.png",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/icons/Qwen-3.png",
+                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/DeepSeek-2.png",
+                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/Qwen-3.png",
                   "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://moonshot.ai&size=256",
                   "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://minimaxi.com/&size=256",
                   "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://z.ai/&size=256",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/icons/Mistral-4.png",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/OpenAI-1.svg",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/GoogleAIStudio-5.svg",
+                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/Mistral-4.png",
+                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/Anthropic-3.svg",
+                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/OpenAI-1.svg",
+                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/GoogleAIStudio-5.svg",
                   "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://x.ai/&size=256"
                 ].map((src, idx) => (
                   <div key={idx} className="flex items-center justify-center p-1.5 bg-white border rounded-full shadow-sm size-6 md:size-7 transition-all duration-300 hover:scale-110">
@@ -66,13 +66,13 @@ const Features = () => {
                   </svg>
                   <div className="relative z-10 flex w-full justify-around pt-4">
                     <div className="size-8 bg-white border rounded p-1.5 flex items-center justify-center shadow-sm">
-                      <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg" className="w-4 h-4 opacity-30" alt="" />
+                      <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/Anthropic-3.svg" className="w-4 h-4 opacity-30" alt="" />
                     </div>
                     <div className="size-8 bg-white border rounded p-1.5 flex items-center justify-center shadow-sm border-orange-200">
-                      <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg" className="w-4 h-4" alt="" />
+                      <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/Anthropic-3.svg" className="w-4 h-4" alt="" />
                     </div>
                     <div className="size-8 bg-white border rounded p-1.5 flex items-center justify-center shadow-sm bg-success/5 border-success/20">
-                      <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/icons/DeepSeek-2.png" className="w-4 h-4 saturate-0" alt="" />
+                      <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/DeepSeek-2.png" className="w-4 h-4 saturate-0" alt="" />
                     </div>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ const Features = () => {
             <div className="p-6 flex flex-col flex-grow">
               <h3 className="text-[1.125rem] font-semibold mb-2">Price and Performance</h3>
               <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
-                Keep costs in check without sacrificing speed. OpenRouter runs at the edge for minimal latency between your users and their inference.
+                Keep costs in check without sacrificing speed. Radison runs at the edge for minimal latency between your users and their inference.
               </p>
               <span className="text-primary text-sm font-medium mt-4 flex items-center">Learn more <span className="ml-1 text-[10px]">↗</span></span>
             </div>

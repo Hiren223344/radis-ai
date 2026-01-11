@@ -54,13 +54,13 @@ export default function Navigation() {
                     className="size-5"
                     aria-label="Logo"
                   >
-                    <title>OpenRouter</title>
+                    <title>Radison</title>
                     <g fill="currentColor">
                       <path d="M256 0L476.9 127.5V384.5L256 512L35.1 384.5V127.5L256 0ZM256 61.3L88.2 158.2V353.8L256 450.7L423.8 353.8V158.2L256 61.3Z" />
                       <path d="M256 128L384 202V310L256 384L128 310V202L256 128Z" />
                     </g>
                   </svg>
-                  <span className="font-semibold tracking-tight text-[#0F172A]">OpenRouter</span>
+                  <span className="font-semibold tracking-tight text-[#0F172A]">Radison</span>
                 </span>
               </button>
             </a>

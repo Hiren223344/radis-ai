@@ -4,7 +4,7 @@ import { ChevronDown, Languages as LanguagesIcon, Info } from 'lucide-react';
 /**
  * LanguagesRankings Component
  * 
- * Clones the "Languages" leaderboard section of OpenRouter.
+ * Clones the "Languages" leaderboard section of Radison.
  * Features a stacked bar chart visualization and a two-column numbered list 
  * of top-performing models for natural language usage.
  */
@@ -47,7 +47,7 @@ export default function LanguagesRankings() {
                 </a>
               </div>
               <p className="text-xs font-medium text-slate-500 hidden md:block">
-                Compare models by natural language on OpenRouter
+                Compare models by natural language on Radison
                 <Info className="inline h-4 w-4 ml-1 text-muted-foreground cursor-help" />
               </p>
             </div>

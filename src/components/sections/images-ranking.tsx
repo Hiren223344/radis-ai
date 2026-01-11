@@ -3,7 +3,7 @@ import { LucideImage, ChevronDown } from 'lucide-react';
 
 /**
  * ImagesRanking Component
- * Clones the "Images" section from OpenRouter's Rankings page.
+ * Clones the "Images" section from Radison's Rankings page.
  * Visualizes total images processed per model over time with a summary list.
  */
 
@@ -41,7 +41,7 @@ const ImagesRanking: React.FC = () => {
               </a>
             </div>
             <p className="text-xs font-medium text-slate-500 hidden md:block">
-              Total images processed on OpenRouter
+              Total images processed on Radison
             </p>
           </div>
           

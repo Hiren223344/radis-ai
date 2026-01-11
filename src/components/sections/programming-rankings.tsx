@@ -4,7 +4,7 @@ import { ChevronDown, Code2, Info } from 'lucide-react';
 /**
  * ProgrammingRankings Component
  * 
- * Clones the Programming language comparison section from OpenRouter rankings.
+ * Clones the Programming language comparison section from Radison rankings.
  * Features a 100% stacked bar chart (simulated via CSS for pixel-perfection)
  * and a breakdown of top models used for software development.
  */
@@ -74,7 +74,7 @@ const ProgrammingRankings: React.FC = () => {
               </a>
             </div>
             <p className="text-[12px] font-medium text-[#64748B] hidden md:flex items-center gap-1">
-              Compare models by programming language on OpenRouter
+              Compare models by programming language on Radison
               <Info className="size-3 text-[#94a3b8] cursor-help" />
             </p>
           </div>

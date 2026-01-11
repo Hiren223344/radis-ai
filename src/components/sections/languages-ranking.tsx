@@ -61,7 +61,7 @@ export default function LanguagesRanking() {
               </a>
             </div>
             <p className="text-[0.75rem] font-medium text-slate-500 hidden md:flex items-center gap-1">
-              Compare models by natural language on OpenRouter
+              Compare models by natural language on Radison
               <Info className="size-3.5 text-muted-foreground opacity-70 cursor-help" />
             </p>
           </div>

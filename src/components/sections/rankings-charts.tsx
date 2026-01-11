@@ -231,7 +231,7 @@ const RankingsCharts = () => {
               </div>
               <div className="pt-4 border-t border-border mt-auto">
                 <p className="text-xs text-muted-foreground">
-                  Data updated daily based on anonymized usage metrics across the OpenRouter platform and public leaderboard results.
+                  Data updated daily based on anonymized usage metrics across the Radison platform and public leaderboard results.
                 </p>
               </div>
             </div>

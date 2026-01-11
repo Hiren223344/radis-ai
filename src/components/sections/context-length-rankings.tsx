@@ -99,7 +99,7 @@ export default function ContextLengthRankings() {
               </a>
             </div>
             <p className="text-[12px] font-medium text-[#64748b] hidden md:block">
-              Requests by prompt & completion length on OpenRouter
+              Requests by prompt & completion length on Radison
             </p>
           </div>
           <button className="flex items-center justify-between whitespace-nowrap border border-[#e2e8f0] bg-white px-3 py-2 transition-colors hover:bg-[#f1f5f9] h-8 rounded-full text-[#64748b] shadow-none md:text-[12px] w-36 text-sm pl-4 pr-6">

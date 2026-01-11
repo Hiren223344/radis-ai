@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { Search } from 'lucide-react';
 
 /**
- * Navbar component for OpenRouter website.
+ * Navbar component for Radison website.
  * Features:
  * - Logo with custom SVG and text
  * - Search input with '/' shortcut
@@ -56,13 +56,13 @@ const Navbar = () => {
                     className="size-4"
                     aria-label="Logo"
                   >
-                    <title>OpenRouter</title>
+                    <title>Radison</title>
                     <g>
                       <path d="M256 0C114.615 0 0 114.615 0 256s114.615 256 256 256 256-114.615 256-256S397.385 0 256 0zm0 464c-114.875 0-208-93.125-208-208S141.125 48 256 48s208 93.125 208 208-93.125 208-208 208z" />
                       <path d="M344 144h-64v64h64v-64zM232 144h-64v64h64v-64zM232 304h-64v64h64v-64zM344 304h-64v64h64v-64z" />
                     </g>
                   </svg>
-                  <span className="font-display tracking-tight">OpenRouter</span>
+                  <span className="font-display tracking-tight">Radison</span>
                 </span>
               </button>
             </Link>

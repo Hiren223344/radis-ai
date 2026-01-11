@@ -44,7 +44,7 @@ const Footer = () => {
             className="flex items-center gap-1 font-medium hover:underline text-gray-600 dark:text-zinc-300"
           >
             <Image
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-status-openrouter-ai/assets/images/powered-by-logo-COJk90XZ-1.png"
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-status-radison-ai/assets/images/powered-by-logo-COJk90XZ-1.png"
               alt="OnlineOrNot Logo"
               width={16}
               height={16}

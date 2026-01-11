@@ -17,7 +17,7 @@ const UsageMetrics = () => {
               <BarChart2 className="size-4" />
               <span>Market Share</span>
             </div>
-            <p className="text-[#64748B] text-xs">Compare OpenRouter token share by model author</p>
+            <p className="text-[#64748B] text-xs">Compare Radison token share by model author</p>
           </div>
         </div>
 
@@ -73,7 +73,7 @@ const UsageMetrics = () => {
               <span>Categories</span>
               <Info className="size-3 text-[#94a3b8]" />
             </div>
-            <p className="text-[#64748B] text-xs">Compare models by usecase on OpenRouter</p>
+            <p className="text-[#64748B] text-xs">Compare models by usecase on Radison</p>
           </div>
           <button className="flex items-center gap-2 border border-[#e2e8f0] rounded-md px-3 py-1.5 text-xs text-[#64748B] hover:bg-[#f1f5f9]">
             Programming
@@ -142,7 +142,7 @@ const UsageMetrics = () => {
               <span>Languages</span>
               <Info className="size-3 text-[#94a3b8]" />
             </div>
-            <p className="text-[#64748B] text-xs">Compare models by natural language on OpenRouter</p>
+            <p className="text-[#64748B] text-xs">Compare models by natural language on Radison</p>
           </div>
           <button className="flex items-center gap-2 border border-[#e2e8f0] rounded-md px-3 py-1.5 text-xs text-[#64748B] hover:bg-[#f1f5f9]">
             English
@@ -184,7 +184,7 @@ const UsageMetrics = () => {
               <BarChart2 className="size-4" />
               <span>Context Length</span>
             </div>
-            <p className="text-[#64748B] text-xs">Requests by prompt & completion length on OpenRouter</p>
+            <p className="text-[#64748B] text-xs">Requests by prompt & completion length on Radison</p>
           </div>
           <button className="flex items-center gap-2 border border-[#e2e8f0] rounded-md px-3 py-1.5 text-xs text-[#64748B] hover:bg-[#f1f5f9]">
             1K - 10K tokens
@@ -227,7 +227,7 @@ const UsageMetrics = () => {
               <Terminal className="size-4" />
               <span>Tool Calls</span>
             </div>
-            <p className="text-[#64748B] text-xs">Tool usage across models on OpenRouter</p>
+            <p className="text-[#64748B] text-xs">Tool usage across models on Radison</p>
           </div>
         </div>
 
@@ -265,7 +265,7 @@ const UsageMetrics = () => {
               <ImageIcon className="size-4" />
               <span>Images</span>
             </div>
-            <p className="text-[#64748B] text-xs">Total images processed on OpenRouter</p>
+            <p className="text-[#64748B] text-xs">Total images processed on Radison</p>
           </div>
         </div>
 

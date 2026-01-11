@@ -6,7 +6,7 @@ import { ChevronDown, Info, Code2 } from "lucide-react";
 /**
  * ProgrammingRanking Component
  * 
- * A pixel-perfect clone of the Programming section from OpenRouter Rankings.
+ * A pixel-perfect clone of the Programming section from Radison Rankings.
  * Features a 100% stacked bar chart (simulated with SVG for precision and performance),
  * a language selector, and a 2-column list of top models for the selected language.
  */
@@ -61,7 +61,7 @@ const ProgrammingRanking: React.FC = () => {
                 </a>
               </div>
               <p className="text-muted-sm hidden md:flex items-center gap-1.5">
-                Compare models by programming language on OpenRouter
+                Compare models by programming language on Radison
                 <Info className="size-3.5 text-muted-foreground cursor-help" />
               </p>
             </div>
