@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { CheckCircle2 } from 'lucide-react';
 
 /**
@@ -16,6 +17,8 @@ const GlobalStatus: React.FC = () => {
           boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           borderRadius: '0.5rem'
 =======
+=======
+>>>>>>> Stashed changes
 
 const GlobalStatus = () => {
   return (
@@ -25,11 +28,15 @@ const GlobalStatus = () => {
         style={{ 
           backgroundColor: '#22c55e', 
           boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }}
       >
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             {/* 
               Checkmark icon: Match the white color and 24px (h-6 w-6) size from computed styles.
@@ -47,6 +54,8 @@ const GlobalStatus = () => {
                 lineHeight: '1.75rem',
                 fontFamily: 'ui-sans-serif, system-ui, sans-serif'
 =======
+=======
+>>>>>>> Stashed changes
             {/* Using a Lucide-like checkmark SVG as per common UI patterns for status pages */}
             <svg 
               className="h-6 w-6 text-white" 
@@ -67,6 +76,9 @@ const GlobalStatus = () => {
                 fontFamily: 'var(--font-display)', 
                 fontSize: '1.125rem', 
                 fontWeight: 500 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
               }}
             >
@@ -76,7 +88,11 @@ const GlobalStatus = () => {
         </div>
       </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     </div>
+=======
+    </section>
+>>>>>>> Stashed changes
 =======
     </section>
 >>>>>>> Stashed changes

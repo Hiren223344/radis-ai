@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { LayoutGrid, List, Search as SearchIcon } from 'lucide-react';
 
 const ModelsHeader = () => {
@@ -73,6 +74,8 @@ const ModelsHeader = () => {
       {/* Optional: Separator Line mimicking the sticky nav interaction border */}
       <div className="h-[1px] w-full bg-border/50"></div>
 =======
+=======
+>>>>>>> Stashed changes
 import { Search, LayoutGrid, List, ArrowUpDown, Scale } from 'lucide-react';
 
 /**
@@ -140,6 +143,9 @@ const ModelsHeader: React.FC = () => {
           <ArrowUpDown className="size-3.5 text-[#64748B]" />
         </div>
       </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </div>
   );

@@ -24,6 +24,7 @@ const FOOTER_LINKS = [
  */
 >>>>>>> Stashed changes
 const Footer = () => {
+<<<<<<< Updated upstream
   const currentYear = new Date().getFullYear();
 
   return (
@@ -104,6 +105,24 @@ const Footer = () => {
             <Sun className="h-5 w-5" />
           </button>
 
+=======
+  return (
+    <footer className="w-full mt-20 pb-12">
+      <div className="max-w-[768px] mx-auto px-4 sm:px-0">
+        {/* Horizontal Divider */}
+        <div className="w-full h-px bg-gray-200 dark:bg-zinc-800 mb-8" />
+
+        <div className="flex flex-col items-center justify-center space-y-6">
+          {/* Theme Toggle Button (Visual only as per design) */}
+          <button 
+            type="button"
+            className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+            aria-label="Toggle theme"
+          >
+            <Sun className="h-5 w-5" />
+          </button>
+
+>>>>>>> Stashed changes
           {/* Powered By Section */}
           <div className="flex items-center space-x-1 text-sm text-zinc-500 dark:text-zinc-400">
             <span>Powered by</span>

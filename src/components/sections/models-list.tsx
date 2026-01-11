@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { ExternalLink, Search } from 'lucide-react';
 
 const models = [
@@ -192,6 +193,8 @@ const ModelsList = () => {
           </div>
         ))}
 =======
+=======
+>>>>>>> Stashed changes
 import { Copy, PlusCircle } from 'lucide-react';
 
 interface ModelMetaTag {
@@ -379,6 +382,9 @@ const ModelsList: React.FC = () => {
         <div className="py-20 text-center text-muted-foreground/50 text-xs">
           607 models • End of listed results
         </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </div>
     </div>

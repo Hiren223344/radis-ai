@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell } from 'recharts';
 import { LayoutGrid } from 'lucide-react';
@@ -49,6 +50,8 @@ export default function MarketShare() {
             </div>
             <p className="text-xs font-medium text-slate-500 hidden md:block">
 =======
+=======
+>>>>>>> Stashed changes
 "use client";
 
 import React from "react";
@@ -152,6 +155,9 @@ export default function MarketShareSection() {
               </a>
             </div>
             <p className="text-xs font-medium text-[#64748B] hidden md:block">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
               Compare OpenRouter token share by model author
             </p>
@@ -160,22 +166,29 @@ export default function MarketShareSection() {
       </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <div className="chart-container relative h-[320px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
             stackOffset="expand"
 =======
+=======
+>>>>>>> Stashed changes
       {/* Chart Area */}
       <div className="w-full relative min-h-[320px] chart-container-gap">
         <ResponsiveContainer width="100%" height={320}>
           <BarChart
             data={data}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
             barGap={0}
             barCategoryGap={1}
           >
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             <XAxis 
               dataKey="date" 
@@ -208,6 +221,8 @@ export default function MarketShareSection() {
                         </div>
                       ))}
 =======
+=======
+>>>>>>> Stashed changes
             <CartesianGrid vertical={false} stroke="#E2E8F0" strokeDasharray="0" />
             <XAxis
               dataKey="date"
@@ -246,6 +261,9 @@ export default function MarketShareSection() {
                           </div>
                         ))}
                       </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     </div>
                   );
@@ -253,6 +271,7 @@ export default function MarketShareSection() {
                 return null;
               }}
             />
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             {KEY_ORDER.map((key, index) => (
               <Bar 
@@ -264,17 +283,23 @@ export default function MarketShareSection() {
               />
             ))}
 =======
+=======
+>>>>>>> Stashed changes
             <Bar dataKey="google" name="google" stackId="a" fill={COLORS.google} />
             <Bar dataKey="anthropic" name="anthropic" stackId="a" fill={COLORS.anthropic} />
             <Bar dataKey="openai" name="openai" stackId="a" fill={COLORS.openai} />
             <Bar dataKey="xai" name="xai" stackId="a" fill={COLORS.xai} />
             <Bar dataKey="meta" name="meta" stackId="a" fill={COLORS.meta} />
             <Bar dataKey="other" name="other" stackId="a" fill={COLORS.other} />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
           </BarChart>
         </ResponsiveContainer>
       </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 max-w-4xl mx-auto w-full px-4">
         {/* We only render one item to match the instruction's provided screenshot layout strategy */}
@@ -303,6 +328,8 @@ export default function MarketShareSection() {
       </div>
     </section>
 =======
+=======
+>>>>>>> Stashed changes
       {/* Summary Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 w-full mt-4">
         <div className="flex items-center justify-between ranking-row border-b border-[#E2E8F0]">
@@ -324,6 +351,9 @@ export default function MarketShareSection() {
         {/* Placeholder for visual consistency if needed, but the original shows only one column in some captures */}
       </div>
     </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 }

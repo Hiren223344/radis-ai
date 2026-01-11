@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React, { useState } from 'react';
 import { ChevronDown, Info, BarChart2 } from 'lucide-react';
 
@@ -278,6 +279,8 @@ const RankingsCharts = () => {
               <ChevronDown className={`size-4 transition-transform duration-200 ${showMoreModels ? 'rotate-180' : ''}`} />
             </button>
 =======
+=======
+>>>>>>> Stashed changes
 import React from 'react';
 import { 
   BarChart, 
@@ -516,6 +519,9 @@ const RankingsCharts = () => {
               </div>
             </div>
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
           </div>
         </div>

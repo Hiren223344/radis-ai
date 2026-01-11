@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React from 'react';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
@@ -66,6 +67,8 @@ const Navigation = () => {
                 </div>
                 <kbd className="hidden md:flex items-center justify-center aspect-square h-5 w-5 pointer-events-none rounded border bg-background font-mono text-[10px] font-medium text-muted-foreground absolute right-2 transition-opacity duration-200">
 =======
+=======
+>>>>>>> Stashed changes
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -144,6 +147,9 @@ export default function Navigation() {
                   onBlur={() => setSearchFocused(false)}
                 />
                 <kbd className="hidden md:flex items-center justify-center aspect-square h-4 w-4 p-1 pointer-events-none rounded-sm bg-border/50 text-[10px] text-muted-foreground absolute right-2.5">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                   /
                 </kbd>
@@ -151,6 +157,7 @@ export default function Navigation() {
             </div>
           </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           {/* Right Section: Nav Links & Sign Up */}
           <div className="hidden lg:flex lg:gap-1 items-center text-sm">
@@ -193,6 +200,8 @@ export default function Navigation() {
             <div className="ml-2 flex items-center">
               <button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-5 rounded-full">
 =======
+=======
+>>>>>>> Stashed changes
           {/* Right Section: Nav Links and Action */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
@@ -211,13 +220,19 @@ export default function Navigation() {
 
             <div className="ml-2 flex items-center justify-end w-24">
               <button className="inline-flex items-center justify-center h-9 w-full px-4 rounded-full bg-primary text-primary-foreground font-medium text-sm transition-opacity hover:opacity-90 shadow-sm active:scale-[0.98]">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 Sign up
               </button>
             </div>
           </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
           {/* Mobile Menu Placeholder (Not requested but for layout completeness) */}
           <div className="flex lg:hidden">
@@ -238,15 +253,22 @@ export default function Navigation() {
               </svg>
             </button>
           </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         </div>
       </div>
     </nav>
   );
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 };
 
 export default Navigation;
+=======
+}
+>>>>>>> Stashed changes
 =======
 }
 >>>>>>> Stashed changes
