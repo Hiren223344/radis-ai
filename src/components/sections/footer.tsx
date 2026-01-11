@@ -1,15 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin, Twitter, Sun } from 'lucide-react';
+import Image from 'next/image';
 
-<<<<<<< Updated upstream
-=======
-/**
- * Footer component for the OpenRouter Status page.
- * Features a divider, a centered theme toggle icon, and "Powered by OnlineOrNot" branding.
- * Tailored to match the clean, minimalist "Status Page" utility aesthetic.
- */
->>>>>>> Stashed changes
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -28,11 +21,9 @@ const Footer = () => {
   ];
 
   return (
-<<<<<<< Updated upstream
     <footer className="w-full border-t border-border bg-background py-8 mt-auto">
       <div className="mx-auto max-w-screen-4xl px-6">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-4">
-          {/* Copyright and Socials */}
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground md:justify-start">
             <span>© {currentYear} OpenRouter, Inc</span>
             
@@ -82,54 +73,17 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Navigation Links */}
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm md:justify-end">
             {footerLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
-=======
-    <footer className="w-full mt-20 pb-12">
-      <div className="max-w-[768px] mx-auto px-4 sm:px-0">
-        {/* Horizontal Divider */}
-        <div className="w-full h-px bg-gray-200 dark:bg-zinc-800 mb-8" />
-
-        <div className="flex flex-col items-center justify-center space-y-6">
-          {/* Theme Toggle Button (Visual only as per design) */}
-          <button 
-            type="button"
-            className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
-            aria-label="Toggle theme"
-          >
-            <Sun className="h-5 w-5" />
-          </button>
-
-          {/* Powered By Section */}
-          <div className="flex items-center space-x-1 text-sm text-zinc-500 dark:text-zinc-400">
-            <span>Powered by</span>
-            <a 
-              href="https://onlineornot.com?utm_source=status_page&utm_medium=footer&utm_campaign=openrouter" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center hover:opacity-80 transition-opacity"
-            >
-              <Image 
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-status-openrouter-ai/assets/images/powered-by-logo-COJk90XZ-1.png"
-                alt="OnlineOrNot Logo"
-                width={100}
-                height={20}
-                className="h-[18px] w-auto"
-                priority
-              />
-            </a>
-          </div>
->>>>>>> Stashed changes
         </div>
       </div>
     </footer>
