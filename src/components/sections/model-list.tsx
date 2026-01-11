@@ -2,6 +2,7 @@ import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Copy, Gift, MoreHorizontal } from 'lucide-react';
 
 interface ModelBadgeProps {
@@ -14,6 +15,8 @@ const ModelBadge = ({ label, colorClass }: ModelBadgeProps) => (
     <span className={`category-dot ${colorClass}`} />
     <span className="text-[12px] font-medium text-foreground leading-none">{label}</span>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -31,6 +34,9 @@ const Tag = ({ label, color = '#64748b' }: TagProps) => (
     {label}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -40,6 +46,7 @@ const Tag = ({ label, color = '#64748b' }: TagProps) => (
 );
 
 interface ModelCardProps {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -98,6 +105,8 @@ const ModelCard = ({
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   name: string;
   author: string;
   tokens: string;
@@ -145,6 +154,9 @@ const ModelCard = ({ name, author, tokens, description, tags, meta, isFree }: Mo
                   +{tokens === "396B" ? "7" : tokens === "5.16B" ? "3" : "2"} categories
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -155,6 +167,7 @@ const ModelCard = ({ name, author, tokens, description, tags, meta, isFree }: Mo
             </div>
           )}
         </div>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -299,6 +312,8 @@ const ModelList = () => {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         <div className="text-[12px] font-medium text-slate-11 tabular-nums pt-1">
           {tokens} tokens
         </div>
@@ -375,6 +390,9 @@ const ModelList = () => {
       meta: ["33K context", "$0.10/M input tokens", "$0.30/M output tokens"]
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -384,6 +402,7 @@ const ModelList = () => {
   ];
 
   return (
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -399,6 +418,8 @@ const ModelList = () => {
           <MoreHorizontal className="size-6" />
         </button>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -451,6 +472,9 @@ const ModelList = () => {
         ))}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

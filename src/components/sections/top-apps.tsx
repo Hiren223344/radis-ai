@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ChevronRight, ChevronDown, LayoutGrid } from 'lucide-react';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 interface AppItemProps {
   rank: number;
   name: string;
@@ -110,6 +111,8 @@ const TopApps: React.FC = () => {
             ))}
           </div>
 =======
+=======
+>>>>>>> Stashed changes
 interface AppData {
   rank: number;
   name: string;
@@ -185,6 +188,9 @@ const TopApps: React.FC = () => {
           {rightColumn.map((app) => (
             <AppRow key={app.rank} app={app} />
           ))}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         </div>
       </div>
@@ -193,7 +199,10 @@ const TopApps: React.FC = () => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 const AppRow: React.FC<{ app: AppData }> = ({ app }) => {
   return (
     <div className="ranking-row flex items-center justify-between group cursor-pointer border-transparent rounded-[0.5rem] px-2 -mx-2">
@@ -234,5 +243,8 @@ const AppRow: React.FC<{ app: AppData }> = ({ app }) => {
   );
 };
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 export default TopApps;

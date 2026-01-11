@@ -5,6 +5,7 @@ import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { CheckCircle2 } from 'lucide-react';
 
 /**
@@ -31,6 +32,8 @@ const GlobalStatus: React.FC = () => {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
 const GlobalStatus = () => {
   return (
@@ -45,6 +48,9 @@ const GlobalStatus = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -60,6 +66,7 @@ const GlobalStatus = () => {
       >
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -82,6 +89,8 @@ const GlobalStatus = () => {
                 lineHeight: '1.75rem',
                 fontFamily: 'ui-sans-serif, system-ui, sans-serif'
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -117,6 +126,9 @@ const GlobalStatus = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -141,7 +153,11 @@ const GlobalStatus = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     </div>
+=======
+    </section>
+>>>>>>> Stashed changes
 =======
     </section>
 >>>>>>> Stashed changes

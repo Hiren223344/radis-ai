@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Info } from "lucide-react";
 
 const marketShareData = [
@@ -229,6 +230,8 @@ const MarketShare = () => {
 
 export default MarketShare;
 =======
+=======
+>>>>>>> Stashed changes
 import { LayoutPanelLeft } from "lucide-react";
 
 /**
@@ -411,5 +414,9 @@ export default function MarketShareSection() {
       </div>
     </div>
   );
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes
