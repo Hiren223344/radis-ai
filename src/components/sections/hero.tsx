@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 "use client";
 import React from 'react';
 import Image from 'next/image';
@@ -82,7 +81,6 @@ const Hero = () => {
               </a>
             </div>
           </div>
-=======
 import React from "react";
 
 /**
@@ -117,15 +115,11 @@ const Hero = () => {
           >
             AI Model Rankings
           </h1>
->>>>>>> Stashed changes
         </div>
       </div>
     </section>
   );
 };
 
-<<<<<<< Updated upstream
 export default Hero;
-=======
 export default Hero;
->>>>>>> Stashed changes

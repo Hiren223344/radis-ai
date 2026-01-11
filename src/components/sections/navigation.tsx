@@ -128,8 +128,5 @@ export default function Navigation() {
       </div>
     </nav>
   );
-<<<<<<< Updated upstream
 }
-=======
 }
->>>>>>> Stashed changes
