@@ -10,8 +10,8 @@ const StatusHeader = () => {
               className="hover:underline hover:text-gray-600 dark:hover:text-zinc-400 flex w-full h-full text-2xl leading-9 tracking-tight font-bold text-gray-900 dark:text-white" 
               href="/"
             >
-              <span className="dark:hidden">OpenRouter</span>
-              <span className="hidden dark:inline">OpenRouter</span>
+                <span className="dark:hidden">Radison</span>
+                <span className="hidden dark:inline">Radison</span>
             </a>
           </div>
           <div className="col-span-6 sm:col-span-8 flex items-center justify-end gap-3">
