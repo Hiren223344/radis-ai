@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Copy, Search } from 'lucide-react';
@@ -14,6 +15,8 @@ interface Model {
 }
 
 const Tag = ({ label, color = '#64748b' }: { label: string; color?: string }) => (
+=======
+>>>>>>> Stashed changes
 import React from 'react';
 import { Copy } from 'lucide-react';
 
@@ -29,6 +32,7 @@ const Tag = ({ label, color = '#64748b' }: TagProps) => (
   </div>
 );
 
+<<<<<<< Updated upstream
 const ModelList = () => {
   const [models, setModels] = useState<Model[]>([]);
   const [loading, setLoading] = useState(true);
@@ -56,6 +60,8 @@ const ModelList = () => {
   );
 
   if (loading) return <div className="p-20 text-center text-muted-foreground">Loading models...</div>;
+=======
+>>>>>>> Stashed changes
 interface ModelCardProps {
   name: string;
   author: string;
@@ -208,7 +214,10 @@ const ModelList = () => {
 
       <div className="mb-8">
         <div className="relative search-bar group flex items-center bg-slate-50 border border-border rounded-md px-3 py-2 focus-within:ring-1 focus-within:ring-slate-400 focus-within:bg-white transition-all">
+<<<<<<< Updated upstream
           <Search className="w-4 h-4 text-slate-400 mr-2" />
+=======
+>>>>>>> Stashed changes
           <svg className="w-4 h-4 text-slate-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
@@ -216,14 +225,20 @@ const ModelList = () => {
             type="text" 
             placeholder="Search" 
             className="bg-transparent border-none outline-none text-[14px] w-full placeholder:text-slate-400"
+<<<<<<< Updated upstream
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+=======
+>>>>>>> Stashed changes
           />
         </div>
       </div>
 
       <div className="flex items-center justify-between mb-10 text-[13px] text-slate-11 font-medium">
+<<<<<<< Updated upstream
         <div>{filteredModels.length} models</div>
+=======
+>>>>>>> Stashed changes
         <div>607 models</div>
         <div className="flex items-center gap-1 cursor-pointer hover:text-foreground">
           Most Popular
@@ -231,6 +246,7 @@ const ModelList = () => {
         </div>
       </div>
 
+<<<<<<< Updated upstream
       <div className="flex flex-col divide-y divide-border">
         {filteredModels.map((model) => (
           <div key={model.id} className="py-8 first:pt-4 group">
@@ -272,6 +288,8 @@ const ModelList = () => {
             No models found matching your search.
           </div>
         )}
+=======
+>>>>>>> Stashed changes
       <div className="flex flex-col">
         {models.map((model, index) => (
           <ModelCard key={index} {...model} />
@@ -281,5 +299,9 @@ const ModelList = () => {
   );
 };
 
+<<<<<<< Updated upstream
 export default ModelList;
 export default ModelList;
+=======
+export default ModelList;
+>>>>>>> Stashed changes

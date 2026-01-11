@@ -4,6 +4,7 @@ import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -14,6 +15,8 @@ import React from 'react';
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -38,6 +41,7 @@ const GlobalStatus = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -47,6 +51,8 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -66,6 +72,7 @@ const GlobalStatus = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -76,6 +83,8 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -111,6 +120,7 @@ const GlobalStatus = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -120,6 +130,8 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -143,6 +155,7 @@ const GlobalStatus = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     </section>
 =======
@@ -163,6 +176,8 @@ const GlobalStatus = () => {
     </section>
 =======
     </section>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
