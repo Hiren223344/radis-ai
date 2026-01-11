@@ -49,12 +49,12 @@ const UptimeMonitoring: React.FC = () => {
     <div className="max-w-3xl mx-auto px-4 py-2 sm:py-6">
       {/* Branding Header Area */}
       <header className="flex justify-between items-center mb-6">
-        <a 
-          href="/" 
-          className="text-2xl leading-9 tracking-tight font-bold text-gray-900 dark:text-white hover:underline"
-        >
-          OpenRouter
-        </a>
+          <a 
+            href="/" 
+            className="text-2xl leading-9 tracking-tight font-bold text-gray-900 dark:text-white hover:underline"
+          >
+            Radison
+          </a>
         <button className="text-xs sm:text-sm font-semibold px-3 py-1.5 sm:px-4 sm:py-2 border border-zinc-950/10 rounded-lg hover:bg-zinc-950/2.5 transition-colors dark:border-white/15 dark:text-white dark:hover:bg-white/5">
           Subscribe to updates
         </button>
