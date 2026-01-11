@@ -16,7 +16,6 @@ export default function Home() {
         <StatsSection />
         <FeaturesGrid />
         <FeaturedModels />
-        <FeaturedAgents />
         <OnboardingSteps />
         <BottomContent />
       </main>
