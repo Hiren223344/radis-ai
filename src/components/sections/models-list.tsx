@@ -1,6 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import React from 'react';
@@ -118,7 +121,10 @@ const models: ModelEntry[] = [
 
 const ModelsList: React.FC = () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   return (
@@ -130,8 +136,11 @@ const ModelsList: React.FC = () => {
             className="model-list-item border-b border-border py-8 first:pt-4"
           >
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             {/* Header Row: Title and Aggregate Tokens */}
@@ -140,7 +149,10 @@ const ModelsList: React.FC = () => {
                 <h3 className="model-title text-[16px] font-semibold text-foreground leading-[1.4]">
                   {model.provider}: {model.name} {model.isFree && <span className="text-muted-foreground font-normal">(free)</span>}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 </h3>
@@ -155,8 +167,11 @@ const ModelsList: React.FC = () => {
               </div>
               <div className="price-stat font-mono text-[14px] text-muted-foreground whitespace-nowrap">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 {model.tokens}
@@ -191,7 +206,10 @@ const ModelsList: React.FC = () => {
 
             {/* Description */}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             <p className="description-text mb-2 line-clamp-2 max-w-[95%] text-[14px] leading-[1.6] text-muted-foreground">
@@ -199,8 +217,11 @@ const ModelsList: React.FC = () => {
             </p>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             {/* Metadata Footer */}
@@ -211,7 +232,10 @@ const ModelsList: React.FC = () => {
               <span>{model.outputPricing}</span>
               {model.otherPricing && <span>{model.otherPricing}</span>}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             </div>
@@ -219,8 +243,11 @@ const ModelsList: React.FC = () => {
         ))}
         
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         {/* Placeholder for more models if needed to scroll */}
@@ -228,7 +255,10 @@ const ModelsList: React.FC = () => {
           607 models • End of listed results
         </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
       </div>
@@ -237,11 +267,15 @@ const ModelsList: React.FC = () => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default ModelsList;
 =======
 export default ModelsList;
 =======
 export default ModelsList;
+=======
+export default ModelsList;
+>>>>>>> Stashed changes
 =======
 export default ModelsList;
 >>>>>>> Stashed changes

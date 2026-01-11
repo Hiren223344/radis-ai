@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -10,6 +11,8 @@ import React from 'react';
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import { ChevronDown, Info, LayoutGrid, Languages, Code2, Maximize2, Wrench } from 'lucide-react';
@@ -40,21 +43,6 @@ const RankingSection = ({
   return (
     <div id={id} className="flex flex-col gap-10 scroll-mt-24">
 <<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-      <div className="flex flex-col gap-2 md:gap-5">
-        <div className="flex items-center md:items-start justify-between">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2">
 <<<<<<< Updated upstream
 =======
 =======
@@ -66,6 +54,27 @@ const RankingSection = ({
 =======
 =======
 =======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+      <div className="flex flex-col gap-2 md:gap-5">
+        <div className="flex items-center md:items-start justify-between">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
               <Icon className="size-5 text-[#687076]" />
@@ -83,21 +92,6 @@ const RankingSection = ({
             <span>This Week</span>
             <ChevronDown className="size-4 opacity-50" />
 <<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-          </button>
-        </div>
-      </div>
-
 <<<<<<< Updated upstream
 =======
 =======
@@ -109,6 +103,27 @@ const RankingSection = ({
 =======
 =======
 =======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+          </button>
+        </div>
+      </div>
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
       {/* Placeholder for Data Visualizations based on provided screenshots */}
@@ -187,6 +202,7 @@ export default function RankingsCategories() {
         imageSrc={assetsMap.toolcalls}
       />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -196,6 +212,8 @@ export default function RankingsCategories() {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     </section>

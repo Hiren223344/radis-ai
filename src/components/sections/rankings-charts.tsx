@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -9,6 +10,8 @@
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import React from 'react';
@@ -250,6 +253,7 @@ const RankingsCharts = () => {
             </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -259,6 +263,8 @@ const RankingsCharts = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
           </div>

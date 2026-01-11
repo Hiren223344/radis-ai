@@ -2,8 +2,11 @@ import React from 'react';
 import { ChevronDown, Info, BarChart3 } from 'lucide-react';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 /**
@@ -25,7 +28,10 @@ export default function RankingsHero() {
 
           {/* Leaderboard Header Section */}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
           <div id="leaderboard" className="flex flex-col gap-10 scroll-mt-24">
@@ -33,8 +39,11 @@ export default function RankingsHero() {
               <div className="flex items-center md:items-start justify-between">
                 <div className="flex flex-col gap-2">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                   {/* Section Title with Icon */}
@@ -79,9 +88,13 @@ export default function RankingsHero() {
     </section>
   );
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
 =======
 }
+=======
+}
+>>>>>>> Stashed changes
 =======
 }
 >>>>>>> Stashed changes

@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -10,6 +11,8 @@ import React from 'react';
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
@@ -22,21 +25,6 @@ const GlobalStatus = () => {
           backgroundColor: '#22c55e', 
           boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' 
 <<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-        }}
-      >
-        <div className="flex items-center justify-between flex-wrap">
-          <div className="w-0 flex-1 flex items-center">
 <<<<<<< Updated upstream
 =======
 =======
@@ -48,6 +36,27 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+        }}
+      >
+        <div className="flex items-center justify-between flex-wrap">
+          <div className="w-0 flex-1 flex items-center">
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             {/* Using a Lucide-like checkmark SVG as per common UI patterns for status pages */}
@@ -71,6 +80,7 @@ const GlobalStatus = () => {
                 fontSize: '1.125rem', 
                 fontWeight: 500 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -82,6 +92,8 @@ const GlobalStatus = () => {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
               }}
             >
               All Systems Operational
@@ -90,6 +102,7 @@ const GlobalStatus = () => {
         </div>
       </div>
     </section>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
     </section>
@@ -111,6 +124,8 @@ const GlobalStatus = () => {
     </section>
 =======
     </section>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   );

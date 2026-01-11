@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -10,6 +11,8 @@ import React from 'react';
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import { ChevronDown, FileText, Info } from 'lucide-react';
@@ -86,21 +89,6 @@ export default function ContextLength() {
             <span>1K - 10K tokens</span>
             <ChevronDown className="size-4 opacity-50" />
 <<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-          </button>
-        </div>
-      </div>
-
 <<<<<<< Updated upstream
 =======
 =======
@@ -112,6 +100,27 @@ export default function ContextLength() {
 =======
 =======
 =======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+          </button>
+        </div>
+      </div>
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
       {/* Chart Section */}
@@ -120,21 +129,6 @@ export default function ContextLength() {
           {/* Y-Axis Labels */}
           <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-[11px] text-slate-400 font-medium pointer-events-none">
 <<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-            <span>800M</span>
-            <span>600M</span>
-            <span>400M</span>
-            <span>200M</span>
 <<<<<<< Updated upstream
 =======
 =======
@@ -146,6 +140,27 @@ export default function ContextLength() {
 =======
 =======
 =======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+            <span>800M</span>
+            <span>600M</span>
+            <span>400M</span>
+            <span>200M</span>
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
           </div>
@@ -231,6 +246,7 @@ function RankingRow({ model }: { model: ModelRanking }) {
     </div>
   );
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
 =======
 }
@@ -250,6 +266,9 @@ function RankingRow({ model }: { model: ModelRanking }) {
 }
 =======
 }
+=======
+}
+>>>>>>> Stashed changes
 =======
 }
 >>>>>>> Stashed changes

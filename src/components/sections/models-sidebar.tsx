@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -9,6 +10,8 @@
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import React from 'react';
@@ -39,23 +42,6 @@ const SidebarItem = ({
             )}
           </span>
 <<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-        </button>
-      </a>
-    </div>
-  );
-};
-
 <<<<<<< Updated upstream
 =======
 =======
@@ -67,6 +53,29 @@ const SidebarItem = ({
 =======
 =======
 =======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+        </button>
+      </a>
+    </div>
+  );
+};
+
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 const AccordionItem = ({ 
@@ -98,6 +107,7 @@ const AccordionItem = ({
           <div className="relative flex flex-col gap-1 truncate">
             <span className="border-border/50 absolute left-4 h-full border-l" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -107,6 +117,8 @@ const AccordionItem = ({
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             <div className="flex flex-col gap-1">
@@ -117,6 +129,7 @@ const AccordionItem = ({
       </Accordion.Content>
     </Accordion.Item>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
       </Accordion.Content>
     </Accordion.Item>
@@ -149,11 +162,14 @@ const AccordionItem = ({
     </Accordion.Item>
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   );
 };
 
 export default function ModelsSidebar() {
   return (
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
 =======
@@ -165,6 +181,8 @@ export default function ModelsSidebar() {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     <aside className="flex-col transition-all border-border/50 md:border-r md:h-[calc(100dvh-5.25rem)] sticky top-20 z-10 h-full w-64 hidden md:flex pt-8 flex-shrink-0 gap-0 overflow-visible pl-6 text-sm">
@@ -207,6 +225,7 @@ export default function ModelsSidebar() {
       </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -216,6 +235,8 @@ export default function ModelsSidebar() {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
       <style jsx global>{`
@@ -234,6 +255,7 @@ export default function ModelsSidebar() {
         }
       `}</style>
     </aside>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
     </aside>
@@ -255,6 +277,8 @@ export default function ModelsSidebar() {
     </aside>
 =======
     </aside>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   );

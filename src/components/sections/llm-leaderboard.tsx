@@ -2,6 +2,7 @@
 
 import React from "react";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 import React from "react";
 =======
@@ -14,6 +15,8 @@ import React from "react";
 import React from "react";
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import {
   BarChart,
   Bar,
@@ -24,11 +27,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import { ChevronDown, Info, BarChart3 } from "lucide-react";
@@ -55,10 +61,13 @@ const chartData = [
 
 const modelRankings = [
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   {
@@ -68,6 +77,7 @@ const modelRankings = [
     tokens: "521B",
     change: "+50%",
     changePositive: true,
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
     change: "+50%",
@@ -84,6 +94,8 @@ const modelRankings = [
 =======
     change: "+50%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   },
@@ -95,6 +107,7 @@ const modelRankings = [
     change: "+3%",
     changePositive: true,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+3%",
     changePositive: true,
@@ -110,6 +123,8 @@ const modelRankings = [
 =======
     change: "+3%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   },
@@ -121,6 +136,7 @@ const modelRankings = [
     change: "+5%",
     changePositive: true,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+5%",
     changePositive: true,
@@ -138,6 +154,8 @@ const modelRankings = [
     changePositive: true,
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 7,
@@ -145,11 +163,14 @@ const modelRankings = [
     author: "deepseek",
     tokens: "309B",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     change: "+12%",
@@ -163,10 +184,13 @@ const modelRankings = [
     change: "+8%",
     changePositive: true,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   },
@@ -178,6 +202,7 @@ const modelRankings = [
     change: "+52%",
     changePositive: true,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+52%",
     changePositive: true,
@@ -193,6 +218,8 @@ const modelRankings = [
 =======
     change: "+52%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   },
@@ -204,6 +231,7 @@ const modelRankings = [
     change: "+39%",
     changePositive: true,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+39%",
     changePositive: true,
@@ -219,6 +247,8 @@ const modelRankings = [
 =======
     change: "+39%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   },
@@ -230,6 +260,7 @@ const modelRankings = [
     change: "+26%",
     changePositive: true,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+26%",
     changePositive: true,
@@ -245,6 +276,8 @@ const modelRankings = [
 =======
     change: "+26%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   },
@@ -256,6 +289,7 @@ const modelRankings = [
     change: "+127%",
     changePositive: true,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+127%",
     changePositive: true,
@@ -273,6 +307,8 @@ const modelRankings = [
     changePositive: true,
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   },
   {
     rank: 10,
@@ -280,11 +316,14 @@ const modelRankings = [
     author: "z-ai",
     tokens: "165B",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     change: "+43%",
@@ -330,10 +369,13 @@ const LLMLeaderboard = () => {
                 strokeDasharray="0"
               />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
               <XAxis
@@ -341,11 +383,14 @@ const LLMLeaderboard = () => {
                 axisLine={false}
                 tickLine={false}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 fontSize={12}
@@ -353,10 +398,13 @@ const LLMLeaderboard = () => {
                 dy={10}
                 interval={Math.floor(chartData.length / 8)}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
               />
@@ -364,11 +412,14 @@ const LLMLeaderboard = () => {
                 axisLine={false}
                 tickLine={false}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                 fontSize={12}
@@ -411,10 +462,13 @@ const LLMLeaderboard = () => {
                 radius={[2, 2, 0, 0]}
               />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             </BarChart>
@@ -422,11 +476,14 @@ const LLMLeaderboard = () => {
         </div>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         {/* Rankings List */}
@@ -470,10 +527,13 @@ const LLMLeaderboard = () => {
         <div className="flex justify-center mt-4">
           <button className="flex items-center gap-1 text-[12px] font-medium text-[#64748B] hover:text-[#0F172A] transition-colors">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             Show more
@@ -485,6 +545,7 @@ const LLMLeaderboard = () => {
   );
 };
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 export default LLMLeaderboard;
 =======
@@ -507,6 +568,9 @@ export default LLMLeaderboard;
 };
 
 export default LLMLeaderboard;
+=======
+export default LLMLeaderboard;
+>>>>>>> Stashed changes
 =======
 export default LLMLeaderboard;
 >>>>>>> Stashed changes

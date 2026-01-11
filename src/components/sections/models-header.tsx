@@ -70,8 +70,4 @@ const ModelsHeader: React.FC = () => {
   );
 };
 
-<<<<<<< Updated upstream
 export default ModelsHeader;
-=======
-export default ModelsHeader;
->>>>>>> Stashed changes

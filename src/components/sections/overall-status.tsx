@@ -7,6 +7,7 @@ const OverallStatus = () => {
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 const OverallStatus = () => {
   return (
@@ -51,6 +52,8 @@ const OverallStatus = () => {
           <div className="w-0 flex-1 flex items-center">
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
             {/* Checkmark SVG Icon based on the visual layout */}
             <svg 
               className="h-6 w-6 text-white" 
@@ -67,11 +70,14 @@ const OverallStatus = () => {
             </svg>
             <p className="ml-2 font-medium text-lg text-white truncate text-status-banner">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
               All Systems Operational
