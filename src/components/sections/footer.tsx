@@ -16,18 +16,12 @@ const FOOTER_LINKS = [
   { label: 'Terms', href: '/terms' },
 ];
 
-/**
- * Footer component for the OpenRouter Status page.
- * Features a divider, a centered theme toggle icon, and "Powered by OnlineOrNot" branding.
- * Tailored to match the clean, minimalist "Status Page" utility aesthetic.
- */
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full border-t border-border bg-background py-10">
       <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-6 px-6 md:flex-row md:gap-4">
-        {/* Left Section: Copyright & Socials */}
         <div className="flex flex-wrap items-center justify-center gap-6 md:justify-start">
           <span className="text-sm font-normal text-muted-foreground whitespace-nowrap">
             © {currentYear} OpenRouter, Inc
@@ -73,7 +67,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Right Section: Site Links */}
         <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-end">
           {FOOTER_LINKS.map((link) => (
             <a

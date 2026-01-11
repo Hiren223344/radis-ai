@@ -1,5 +1,6 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React from 'react';
 import { ChevronDown, BarChart2, Info } from 'lucide-react';
 
@@ -156,6 +157,8 @@ export default function LLMLeaderboard() {
   );
 }
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 "use client";
@@ -417,6 +420,10 @@ const LLMLeaderboard = () => {
 };
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+export default LLMLeaderboard;
+>>>>>>> Stashed changes
+=======
 export default LLMLeaderboard;
 >>>>>>> Stashed changes
 =======

@@ -1,5 +1,6 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell } from 'recharts';
 import { LayoutGrid } from 'lucide-react';
@@ -50,6 +51,8 @@ export default function MarketShare() {
             </div>
             <p className="text-xs font-medium text-slate-500 hidden md:block">
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 "use client";
@@ -156,6 +159,9 @@ export default function MarketShareSection() {
             </div>
             <p className="text-xs font-medium text-[#64748B] hidden md:block">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -167,6 +173,7 @@ export default function MarketShareSection() {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <div className="chart-container relative h-[320px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
@@ -175,12 +182,17 @@ export default function MarketShareSection() {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       {/* Chart Area */}
       <div className="w-full relative min-h-[320px] chart-container-gap">
         <ResponsiveContainer width="100%" height={320}>
           <BarChart
             data={data}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -188,6 +200,7 @@ export default function MarketShareSection() {
             barGap={0}
             barCategoryGap={1}
           >
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
             <XAxis 
@@ -221,6 +234,8 @@ export default function MarketShareSection() {
                         </div>
                       ))}
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             <CartesianGrid vertical={false} stroke="#E2E8F0" strokeDasharray="0" />
@@ -262,6 +277,9 @@ export default function MarketShareSection() {
                         ))}
                       </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -271,6 +289,7 @@ export default function MarketShareSection() {
                 return null;
               }}
             />
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
             {KEY_ORDER.map((key, index) => (
@@ -285,6 +304,8 @@ export default function MarketShareSection() {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
             <Bar dataKey="google" name="google" stackId="a" fill={COLORS.google} />
             <Bar dataKey="anthropic" name="anthropic" stackId="a" fill={COLORS.anthropic} />
             <Bar dataKey="openai" name="openai" stackId="a" fill={COLORS.openai} />
@@ -292,6 +313,9 @@ export default function MarketShareSection() {
             <Bar dataKey="meta" name="meta" stackId="a" fill={COLORS.meta} />
             <Bar dataKey="other" name="other" stackId="a" fill={COLORS.other} />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -299,6 +323,7 @@ export default function MarketShareSection() {
         </ResponsiveContainer>
       </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 max-w-4xl mx-auto w-full px-4">
@@ -330,6 +355,8 @@ export default function MarketShareSection() {
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
       {/* Summary Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 w-full mt-4">
         <div className="flex items-center justify-between ranking-row border-b border-[#E2E8F0]">
@@ -352,6 +379,9 @@ export default function MarketShareSection() {
       </div>
     </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
