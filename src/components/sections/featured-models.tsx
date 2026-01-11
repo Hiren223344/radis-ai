@@ -1,6 +1,21 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
+
+interface Model {
+  id: string;
+  name: string;
+  description: string;
+  pricing: {
+    prompt: string;
+    completion: string;
+  };
+  context_length: number;
+  top_provider?: {
+    name: string;
+  };
+}
 
 interface ModelCardProps {
   name: string;
@@ -42,7 +57,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ name, provider, providerLogo, tok
         <div className="mt-4 pt-4 border-t border-border flex justify-between items-end">
           <div className="flex flex-col gap-1">
             <p className="text-[10px] md:text-xs uppercase tracking-wider text-muted-foreground font-medium m-0">
-              Tokens
+              Context
             </p>
             <p className="text-sm md:text-base font-bold text-foreground tabular-nums m-0">
               {tokens}
@@ -50,9 +65,9 @@ const ModelCard: React.FC<ModelCardProps> = ({ name, provider, providerLogo, tok
           </div>
           <div className="flex flex-col items-end gap-1">
             <p className="text-[10px] md:text-xs uppercase tracking-wider text-muted-foreground font-medium m-0">
-              Weekly Trend
+              Input/Output
             </p>
-            <p className={`text-sm md:text-base font-bold tabular-nums m-0 ${isPositive ? 'text-chart-2' : 'text-destructive'}`}>
+            <p className={`text-sm md:text-base font-bold tabular-nums m-0 text-chart-2`}>
               {trend}
             </p>
           </div>
@@ -63,32 +78,27 @@ const ModelCard: React.FC<ModelCardProps> = ({ name, provider, providerLogo, tok
 };
 
 const FeaturedModels = () => {
-  const models: ModelCardProps[] = [
-    {
-      name: 'Claude Opus 4.5',
-      provider: 'anthropic',
-      providerLogo: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg',
-      tokens: '380.4B',
-      trend: '+87.61%',
-      isPositive: true,
-    },
-    {
-      name: 'GPT-5.2',
-      provider: 'openai',
-      providerLogo: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/OpenAI-1.svg',
-      tokens: '95.4B',
-      trend: '+15.15%',
-      isPositive: true,
-    },
-    {
-      name: 'Gemini 3 Pro Preview',
-      provider: 'google',
-      providerLogo: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/GoogleGemini-2.svg',
-      tokens: '132.5B',
-      trend: '+8.23%',
-      isPositive: true,
-    },
-  ];
+  const [models, setModels] = useState<Model[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchModels = async () => {
+      try {
+        const url = process.env.NEXT_PUBLIC_MODELS_URL || "https://openrouter.ai/api/v1/models";
+        const res = await fetch(url);
+        const data = await res.json();
+        // Just take the first 3 models as "featured"
+        setModels((data.data || []).slice(0, 3));
+      } catch (err) {
+        console.error("Error fetching featured models:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchModels();
+  }, []);
+
+  if (loading) return null;
 
   return (
     <section className="py-12 md:py-16 px-6 lg:px-8 max-w-7xl mx-auto w-full">
@@ -102,7 +112,7 @@ const FeaturedModels = () => {
               <ChevronRight className="size-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
             </div>
             <p className="text-sm md:text-base text-muted-foreground m-0">
-              300+ active models on 60+ providers
+              Active models from various providers
             </p>
           </div>
           <a 
@@ -115,7 +125,14 @@ const FeaturedModels = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {models.map((model, index) => (
-            <ModelCard key={index} {...model} />
+            <ModelCard 
+              key={index} 
+              name={model.name}
+              provider={model.id.split('/')[0]}
+              providerLogo={`https://openrouter.ai/favicon.ico`} // Fallback logo
+              tokens={`${(model.context_length / 1000).toFixed(0)}k`}
+              trend={`$${(Number(model.pricing.prompt) * 1000000).toFixed(2)} / $${(Number(model.pricing.completion) * 1000000).toFixed(2)}`}
+            />
           ))}
         </div>
       </div>
