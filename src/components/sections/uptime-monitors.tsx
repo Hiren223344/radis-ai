@@ -1,141 +1,128 @@
 import React from 'react';
-import { Check, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
-interface UptimeMonitorProps {
-  name: string;
-  uptime: string;
-  history: boolean[]; // true for operational, false for incident
-  hasExpandButton?: boolean;
+interface UptimeSegment {
+  status: 'operational' | 'outage' | 'degraded';
 }
 
-const UptimeMonitor = ({ name, uptime, history, hasExpandButton = false }: UptimeMonitorProps) => {
+interface MonitorProps {
+  name: string;
+  status: string;
+  uptimePercentage: string;
+  hasExpand?: boolean;
+  segments: UptimeSegment[];
+}
+
+const UptimeBar = ({ segments }: { segments: UptimeSegment[] }) => {
   return (
-    <div className="mb-8 last:mb-0">
-      <div className="flex justify-between items-center mb-1">
-        <div className="flex items-center">
-          {hasExpandButton && (
-            <button className="mr-2 inline-flex items-center justify-center h-4 w-4 border border-gray-400 rounded-full hover:bg-gray-50 transition-colors">
-              <Plus className="h-3 w-3 text-gray-400" />
+    <div className="mt-1 h-12 flex flex-row items-center justify-between sm:justify-start sm:gap-0.5 self-center">
+      {segments.map((segment, index) => {
+        const isFirst = index === 0;
+        const isLast = index === segments.length - 1;
+        
+        let bgColor = 'bg-green-500';
+        if (segment.status === 'outage') bgColor = 'bg-red-500';
+        if (segment.status === 'degraded') bgColor = 'bg-amber-500';
+
+        return (
+          <div
+            key={index}
+            className={`h-8 sm:h-9 w-0.5 sm:w-1 md:w-1.5 ${bgColor} ${
+              isFirst ? 'rounded-tl-md rounded-bl-md' : ''
+            } ${isLast ? 'rounded-tr-md rounded-br-md' : ''}`}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+const MonitorRow = ({ name, status, uptimePercentage, hasExpand = false, segments }: MonitorProps) => {
+  return (
+    <div className="sm:flex sm:flex-col sm:justify-center">
+      <div className="flex justify-between items-center">
+        <div className="flex flex-row items-center">
+          {hasExpand && (
+            <button className="mr-2 sm:mr-2 inline-flex items-center shadow-sm border border-gray-400 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white">
+              <Plus className="h-4 sm:h-3 w-4 sm:w-3 text-gray-400" />
             </button>
           )}
-          <p className="text-gray-900 font-normal text-base leading-6">{name}</p>
+          <p className="text-gray-900 dark:text-white text-base leading-6">{name}</p>
         </div>
-        <span className="capitalize inline-flex items-center gap-x-1.5 rounded-md px-1.5 py-0.5 text-xs font-medium bg-[#22c55e26] text-[#15803d]">
-          operational
+        <span className="capitalize inline-flex items-center gap-x-1.5 rounded-md px-1.5 py-0.5 text-xs font-medium bg-green-500/15 text-green-700 dark:bg-green-500/10 dark:text-green-400">
+          {status}
         </span>
       </div>
       
-      <div className="sm:flex sm:flex-col sm:justify-center">
-        <div className="mt-1 h-12 flex flex-row items-center justify-between sm:justify-start sm:gap-0.5">
-          {history.map((isUp, index) => {
-            const isFirst = index === 0;
-            const isLast = index === history.length - 1;
-            
-            return (
-              <div
-                key={index}
-                className={`h-8 sm:h-9 w-0.5 sm:w-1 md:w-1.5 flex-1 sm:flex-none ${
-                  isUp ? 'bg-[#22c55e]' : 'bg-[#ef4444]'
-                } ${isFirst ? 'rounded-tl-[2px] rounded-bl-[2px]' : ''} ${
-                  isLast ? 'rounded-tr-[2px] rounded-br-[2px]' : ''
-                }`}
-              />
-            );
-          })}
-        </div>
-        
-        <div className="flex items-center justify-between text-sm text-gray-500 mt-1 gap-3">
-          <span className="whitespace-nowrap">90 days ago</span>
-          <div className="bg-gray-200 flex-1 h-px"></div>
-          <span className="underline cursor-default hover:text-gray-700 decoration-gray-300">
-            {uptime} uptime
-          </span>
-          <div className="bg-gray-200 flex-1 h-px"></div>
-          <span className="whitespace-nowrap">today</span>
-        </div>
+      <UptimeBar segments={segments} />
+      
+      <div className="flex items-center justify-between text-sm text-gray-500 dark:text-zinc-400 gap-3">
+        <span className="shrink-0">90 days ago</span>
+        <div className="bg-gray-300 dark:bg-zinc-700 flex-1 h-px"></div>
+        <span className="underline decoration-gray-300 underline-offset-4 shrink-0 font-normal">
+          {uptimePercentage} uptime
+        </span>
+        <div className="bg-gray-300 dark:bg-zinc-700 flex-1 h-px"></div>
+        <span className="shrink-0">today</span>
       </div>
     </div>
   );
 };
 
-export default function UptimeMonitors() {
-  // Mock data for 90 days - mostly green with some incidents for Data API
-  const generateHistory = (incidents: number[] = []) => {
-    return Array.from({ length: 90 }, (_, i) => !incidents.includes(i));
+const UptimeMonitors = () => {
+  // Generate 90 segments for each (mostly green)
+  const generateSegments = (outages: number[] = []) => {
+    return Array.from({ length: 90 }, (_, i) => ({
+      status: outages.includes(i) ? 'outage' : 'operational' as const,
+    }));
   };
 
   const monitors = [
     {
-      name: "Chat (/api/v1/chat/completions)",
-      uptime: "100%",
-      history: generateHistory(),
-      hasExpandButton: false
+      name: 'Chat (/api/v1/chat/completions)',
+      status: 'operational',
+      uptimePercentage: '100%',
+      hasExpand: false,
+      segments: generateSegments(),
     },
     {
-      name: "Data API",
-      uptime: "99.98%",
-      history: generateHistory([42, 53]),
-      hasExpandButton: true
+      name: 'Data API',
+      status: 'operational',
+      uptimePercentage: '99.98%',
+      hasExpand: true,
+      // Visualizing the specific red bars seen in the screenshot around the middle
+      segments: generateSegments([42, 53]),
     },
     {
-      name: "Homepage",
-      uptime: "100%",
-      history: generateHistory(),
-      hasExpandButton: true
+      name: 'Homepage',
+      status: 'operational',
+      uptimePercentage: '100%',
+      hasExpand: true,
+      segments: generateSegments(),
     },
     {
-      name: "Clerk (UI account auth)",
-      uptime: "100%",
-      history: generateHistory(),
-      hasExpandButton: true
-    }
+      name: 'Clerk (UI account auth)',
+      status: 'operational',
+      uptimePercentage: '100%',
+      hasExpand: true,
+      segments: generateSegments(),
+    },
   ];
 
   return (
-    <section className="container max-w-3xl mx-auto px-4">
-      {/* Global Status Banner */}
-      <div className="p-2 mb-8 rounded-lg shadow-lg sm:p-3 bg-[#22c55e]">
-        <div className="flex items-center justify-between flex-wrap">
-          <div className="w-0 flex-1 flex items-center">
-            <Check className="h-6 w-6 text-white" strokeWidth={3} />
-            <p className="ml-2 font-medium text-lg text-white truncate">
-              All Systems Operational
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Uptime Monitors Grid */}
-      <div className="mb-8 space-y-6">
-        {monitors.map((monitor, idx) => (
-          <UptimeMonitor
-            key={idx}
-            name={monitor.name}
-            uptime={monitor.uptime}
-            history={monitor.history}
-            hasExpandButton={monitor.hasExpandButton}
-          />
-        ))}
-      </div>
-
-      {/* Recent Incidents Section */}
-      <div className="mt-12">
-        <div className="flex items-baseline justify-between border-b border-transparent mb-4">
-          <h2 className="text-2xl font-normal text-[#111827]">Recent Incidents</h2>
-          <a
-            href="/history"
-            className="text-sm text-gray-500 hover:text-gray-700 underline decoration-gray-300"
-          >
-            view incident history
-          </a>
-        </div>
-        <div className="py-8 text-center text-gray-500 font-normal text-base">
-          No incidents reported in the last 14 days.
-        </div>
-      </div>
-
-      {/* Footer / Divider */}
-      <div className="mt-12 border-t border-gray-100"></div>
+    <section className="mb-12 space-y-8">
+      {monitors.map((monitor, idx) => (
+        <MonitorRow
+          key={idx}
+          name={monitor.name}
+          status={monitor.status}
+          uptimePercentage={monitor.uptimePercentage}
+          hasExpand={monitor.hasExpand}
+          segments={monitor.segments}
+        />
+      ))}
     </section>
   );
-}
+};
+
+export default UptimeMonitors;
