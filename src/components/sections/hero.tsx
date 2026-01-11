@@ -40,5 +40,9 @@ const Hero = () => {
   );
 };
 
+<<<<<<< Updated upstream
+export default Hero;
+>>>>>>> Stashed changes
+=======
 export default Hero;
 >>>>>>> Stashed changes

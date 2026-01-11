@@ -3,6 +3,10 @@ import React from 'react';
 const RecentIncidents = () => {
   return (
     <section className="mt-8 mb-12">
+<<<<<<< Updated upstream
+=======
+      {/* Header with Heading and View History Link */}
+>>>>>>> Stashed changes
       <div className="flex justify-between items-baseline mb-6">
         <h2 
           className="text-[20px] font-medium tracking-tight text-[#111827]"
@@ -18,12 +22,22 @@ const RecentIncidents = () => {
         </a>
       </div>
 
+<<<<<<< Updated upstream
       <div className="py-8 flex flex-col items-center justify-center border-t border-gray-100">
+=======
+      {/* No Activity Area */}
+      <div className="py-8 flex flex-col items-center justify-center">
+>>>>>>> Stashed changes
         <p className="text-[14px] leading-6 text-[#6b7280] font-normal">
           No incidents reported in the last 14 days.
         </p>
       </div>
 
+<<<<<<< Updated upstream
+=======
+      {/* Subtle bottom divider and footer branding will likely be in the footer component, 
+          but adding the horizontal rule here to match the visual spacing if required */}
+>>>>>>> Stashed changes
       <div className="mt-8 w-full h-px bg-[#d1d5db]/40"></div>
     </section>
   );
