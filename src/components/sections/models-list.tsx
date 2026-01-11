@@ -1,7 +1,10 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -122,7 +125,10 @@ const models: ModelEntry[] = [
 const ModelsList: React.FC = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -137,8 +143,11 @@ const ModelsList: React.FC = () => {
           >
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -150,7 +159,10 @@ const ModelsList: React.FC = () => {
                   {model.provider}: {model.name} {model.isFree && <span className="text-muted-foreground font-normal">(free)</span>}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -168,8 +180,11 @@ const ModelsList: React.FC = () => {
               <div className="price-stat font-mono text-[14px] text-muted-foreground whitespace-nowrap">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -207,7 +222,10 @@ const ModelsList: React.FC = () => {
             {/* Description */}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -218,8 +236,11 @@ const ModelsList: React.FC = () => {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -233,7 +254,10 @@ const ModelsList: React.FC = () => {
               {model.otherPricing && <span>{model.otherPricing}</span>}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -244,8 +268,11 @@ const ModelsList: React.FC = () => {
         
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -256,7 +283,10 @@ const ModelsList: React.FC = () => {
         </div>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -268,11 +298,15 @@ const ModelsList: React.FC = () => {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default ModelsList;
 =======
 export default ModelsList;
 =======
 export default ModelsList;
+=======
+export default ModelsList;
+>>>>>>> Stashed changes
 =======
 export default ModelsList;
 >>>>>>> Stashed changes

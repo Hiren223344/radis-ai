@@ -3,6 +3,7 @@
 import React from "react";
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 import React from "react";
 =======
@@ -13,6 +14,8 @@ import React from "react";
 import React from "react";
 =======
 import React from "react";
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -28,11 +31,14 @@ import {
 } from "recharts";
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -62,10 +68,13 @@ const chartData = [
 const modelRankings = [
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -79,6 +88,7 @@ const modelRankings = [
     changePositive: true,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+50%",
     changePositive: true,
@@ -94,6 +104,8 @@ const modelRankings = [
 =======
     change: "+50%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -108,6 +120,7 @@ const modelRankings = [
     changePositive: true,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+3%",
     changePositive: true,
@@ -123,6 +136,8 @@ const modelRankings = [
 =======
     change: "+3%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -137,6 +152,7 @@ const modelRankings = [
     changePositive: true,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+5%",
     changePositive: true,
@@ -152,6 +168,8 @@ const modelRankings = [
 =======
     change: "+5%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -164,11 +182,14 @@ const modelRankings = [
     tokens: "309B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -185,10 +206,13 @@ const modelRankings = [
     changePositive: true,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -203,6 +227,7 @@ const modelRankings = [
     changePositive: true,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+52%",
     changePositive: true,
@@ -218,6 +243,8 @@ const modelRankings = [
 =======
     change: "+52%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -232,6 +259,7 @@ const modelRankings = [
     changePositive: true,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+39%",
     changePositive: true,
@@ -247,6 +275,8 @@ const modelRankings = [
 =======
     change: "+39%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -261,6 +291,7 @@ const modelRankings = [
     changePositive: true,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+26%",
     changePositive: true,
@@ -276,6 +307,8 @@ const modelRankings = [
 =======
     change: "+26%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -290,6 +323,7 @@ const modelRankings = [
     changePositive: true,
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     change: "+127%",
     changePositive: true,
@@ -305,6 +339,8 @@ const modelRankings = [
 =======
     change: "+127%",
     changePositive: true,
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -317,11 +353,14 @@ const modelRankings = [
     tokens: "165B",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -370,10 +409,13 @@ const LLMLeaderboard = () => {
               />
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -384,11 +426,14 @@ const LLMLeaderboard = () => {
                 tickLine={false}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -399,10 +444,13 @@ const LLMLeaderboard = () => {
                 interval={Math.floor(chartData.length / 8)}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -413,11 +461,14 @@ const LLMLeaderboard = () => {
                 tickLine={false}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -463,10 +514,13 @@ const LLMLeaderboard = () => {
               />
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -477,11 +531,14 @@ const LLMLeaderboard = () => {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -528,10 +585,13 @@ const LLMLeaderboard = () => {
           <button className="flex items-center gap-1 text-[12px] font-medium text-[#64748B] hover:text-[#0F172A] transition-colors">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -547,6 +607,7 @@ const LLMLeaderboard = () => {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default LLMLeaderboard;
 =======
 };
@@ -568,6 +629,9 @@ export default LLMLeaderboard;
 };
 
 export default LLMLeaderboard;
+=======
+export default LLMLeaderboard;
+>>>>>>> Stashed changes
 =======
 export default LLMLeaderboard;
 >>>>>>> Stashed changes

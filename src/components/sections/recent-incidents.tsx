@@ -4,12 +4,15 @@ const RecentIncidents = () => {
   return (
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -23,11 +26,14 @@ const RecentIncidents = () => {
         >
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -39,6 +45,7 @@ const RecentIncidents = () => {
           className="text-[14px] text-[#6b7280] hover:text-[#111827] transition-colors duration-200 underline decoration-[#d1d5db] underline-offset-4"
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
           className="text-[14px] text-[#6b7280] hover:text-[#111827] transition-colors duration-200 underline decoration-[#d1d5db] underline-offset-4"
 =======
@@ -51,6 +58,8 @@ const RecentIncidents = () => {
           className="text-[14px] text-[#6b7280] hover:text-[#111827] transition-colors duration-200 underline decoration-[#d1d5db] underline-offset-4"
 =======
           className="text-[14px] text-[#6b7280] hover:text-[#111827] transition-colors duration-200 underline decoration-[#d1d5db] underline-offset-4"
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -72,11 +81,14 @@ const RecentIncidents = () => {
       <div className="mt-8 w-full h-px bg-[#d1d5db]/40"></div>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======

@@ -1,6 +1,7 @@
 import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -11,6 +12,8 @@ import React from 'react';
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -26,6 +29,7 @@ const GlobalStatus = () => {
           boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -35,6 +39,8 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -45,6 +51,7 @@ const GlobalStatus = () => {
           <div className="w-0 flex-1 flex items-center">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -55,6 +62,8 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -81,6 +90,7 @@ const GlobalStatus = () => {
                 fontWeight: 500 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 =======
@@ -90,6 +100,8 @@ const GlobalStatus = () => {
 =======
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -104,6 +116,7 @@ const GlobalStatus = () => {
     </section>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
     </section>
 =======
@@ -124,6 +137,8 @@ const GlobalStatus = () => {
     </section>
 =======
     </section>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
