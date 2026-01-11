@@ -1,8 +1,18 @@
+<<<<<<< Updated upstream
 import React from 'react';
 import Image from 'next/image';
+=======
+import React from "react";
+>>>>>>> Stashed changes
 
-const HeroSection = () => {
+/**
+ * Hero component for the OpenRouter Rankings page.
+ * Clones the main heading "AI Model Rankings" with pixel-perfect accuracy
+ * according to the provided design system and computed styles.
+ */
+const Hero = () => {
   return (
+<<<<<<< Updated upstream
     <section className="flex flex-1 flex-col items-center mx-auto bg-background text-foreground mb-16 mt-0 max-w-full lg:mt-8">
       {/* Hero Content Wrapper */}
       <div className="flex flex-col items-center gap-14 px-6 md:gap-20 md:px-8 md:pt-8 w-full max-w-4xl">
@@ -114,10 +124,37 @@ const HeroSection = () => {
               </a>
             </div>
           </div>
+=======
+    <section className="w-full flex-col items-center bg-background px-6 pt-0 lg:pt-8">
+      {/* 
+        Container wrapping the main heading. 
+        As specified in high_level_design, the content max-width is 1280px (screen-xl).
+        The HTML structure shows 'main-content-container-lg w-full flex flex-col gap-32'.
+      */}
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col overflow-hidden">
+        {/*
+          The vertical spacing between the nav and heading is controlled by mt-0 (md) and mt-8 (lg) 
+          on the parent div in the provided HTML structure.
+          The gap between the H1 and the first section is defined as gap-12 in the HTML structure.
+        */}
+        <div className="flex flex-col gap-12 pb-8 lg:pb-0">
+          <h1 
+            style={{
+              fontSize: "1.875rem", // 30px from typography_scale and computed_styles h1
+              fontWeight: 600,      // Semibold
+              lineHeight: 1.2,      // From typography_scale
+              letterSpacing: "-0.02em",
+              color: "#0F172A",     // text-slate-12 / Slate-950/900 approximation for Slate-12 equivalent
+            }}
+            className="text-slate-12"
+          >
+            AI Model Rankings
+          </h1>
+>>>>>>> Stashed changes
         </div>
       </div>
     </section>
   );
 };
 
-export default HeroSection;
+export default Hero;

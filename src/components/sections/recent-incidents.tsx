@@ -8,10 +8,13 @@ const RecentIncidents = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <section className="mt-12 mb-8">
       <div className="flex flex-row items-baseline justify-between mb-8">
         <h2 className="text-xl sm:text-[1.125rem] font-medium leading-7 text-gray-900 dark:text-white">
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -34,6 +37,9 @@ const RecentIncidents = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -55,7 +61,11 @@ const RecentIncidents = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           className="text-sm border-b border-gray-300 dark:border-zinc-700 text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-300 transition-colors pb-0"
+=======
+          className="text-[14px] text-[#6b7280] hover:text-[#111827] transition-colors duration-200 underline decoration-[#d1d5db] underline-offset-4"
+>>>>>>> Stashed changes
 =======
           className="text-[14px] text-[#6b7280] hover:text-[#111827] transition-colors duration-200 underline decoration-[#d1d5db] underline-offset-4"
 >>>>>>> Stashed changes
@@ -102,6 +112,9 @@ const RecentIncidents = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

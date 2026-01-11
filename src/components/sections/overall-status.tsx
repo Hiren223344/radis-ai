@@ -6,6 +6,7 @@ import React from 'react';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 /**
  * OverallStatus component
  * Matches the pixel-perfect design of the system status banner.
@@ -91,6 +92,14 @@ const OverallStatus = () => {
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
 >>>>>>> Stashed changes
+=======
+const OverallStatus = () => {
+  return (
+    <div className="max-w-3xl mx-auto px-4 sm:px-0">
+      <div className="p-2 mb-8 rounded-lg shadow-lg sm:p-3 bg-green-500">
+        <div className="flex items-center justify-between flex-wrap">
+          <div className="w-0 flex-1 flex items-center">
+>>>>>>> Stashed changes
             {/* Checkmark SVG Icon based on the visual layout */}
             <svg 
               className="h-6 w-6 text-white" 
@@ -111,6 +120,9 @@ const OverallStatus = () => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
