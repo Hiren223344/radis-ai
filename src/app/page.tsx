@@ -3,7 +3,6 @@ import HeroSection from "@/components/sections/hero";
 import StatsSection from "@/components/sections/stats";
 import FeaturesGrid from "@/components/sections/features-grid";
 import FeaturedModels from "@/components/sections/featured-models";
-import FeaturedAgents from "@/components/sections/featured-agents";
 import OnboardingSteps from "@/components/sections/onboarding-steps";
 import BottomContent from "@/components/sections/bottom-content";
 import Footer from "@/components/sections/footer";
