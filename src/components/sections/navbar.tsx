@@ -1,9 +1,4 @@
-<<<<<<< Updated upstream
-"use client";
-import React, { useState } from "react";
-=======
 import React from 'react';
->>>>>>> Stashed changes
 import Link from 'next/link';
 import { Search } from 'lucide-react';
 
@@ -34,10 +29,7 @@ const Navbar = () => {
           </a>
         </span>
         <div className="align-center relative flex flex-row justify-between text-sm md:text-base items-center">
-<<<<<<< Updated upstream
-=======
           {/* Left Section: Logo and Search */}
->>>>>>> Stashed changes
           <div className="flex flex-1 items-center gap-4">
             <Link className="text-muted-foreground" href="/">
               <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-muted-foreground px-2">
@@ -60,10 +52,7 @@ const Navbar = () => {
               </button>
             </Link>
 
-<<<<<<< Updated upstream
-=======
             {/* Search Input Field */}
->>>>>>> Stashed changes
             <div className="flex h-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground">
               <div
                 role="combobox"
@@ -88,10 +77,7 @@ const Navbar = () => {
             </div>
           </div>
 
-<<<<<<< Updated upstream
-=======
           {/* Right Section: Nav Items and Sign Up */}
->>>>>>> Stashed changes
           <div className="hidden lg:flex lg:gap-1 items-center text-sm">
             <Link className="text-muted-foreground" href="/models">
               <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center px-2 text-accent-foreground">
@@ -129,10 +115,7 @@ const Navbar = () => {
               </button>
             </Link>
 
-<<<<<<< Updated upstream
-=======
             {/* Sign Up Button */}
->>>>>>> Stashed changes
             <div className="flex ml-2 w-24 justify-end">
               <button className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground px-4 h-9 w-full rounded-full">
                 Sign up
