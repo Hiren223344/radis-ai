@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { Copy, Gift, MoreHorizontal } from 'lucide-react';
 
 interface ModelBadgeProps {
@@ -12,6 +13,8 @@ const ModelBadge = ({ label, colorClass }: ModelBadgeProps) => (
     <span className={`category-dot ${colorClass}`} />
     <span className="text-[12px] font-medium text-foreground leading-none">{label}</span>
 =======
+=======
+>>>>>>> Stashed changes
 import { Copy } from 'lucide-react';
 
 interface TagProps {
@@ -23,11 +26,15 @@ const Tag = ({ label, color = '#64748b' }: TagProps) => (
   <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-border bg-white text-[11px] font-medium text-slate-11">
     <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
     {label}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   </div>
 );
 
 interface ModelCardProps {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   author: string;
   name: string;
@@ -80,6 +87,8 @@ const ModelCard = ({
                     +{badges.length - 5} categories
                   </span>
 =======
+=======
+>>>>>>> Stashed changes
   name: string;
   author: string;
   tokens: string;
@@ -125,12 +134,16 @@ const ModelCard = ({ name, author, tokens, description, tags, meta, isFree }: Mo
                     <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
                   </div>
                   +{tokens === "396B" ? "7" : tokens === "5.16B" ? "3" : "2"} categories
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 </div>
               )}
             </div>
           )}
         </div>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
         <div className="text-right">
@@ -269,6 +282,8 @@ const ModelList = () => {
       outputPrice: "$0.30/M",
       description: "Mistral Small Creative is an experimental small model designed for creative writing, narrative generation, roleplay and character-driven dialogue, general-purpose instruction following, and conversational agents."
 =======
+=======
+>>>>>>> Stashed changes
         <div className="text-[12px] font-medium text-slate-11 tabular-nums pt-1">
           {tokens} tokens
         </div>
@@ -343,11 +358,15 @@ const ModelList = () => {
       tokens: "3.06B",
       description: "Mistral Small Creative is an experimental small model designed for creative writing, narrative generation, roleplay and character-driven dialogue, general-purpose instruction following, and ...",
       meta: ["33K context", "$0.10/M input tokens", "$0.30/M output tokens"]
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
   ];
 
   return (
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     <div className="flex flex-col w-full px-4 lg:px-0">
       <div className="flex flex-col gap-0">
@@ -361,6 +380,8 @@ const ModelList = () => {
           <MoreHorizontal className="size-6" />
         </button>
 =======
+=======
+>>>>>>> Stashed changes
     <div className="w-full max-w-screen-4xl mx-auto px-6 py-8">
       <div className="flex items-center justify-between mb-8 overflow-hidden">
         <div className="flex items-center gap-4">
@@ -407,6 +428,9 @@ const ModelList = () => {
         {models.map((model, index) => (
           <ModelCard key={index} {...model} />
         ))}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </div>
     </div>

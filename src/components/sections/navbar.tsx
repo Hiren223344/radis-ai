@@ -28,6 +28,9 @@ import { Search } from 'lucide-react';
  * - Responsive visibility based on viewport
  */
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -46,7 +49,11 @@ const Navbar = () => {
     <nav
       id="main-nav"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       className="sticky top-0 z-40 transition-all duration-150 bg-background w-full border-b border-border"
+=======
+      className="sticky top-0 z-40 transition-all duration-150 bg-background w-full border-b border-border/50"
+>>>>>>> Stashed changes
 =======
       className="sticky top-0 z-40 transition-all duration-150 bg-background w-full border-b border-border/50"
 >>>>>>> Stashed changes
@@ -60,6 +67,7 @@ const Navbar = () => {
             Skip to content
           </a>
         </span>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         
         <div className="flex flex-row items-center justify-between text-sm md:text-base">
@@ -77,6 +85,11 @@ const Navbar = () => {
         <div className="align-center relative flex flex-row justify-between text-sm md:text-base items-center">
           {/* Left Section: Logo and Search */}
           <div className="flex flex-1 items-center gap-4">
+=======
+        <div className="align-center relative flex flex-row justify-between text-sm md:text-base items-center">
+          {/* Left Section: Logo and Search */}
+          <div className="flex flex-1 items-center gap-4">
+>>>>>>> Stashed changes
             <Link className="text-muted-foreground" href="/">
               <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-muted-foreground px-2">
                 <span className="flex items-center gap-2 text-base transform cursor-pointer font-medium duration-100 ease-in-out fill-current stroke-current text-foreground">
@@ -84,6 +97,9 @@ const Navbar = () => {
                     width="20"
                     height="20"
                     viewBox="0 0 512 512"
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     className="size-4"
                     aria-label="Logo"
@@ -97,6 +113,7 @@ const Navbar = () => {
                   <span className="font-display tracking-tight">OpenRouter</span>
                 </span>
               </button>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             </a>
 
@@ -121,10 +138,24 @@ const Navbar = () => {
                 className="flex items-center gap-2 rounded-md h-9 w-0 ring-ring md:w-44 lg:w-48 transition-colors relative bg-slate-100 text-slate-500 focus-within:bg-slate-200 focus-within:text-slate-900 border border-transparent"
                 data-state="closed"
               >
+=======
+            </Link>
+
+            {/* Search Input Field */}
+            <div className="flex h-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground">
+              <div
+                role="combobox"
+                className="flex items-center gap-2 rounded-md h-9 w-0 ring-ring md:w-44 lg:w-48 transition-colors relative bg-slate-100 text-slate-500 focus-within:bg-slate-200 focus-within:text-slate-900 border border-transparent"
+                data-state="closed"
+              >
+>>>>>>> Stashed changes
                 <div className="flex items-center px-3 gap-2 w-full focus-visible:outline-none h-full">
                   <Search className="h-4 w-4 shrink-0 opacity-50" />
                   <input
                     className="flex h-full w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     placeholder="Search"
                     value={searchValue}
@@ -138,6 +169,7 @@ const Navbar = () => {
             </div>
           </div>
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
           {/* Right Section: Nav Links & Sign Up */}
           <div className="hidden lg:flex lg:gap-1 items-center text-sm">
@@ -160,6 +192,8 @@ const Navbar = () => {
             <div className="ml-2 flex w-24 justify-end">
               <button className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground px-4 h-9 rounded-full">
 =======
+=======
+>>>>>>> Stashed changes
           {/* Right Section: Nav Items and Sign Up */}
           <div className="hidden lg:flex lg:gap-1 items-center text-sm">
             <Link className="text-muted-foreground" href="/models">
@@ -201,6 +235,9 @@ const Navbar = () => {
             {/* Sign Up Button */}
             <div className="flex ml-2 w-24 justify-end">
               <button className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground px-4 h-9 w-full rounded-full">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 Sign up
               </button>
