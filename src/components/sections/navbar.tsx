@@ -1,24 +1,7 @@
-<<<<<<< Updated upstream
 "use client";
 import React, { useState } from "react";
-=======
-import React from 'react';
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 import Link from 'next/link';
 import { Search } from 'lucide-react';
-
-/**
- * Navbar component for OpenRouter website.
- * Features:
- * - Logo with custom SVG and text
- * - Search input with '/' shortcut
- * - Navigation links (Models, Providers, Chat, etc.)
- * - Rounded "Sign up" button
- * - Responsive visibility based on viewport
- */
 
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -37,7 +20,6 @@ const Navbar = () => {
           </a>
         </span>
         <div className="align-center relative flex flex-row justify-between text-sm md:text-base items-center">
-          {/* Left Section: Logo and Search */}
           <div className="flex flex-1 items-center gap-4">
             <Link className="text-muted-foreground" href="/">
               <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-muted-foreground px-2">
@@ -60,7 +42,6 @@ const Navbar = () => {
               </button>
             </Link>
 
-            {/* Search Input Field */}
             <div className="flex h-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground">
               <div
                 role="combobox"
@@ -85,7 +66,6 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Right Section: Nav Items and Sign Up */}
           <div className="hidden lg:flex lg:gap-1 items-center text-sm">
             <Link className="text-muted-foreground" href="/models">
               <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center px-2 text-accent-foreground">
@@ -123,7 +103,6 @@ const Navbar = () => {
               </button>
             </Link>
 
-            {/* Sign Up Button */}
             <div className="flex ml-2 w-24 justify-end">
               <button className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground px-4 h-9 w-full rounded-full">
                 Sign up
