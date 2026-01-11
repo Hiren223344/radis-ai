@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => {
+const StatusHeader = () => {
   return (
     <header className="flex justify-between items-center py-2 sm:py-6 md:justify-start md:space-x-10">
       <div className="container w-full mx-auto md:flex md:justify-between md:items-center">
@@ -24,8 +24,8 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
-export default Header;
+export default StatusHeader;
