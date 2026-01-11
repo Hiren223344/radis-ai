@@ -1,9 +1,20 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
 
+interface Model {
+  id: string;
+  name: string;
+  description: string;
+  pricing: {
+    prompt: string;
+    completion: string;
+  };
+  context_length: number;
+}
+
 interface ModelCardProps {
-  logo: string;
   name: string;
   provider: string;
   tokens: string;
@@ -11,18 +22,14 @@ interface ModelCardProps {
   isPositive?: boolean;
 }
 
-const ModelCard: React.FC<ModelCardProps> = ({ logo, name, provider, tokens, trend, isPositive = true }) => {
+const ModelCard: React.FC<ModelCardProps> = ({ name, provider, tokens, trend, isPositive = true }) => {
   return (
     <div className="group rounded-xl border border-border bg-card p-6 shadow-card transition-all duration-200 hover:border-primary hover:shadow-card-hover cursor-pointer">
       <div className="flex items-center gap-4 mb-8">
         <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-slate-50 overflow-hidden">
-          <Image 
-            src={logo} 
-            alt={`${provider} logo`} 
-            width={32} 
-            height={32} 
-            className="h-8 w-8 object-contain"
-          />
+          <div className="h-8 w-8 bg-slate-200 rounded flex items-center justify-center text-[10px] font-bold text-slate-400 uppercase">
+            {provider.substring(0, 2)}
+          </div>
         </div>
         <div>
           <h3 className="text-[1.125rem] font-semibold leading-[1.5] text-foreground m-0">
@@ -37,7 +44,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ logo, name, provider, tokens, tre
       <div className="flex justify-between items-end">
         <div>
           <p className="text-[12px] font-medium text-muted-foreground leading-none mb-1 uppercase tracking-wider">
-            Tokens
+            Context
           </p>
           <p className="text-[16px] font-semibold text-foreground leading-none tabular-nums">
             {tokens}
@@ -45,10 +52,10 @@ const ModelCard: React.FC<ModelCardProps> = ({ logo, name, provider, tokens, tre
         </div>
         <div className="text-right">
           <p className="text-[12px] font-medium text-muted-foreground leading-none mb-1 uppercase tracking-wider">
-            Weekly Trend
+            Price / M
           </p>
-          <p className={`text-[16px] font-semibold leading-none tabular-nums ${isPositive ? 'text-success' : 'text-destructive'}`}>
-            {isPositive ? '+' : ''}{trend}
+          <p className={`text-[16px] font-semibold leading-none tabular-nums text-success`}>
+            ${trend}
           </p>
         </div>
       </div>
@@ -57,29 +64,27 @@ const ModelCard: React.FC<ModelCardProps> = ({ logo, name, provider, tokens, tre
 };
 
 const FeaturedModels: React.FC = () => {
-  const models = [
-    {
-      logo: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg",
-      name: "Claude Opus 4.5",
-      provider: "anthropic",
-      tokens: "380.4B",
-      trend: "87.61%",
-    },
-    {
-      logo: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/OpenAI-1.svg",
-      name: "GPT-5.2",
-      provider: "openai",
-      tokens: "95.4B",
-      trend: "15.15%",
-    },
-    {
-      logo: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/GoogleGemini-2.svg",
-      name: "Gemini 3 Pro Preview",
-      provider: "google",
-      tokens: "132.5B",
-      trend: "8.23%",
-    }
-  ];
+  const [models, setModels] = useState<Model[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchModels = async () => {
+      try {
+        const url = process.env.NEXT_PUBLIC_MODELS_URL || "https://openrouter.ai/api/v1/models";
+        const res = await fetch(url);
+        const data = await res.json();
+        // Just take the first 3 for featured
+        setModels(data.data?.slice(0, 3) || []);
+      } catch (err) {
+        console.error("Error fetching featured models:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchModels();
+  }, []);
+
+  if (loading) return null;
 
   return (
     <section className="w-full max-w-[1440px] px-6 py-12 md:py-20 mx-auto">
@@ -91,7 +96,7 @@ const FeaturedModels: React.FC = () => {
               <ChevronRight className="h-6 w-6 text-muted-foreground transition-transform group-hover:translate-x-1" />
             </h2>
             <p className="text-[14px] text-muted-foreground m-0">
-              300+ active models on 60+ providers
+              Top models from the OpenRouter community
             </p>
           </div>
           <a 
@@ -105,12 +110,11 @@ const FeaturedModels: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {models.map((model) => (
             <ModelCard
-              key={model.name}
-              logo={model.logo}
+              key={model.id}
               name={model.name}
-              provider={model.provider}
-              tokens={model.tokens}
-              trend={model.trend}
+              provider={model.id.split('/')[0]}
+              tokens={`${Math.round(model.context_length / 1000)}k`}
+              trend={(Number(model.pricing.prompt) * 1000000).toFixed(2)}
             />
           ))}
         </div>
