@@ -6,7 +6,6 @@ const OverallStatus = () => {
       <div className="p-2 mb-8 rounded-lg shadow-lg sm:p-3 bg-green-500">
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
-            {/* Checkmark SVG Icon based on the visual layout */}
             <svg 
               className="h-6 w-6 text-white" 
               fill="none" 
@@ -20,7 +19,7 @@ const OverallStatus = () => {
                 d="M5 13l4 4L19 7" 
               />
             </svg>
-            <p className="ml-2 font-medium text-lg text-white truncate text-status-banner">
+            <p className="ml-2 font-medium text-lg text-white truncate">
               All Systems Operational
             </p>
           </div>
