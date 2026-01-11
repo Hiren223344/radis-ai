@@ -1,13 +1,7 @@
-<<<<<<< Updated upstream
 "use client";
 import React, { useState } from "react";
 import Link from 'next/link';
-import { Search } from "lucide-react";
-=======
-import React from 'react';
-import Link from 'next/link';
 import { Search } from 'lucide-react';
->>>>>>> Stashed changes
 
 /**
  * Navbar component for OpenRouter website.
@@ -22,19 +16,6 @@ import { Search } from 'lucide-react';
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
   return (
-<<<<<<< Updated upstream
-    <nav className="sticky top-0 z-40 bg-background w-full border-b border-border/50">
-      <div className="mx-auto w-full px-6 py-4 max-w-screen-4xl flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 font-semibold">
-          OpenRouter
-        </Link>
-        <div className="hidden lg:flex gap-6 items-center text-sm">
-          <Link href="/models">Models</Link>
-          <Link href="/rankings">Rankings</Link>
-          <button className="bg-primary text-primary-foreground px-4 py-2 rounded-full font-medium">
-            Sign up
-          </button>
-=======
     <nav
       id="main-nav"
       className="sticky top-0 z-40 transition-all duration-150 bg-background w-full border-b border-border/50"
@@ -86,6 +67,8 @@ const Navbar = () => {
                     placeholder="Search"
                     role="combobox"
                     id="search-input"
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
                   />
                 </div>
                 <kbd className="flex items-center justify-center aspect-square h-5 w-5 p-1 pointer-events-none rounded-sm bg-white border border-slate-200 text-[10px] text-muted-foreground absolute right-2 transition-opacity duration-200">
@@ -140,10 +123,10 @@ const Navbar = () => {
               </button>
             </div>
           </div>
->>>>>>> Stashed changes
         </div>
       </div>
     </nav>
   );
 };
+
 export default Navbar;
