@@ -1,31 +1,8 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+'use client';
+
 import React from 'react';
 import { Copy, PlusCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ModelMetaTag {
   label: string;
@@ -138,132 +115,41 @@ const models: ModelEntry[] = [
 ];
 
 const ModelsList: React.FC = () => {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
   return (
     <div className="w-full flex-1 tabular-nums">
       <div className="mx-auto max-w-full">
         {models.map((model) => (
-          <div 
+          <motion.div 
             key={model.id} 
-            className="model-list-item border-b border-border py-8 first:pt-4"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ backgroundColor: '#f8fafc' }}
+            className="model-list-item border-b border-border py-8 first:pt-4 px-4 transition-colors"
           >
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             {/* Header Row: Title and Aggregate Tokens */}
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-1.5">
               <div className="flex flex-wrap items-center gap-2">
                 <h3 className="model-title text-[16px] font-semibold text-foreground leading-[1.4]">
                   {model.provider}: {model.name} {model.isFree && <span className="text-muted-foreground font-normal">(free)</span>}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
                 </h3>
                 <div className="flex items-center gap-1.5">
-                  <button className="text-muted-foreground hover:text-foreground transition-colors p-0.5">
+                  <motion.button 
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.8 }}
+                    className="text-muted-foreground hover:text-foreground transition-colors p-0.5"
+                  >
                     <PlusCircle className="size-3.5" strokeWidth={2.5} />
-                  </button>
-                  <button className="text-muted-foreground hover:text-foreground transition-colors p-0.5">
+                  </motion.button>
+                  <motion.button 
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.8 }}
+                    className="text-muted-foreground hover:text-foreground transition-colors p-0.5"
+                  >
                     <Copy className="size-3.5" strokeWidth={2.5} />
-                  </button>
+                  </motion.button>
                 </div>
               </div>
               <div className="price-stat font-mono text-[14px] text-muted-foreground whitespace-nowrap">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
                 {model.tokens}
               </div>
             </div>
@@ -295,61 +181,10 @@ const ModelsList: React.FC = () => {
             )}
 
             {/* Description */}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             <p className="description-text mb-2 line-clamp-2 max-w-[95%] text-[14px] leading-[1.6] text-muted-foreground">
               {model.description}
             </p>
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             {/* Metadata Footer */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground font-medium">
               <span>by <span className="hover:underline cursor-pointer">{model.author}</span></span>
@@ -357,129 +192,17 @@ const ModelsList: React.FC = () => {
               <span>{model.inputPricing}</span>
               <span>{model.outputPricing}</span>
               {model.otherPricing && <span>{model.otherPricing}</span>}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             </div>
-          </div>
+          </motion.div>
         ))}
         
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         {/* Placeholder for more models if needed to scroll */}
         <div className="py-20 text-center text-muted-foreground/50 text-xs">
           607 models • End of listed results
         </div>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
       </div>
     </div>
   );
 };
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 export default ModelsList;
-=======
-export default ModelsList;
-=======
-export default ModelsList;
-=======
-export default ModelsList;
->>>>>>> Stashed changes
-=======
-export default ModelsList;
->>>>>>> Stashed changes
-=======
-export default ModelsList;
->>>>>>> Stashed changes
-=======
-export default ModelsList;
->>>>>>> Stashed changes
-=======
-export default ModelsList;
->>>>>>> Stashed changes
-=======
-export default ModelsList;
->>>>>>> Stashed changes
-=======
-export default ModelsList;
->>>>>>> Stashed changes
-=======
-export default ModelsList;
->>>>>>> Stashed changes
