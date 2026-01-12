@@ -5,17 +5,19 @@ import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import puter from '@heyputer/puter.js';
+import ModelIcon from '../ui/model-icon';
 
 interface ModelCardProps {
   name: string;
   provider: string;
   tokens: string;
   trend: string;
-  icon: string;
+  icon?: string;
+  modelId?: string;
   isPositive?: boolean;
 }
 
-const ModelCard = ({ name, provider, tokens, trend, icon, isPositive = true }: ModelCardProps) => (
+const ModelCard = ({ name, provider, tokens, trend, icon, modelId, isPositive = true }: ModelCardProps) => (
   <motion.div 
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
@@ -23,14 +25,8 @@ const ModelCard = ({ name, provider, tokens, trend, icon, isPositive = true }: M
   >
     <div className="flex items-start justify-between gap-4">
       <div className="flex items-start gap-4">
-        <div className="flex items-center justify-center size-10 flex-shrink-0 rounded-full border border-border bg-white shadow-sm overflow-hidden p-0">
-          <Image
-            src={icon}
-            alt={`${provider} icon`}
-            width={40}
-            height={40}
-            className="h-full w-full object-contain p-2"
-          />
+        <div className="flex items-center justify-center size-10 flex-shrink-0 rounded-full border border-border bg-white shadow-sm overflow-hidden p-1.5">
+          <ModelIcon modelId={modelId || name} size={28} />
         </div>
         <div className="flex flex-col">
           <h3 className="text-[18px] font-semibold text-foreground leading-tight tracking-tight">
