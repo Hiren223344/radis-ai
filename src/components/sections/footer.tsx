@@ -62,7 +62,7 @@ const Footer = () => {
           {/* Logo */}
           <div className="flex items-center">
             <a href="/" className="text-2xl font-bold text-foreground hover:text-primary transition-colors">
-              A4F
+              Radison
             </a>
           </div>
 
@@ -87,7 +87,7 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
           {/* Copyright */}
           <div className="text-[14px] text-muted-foreground order-2 sm:order-1">
-            © {currentYear} A4F, Inc. All rights reserved.
+            © {currentYear} Radison, Inc. All rights reserved.
           </div>
 
           {/* Social Icons */}
