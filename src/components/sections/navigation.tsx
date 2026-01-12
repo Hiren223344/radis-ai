@@ -24,7 +24,7 @@ const Navigation = () => {
                     </g>
                     <title>OpenRouter</title>
                   </svg>
-                  <span className="text-[#020617] font-semibold tracking-tight">OpenRouter</span>
+                  <span className="text-[#020617] font-semibold tracking-tight">Radison</span>
                 </span>
               </div>
             </a>
