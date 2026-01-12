@@ -90,7 +90,7 @@ const OnboardingSteps = () => {
             <div className="w-full max-w-[240px] space-y-4">
               <div className="flex items-center gap-3 bg-[#F8FAFC] p-2.5 rounded-lg border border-[#E2E8F0]">
                 <Key className="size-4 text-[#5F6FFF]" />
-                <span className="text-[11px] font-mono text-[#64748B] select-all">OPENROUTER_API_KEY</span>
+                <span className="text-[11px] font-mono text-[#64748B] select-all">RADISON_API_KEY</span>
               </div>
               <div className="bg-[#F1F5F9] h-8 w-full rounded-md flex items-center px-3 overflow-hidden">
                 <div className="flex gap-1.5 grayscale opacity-30">
