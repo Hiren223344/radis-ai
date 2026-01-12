@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const features = [
   {
@@ -13,21 +16,21 @@ const features = [
     title: "Higher Availability",
     description: "Reliable AI models via our distributed infrastructure. Fall back to other providers when one goes down.",
     linkText: "Learn more",
-    href: "/docs/features/uptime-optimization",
+    href: "/status",
     graphic: "availability-path",
   },
   {
     title: "Price and Performance",
     description: "Keep costs in check without sacrificing speed. Radison runs at the edge for minimal latency between your users and their inference.",
     linkText: "Learn more",
-    href: "/docs/features/latency",
+    href: "/rankings",
     graphic: "performance-graph",
   },
   {
     title: "Custom Data Policies",
     description: "Protect your organization with fine grained data policies. Ensure prompts only go to the models and providers you trust.",
     linkText: "View docs",
-    href: "/docs/features/data-retention",
+    href: "/status",
     graphic: "security-shield",
   }
 ];
@@ -54,11 +57,15 @@ const ProviderIcons = [
 
 const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
   return (
-    <a href={feature.href} className="group/card block h-full">
-      <div className="flex flex-col h-full overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:border-primary hover:shadow-lg">
+    <motion.a 
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      href={feature.href} 
+      className="group/card block h-full"
+    >
+      <div className="flex flex-col h-full overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:border-[#5F6FFF] hover:shadow-lg">
         {/* Top Graphic Area */}
-        <div className="relative h-48 w-full flex-shrink-0 overflow-hidden border-b bg-background transition-transform duration-200 group-hover/card:scale-[1.02] group-hover/card:-translate-y-1">
-          {/* Subtle Overlays */}
+        <div className="relative h-48 w-full flex-shrink-0 overflow-hidden border-b bg-background transition-transform duration-200">
           <div className="absolute inset-0 z-20 pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-t from-slate-50/30 via-transparent to-slate-50/30"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-slate-50/30 via-transparent to-slate-50/30"></div>
@@ -68,9 +75,13 @@ const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
             {feature.graphic === "provider-grid" && (
               <div className="grid grid-cols-5 gap-4 scale-90">
                 {ProviderIcons.slice(0, 15).map((icon, idx) => (
-                  <div key={idx} className="flex items-center justify-center size-8 rounded-full border bg-white shadow-sm p-1.5 transition-transform duration-500 hover:scale-110">
+                  <motion.div 
+                    key={idx} 
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    className="flex items-center justify-center size-8 rounded-full border bg-white shadow-sm p-1.5 transition-transform duration-500"
+                  >
                     <img src={icon} alt="Provider" className="size-full object-contain" />
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             )}
@@ -140,22 +151,24 @@ const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
           <p className="mb-4 text-[14px] text-muted-foreground leading-relaxed flex-1">
             {feature.description}
           </p>
-          <div className="flex items-center gap-1.5 text-[14px] font-medium text-primary hover:underline">
+          <div className="flex items-center gap-1.5 text-[14px] font-medium text-[#5F6FFF] group-hover/card:underline">
             {feature.linkText}
             {feature.linkText.includes("learn") || feature.linkText.includes("View") || feature.linkText.includes("Browse") ? (
-              <svg 
-                className="size-3.5 transition-transform group-hover/card:translate-x-0.5" 
+              <motion.svg 
+                animate={{ x: [0, 2, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+                className="size-3.5" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
+              </motion.svg>
             ) : null}
           </div>
         </div>
       </div>
-    </a>
+    </motion.a>
   );
 };
 
