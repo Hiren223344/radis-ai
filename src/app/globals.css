@@ -139,9 +139,6 @@
   }
 
   h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    @apply text-[3rem] font-semibold leading-[1.1] tracking-tight;
   }
 }
