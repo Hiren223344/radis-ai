@@ -37,7 +37,7 @@ const ModelIcon = ({ modelId, size = 24, className }: ModelIconProps) => {
   if (id.includes('claude') || id.includes('anthropic')) return <Claude size={size} className={className} />;
   if (id.includes('gemini')) return <Gemini size={size} className={className} />;
   if (id.includes('gemma')) return <Gemma size={size} className={className} />;
-  if (id.includes('google')) return <Google size={size} className={className} />;
+  if (id.includes('google') || id.includes('palm')) return <Google size={size} className={className} />;
   if (id.includes('llama') || id.includes('meta')) return <Meta size={size} className={className} />;
   if (id.includes('mistral') || id.includes('mixtral')) return <Mistral size={size} className={className} />;
   if (id.includes('deepseek')) return <DeepSeek size={size} className={className} />;
