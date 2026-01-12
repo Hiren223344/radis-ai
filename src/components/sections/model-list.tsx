@@ -222,10 +222,10 @@ const ModelList = () => {
                   {model.description}
                 </p>
 
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-slate-11">
-                      <span className="flex items-center gap-1">
-                        by <span className="underline cursor-pointer hover:text-foreground">{model.id.includes('/') ? model.id.split('/')[0] : 'Cloud Provider'}</span>
-                      </span>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-slate-11">
+                        <span className="flex items-center gap-1">
+                          by <span className="underline cursor-pointer hover:text-foreground">{model.provider}</span>
+                        </span>
                       {model.pricing && (
                         <>
                           <span className="text-slate-300">•</span>
