@@ -97,11 +97,15 @@ const ModelList = () => {
               if (isReasoning) type = 'Reasoning';
               else if (isVision) type = 'Vision Model';
 
+              const rawProvider = m.provider || getProvider(modelId, modelName);
+              // Normalize provider name
+              const provider = getProvider(modelId, modelName) !== 'Cloud Provider' ? getProvider(modelId, modelName) : rawProvider;
+
                 return {
                   id: modelId,
                   name: modelName,
-                  description: m.description || `AI model provided by ${m.provider || getProvider(modelId, modelName)}.`,
-                  provider: m.provider || getProvider(modelId, modelName),
+                  description: m.description || `AI model provided by ${provider}.`,
+                  provider: provider,
                   pricing: m.pricing || { prompt: "0.00", completion: "0.00" },
                   context_length: m.context_window || m.context || 4096,
                   type: type
@@ -129,6 +133,22 @@ const ModelList = () => {
                 provider: "OpenAI",
                 pricing: { prompt: "0.000005", completion: "0.000015" },
                 context_length: 128000
+              },
+              {
+                id: "gemini-1.5-pro",
+                name: "Gemini 1.5 Pro",
+                description: "Google's most capable model for highly complex tasks.",
+                provider: "Google",
+                pricing: { prompt: "0.0000035", completion: "0.0000105" },
+                context_length: 2000000
+              },
+              {
+                id: "gemini-1.5-flash",
+                name: "Gemini 1.5 Flash",
+                description: "Google's fast, cost-efficient multimodal model.",
+                provider: "Google",
+                pricing: { prompt: "0.000000075", completion: "0.0000003" },
+                context_length: 1000000
               }
             ]);
         } finally {
