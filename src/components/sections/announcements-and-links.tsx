@@ -10,7 +10,7 @@ const AnnouncementsAndLinks = () => {
     },
     {
       title: "Response Healing: Reduce JSON Defects by 80%+",
-      description: "Today we're launching Response Healing, a new feature on OpenRouter that automatically fixes malformed JSON responses from LLMs before they reach your application",
+        description: "Today we're launching Response Healing, a new feature on Radison that automatically fixes malformed JSON responses from LLMs before they reach your application",
       date: "12/17/2025",
     },
     {
