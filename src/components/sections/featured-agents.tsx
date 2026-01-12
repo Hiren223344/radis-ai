@@ -35,7 +35,7 @@ const FeaturedAgents = () => {
               <ChevronRight className="h-5 w-5 text-muted-foreground/50" />
             </h2>
             <p className="text-sm text-muted-foreground">
-              250k+ apps using OpenRouter with 4.2M+ users globally
+              250k+ apps using Radison with 4.2M+ users globally
             </p>
           </div>
           <a
