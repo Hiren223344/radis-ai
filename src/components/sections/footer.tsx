@@ -44,7 +44,7 @@ const Footer = () => {
               </svg>
             </Link>
             <Link
-              href="https://github.com/OpenRouter"
+              href="https://github.com/Radison"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground transition-colors hover:text-foreground"
@@ -53,7 +53,7 @@ const Footer = () => {
               <Github className="size-4" />
             </Link>
             <Link
-              href="https://linkedin.com/company/openrouter"
+              href="https://linkedin.com/company/radison"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground transition-colors hover:text-foreground"
@@ -62,7 +62,7 @@ const Footer = () => {
               <Linkedin className="size-4" />
             </Link>
             <Link
-              href="https://x.com/OpenRouterAI"
+              href="https://x.com/RadisonAI"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground transition-colors hover:text-foreground"
