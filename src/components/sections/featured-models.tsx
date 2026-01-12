@@ -90,14 +90,17 @@ const FeaturedModels = () => {
         const models = await puter.ai.listModels();
         if (models && models.length > 0) {
           const formatted = models.slice(0, 3).map((m: any, i: number) => {
-            const provider = m.provider || (m.name?.includes('gpt') ? 'OpenAI' : m.name?.includes('claude') ? 'Anthropic' : 'Puter');
+            const modelId = typeof m === 'string' ? m : (m.id || m.name || `model-${i}`);
+            const modelName = typeof m.name === 'string' ? m.name : modelId;
+            const provider = m.provider || (modelId.toLowerCase().includes('gpt') ? 'OpenAI' : modelId.toLowerCase().includes('claude') ? 'Anthropic' : 'Puter');
+            
             const icons: Record<string, string> = {
               'OpenAI': 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/OpenAI-1.svg',
               'Anthropic': 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg',
               'Google': 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/GoogleGemini-2.svg',
             };
             return {
-              name: m.name || m,
+              name: modelName,
               provider: provider,
               tokens: `${(Math.random() * 500 + 50).toFixed(1)}B`,
               trend: `${(Math.random() * 20 + 2).toFixed(1)}%`,
