@@ -17,7 +17,82 @@ interface Model {
   };
   context_length?: number;
   type?: string;
+  category?: string;
 }
+
+const ADDITIONAL_MODELS: Model[] = [
+  // Image Models
+  { id: "openrouter:google/gemini-2.5-flash-image", name: "Gemini 2.5 Flash Image", provider: "Google", description: "Google's high-speed image generation model.", category: "Image" },
+  { id: "openrouter:google/gemini-2.5-flash-image-preview", name: "Gemini 2.5 Flash Image Preview", provider: "Google", description: "Preview version of Google's high-speed image generation model.", category: "Image" },
+  { id: "openrouter:google/gemini-flash-1.5", name: "Gemini Flash 1.5", provider: "Google", description: "Google's fast multimodal model.", category: "Image" },
+  { id: "openrouter:google/gemini-flash-1.5-8b", name: "Gemini Flash 1.5 8B", provider: "Google", description: "Google's ultra-lightweight fast model.", category: "Image" },
+  { id: "stable-diffusion-1.5", name: "Stable Diffusion 1.5", provider: "Stability AI", description: "Classic latent text-to-image diffusion model.", category: "Image" },
+  { id: "stable-diffusion-2.1", name: "Stable Diffusion 2.1", provider: "Stability AI", description: "Improved Stable Diffusion model for high-resolution generation.", category: "Image" },
+  { id: "stable-diffusion-xl", name: "Stable Diffusion XL", provider: "Stability AI", description: "Next-generation high-resolution image generation model.", category: "Image" },
+  { id: "sdxl-turbo", name: "SDXL Turbo", provider: "Stability AI", description: "Real-time text-to-image generation.", category: "Image" },
+  { id: "flux-1-dev", name: "Flux 1 Dev", provider: "Black Forest Labs", description: "Advanced image generation model for developers.", category: "Image" },
+  { id: "flux-1-schnell", name: "Flux 1 Schnell", provider: "Black Forest Labs", description: "Fastest Flux model for quick iterations.", category: "Image" },
+  { id: "flux-1-pro", name: "Flux 1 Pro", provider: "Black Forest Labs", description: "Professional grade high-fidelity image generation.", category: "Image" },
+  { id: "gpt-image-1", name: "GPT Image 1", provider: "OpenAI", description: "OpenAI's legacy image generation model.", category: "Image" },
+  { id: "dall-e-3", name: "DALL-E 3", provider: "OpenAI", description: "OpenAI's latest and most capable image model.", category: "Image" },
+
+  // Video Models
+  { id: "openrouter:sora-2", name: "Sora 2", provider: "OpenAI", description: "OpenAI's advanced text-to-video generation model.", category: "Video" },
+  { id: "openrouter:sora-2-pro", name: "Sora 2 Pro", provider: "OpenAI", description: "Professional version of OpenAI's Sora 2.", category: "Video" },
+  { id: "sora-2", name: "Sora 2", provider: "OpenAI", description: "Next-generation video generation.", category: "Video" },
+  { id: "sora-2-pro", name: "Sora 2 Pro", provider: "OpenAI", description: "High-end video generation.", category: "Video" },
+
+  // TTS Models
+  { id: "openrouter:openai/gpt-4o-audio-preview", name: "GPT-4o Audio Preview", provider: "OpenAI", description: "Multimodal audio capabilities from OpenAI.", category: "TTS" },
+  { id: "openrouter:openai/gpt-4o-realtime-preview-tts", name: "GPT-4o Realtime TTS", provider: "OpenAI", description: "Low-latency text-to-speech for real-time applications.", category: "TTS" },
+  { id: "gpt-4o-mini-tts", name: "GPT-4o Mini TTS", provider: "OpenAI", description: "Efficient and fast text-to-speech.", category: "TTS" },
+  { id: "gpt-4o-realtime-preview-tts", name: "GPT-4o Realtime Preview TTS", provider: "OpenAI", description: "Experimental real-time speech synthesis.", category: "TTS" },
+  { id: "tts-1", name: "TTS 1", provider: "OpenAI", description: "OpenAI's high-performance text-to-speech model.", category: "TTS" },
+  { id: "tts-1-hd", name: "TTS 1 HD", provider: "OpenAI", description: "High-definition text-to-speech synthesis.", category: "TTS" },
+  { id: "eleven_multilingual_v2", name: "Eleven Multilingual v2", provider: "ElevenLabs", description: "State-of-the-art multilingual speech synthesis.", category: "TTS" },
+  { id: "eleven_flash_v2_5", name: "Eleven Flash v2.5", provider: "ElevenLabs", description: "Ultra-fast speech generation.", category: "TTS" },
+  { id: "eleven_turbo_v2_5", name: "Eleven Turbo v2.5", provider: "ElevenLabs", description: "Optimized turbo speech model.", category: "TTS" },
+  { id: "eleven_v3", name: "Eleven v3", provider: "ElevenLabs", description: "Next-gen ElevenLabs speech model.", category: "TTS" },
+  { id: "google-tts-standard", name: "Google TTS Standard", provider: "Google", description: "Standard Google text-to-speech.", category: "TTS" },
+  { id: "google-tts-neural", name: "Google TTS Neural", provider: "Google", description: "Neural Google text-to-speech for better naturalness.", category: "TTS" },
+  { id: "google-tts-wavenet", name: "Google TTS WaveNet", provider: "Google", description: "Premium WaveNet-based speech synthesis.", category: "TTS" },
+  { id: "polly-standard", name: "Polly Standard", provider: "Amazon", description: "Amazon Polly standard voices.", category: "TTS" },
+  { id: "polly-neural", name: "Polly Neural", provider: "Amazon", description: "Amazon Polly neural voices.", category: "TTS" },
+  { id: "azure-tts-neural", name: "Azure TTS Neural", provider: "Microsoft", description: "Microsoft Azure neural speech.", category: "TTS" },
+  { id: "azure-tts-custom-neural", name: "Azure TTS Custom Neural", provider: "Microsoft", description: "Customizable neural speech from Azure.", category: "TTS" },
+  { id: "seamless-tts", name: "Seamless TTS", provider: "Meta", description: "Meta's seamless translation and speech model.", category: "TTS" },
+  { id: "seamless-m4t", name: "Seamless M4T", provider: "Meta", description: "Massively Multilingual & Multimodal Machine Translation.", category: "TTS" },
+  { id: "bark", name: "Bark", provider: "Suno", description: "Transformer-based text-to-audio model.", category: "TTS" },
+  { id: "coqui-xtts-v2", name: "Coqui XTTS v2", provider: "Coqui", description: "Advanced voice cloning and speech synthesis.", category: "TTS" },
+  { id: "tortoise-tts", name: "Tortoise TTS", provider: "Open Source", description: "High-quality multi-voice speech synthesis.", category: "TTS" },
+
+  // STT Models
+  { id: "openrouter:openai/gpt-4o-realtime-preview-transcribe", name: "GPT-4o Realtime Transcribe", provider: "OpenAI", description: "Real-time speech-to-text transcription.", category: "STT" },
+  { id: "whisper-1", name: "Whisper 1", provider: "OpenAI", description: "OpenAI's state-of-the-art speech recognition model.", category: "STT" },
+  { id: "gpt-4o-mini-transcribe", name: "GPT-4o Mini Transcribe", provider: "OpenAI", description: "Fast and efficient transcription.", category: "STT" },
+  { id: "gpt-4o-transcribe", name: "GPT-4o Transcribe", provider: "OpenAI", description: "High-fidelity transcription model.", category: "STT" },
+  { id: "gpt-4o-transcribe-diarize", name: "GPT-4o Transcribe Diarize", provider: "OpenAI", description: "Transcription with speaker identification.", category: "STT" },
+  { id: "google-stt-standard", name: "Google STT Standard", provider: "Google", description: "Google's standard speech-to-text.", category: "STT" },
+  { id: "google-stt-enhanced", name: "Google STT Enhanced", provider: "Google", description: "Enhanced accuracy for speech recognition.", category: "STT" },
+  { id: "transcribe-standard", name: "Transcribe Standard", provider: "Amazon", description: "AWS Transcribe standard service.", category: "STT" },
+  { id: "transcribe-streaming", name: "Transcribe Streaming", provider: "Amazon", description: "Real-time streaming transcription.", category: "STT" },
+  { id: "azure-stt-standard", name: "Azure STT Standard", provider: "Microsoft", description: "Microsoft Azure standard speech recognition.", category: "STT" },
+  { id: "azure-stt-custom", name: "Azure STT Custom", provider: "Microsoft", description: "Custom speech-to-text from Azure.", category: "STT" },
+  { id: "deepgram-nova-2", name: "Deepgram Nova 2", provider: "Deepgram", description: "Ultra-fast and accurate speech transcription.", category: "STT" },
+  { id: "deepgram-realtime", name: "Deepgram Realtime", provider: "Deepgram", description: "Low-latency real-time transcription.", category: "STT" },
+  { id: "assemblyai-universal", name: "AssemblyAI Universal", provider: "AssemblyAI", description: "Highly accurate universal speech model.", category: "STT" },
+  { id: "assemblyai-realtime", name: "AssemblyAI Realtime", provider: "AssemblyAI", description: "Real-time transcription services.", category: "STT" },
+  { id: "wav2vec-2.0", name: "Wav2Vec 2.0", provider: "Meta", description: "Self-supervised learning for speech recognition.", category: "STT" },
+  { id: "seamless-stt", name: "Seamless STT", provider: "Meta", description: "Multilingual speech-to-text transcription.", category: "STT" },
+
+  // Realtime Models
+  { id: "openrouter:openai/gpt-4o-realtime-preview-tts", name: "GPT-4o Realtime TTS (Realtime)", provider: "OpenAI", description: "Real-time interactive speech capabilities.", category: "Realtime" },
+  { id: "openrouter:openai/gpt-4o-realtime-preview-transcribe", name: "GPT-4o Realtime Transcribe (Realtime)", provider: "OpenAI", description: "Low-latency interactive transcription.", category: "Realtime" },
+  { id: "deepgram-realtime", name: "Deepgram Realtime (Realtime)", provider: "Deepgram", description: "Interactive real-time speech processing.", category: "Realtime" },
+  { id: "elevenlabs-realtime-tts", name: "ElevenLabs Realtime TTS", provider: "ElevenLabs", description: "Ultra-low latency speech synthesis.", category: "Realtime" },
+  { id: "seamless-realtime", name: "Seamless Realtime", provider: "Meta", description: "Real-time translation and speech processing.", category: "Realtime" },
+  { id: "seamless-m4t-realtime", name: "Seamless M4T Realtime", provider: "Meta", description: "Massively Multilingual Realtime Translation.", category: "Realtime" },
+];
 
 const getProvider = (id: string, name: string) => {
   const lowerId = id.toLowerCase();
