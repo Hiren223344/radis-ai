@@ -128,20 +128,25 @@ const ModelList = () => {
         {filteredModels.map((model) => (
           <div key={model.id} className="py-8 first:pt-4 group">
             <div className="flex flex-col gap-2">
-              <div className="flex items-start justify-between">
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-[16px] font-semibold text-foreground tracking-tight">
-                      {model.name || model.id}
-                    </h3>
-                    <button 
-                      className="p-1 rounded hover:bg-slate-100 text-slate-11 transition-colors"
-                      onClick={() => navigator.clipboard.writeText(model.id)}
-                    >
-                      <Copy className="w-3.5 h-3.5" />
-                    </button>
+                <div className="flex items-start justify-between">
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-center size-8 flex-shrink-0 rounded-lg border border-border bg-white shadow-sm overflow-hidden p-1.5">
+                        <ModelIcon modelId={model.id} size={20} />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-[16px] font-semibold text-foreground tracking-tight">
+                          {model.name || model.id}
+                        </h3>
+                        <button 
+                          className="p-1 rounded hover:bg-slate-100 text-slate-11 transition-colors"
+                          onClick={() => navigator.clipboard.writeText(model.id)}
+                        >
+                          <Copy className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
                   <div className="text-[12px] font-medium text-slate-11 tabular-nums pt-1">
                     {model.context_length ? `${(model.context_length / 1000).toFixed(0)}K context` : 'N/A context'}
                   </div>
