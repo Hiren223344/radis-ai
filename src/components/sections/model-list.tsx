@@ -63,13 +63,21 @@ const ModelList = () => {
                                  modelName.toLowerCase().includes('reasoning') ||
                                  modelName.toLowerCase().includes('o1');
 
+              const isVision = modelId.toLowerCase().includes('vision') || 
+                               modelId.toLowerCase().includes('vl') || 
+                               modelName.toLowerCase().includes('vision');
+
+              let type = 'Text Model';
+              if (isReasoning) type = 'Reasoning';
+              else if (isVision) type = 'Vision Model';
+
               return {
                 id: modelId,
                 name: modelName,
                 description: m.description || `AI model provided by ${m.provider || 'Puter'}.`,
                 pricing: m.pricing || { prompt: "0.00", completion: "0.00" },
                 context_length: m.context_window || m.context || 4096,
-                type: isReasoning ? 'Reasoning' : 'Text Model'
+                type: type
               };
             });
 
