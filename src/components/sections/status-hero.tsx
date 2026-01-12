@@ -3,7 +3,7 @@ import React from "react";
 /**
  * StatusHero Component
  * 
- * Clones the status page hero section featuring the "A4F System Status" title
+ * Clones the status page hero section featuring the "Radison System Status" title
  * and the subtitle "Current operational status of our platform and services."
  * 
  * Adheres to the light theme and design specifications provided.
@@ -15,7 +15,7 @@ const StatusHero: React.FC = () => {
         <div className="text-center">
           {/* Main Title - H1 */}
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tighter text-[#020817] mb-3 leading-[1.2]">
-            A4F System Status
+            Radison System Status
           </h1>
           
           {/* Subtitle / Description */}
