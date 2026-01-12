@@ -14,19 +14,29 @@ interface Model {
     completion: string;
   };
   context_length?: number;
+  type?: string;
 }
 
 interface TagProps {
   label: string;
   color?: string;
+  variant?: 'default' | 'reasoning' | 'puter';
 }
 
-const Tag = ({ label, color = '#64748b' }: TagProps) => (
-  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-border bg-white text-[11px] font-medium text-slate-11">
-    <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
-    {label}
-  </div>
-);
+const Tag = ({ label, color = '#64748b', variant = 'default' }: TagProps) => {
+  const styles = {
+    default: "bg-white text-slate-11 border-border",
+    reasoning: "bg-purple-50 text-purple-700 border-purple-200",
+    puter: "bg-blue-50 text-blue-700 border-blue-200"
+  };
+  
+  return (
+    <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full border text-[11px] font-medium ${styles[variant]}`}>
+      {!variant || variant === 'default' ? <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} /> : null}
+      {label}
+    </div>
+  );
+};
 
 const ModelList = () => {
   const [models, setModels] = useState<Model[]>([]);
