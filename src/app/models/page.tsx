@@ -3,6 +3,7 @@ import SidebarFilters from "@/components/sections/sidebar-filters";
 import ModelsHeader from "@/components/sections/models-header";
 import ModelList from "@/components/sections/model-list";
 import Footer from "@/components/sections/footer";
+import { Suspense } from "react";
 
 export default function ModelsPage() {
   return (
@@ -12,7 +13,9 @@ export default function ModelsPage() {
         <SidebarFilters />
         <main id="skip" className="flex-1 flex flex-col min-w-0">
           <ModelsHeader />
-          <ModelList />
+          <Suspense fallback={<div className="p-20 text-center text-muted-foreground">Loading models...</div>}>
+            <ModelList />
+          </Suspense>
         </main>
       </div>
       <Footer />
