@@ -2,7 +2,7 @@ import React from "react";
 
 /**
  * AnnouncementBanners Component
- * Displays the dual promotional banners at the top of the A4F status page.
+ * Displays the dual promotional banners at the top of the Radison status page.
  * Includes a muted grey Product Hunt review banner and an orange Ultra Plan update banner.
  */
 const AnnouncementBanners: React.FC = () => {
