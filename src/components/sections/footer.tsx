@@ -25,7 +25,7 @@ const Footer = () => {
           {/* Left section: Copyright and Socials */}
           <div className="flex flex-col items-center gap-4 md:flex-row md:gap-6">
             <span className="text-sm text-slate-500 whitespace-nowrap">
-              © {currentYear} OpenRouter, Inc
+              © {currentYear} Radison, Inc
             </span>
             <div className="flex items-center gap-4">
               <a 
