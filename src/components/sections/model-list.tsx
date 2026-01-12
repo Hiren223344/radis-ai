@@ -136,24 +136,29 @@ const ModelList = () => {
                     </button>
                   </div>
                 </div>
-                <div className="text-[12px] font-medium text-slate-11 tabular-nums pt-1">
-                  {(model.context_length / 1000).toFixed(0)}K context
+                  <div className="text-[12px] font-medium text-slate-11 tabular-nums pt-1">
+                    {model.context_length ? `${(model.context_length / 1000).toFixed(0)}K context` : 'N/A context'}
+                  </div>
                 </div>
-              </div>
 
-              <p className="text-[14px] text-muted-foreground leading-relaxed line-clamp-2 max-w-[850px]">
-                {model.description}
-              </p>
+                <p className="text-[14px] text-muted-foreground leading-relaxed line-clamp-2 max-w-[850px]">
+                  {model.description}
+                </p>
 
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-slate-11">
-                <span className="flex items-center gap-1">
-                  by <span className="underline cursor-pointer hover:text-foreground">{model.id.split('/')[0]}</span>
-                </span>
-                <span className="text-slate-300">•</span>
-                <span>${(Number(model.pricing.prompt) * 1000000).toFixed(2)}/M input</span>
-                <span className="text-slate-300">•</span>
-                <span>${(Number(model.pricing.completion) * 1000000).toFixed(2)}/M output</span>
-              </div>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-slate-11">
+                  <span className="flex items-center gap-1">
+                    by <span className="underline cursor-pointer hover:text-foreground">{model.id.includes('/') ? model.id.split('/')[0] : 'Puter'}</span>
+                  </span>
+                  {model.pricing && (
+                    <>
+                      <span className="text-slate-300">•</span>
+                      <span>${(Number(model.pricing.prompt) * 1000000).toFixed(2)}/M input</span>
+                      <span className="text-slate-300">•</span>
+                      <span>${(Number(model.pricing.completion) * 1000000).toFixed(2)}/M output</span>
+                    </>
+                  )}
+                </div>
+
             </div>
           </div>
         ))}
