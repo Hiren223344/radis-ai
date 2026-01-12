@@ -1,149 +1,164 @@
 import React from 'react';
 import Image from 'next/image';
+import { ExternalLink } from 'lucide-react';
 
-const Features = () => {
+const FeaturesGrid = () => {
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-12 md:py-16">
+    <section className="w-full max-w-7xl mx-auto px-6 py-8 md:py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-        {/* One API for Any Model Card */}
-        <a href="/models" className="group h-full block">
-          <div className="flex flex-col h-full bg-card border rounded-xl overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-200">
-            <div className="relative h-48 bg-slate-50 border-b overflow-hidden group-hover:bg-white transition-colors">
-              <div className="absolute inset-0 pointer-events-none z-10">
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-50/50 via-transparent to-slate-50/50"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-50/50 via-transparent to-slate-50/50"></div>
-              </div>
-              <div className="absolute inset-2 grid grid-cols-5 gap-2 p-4 transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-1">
+        {/* Card 1: One API for Any Model */}
+        <a href="/models" className="group block h-full">
+          <div className="h-full flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-200 hover:border-[#6366f1] hover:shadow-lg">
+            {/* Illustration Area */}
+            <div className="relative h-48 overflow-hidden border-b border-slate-100 bg-white p-4">
+              <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-50/50 to-transparent"></div>
+              <div className="relative z-10 grid grid-cols-5 gap-x-2 gap-y-3 transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
                 {[
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/Microsoft-4.svg",
-                  "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://nvidia.com/&size=256",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/Meta-1.png",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/GoogleGemini-2.svg",
-                  "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://nova.amazon.com/&size=256",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/DeepSeek-2.png",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/Qwen-3.png",
-                  "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://moonshot.ai&size=256",
-                  "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://minimaxi.com/&size=256",
-                  "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://z.ai/&size=256",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/Mistral-4.png",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/Anthropic-3.svg",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/OpenAI-1.svg",
-                  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/GoogleAIStudio-5.svg",
-                  "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://x.ai/&size=256"
-                ].map((src, idx) => (
-                  <div key={idx} className="flex items-center justify-center p-1.5 bg-white border rounded-full shadow-sm size-6 md:size-7 transition-all duration-300 hover:scale-110">
-                    <img src={src} alt="Brand" className="w-full h-full object-contain rounded-full" />
+                  { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Microsoft-4.svg", alt: "Microsoft" },
+                  { src: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://nvidia.com/&size=256", alt: "Nvidia" },
+                  { src: "/images/icons/Meta.png", assetKey: "Meta-1.png", alt: "Meta" },
+                  { src: "/images/icons/GoogleGemini.svg", alt: "Google" },
+                  { src: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://nova.amazon.com/&size=256", alt: "Amazon" },
+                  { src: "/images/icons/DeepSeek.png", assetKey: "DeepSeek-2.png", alt: "DeepSeek" },
+                  { src: "/images/icons/Qwen.png", assetKey: "Qwen-3.png", alt: "Qwen" },
+                  { src: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://moonshot.ai&size=256", alt: "Moonshot" },
+                  { src: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://minimaxi.com/&size=256", alt: "Minimax" },
+                  { src: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://z.ai/&size=256", alt: "Z-AI" },
+                  { src: "/images/icons/Mistral.png", assetKey: "Mistral-4.png", alt: "Mistral" },
+                  { src: "/images/icons/Anthropic.svg", alt: "Anthropic" },
+                  { src: "/images/icons/OpenAI.svg", alt: "OpenAI" },
+                  { src: "/images/icons/GoogleAIStudio.svg", alt: "Google AI" },
+                  { src: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://x.ai/&size=256", alt: "X-AI" },
+                ].map((item, i) => (
+                  <div key={i} className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-100 bg-white shadow-sm transition-transform hover:scale-110">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className={`h-4 w-4 object-contain ${i === 12 || i === 9 ? 'dark:invert' : ''}`}
+                    />
                   </div>
                 ))}
               </div>
             </div>
-            <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-[1.125rem] font-semibold mb-2">One API for Any Model</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
+            {/* Content Area */}
+            <div className="flex flex-1 flex-col p-6">
+              <h3 className="mb-2 text-base font-semibold text-slate-900">One API for Any Model</h3>
+              <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-500">
                 Access all major models through a single, unified interface. OpenAI SDK works out of the box.
               </p>
-              <span className="text-primary text-sm font-medium mt-4">Browse all</span>
+              <span className="text-sm font-medium text-indigo-600 transition-colors group-hover:text-indigo-700">
+                Browse all
+              </span>
             </div>
           </div>
         </a>
 
-        {/* Higher Availability Card */}
-        <a href="/docs/features/uptime-optimization" className="group h-full block">
-          <div className="flex flex-col h-full bg-card border rounded-xl overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-200">
-            <div className="relative h-48 bg-slate-50 border-b flex items-center justify-center group-hover:bg-white transition-colors">
-              <div className="w-full max-w-[240px] px-4 transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-1">
-                {/* Routing Illustration */}
-                <div className="flex items-center justify-center gap-2 mb-1">
-                  <div className="h-0.5 bg-slate-200 w-12" />
-                  <div className="px-2 py-0.5 border rounded bg-white text-[10px] whitespace-nowrap text-muted-foreground">anthropic/claude-opus-4.5</div>
-                  <div className="h-0.5 bg-slate-200 w-12" />
-                </div>
-                <div className="flex justify-between items-center relative py-8">
-                  <svg className="absolute inset-0 w-full h-full text-slate-200" style={{ pointerEvents: 'none' }}>
-                    <path d="M 120 10 L 40 40" stroke="currentColor" strokeWidth="1" fill="none" />
-                    <path d="M 120 10 L 120 40" stroke="currentColor" strokeWidth="1" fill="none" />
-                    <path d="M 120 10 L 200 40" stroke="currentColor" strokeWidth="1" fill="none" />
+        {/* Card 2: Higher Availability */}
+        <a href="/docs/features/uptime-optimization" className="group block h-full">
+          <div className="h-full flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-200 hover:border-[#6366f1] hover:shadow-lg">
+            <div className="relative h-48 overflow-hidden border-b border-slate-100 bg-white p-4">
+              <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-50/50 to-transparent"></div>
+              <div className="relative z-10 flex flex-col items-center justify-center h-full transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                <div className="mb-4 text-[10px] text-slate-400 font-medium">anthropic/claude-opus-4.5</div>
+                <div className="relative flex items-center justify-center">
+                  {/* Tree Path Visualization Mockup */}
+                  <svg width="200" height="80" viewBox="0 0 200 80" fill="none" className="text-slate-200">
+                    <path d="M100 10 L100 40 M100 40 L30 60 M100 40 L170 60" stroke="currentColor" strokeWidth="1" />
+                    <circle cx="100" cy="10" r="3" fill="#cbd5e1" />
                   </svg>
-                  <div className="relative z-10 flex w-full justify-around pt-4">
-                    <div className="size-8 bg-white border rounded p-1.5 flex items-center justify-center shadow-sm">
-                      <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/Anthropic-3.svg" className="w-4 h-4 opacity-30" alt="" />
+                  <div className="absolute top-12 left-1/2 flex -translate-x-1/2 gap-8">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-md border border-slate-100 bg-white shadow-sm">
+                      <img src="/images/icons/Anthropic.svg" alt="Auth" className="h-4 w-4" />
                     </div>
-                    <div className="size-8 bg-white border rounded p-1.5 flex items-center justify-center shadow-sm border-orange-200">
-                      <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/svgs/Anthropic-3.svg" className="w-4 h-4" alt="" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-md border border-slate-100 bg-white shadow-sm">
+                      <span className="text-[10px] font-bold text-slate-800">AI</span>
                     </div>
-                    <div className="size-8 bg-white border rounded p-1.5 flex items-center justify-center shadow-sm bg-success/5 border-success/20">
-                      <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-radison-ai/assets/icons/DeepSeek-2.png" className="w-4 h-4 saturate-0" alt="" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-md border border-slate-100 bg-white shadow-sm">
+                       <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Microsoft-4.svg" alt="MS" className="h-4 w-4" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-[1.125rem] font-semibold mb-2">Higher Availability</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
+            <div className="flex flex-1 flex-col p-6">
+              <h3 className="mb-2 text-base font-semibold text-slate-900">Higher Availability</h3>
+              <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-500">
                 Reliable AI models via our distributed infrastructure. Fall back to other providers when one goes down.
               </p>
-              <span className="text-primary text-sm font-medium mt-4 flex items-center">Learn more <span className="ml-1 text-[10px]">↗</span></span>
+              <span className="flex items-center gap-1 text-sm font-medium text-indigo-600 transition-colors group-hover:text-indigo-700">
+                Learn more <ExternalLink size={14} />
+              </span>
             </div>
           </div>
         </a>
 
-        {/* Price and Performance Card */}
-        <a href="/docs/features/latency-optimization" className="group h-full block">
-          <div className="flex flex-col h-full bg-card border rounded-xl overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-200">
-            <div className="relative h-48 bg-slate-50 border-b p-6 flex items-center justify-center group-hover:bg-white transition-colors">
-              <div className="w-full h-full bg-white border rounded p-4 shadow-sm transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-1">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-[9px] font-medium text-slate-400">Latency</span>
-                  <span className="text-[9px] font-medium text-slate-400">Throughput</span>
-                </div>
-                <div className="relative h-16 w-full flex items-end gap-1">
-                  {[40, 65, 30, 85, 45, 95, 20, 55, 75, 40, 60, 35].map((h, i) => (
-                    <div key={i} className="flex-1 bg-primary/20 rounded-t-sm" style={{ height: `${h}%` }}>
-                      <div className="w-full bg-primary rounded-t-sm" style={{ height: '30%' }} />
-                    </div>
-                  ))}
+        {/* Card 3: Price and Performance */}
+        <a href="/rankings" className="group block h-full">
+          <div className="h-full flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-200 hover:border-[#6366f1] hover:shadow-lg">
+            <div className="relative h-48 overflow-hidden border-b border-slate-100 bg-white p-4">
+              <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-50/50 to-transparent"></div>
+              <div className="relative z-10 flex h-full items-center justify-center p-4 transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                <div className="w-full h-24 border border-slate-100 rounded-lg p-2 bg-white/80 shadow-sm relative">
+                  <div className="text-[8px] text-slate-400 uppercase tracking-widest absolute top-1 left-2">Throughput</div>
+                  <div className="text-[8px] text-slate-400 uppercase tracking-widest absolute top-8 left-12">Latency</div>
+                  {/* Performance Chart Mockup */}
+                  <svg className="w-full h-full" viewBox="0 0 200 60">
+                    <path d="M0 45 Q 25 35, 50 48 T 100 40 T 150 50 T 200 35" fill="none" stroke="#6366f1" strokeWidth="1.5" />
+                    <path d="M0 50 Q 25 45, 50 52 T 100 48 T 150 55 T 200 45" fill="none" stroke="#10b981" strokeWidth="1.5" strokeOpacity="0.5" />
+                    <path d="M0 55 Q 25 50, 50 58 T 100 52 T 150 60 T 200 50" fill="none" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.5" />
+                  </svg>
                 </div>
               </div>
             </div>
-            <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-[1.125rem] font-semibold mb-2">Price and Performance</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
-                Keep costs in check without sacrificing speed. Radison runs at the edge for minimal latency between your users and their inference.
+            <div className="flex flex-1 flex-col p-6">
+              <h3 className="mb-2 text-base font-semibold text-slate-900">Price and Performance</h3>
+              <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-500">
+                Keep costs in check without sacrificing speed. OpenRouter runs at the edge for minimal latency.
               </p>
-              <span className="text-primary text-sm font-medium mt-4 flex items-center">Learn more <span className="ml-1 text-[10px]">↗</span></span>
+              <span className="flex items-center gap-1 text-sm font-medium text-indigo-600 transition-colors group-hover:text-indigo-700">
+                Learn more <ExternalLink size={14} />
+              </span>
             </div>
           </div>
         </a>
 
-        {/* Custom Data Policies Card */}
-        <a href="/docs/privacy" className="group h-full block">
-          <div className="flex flex-col h-full bg-card border rounded-xl overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-200">
-            <div className="relative h-48 bg-slate-50 border-b flex items-center justify-center group-hover:bg-white transition-colors">
-              <div className="relative transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-1">
-                <div className="size-20 border-2 border-slate-200 rounded-full flex items-center justify-center bg-white shadow-sm relative">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 size-6 bg-white border rounded shadow flex items-center justify-center">
-                    <div className="size-3 border-2 border-slate-200 rounded-full" />
-                  </div>
-                  <div className="flex flex-col items-center gap-1 opacity-40">
-                    <svg className="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
-                    </svg>
-                  </div>
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex items-center justify-center size-8 bg-success/10 border border-success/20 rounded-full">
-                    <svg className="size-4 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
+        {/* Card 4: Custom Data Policies */}
+        <a href="/docs/privacy" className="group block h-full">
+          <div className="h-full flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-200 hover:border-[#6366f1] hover:shadow-lg">
+            <div className="relative h-48 overflow-hidden border-b border-slate-100 bg-white p-4">
+              <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-50/50 to-transparent"></div>
+              <div className="relative z-10 flex h-full items-center justify-center transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                <div className="relative">
+                   {/* Security Visualization Mockup */}
+                   <div className="flex items-center justify-center gap-4">
+                      <div className="size-6 text-slate-300">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      </div>
+                      <div className="relative p-3 border border-slate-200 rounded-full bg-white shadow-sm">
+                        <div className="size-8 text-slate-400">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-white border border-slate-200 rounded-full p-1 shadow-xs">
+                          <div className="size-4 text-emerald-500">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="size-6 text-slate-300">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      </div>
+                   </div>
                 </div>
               </div>
             </div>
-            <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-[1.125rem] font-semibold mb-2">Custom Data Policies</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
-                Protect your organization with fine grained data policies. Ensure prompts only go to the models and providers you trust.
+            <div className="flex flex-1 flex-col p-6">
+              <h3 className="mb-2 text-base font-semibold text-slate-900">Custom Data Policies</h3>
+              <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-500">
+                Protect your organization with fine grained data policies. Ensure prompts only go to trusted models.
               </p>
-              <span className="text-primary text-sm font-medium mt-4 flex items-center">View docs <span className="ml-1 text-[10px]">↗</span></span>
+              <span className="flex items-center gap-1 text-sm font-medium text-indigo-600 transition-colors group-hover:text-indigo-700">
+                View docs <ExternalLink size={14} />
+              </span>
             </div>
           </div>
         </a>
@@ -152,4 +167,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default FeaturesGrid;
