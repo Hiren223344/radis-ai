@@ -49,9 +49,9 @@ export default function FeaturedAgents() {
               Featured Agents
               <ChevronRight className="size-5 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
             </h2>
-            <p className="text-sm text-slate-500">
-              250k+ apps using OpenRouter with 4.2M+ users globally
-            </p>
+              <p className="text-sm text-slate-500">
+                250k+ apps using Radison with 4.2M+ users globally
+              </p>
           </div>
           <a href="/rankings" className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">
             View all →
