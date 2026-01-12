@@ -11,7 +11,7 @@ const Header = () => {
             href="/"
             className="text-2xl font-bold text-foreground hover:text-primary transition-colors"
           >
-            A4F
+            Radison
           </Link>
           <nav
             aria-label="Main"
@@ -71,7 +71,7 @@ const Header = () => {
               rel="noopener noreferrer"
             >
               <img
-                alt="A4F - AI For Free - Access hundreds of LLMs through one API for Free!!! | Product Hunt"
+                alt="Radison - AI For Free - Access hundreds of LLMs through one API for Free!!! | Product Hunt"
                 width="250"
                 height="54"
                 className="h-[40px] w-auto"
@@ -109,7 +109,7 @@ const Header = () => {
               rel="noopener noreferrer"
             >
               <img
-                alt="A4F - AI For Free | Product Hunt"
+                alt="Radison - AI For Free | Product Hunt"
                 width="120"
                 height="26"
                 className="h-[26px] w-auto"
