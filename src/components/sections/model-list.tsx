@@ -40,13 +40,18 @@ const ModelList = () => {
           console.log("Puter models:", response);
           
           // Map Puter models to our Model interface
-          const formattedModels: Model[] = response.map((m: any) => ({
-            id: m.name || m,
-            name: m.name || m,
-            description: m.description || `AI model provided by ${m.provider || 'Puter'}.`,
-            pricing: m.pricing || { prompt: "0.00", completion: "0.00" },
-            context_length: m.context_window || 4096
-          }));
+          const formattedModels: Model[] = response.map((m: any) => {
+            const modelId = typeof m === 'string' ? m : (m.id || m.name || 'unknown-model');
+            const modelName = typeof m.name === 'string' ? m.name : modelId;
+            
+            return {
+              id: modelId,
+              name: modelName,
+              description: m.description || `AI model provided by ${m.provider || 'Puter'}.`,
+              pricing: m.pricing || { prompt: "0.00", completion: "0.00" },
+              context_length: m.context_window || m.context || 4096
+            };
+          });
           
           setModels(formattedModels);
         } catch (err) {
