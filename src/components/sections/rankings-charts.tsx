@@ -235,10 +235,6 @@ const RankingsCharts = () => {
                 </p>
               </div>
             </div>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
           </div>
         </div>
       </div>
@@ -246,8 +242,4 @@ const RankingsCharts = () => {
   );
 };
 
-<<<<<<< Updated upstream
 export default RankingsCharts;
-=======
-export default RankingsCharts;
->>>>>>> Stashed changes
