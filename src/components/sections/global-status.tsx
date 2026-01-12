@@ -12,7 +12,6 @@ const GlobalStatus = () => {
       >
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
-            {/* Using a Lucide-like checkmark SVG as per common UI patterns for status pages */}
             <svg 
               className="h-6 w-6 text-white" 
               fill="none" 
@@ -43,8 +42,4 @@ const GlobalStatus = () => {
   );
 };
 
-<<<<<<< Updated upstream
 export default GlobalStatus;
-=======
-export default GlobalStatus;
->>>>>>> Stashed changes
