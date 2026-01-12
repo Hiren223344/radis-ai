@@ -2,16 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 import { Copy, Search } from 'lucide-react';
+import puter from '@heyputer/puter.js';
 
 interface Model {
   id: string;
   name: string;
   description: string;
-  pricing: {
+  pricing?: {
     prompt: string;
     completion: string;
   };
-  context_length: number;
+  context_length?: number;
 }
 
 interface TagProps {
