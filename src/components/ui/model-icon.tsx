@@ -9,7 +9,6 @@ import {
   Gemini, 
   Cohere,
   DeepSeek,
-  Llama,
   Grok,
   HuggingFace,
   Minimax,
@@ -18,7 +17,9 @@ import {
   Qwen,
   Yi,
   Baichuan,
-  InternLM
+  InternLM,
+  Gemma,
+  XAI
 } from '@lobehub/icons';
 
 interface ModelIconProps {
@@ -30,15 +31,19 @@ interface ModelIconProps {
 const ModelIcon = ({ modelId, size = 24, className }: ModelIconProps) => {
   const id = modelId.toLowerCase();
 
+  // Specific model mappings
   if (id.includes('gpt') || id.includes('openai')) return <OpenAI size={size} className={className} />;
   if (id.includes('claude') || id.includes('anthropic')) return <Claude size={size} className={className} />;
-  if (id.includes('gemini') || id.includes('google')) return <Gemini size={size} className={className} />;
-  if (id.includes('llama') || id.includes('meta')) return <Llama size={size} className={className} />;
+  if (id.includes('gemini')) return <Gemini size={size} className={className} />;
+  if (id.includes('gemma')) return <Gemma size={size} className={className} />;
+  if (id.includes('google')) return <Google size={size} className={className} />;
+  if (id.includes('llama') || id.includes('meta')) return <Meta size={size} className={className} />;
   if (id.includes('mistral') || id.includes('mixtral')) return <Mistral size={size} className={className} />;
   if (id.includes('deepseek')) return <DeepSeek size={size} className={className} />;
   if (id.includes('perplexity')) return <Perplexity size={size} className={className} />;
   if (id.includes('cohere')) return <Cohere size={size} className={className} />;
-  if (id.includes('grok') || id.includes('xai')) return <Grok size={size} className={className} />;
+  if (id.includes('grok')) return <Grok size={size} className={className} />;
+  if (id.includes('xai')) return <XAI size={size} className={className} />;
   if (id.includes('qwen')) return <Qwen size={size} className={className} />;
   if (id.includes('yi-')) return <Yi size={size} className={className} />;
   if (id.includes('baichuan')) return <Baichuan size={size} className={className} />;
