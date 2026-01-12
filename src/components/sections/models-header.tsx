@@ -8,18 +8,11 @@ const ModelsHeader: React.FC = () => {
   return (
     <div className="flex flex-col w-full bg-background pt-8 pb-4">
         <div className="flex items-center justify-between mb-6">
-          <div className="flex flex-col gap-1">
-            <h1 className="text-[30px] font-semibold tracking-tight text-[#020617] leading-[1.2]">
-              Models
-            </h1>
-            <div className="flex items-center gap-1.5 text-[11px] font-medium text-blue-600 bg-blue-50 w-fit px-2 py-0.5 rounded-full border border-blue-100">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
-              </span>
-              Powered by Puter.js
+            <div className="flex flex-col gap-1">
+              <h1 className="text-[30px] font-semibold tracking-tight text-[#020617] leading-[1.2]">
+                Models
+              </h1>
             </div>
-          </div>
 
         
         <div className="flex items-center gap-2">
