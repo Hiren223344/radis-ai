@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Copy, Search } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 import puter from '@heyputer/puter.js';
 import ModelIcon from '../ui/model-icon';
 
