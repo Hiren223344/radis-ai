@@ -154,17 +154,24 @@ const ModelList = () => {
                       <div className="flex items-center justify-center size-8 flex-shrink-0 rounded-lg border border-border bg-white shadow-sm overflow-hidden p-1.5">
                         <ModelIcon modelId={model.id} size={20} />
                       </div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-[16px] font-semibold text-foreground tracking-tight">
-                          {model.name || model.id}
-                        </h3>
-                        <button 
-                          className="p-1 rounded hover:bg-slate-100 text-slate-11 transition-colors"
-                          onClick={() => navigator.clipboard.writeText(model.id)}
-                        >
-                          <Copy className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-[16px] font-semibold text-foreground tracking-tight">
+                            {model.name || model.id}
+                          </h3>
+                          <div className="flex items-center gap-2">
+                            {model.type === 'Reasoning' && (
+                              <Tag label="Reasoning" variant="reasoning" />
+                            )}
+                            <Tag label="Text Model" variant="default" color="#10b981" />
+                            <button 
+                              className="p-1 rounded hover:bg-slate-100 text-slate-11 transition-colors"
+                              onClick={() => navigator.clipboard.writeText(model.id)}
+                            >
+                              <Copy className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+
                     </div>
                   </div>
                   <div className="text-[12px] font-medium text-slate-11 tabular-nums pt-1">
