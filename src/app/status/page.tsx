@@ -1,19 +1,23 @@
-import StatusHeader from "@/components/sections/status-header";
-import OverallStatus from "@/components/sections/overall-status";
-import UptimeMonitoring from "@/components/sections/uptime-monitoring";
-import RecentIncidents from "@/components/sections/recent-incidents";
-import StatusFooter from "@/components/sections/status-footer";
+import Header from "@/components/sections/header";
+import AnnouncementBanners from "@/components/sections/announcement-banners";
+import StatusHero from "@/components/sections/status-hero";
+import SystemOverviewCard from "@/components/sections/system-overview-card";
+import ServiceStatusList from "@/components/sections/service-status-list";
+import Footer from "@/components/sections/footer";
 
 export default function StatusPage() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-700">
-      <StatusHeader />
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <OverallStatus />
-        <UptimeMonitoring />
-        <RecentIncidents />
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-indigo-100 selection:text-indigo-700">
+      <AnnouncementBanners />
+      <Header />
+      <main className="pb-20">
+        <StatusHero />
+        <div className="container px-4">
+          <SystemOverviewCard />
+          <ServiceStatusList />
+        </div>
       </main>
-      <StatusFooter />
+      <Footer />
     </div>
   );
 }
