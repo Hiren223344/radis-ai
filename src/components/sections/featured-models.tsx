@@ -1,151 +1,116 @@
-import React from "react";
-import Image from "next/image";
-import { ChevronRight } from "lucide-react";
+import React from 'react';
+import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 
 interface ModelCardProps {
   name: string;
   provider: string;
-  providerLogo: string;
   tokens: string;
   trend: string;
-  isPositive: boolean;
-  href: string;
+  icon: string;
+  isPositive?: boolean;
 }
 
-const ModelCard = ({
-  name,
-  provider,
-  providerLogo,
-  tokens,
-  trend,
-  isPositive,
-  href,
-}: ModelCardProps) => {
-  return (
-    <a
-      href={href}
-      className="group flex flex-col justify-between rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:border-primary hover:shadow-lg"
-    >
-      <div className="flex items-start justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-border bg-slate-50 p-2 shadow-sm">
-            <Image
-              src={providerLogo}
-              alt={`${provider} logo`}
-              width={24}
-              height={24}
-              className="object-contain"
-            />
-          </div>
-          <div>
-            <h3 className="text-[17px] font-semibold tracking-tight text-foreground">
-              {name}
-            </h3>
-            <p className="text-[13px] text-muted-foreground">
-              by <span className="capitalize">{provider}</span>
-            </p>
-          </div>
+const ModelCard = ({ name, provider, tokens, trend, icon, isPositive = true }: ModelCardProps) => (
+  <div className="group/card flex flex-col justify-between p-6 bg-card border border-border rounded-xl transition-all duration-200 hover:border-primary hover:shadow-lg cursor-pointer h-full">
+    <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start gap-4">
+        <div className="flex items-center justify-center size-10 flex-shrink-0 rounded-full border border-border bg-white shadow-sm overflow-hidden p-0">
+          <Image
+            src={icon}
+            alt={`${provider} icon`}
+            width={40}
+            height={40}
+            className="h-full w-full object-contain p-2"
+          />
         </div>
-      </div>
-
-      <div className="mt-8 flex items-end justify-between border-t pt-4">
-        <div>
-          <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground/80">
-            Tokens
-          </p>
-          <p className="text-lg font-bold tabular-nums text-foreground">
-            {tokens}
-          </p>
-        </div>
-        <div className="text-right">
-          <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground/80">
-            Weekly Trend
-          </p>
-          <p
-            className={`text-lg font-bold tabular-nums ${
-              isPositive ? "text-emerald-500" : "text-destructive"
-            }`}
-          >
-            {isPositive ? "+" : ""}
-            {trend}
+        <div className="flex flex-col">
+          <h3 className="text-[18px] font-semibold text-foreground leading-tight tracking-tight">
+            {name}
+          </h3>
+          <p className="text-[14px] text-muted-foreground mt-0.5">
+            by {provider}
           </p>
         </div>
       </div>
-    </a>
-  );
-};
+    </div>
 
-export default function FeaturedModels() {
-  const models: ModelCardProps[] = [
+    <div className="flex items-end justify-between mt-10">
+      <div className="flex flex-col">
+        <span className="text-[12px] uppercase tracking-wider text-muted-foreground font-medium">Tokens</span>
+        <span className="text-[16px] font-bold text-foreground mt-1 tabular-nums">{tokens}</span>
+      </div>
+      <div className="flex flex-col items-end">
+        <span className="text-[12px] uppercase tracking-wider text-muted-foreground font-medium">Weekly Trend</span>
+        <span className={`text-[16px] font-bold mt-1 tabular-nums ${isPositive ? 'text-success' : 'text-destructive'}`}>
+          {isPositive ? '+' : ''}{trend}
+        </span>
+      </div>
+    </div>
+  </div>
+);
+
+const FeaturedModels = () => {
+  const models = [
     {
-      name: "Claude Opus 4.5",
-      provider: "anthropic",
-      providerLogo:
-        "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg",
-      tokens: "374.1B",
-      trend: "65.1%",
-      isPositive: true,
-      href: "/models/anthropic/claude-3-5-opus",
+      name: 'Claude Opus 4.5',
+      provider: 'anthropic',
+      tokens: '374.1B',
+      trend: '65.1%',
+      icon: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg',
     },
     {
-      name: "GPT-5.2",
-      provider: "openai",
-      providerLogo:
-        "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/OpenAI-1.svg",
-      tokens: "99.1B",
-      trend: "11.1%",
-      isPositive: true,
-      href: "/models/openai/gpt-5-2",
+      name: 'GPT-5.2',
+      provider: 'openai',
+      tokens: '99.1B',
+      trend: '11.1%',
+      icon: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/OpenAI-1.svg',
     },
     {
-      name: "Gemini 3 Pro Preview",
-      provider: "google",
-      providerLogo:
-        "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/GoogleGemini-2.svg",
-      tokens: "130.9B",
-      trend: "2.41%",
-      isPositive: true,
-      href: "/models/google/gemini-3-pro-preview",
+      name: 'Gemini 3 Pro Preview',
+      provider: 'google',
+      tokens: '130.9B',
+      trend: '2.41%',
+      icon: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/GoogleGemini-2.svg',
     },
   ];
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-6 py-12 md:py-16">
-      <div className="mb-6 flex items-end justify-between md:mb-8">
-        <div className="space-y-1">
-          <a
-            href="/models"
-            className="group flex items-center gap-1 text-2xl font-semibold text-foreground md:text-[24px]"
-          >
-            Featured Models
-            <ChevronRight className="h-6 w-6 transform transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
-          <p className="text-sm text-muted-foreground">
+    <section className="w-full max-w-[1440px] mx-auto px-6 py-12 md:py-20 tabular-nums">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2 group cursor-pointer">
+            <h2 className="text-[24px] font-semibold text-foreground tracking-tight">
+              Featured Models
+            </h2>
+            <ArrowRight className="size-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
+          </div>
+          <p className="text-[14px] text-muted-foreground">
             300+ active models on 60+ providers
           </p>
         </div>
-        <a
-          href="/models"
-          className="hidden text-sm font-medium text-muted-foreground hover:text-foreground md:block"
+        <a 
+          href="/models" 
+          className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5"
         >
-          View all →
+          View all <ArrowRight className="size-3.5" />
         </a>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {models.map((model, index) => (
-          <ModelCard key={index} {...model} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {models.map((model) => (
+          <ModelCard
+            key={model.name}
+            name={model.name}
+            provider={model.provider}
+            tokens={model.tokens}
+            trend={model.trend}
+            icon={model.icon}
+          />
         ))}
-      </div>
-
-      <div className="mt-4 text-right md:hidden">
-        <a
-          href="/models"
-          className="text-xs font-medium text-muted-foreground hover:text-foreground"
-        >
-          View all →
-        </a>
       </div>
     </section>
   );
-}
+};
+
+export default FeaturedModels;
