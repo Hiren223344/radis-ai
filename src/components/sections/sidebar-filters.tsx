@@ -78,10 +78,24 @@ const SidebarFilters = () => {
     <aside className="flex-col transition-all border-border/50 md:border-r md:h-[calc(100dvh-5.25rem)] sticky top-20 z-10 h-full w-64 hidden md:flex pt-8 flex-shrink-0 gap-0 overflow-visible pl-6 text-sm bg-background">
       <div className="relative overflow-hidden flex h-full w-full flex-col gap-2 pb-4 pr-5">
         <div className="h-full w-full overflow-y-auto no-scrollbar">
-          <div className="flex flex-col" data-orientation="vertical">
-            
-            <AccordionItem 
-              title="Input Modalities" 
+            <div className="flex flex-col" data-orientation="vertical">
+              
+              <AccordionItem 
+                title="Generators" 
+                icon={<Sparkles className="size-4" />} 
+                defaultOpen={true}
+              >
+                <FilterLink label="All Models" href="/models" />
+                <FilterLink label="OpenAI" href="/models?provider=openai" />
+                <FilterLink label="Anthropic" href="/models?provider=anthropic" />
+                <FilterLink label="Google" href="/models?provider=google" />
+                <FilterLink label="Meta" href="/models?provider=meta" />
+                <FilterLink label="Mistral" href="/models?provider=mistral" />
+                <FilterLink label="DeepSeek" isNew href="/models?provider=deepseek" />
+              </AccordionItem>
+
+              <AccordionItem 
+                title="Input Modalities"
               icon={<Type className="size-4" />} 
               defaultOpen={true}
             >
