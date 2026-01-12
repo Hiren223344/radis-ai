@@ -1,90 +1,90 @@
 import React from 'react';
-import Link from 'next/link';
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { 
+  Github, 
+  Linkedin, 
+  Instagram, 
+  Discord, 
+  Send, 
+  Youtube,
+  Twitter
+} from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = [
-    { label: 'Status', href: 'https://status.openrouter.ai' },
-    { label: 'Announcements', href: '/announcements' },
-    { label: 'Docs', href: '/docs' },
-    { label: 'Support', href: '/support' },
-    { label: 'About', href: '/about' },
-    { label: 'Partners', href: '/partners' },
-    { label: 'Enterprise', href: '/enterprise' },
-    { label: 'Careers', href: '/careers' },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Privacy', href: '/privacy' },
-    { label: 'Terms', href: '/terms' },
+  const navLinks = [
+    { name: 'Status', href: '/status' },
+    { name: 'Changelog', href: '/changelog' },
+    { name: 'Announcements', href: '/announcements' },
+    { name: 'About', href: '/about' },
+    { name: 'Contacts', href: '/contacts' },
+    { name: 'Refund Policy', href: '/refund-policy' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'Privacy', href: '/privacy' },
+    { name: 'Terms', href: '/terms' },
+  ];
+
+  const socialLinks = [
+    { name: 'GitHub', icon: <Github className="h-4 w-4" />, href: 'https://github.com/a4f' },
+    { name: 'LinkedIn', icon: <Linkedin className="h-4 w-4" />, href: 'https://linkedin.com/company/a4f' },
+    { name: 'X', icon: <Twitter className="h-4 w-4" />, href: 'https://x.com/a4f' },
+    { name: 'Instagram', icon: <Instagram className="h-4 w-4" />, href: 'https://instagram.com/a4f' },
+    { name: 'Discord', icon: <Discord className="h-4 w-4" />, href: 'https://discord.gg/a4f' },
+    { name: 'Telegram', icon: <Send className="h-4 w-4" />, href: 'https://t.me/a4f' },
+    { name: 'YouTube', icon: <Youtube className="h-4 w-4" />, href: 'https://youtube.com/a4f' },
   ];
 
   return (
-    <footer className="w-full border-t border-border bg-background py-8 px-6 md:px-8">
-      <div className="mx-auto flex max-w-screen-4xl flex-col items-center justify-between gap-6 md:flex-row md:gap-4">
-        {/* Left Side: Copyright and Socials */}
-        <div className="flex flex-col items-center gap-4 md:flex-row md:gap-6">
-          <span className="text-sm font-normal text-muted-foreground whitespace-nowrap">
-            © {currentYear} Radison, Inc
-          </span>
-          <div className="flex items-center gap-4">
-            <Link
-              href="https://discord.gg/openrouter"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-              aria-label="Discord"
+    <footer className="w-full bg-background border-t border-border">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-6 pt-12 pb-8">
+        {/* Top Section: Logo and Links */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8">
+          <div className="flex items-center">
+            <a 
+              href="/" 
+              className="text-2xl font-bold text-foreground hover:text-primary transition-colors"
             >
-              <svg
-                viewBox="0 0 24 24"
-                className="size-4 fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z" />
-              </svg>
-            </Link>
-            <Link
-              href="https://github.com/Radison"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-              aria-label="GitHub"
-            >
-              <Github className="size-4" />
-            </Link>
-            <Link
-              href="https://linkedin.com/company/radison"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="size-4" />
-            </Link>
-            <Link
-              href="https://x.com/RadisonAI"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-              aria-label="X (formerly Twitter)"
-            >
-              <Twitter className="size-4" />
-            </Link>
+              A4F
+            </a>
           </div>
+          
+          <nav className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-normal text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        {/* Right Side: Navigation Links */}
-        <nav className="flex flex-wrap justify-center gap-y-2 gap-x-4 md:justify-end md:gap-x-6">
-          {footerLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="text-sm font-normal text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Divider */}
+        <div className="w-full h-px bg-border mb-8"></div>
+
+        {/* Bottom Section: Copyright and Socials */}
+        <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-6">
+          <div className="text-sm text-muted-foreground">
+            © {currentYear} A4F, Inc. All rights reserved.
+          </div>
+
+          <div className="flex items-center gap-6">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label={social.name}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {social.icon}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
   );
