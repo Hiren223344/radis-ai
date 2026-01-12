@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Search, LayoutGrid, List, ArrowUpDown, Scale } from 'lucide-react';
+import { Search, ArrowUpDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const ModelsHeader: React.FC = () => {
