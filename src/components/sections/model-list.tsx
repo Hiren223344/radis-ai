@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useMemo } from 'react';
-import { Copy, Search } from 'lucide-react';
+import { Copy } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import puter from '@heyputer/puter.js';
 import ModelIcon from '../ui/model-icon';
@@ -139,80 +139,80 @@ const Tag = ({ label, color = '#64748b', variant = 'default' }: TagProps) => {
   );
 };
 
-const ModelList = () => {
+interface ModelListProps {
+  search: string;
+  onModelCountChange: (count: number) => void;
+}
+
+const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => {
   const [models, setModels] = useState<Model[]>([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
 
-    useEffect(() => {
-      const fetchModels = async () => {
-        try {
-          // @ts-ignore
-          const response = await puter.ai.listModels();
-          console.log("Puter models:", response);
+  useEffect(() => {
+    const fetchModels = async () => {
+      try {
+        // @ts-ignore
+        const response = await puter.ai.listModels();
+        
+        // Map Puter models to our Model interface
+        const formattedModels: Model[] = response.map((m: any) => {
+          const modelId = typeof m === 'string' ? m : (m.id || m.name || 'unknown-model');
+          const modelName = typeof m.name === 'string' ? m.name : modelId;
           
-            // Map Puter models to our Model interface
-            const formattedModels: Model[] = response.map((m: any) => {
-              const modelId = typeof m === 'string' ? m : (m.id || m.name || 'unknown-model');
-              const modelName = typeof m.name === 'string' ? m.name : modelId;
-              
-              // Determine if it's a reasoning model
-              const isReasoning = modelId.toLowerCase().includes('o1') || 
-                                 modelId.toLowerCase().includes('o3') || 
-                                 modelId.toLowerCase().includes('r1') || 
-                                 modelId.toLowerCase().includes('reasoning') ||
-                                 modelName.toLowerCase().includes('reasoning') ||
-                                 modelName.toLowerCase().includes('o1');
+          // Determine if it's a reasoning model
+          const isReasoning = modelId.toLowerCase().includes('o1') || 
+                             modelId.toLowerCase().includes('o3') || 
+                             modelId.toLowerCase().includes('r1') || 
+                             modelId.toLowerCase().includes('reasoning') ||
+                             modelName.toLowerCase().includes('reasoning') ||
+                             modelName.toLowerCase().includes('o1');
 
-              const isVision = modelId.toLowerCase().includes('vision') || 
-                               modelId.toLowerCase().includes('vl') || 
-                               modelName.toLowerCase().includes('vision');
+          const isVision = modelId.toLowerCase().includes('vision') || 
+                           modelId.toLowerCase().includes('vl') || 
+                           modelName.toLowerCase().includes('vision');
 
-              let type = 'Text Model';
-              if (isReasoning) type = 'Reasoning';
-              else if (isVision) type = 'Vision Model';
+          let type = 'Text Model';
+          if (isReasoning) type = 'Reasoning';
+          else if (isVision) type = 'Vision Model';
 
-              const rawProvider = m.provider || getProvider(modelId, modelName);
-              // Normalize provider name
-              const provider = getProvider(modelId, modelName) !== 'Cloud Provider' ? getProvider(modelId, modelName) : rawProvider;
+          const rawProvider = m.provider || getProvider(modelId, modelName);
+          // Normalize provider name
+          const provider = getProvider(modelId, modelName) !== 'Cloud Provider' ? getProvider(modelId, modelName) : rawProvider;
 
-                return {
-                  id: modelId,
-                  name: modelName,
-                  description: m.description || `AI model provided by ${provider}.`,
-                  provider: provider,
-                  pricing: m.pricing || { prompt: "0.00", completion: "0.00" },
-                  context_length: m.context_window || m.context || 4096,
-                  type: type
-                };
-              });
+          return {
+            id: modelId,
+            name: modelName,
+            description: m.description || `AI model provided by ${provider}.`,
+            provider: provider,
+            pricing: m.pricing || { prompt: "0.00", completion: "0.00" },
+            context_length: m.context_window || m.context || 4096,
+            type: type
+          };
+        });
 
-            
-            const combinedModels = [...formattedModels, ...ADDITIONAL_MODELS];
-            
-            // Deduplicate by ID
-            const uniqueModels = Array.from(new Map(combinedModels.map(item => [item.id, item])).values());
+        const combinedModels = [...formattedModels, ...ADDITIONAL_MODELS];
+        
+        // Deduplicate by ID
+        const uniqueModels = Array.from(new Map(combinedModels.map(item => [item.id, item])).values());
 
-            setModels(uniqueModels);
-          } catch (err) {
-            console.error("Error fetching models from Puter:", err);
-            // Fallback static data if API fails
-            setModels(ADDITIONAL_MODELS);
-          } finally {
-          setLoading(false);
-        }
-      };
-      fetchModels();
-    }, []);
-
+        setModels(uniqueModels);
+      } catch (err) {
+        console.error("Error fetching models from Puter:", err);
+        setModels(ADDITIONAL_MODELS);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchModels();
+  }, []);
 
   const searchParams = useSearchParams();
   const inputModality = searchParams.get('input_modalities');
   const outputModality = searchParams.get('output_modalities');
-  const provider = searchParams.get('provider');
+  const providerFilter = searchParams.get('provider');
 
   const filteredModels = useMemo(() => {
-    return models.filter(m => {
+    const filtered = models.filter(m => {
       // Search filter
       const matchesSearch = !search || 
         m.name?.toLowerCase().includes(search.toLowerCase()) || 
@@ -221,7 +221,7 @@ const ModelList = () => {
       if (!matchesSearch) return false;
 
       // Provider filter
-      if (provider && m.provider.toLowerCase() !== provider.toLowerCase()) {
+      if (providerFilter && m.provider.toLowerCase() !== providerFilter.toLowerCase()) {
         return false;
       }
 
@@ -249,45 +249,17 @@ const ModelList = () => {
 
       return true;
     });
-  }, [models, search, provider, inputModality, outputModality]);
+    return filtered;
+  }, [models, search, providerFilter, inputModality, outputModality]);
+
+  useEffect(() => {
+    onModelCountChange(filteredModels.length);
+  }, [filteredModels.length, onModelCountChange]);
 
   if (loading) return <div className="p-20 text-center text-muted-foreground">Loading models...</div>;
 
   return (
-    <div className="w-full max-w-screen-xl mx-auto px-6 py-8">
-      <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-4">
-          <h2 className="text-[24px] font-semibold text-foreground">Models</h2>
-          <div className="flex items-center gap-1 rounded-md border border-border p-1">
-            <button className="flex items-center gap-2 px-3 py-1 text-[12px] font-medium text-slate-11 hover:bg-slate-50 transition-colors border-r border-border">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2"><path d="M16 3H21V8M8 21H3V16M21 3L14.5 9.5M3 21L9.5 14.5M3 3H8L3 8V3ZM21 21H16L21 16V21Z" /></svg>
-              Compare
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="mb-8">
-        <div className="relative flex items-center bg-slate-50 border border-border rounded-md px-3 py-2 focus-within:ring-1 focus-within:ring-slate-400 focus-within:bg-white transition-all">
-          <Search className="w-4 h-4 text-slate-400 mr-2" />
-          <input 
-            type="text" 
-            placeholder="Search models..." 
-            className="bg-transparent border-none outline-none text-[14px] w-full placeholder:text-slate-400"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between mb-10 text-[13px] text-slate-11 font-medium">
-        <div>{filteredModels.length} models</div>
-        <div className="flex items-center gap-1 cursor-pointer hover:text-foreground">
-          Most Popular
-          <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M7,10L12,15L17,10H7Z" /></svg>
-        </div>
-      </div>
-
+    <div className="w-full max-w-screen-xl mx-auto py-8">
       <div className="flex flex-col divide-y divide-border">
         {filteredModels.map((model) => (
           <div key={model.id} className="py-8 first:pt-4 group">
@@ -343,8 +315,6 @@ const ModelList = () => {
                         </>
                       )}
                     </div>
-
-
             </div>
           </div>
         ))}
