@@ -13,53 +13,37 @@ const Header = () => {
           >
             Radison
           </Link>
-          <nav
-            aria-label="Main"
-            className="relative z-10 max-w-max flex-1 items-center justify-center hidden md:flex"
-          >
-            <ul className="group flex flex-1 list-none items-center justify-center gap-1">
-              <li>
-                <Link
-                  href="/models"
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                >
-                  Models
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/chat"
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                >
-                  Chat
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/trending"
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                >
-                  Rankings
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/docs"
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                >
-                  Docs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pricing"
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                >
-                  Pricing
-                </Link>
-              </li>
-            </ul>
-          </nav>
+            <nav
+              aria-label="Main"
+              className="relative z-10 max-w-max flex-1 items-center justify-center hidden md:flex"
+            >
+              <ul className="group flex flex-1 list-none items-center justify-center gap-1">
+                <li>
+                  <Link
+                    href="/models"
+                    className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  >
+                    Models
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/rankings"
+                    className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  >
+                    Rankings
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/status"
+                    className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  >
+                    Status
+                  </Link>
+                </li>
+              </ul>
+            </nav>
         </div>
 
         <div className="flex items-center gap-2">
