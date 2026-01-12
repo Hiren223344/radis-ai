@@ -12,6 +12,7 @@
         "@babel/parser": "^7.28.5",
         "@headlessui/react": "^2.2.9",
         "@heroicons/react": "^2.2.0",
+        "@heyputer/puter.js": "^2.2.5",
         "@hookform/resolvers": "^5.1.1",
         "@libsql/client": "^0.15.15",
         "@number-flow/react": "^0.5.10",
