@@ -188,45 +188,17 @@ const ModelList = () => {
               });
 
             
-            setModels(formattedModels);
+            const combinedModels = [...formattedModels, ...ADDITIONAL_MODELS];
+            
+            // Deduplicate by ID
+            const uniqueModels = Array.from(new Map(combinedModels.map(item => [item.id, item])).values());
+
+            setModels(uniqueModels);
           } catch (err) {
             console.error("Error fetching models from Puter:", err);
             // Fallback static data if API fails
-            setModels([
-              {
-                id: "claude-3-5-sonnet",
-                name: "Claude 3.5 Sonnet",
-                description: "Anthropic's most intelligent model yet.",
-                provider: "Anthropic",
-                pricing: { prompt: "0.000003", completion: "0.000015" },
-                context_length: 200000
-              },
-              {
-                id: "gpt-4o",
-                name: "GPT-4o",
-                description: "OpenAI's most advanced multimodal model.",
-                provider: "OpenAI",
-                pricing: { prompt: "0.000005", completion: "0.000015" },
-                context_length: 128000
-              },
-              {
-                id: "gemini-1.5-pro",
-                name: "Gemini 1.5 Pro",
-                description: "Google's most capable model for highly complex tasks.",
-                provider: "Google",
-                pricing: { prompt: "0.0000035", completion: "0.0000105" },
-                context_length: 2000000
-              },
-              {
-                id: "gemini-1.5-flash",
-                name: "Gemini 1.5 Flash",
-                description: "Google's fast, cost-efficient multimodal model.",
-                provider: "Google",
-                pricing: { prompt: "0.000000075", completion: "0.0000003" },
-                context_length: 1000000
-              }
-            ]);
-        } finally {
+            setModels(ADDITIONAL_MODELS);
+          } finally {
           setLoading(false);
         }
       };
