@@ -4,7 +4,7 @@ import React from "react";
  * StatsSection Component
  * 
  * A horizontal statistics grid featuring four key metrics with high-contrast 
- * bold typography and hover-scale effects as seen on OpenRouter.ai.
+ * bold typography and hover-scale effects as seen on Radison.
  * 
  * Features:
  * - Responsive grid (1 col mobile -> 4 col desktop)
