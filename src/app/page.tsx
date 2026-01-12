@@ -10,11 +10,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/10 selection:text-primary">
       <Navigation />
-      <main id="skip">
-        <HeroSection />
-        <StatsSection />
-        <FeaturesGrid />
-        <FeaturedModels />
+        <main id="skip">
+          <HeroSection />
+          <FeaturesGrid />
+          <FeaturedModels />
         <OnboardingSteps />
         <BottomContent />
       </main>
