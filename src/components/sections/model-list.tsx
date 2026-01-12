@@ -25,9 +25,9 @@ const getProvider = (id: string, name: string) => {
   
   if (lowerId.includes('gpt') || lowerId.includes('o1') || lowerId.includes('o3') || lowerId.includes('openai')) return 'OpenAI';
   if (lowerId.includes('claude') || lowerId.includes('anthropic')) return 'Anthropic';
-  if (lowerId.includes('gemini') || lowerId.includes('google')) return 'Google';
+  if (lowerId.includes('gemini') || lowerId.includes('google') || lowerId.includes('gemma') || lowerId.includes('palm')) return 'Google';
   if (lowerId.includes('llama') || lowerId.includes('meta')) return 'Meta';
-  if (lowerId.includes('mistral')) return 'Mistral';
+  if (lowerId.includes('mistral') || lowerId.includes('mixtral')) return 'Mistral';
   if (lowerId.includes('deepseek')) return 'DeepSeek';
   if (lowerId.includes('qwen') || lowerId.includes('alibaba')) return 'Alibaba';
   if (lowerId.includes('phi') || lowerId.includes('microsoft')) return 'Microsoft';
@@ -37,7 +37,7 @@ const getProvider = (id: string, name: string) => {
   
   if (lowerName.includes('claude')) return 'Anthropic';
   if (lowerName.includes('gpt')) return 'OpenAI';
-  if (lowerName.includes('gemini')) return 'Google';
+  if (lowerName.includes('gemini') || lowerName.includes('google') || lowerName.includes('gemma')) return 'Google';
   
   if (id.includes('/')) return id.split('/')[0];
   return 'Cloud Provider';
