@@ -229,16 +229,22 @@ const ModelList = () => {
       if (inputModality) {
         const lowerId = m.id.toLowerCase();
         const lowerName = m.name.toLowerCase();
-        if (inputModality === 'image' && !lowerId.includes('vision') && !lowerId.includes('vl') && !lowerName.includes('vision')) return false;
-        if (inputModality === 'video' && !lowerId.includes('video')) return false;
-        if (inputModality === 'audio' && !lowerId.includes('audio')) return false;
-        // Text is default for most
+        const category = m.category?.toLowerCase();
+
+        if (inputModality === 'image' && !lowerId.includes('vision') && !lowerId.includes('vl') && !lowerName.includes('vision') && category !== 'image') return false;
+        if (inputModality === 'video' && !lowerId.includes('video') && category !== 'video') return false;
+        if (inputModality === 'audio' && !lowerId.includes('audio') && category !== 'tts' && category !== 'stt') return false;
+        if (inputModality === 'realtime' && category !== 'realtime') return false;
       }
 
       // Output Modality filter
       if (outputModality) {
-        if (outputModality === 'image' && !m.id.toLowerCase().includes('dall-e') && !m.id.toLowerCase().includes('stable-diffusion')) return false;
-        // Add more specific output modality checks if needed
+        const lowerId = m.id.toLowerCase();
+        const category = m.category?.toLowerCase();
+        
+        if (outputModality === 'image' && !lowerId.includes('dall-e') && !lowerId.includes('stable-diffusion') && !lowerId.includes('flux') && category !== 'image') return false;
+        if (outputModality === 'audio' && category !== 'tts' && category !== 'realtime') return false;
+        if (outputModality === 'text' && category === 'image') return false; // Image models usually don't output text
       }
 
       return true;
