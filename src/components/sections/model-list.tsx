@@ -194,21 +194,19 @@ const ModelList = () => {
                   {model.description}
                 </p>
 
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-slate-11">
-                    <span className="flex items-center gap-1">
-                      by <span className="underline cursor-pointer hover:text-foreground">{model.id.includes('/') ? model.id.split('/')[0] : 'Puter'}</span>
-                    </span>
-                    <span className="text-slate-300">•</span>
-                    <Tag label="via Puter.js" variant="puter" />
-                    {model.pricing && (
-                      <>
-                        <span className="text-slate-300">•</span>
-                        <span>${(Number(model.pricing.prompt) * 1000000).toFixed(2)}/M input</span>
-                        <span className="text-slate-300">•</span>
-                        <span>${(Number(model.pricing.completion) * 1000000).toFixed(2)}/M output</span>
-                      </>
-                    )}
-                  </div>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-slate-11">
+                      <span className="flex items-center gap-1">
+                        by <span className="underline cursor-pointer hover:text-foreground">{model.id.includes('/') ? model.id.split('/')[0] : 'Cloud Provider'}</span>
+                      </span>
+                      {model.pricing && (
+                        <>
+                          <span className="text-slate-300">•</span>
+                          <span>${(Number(model.pricing.prompt) * 1000000).toFixed(2)}/M input</span>
+                          <span className="text-slate-300">•</span>
+                          <span>${(Number(model.pricing.completion) * 1000000).toFixed(2)}/M output</span>
+                        </>
+                      )}
+                    </div>
 
 
             </div>
