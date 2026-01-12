@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  transpilePackages: ['@lobehub/icons'],
   turbopack: {
     rules: {
       "*.{jsx,tsx}": {
