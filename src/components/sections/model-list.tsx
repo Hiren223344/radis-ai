@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Copy, Search } from 'lucide-react';
 import puter from '@heyputer/puter.js';
+import ModelIcon from '../ui/model-icon';
 
 interface Model {
   id: string;
