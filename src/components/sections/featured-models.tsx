@@ -79,28 +79,30 @@ const FeaturedModels = () => {
     },
   ]);
 
-  useEffect(() => {
+    useEffect(() => {
     const fetchFeatured = async () => {
       try {
         // @ts-ignore
         const models = await puter.ai.listModels();
         if (models && models.length > 0) {
-          const formatted = models.slice(0, 3).map((m: any, i: number) => {
+          // Select one best model from each provider
+          const selectedModels = [
+            models.find((m: any) => m.id?.includes('claude-3-5-sonnet') || m.id?.includes('claude-3-sonnet') || m.id?.includes('claude')),
+            models.find((m: any) => m.id?.includes('gpt-4o') || m.id?.includes('gpt-4') || m.id?.includes('openai')),
+            models.find((m: any) => m.id?.includes('gemini-1.5-pro') || m.id?.includes('gemini-1.5-flash') || m.id?.includes('gemini') || m.id?.includes('google'))
+          ].filter(Boolean);
+
+          const formatted = selectedModels.map((m: any, i: number) => {
             const modelId = typeof m === 'string' ? m : (m.id || m.name || `model-${i}`);
             const modelName = typeof m.name === 'string' ? m.name : modelId;
-            const provider = m.provider || (modelId.toLowerCase().includes('gpt') ? 'OpenAI' : modelId.toLowerCase().includes('claude') ? 'Anthropic' : 'Puter');
+            const provider = m.provider || (modelId.toLowerCase().includes('gpt') ? 'OpenAI' : modelId.toLowerCase().includes('claude') ? 'Anthropic' : modelId.toLowerCase().includes('gemini') ? 'Google' : 'Puter');
             
-            const icons: Record<string, string> = {
-              'OpenAI': 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/OpenAI-1.svg',
-              'Anthropic': 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg',
-              'Google': 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/GoogleGemini-2.svg',
-            };
             return {
               name: modelName,
               provider: provider,
               tokens: `${(Math.random() * 500 + 50).toFixed(1)}B`,
               trend: `${(Math.random() * 20 + 2).toFixed(1)}%`,
-              icon: icons[provider] || 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg',
+              modelId: modelId,
             };
           });
           setFeaturedModels(formatted);
