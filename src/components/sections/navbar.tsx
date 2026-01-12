@@ -1,6 +1,9 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   return (
@@ -20,7 +23,11 @@ const Navbar = () => {
           {/* Left Side: Logo and Search */}
           <div className="flex flex-1 items-center gap-4">
             <Link href="/" className="text-muted-foreground">
-              <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center px-2 text-accent-foreground">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center px-2 text-accent-foreground"
+              >
                 <span className="flex items-center gap-2 text-base transform cursor-pointer font-medium duration-100 ease-in-out">
                   <svg 
                     width="20" 
@@ -34,7 +41,7 @@ const Navbar = () => {
                   </svg>
                   <span className="font-semibold tracking-tight text-[#0F172A]">Radison</span>
                 </span>
-              </button>
+              </motion.button>
             </Link>
 
             <div className="hidden md:flex items-center relative">
@@ -60,50 +67,50 @@ const Navbar = () => {
           {/* Right Side: Links and Sign up */}
           <div className="hidden lg:flex lg:items-center lg:gap-1 text-sm font-medium">
             <Link href="/models" className="text-muted-foreground">
-              <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3"
+              >
                 Models
-              </button>
-            </Link>
-            <Link href="/providers" className="text-muted-foreground">
-              <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3">
-                Providers
-              </button>
-            </Link>
-            <Link href="/chat" className="text-muted-foreground">
-              <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3">
-                Chat
-              </button>
+              </motion.button>
             </Link>
             <Link href="/rankings" className="text-muted-foreground">
-              <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3"
+              >
                 Rankings
-              </button>
+              </motion.button>
             </Link>
-            <Link href="/enterprise" className="text-muted-foreground">
-              <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3">
-                Enterprise
-              </button>
-            </Link>
-            <Link href="/pricing" className="text-muted-foreground">
-              <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3">
-                Pricing
-              </button>
-            </Link>
-            <Link href="/docs/quickstart" className="text-muted-foreground">
-              <button className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3">
-                Docs
-              </button>
+            <Link href="/status" className="text-muted-foreground">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-accent hover:text-accent-foreground border border-transparent h-9 rounded-md w-auto justify-center text-[#64748B] px-3"
+              >
+                Status
+              </motion.button>
             </Link>
             <div className="flex pl-2">
-              <button className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 bg-[#5F6FFF] text-white shadow hover:bg-[#5F6FFF]/90 px-5 h-9 rounded-full">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 bg-[#5F6FFF] text-white shadow hover:bg-[#5F6FFF]/90 px-5 h-9 rounded-full"
+              >
                 Sign up
-              </button>
+              </motion.button>
             </div>
           </div>
 
           {/* Mobile Menu Icon (Placeholder for functionality) */}
           <div className="lg:hidden flex items-center">
-            <button className="p-2 text-[#64748B]">
+            <motion.button 
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 text-[#64748B]"
+            >
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 width="24" 
@@ -119,7 +126,7 @@ const Navbar = () => {
                 <line x1="4" x2="20" y1="6" y2="6" />
                 <line x1="4" x2="20" y1="18" y2="18" />
               </svg>
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
