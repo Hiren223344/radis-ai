@@ -1,39 +1,8 @@
+'use client';
+
 import React from 'react';
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 import { ChevronDown, FileText, Info } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 /**
  * ContextLength component replicates the "Context Length" section of the Radison Rankings page.
@@ -103,156 +72,26 @@ export default function ContextLength() {
           </div>
 
           {/* Context Window Selector Pill */}
-          <button className="pill-dropdown text-muted-foreground shadow-none hover:shadow-sm md:h-8 px-4 py-1.5 border flex items-center gap-2 rounded-full text-xs font-medium bg-white">
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="pill-dropdown text-muted-foreground shadow-none hover:shadow-sm md:h-8 px-4 py-1.5 border flex items-center gap-2 rounded-full text-xs font-medium bg-white"
+          >
             <span>1K - 10K tokens</span>
             <ChevronDown className="size-4 opacity-50" />
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-          </button>
+          </motion.button>
         </div>
       </div>
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
       {/* Chart Section */}
       <div className="w-full relative py-4">
         <div className="h-[320px] w-full flex flex-col justify-end">
           {/* Y-Axis Labels */}
           <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-[11px] text-slate-400 font-medium pointer-events-none">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
             <span>800M</span>
             <span>600M</span>
             <span>400M</span>
             <span>200M</span>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
           </div>
 
           {/* Bar Container */}
@@ -261,10 +100,12 @@ export default function ContextLength() {
               <div key={idx} className="flex flex-col items-center flex-1 group cursor-pointer relative">
                 <div className="flex flex-col-reverse w-[80%] max-w-[40px] transition-all duration-200 group-hover:opacity-80">
                   {bar.values.map((segment, sIdx) => (
-                    <div
+                    <motion.div
                       key={sIdx}
+                      initial={{ height: 0 }}
+                      animate={{ height: `${segment.height}px` }}
+                      transition={{ duration: 0.5, delay: idx * 0.05 + sIdx * 0.1 }}
                       style={{ 
-                        height: `${segment.height}px`,
                         backgroundColor: segment.color
                       }}
                       className="w-full"
@@ -307,7 +148,10 @@ export default function ContextLength() {
 
 function RankingRow({ model }: { model: ModelRanking }) {
   return (
-    <div className="ranking-row flex items-center justify-between group cursor-pointer border-transparent rounded-md px-1">
+    <motion.div 
+      whileHover={{ scale: 1.01, backgroundColor: '#f8fafc' }}
+      className="ranking-row flex items-center justify-between group cursor-pointer border-transparent rounded-md px-1 py-1 transition-colors"
+    >
       <div className="flex items-center gap-4">
         <span className="text-[14px] text-slate-400 min-w-[24px] tabular-nums text-right">
           {model.rank}.
@@ -333,56 +177,6 @@ function RankingRow({ model }: { model: ModelRanking }) {
           {model.percentage}
         </span>
       </div>
-    </div>
+    </motion.div>
   );
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 }
-=======
-}
-=======
-}
-=======
-}
-=======
-}
-=======
-}
-=======
-}
-=======
-}
-=======
-}
-=======
-}
-=======
-}
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
