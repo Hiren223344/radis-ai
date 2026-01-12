@@ -1,19 +1,16 @@
+'use client';
+
 import React from 'react';
 import { Github, Linkedin, Instagram, Youtube, Send } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = [
     { name: 'Status', href: '/status' },
-    { name: 'Changelog', href: '/changelog' },
-    { name: 'Announcements', href: '/announcements' },
-    { name: 'About', href: '/about' },
-    { name: 'Contacts', href: '/contacts' },
-    { name: 'Refund Policy', href: '/refund-policy' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'Privacy', href: '/privacy' },
-    { name: 'Terms', href: '/terms' },
+    { name: 'Models', href: '/models' },
+    { name: 'Rankings', href: '/rankings' },
   ];
 
   const socialIcons = [
@@ -57,46 +54,46 @@ const Footer = () => {
   return (
     <footer className="w-full border-t border-border bg-background pt-12 pb-8 mt-auto">
       <div className="container max-w-[1024px] mx-auto px-4 sm:px-6">
-        {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
-          {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold text-foreground hover:text-primary transition-colors">
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              href="/" 
+              className="text-2xl font-bold text-foreground hover:text-[#5F6FFF] transition-colors"
+            >
               Radison
-            </a>
+            </motion.a>
           </div>
 
-          {/* Navigation Links */}
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-3">
             {footerLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.name}
+                whileHover={{ scale: 1.1, color: '#000' }}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground transition-colors"
               >
                 {link.name}
-              </a>
+              </motion.a>
             ))}
           </nav>
         </div>
 
-        {/* Divider */}
         <div className="w-full h-px bg-border mb-8" />
 
-        {/* Bottom Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-          {/* Copyright */}
           <div className="text-[14px] text-muted-foreground order-2 sm:order-1">
             © {currentYear} Radison, Inc. All rights reserved.
           </div>
 
-          {/* Social Icons */}
           <div className="flex items-center gap-5 order-1 sm:order-2">
             {socialIcons.map((social) => (
-              <a
+              <motion.a
                 key={social.label}
+                whileHover={{ scale: 1.2, color: '#000' }}
+                whileTap={{ scale: 0.9 }}
                 href={social.href}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground transition-colors"
                 aria-label={social.label}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -104,7 +101,7 @@ const Footer = () => {
                 <div className="flex items-center justify-center">
                   {social.icon}
                 </div>
-              </a>
+              </motion.a>
             ))}
           </div>
         </div>
