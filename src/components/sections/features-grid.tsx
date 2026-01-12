@@ -18,7 +18,7 @@ const features = [
   },
   {
     title: "Price and Performance",
-    description: "Keep costs in check without sacrificing speed. OpenRouter runs at the edge for minimal latency between your users and their inference.",
+    description: "Keep costs in check without sacrificing speed. Radison runs at the edge for minimal latency between your users and their inference.",
     linkText: "Learn more",
     href: "/docs/features/latency",
     graphic: "performance-graph",
