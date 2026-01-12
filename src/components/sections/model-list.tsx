@@ -139,10 +139,44 @@ const ModelList = () => {
     }, []);
 
 
-  const filteredModels = models.filter(m => 
-    m.name?.toLowerCase().includes(search.toLowerCase()) || 
-    m.id?.toLowerCase().includes(search.toLowerCase())
-  );
+  const searchParams = useSearchParams();
+  const inputModality = searchParams.get('input_modalities');
+  const outputModality = searchParams.get('output_modalities');
+  const provider = searchParams.get('provider');
+
+  const filteredModels = useMemo(() => {
+    return models.filter(m => {
+      // Search filter
+      const matchesSearch = !search || 
+        m.name?.toLowerCase().includes(search.toLowerCase()) || 
+        m.id?.toLowerCase().includes(search.toLowerCase());
+      
+      if (!matchesSearch) return false;
+
+      // Provider filter
+      if (provider && m.provider.toLowerCase() !== provider.toLowerCase()) {
+        return false;
+      }
+
+      // Input Modality filter
+      if (inputModality) {
+        const lowerId = m.id.toLowerCase();
+        const lowerName = m.name.toLowerCase();
+        if (inputModality === 'image' && !lowerId.includes('vision') && !lowerId.includes('vl') && !lowerName.includes('vision')) return false;
+        if (inputModality === 'video' && !lowerId.includes('video')) return false;
+        if (inputModality === 'audio' && !lowerId.includes('audio')) return false;
+        // Text is default for most
+      }
+
+      // Output Modality filter
+      if (outputModality) {
+        if (outputModality === 'image' && !m.id.toLowerCase().includes('dall-e') && !m.id.toLowerCase().includes('stable-diffusion')) return false;
+        // Add more specific output modality checks if needed
+      }
+
+      return true;
+    });
+  }, [models, search, provider, inputModality, outputModality]);
 
   if (loading) return <div className="p-20 text-center text-muted-foreground">Loading models...</div>;
 
