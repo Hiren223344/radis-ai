@@ -113,7 +113,7 @@ const FeaturesGrid = () => {
             <div className="flex flex-1 flex-col p-6">
               <h3 className="mb-2 text-base font-semibold text-slate-900">Price and Performance</h3>
               <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-500">
-                Keep costs in check without sacrificing speed. OpenRouter runs at the edge for minimal latency.
+                Keep costs in check without sacrificing speed. Radison runs at the edge for minimal latency.
               </p>
               <span className="flex items-center gap-1 text-sm font-medium text-indigo-600 transition-colors group-hover:text-indigo-700">
                 Learn more <ExternalLink size={14} />
