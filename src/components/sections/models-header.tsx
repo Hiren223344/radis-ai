@@ -13,36 +13,7 @@ const ModelsHeader: React.FC = () => {
                 Models
               </h1>
             </div>
-
-        
-        <div className="flex items-center gap-2">
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-3 h-9 text-[14px] font-medium border border-[#E2E8F0] rounded-md bg-white hover:bg-[#F1F5F9] transition-colors text-[#020617]"
-          >
-            <Scale className="size-4" />
-            Compare
-          </motion.button>
-          
-          <div className="flex items-center border border-[#E2E8F0] rounded-md overflow-hidden bg-white">
-            <motion.button 
-              whileHover={{ backgroundColor: '#F1F5F9' }}
-              whileTap={{ scale: 0.9 }}
-              className="p-2 border-r border-[#E2E8F0] text-[#64748B] hover:text-[#020617] transition-colors"
-            >
-              <LayoutGrid className="size-4" />
-            </motion.button>
-            <motion.button 
-              whileHover={{ backgroundColor: '#E2E8F0' }}
-              whileTap={{ scale: 0.9 }}
-              className="p-2 bg-[#F1F5F9] text-[#020617] transition-colors"
-            >
-              <List className="size-4" />
-            </motion.button>
-          </div>
         </div>
-      </div>
 
       <div className="relative mb-6">
         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] pointer-events-none">
