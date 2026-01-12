@@ -96,25 +96,27 @@ const SidebarFilters = () => {
 
               <AccordionItem 
                 title="Input Modalities"
-              icon={<Type className="size-4" />} 
-              defaultOpen={true}
-            >
-              <FilterLink label="Text" href="/models?input_modalities=text" />
-              <FilterLink label="Image" href="/models?input_modalities=image" />
-              <FilterLink label="File" href="/models?input_modalities=file" />
-              <FilterLink label="Audio" href="/models?input_modalities=audio" />
-              <FilterLink label="Video" isNew href="/models?input_modalities=video" />
-            </AccordionItem>
+                icon={<Type className="size-4" />} 
+                defaultOpen={true}
+              >
+                <FilterLink label="Text" href="/models?input_modalities=text" />
+                <FilterLink label="Image" href="/models?input_modalities=image" />
+                <FilterLink label="File" href="/models?input_modalities=file" />
+                <FilterLink label="Audio" href="/models?input_modalities=audio" />
+                <FilterLink label="Video" isNew href="/models?input_modalities=video" />
+                <FilterLink label="Realtime" isNew href="/models?input_modalities=realtime" />
+              </AccordionItem>
 
-            <AccordionItem 
-              title="Output Modalities" 
-              icon={<Layers className="size-4" />} 
-              defaultOpen={true}
-            >
-              <FilterLink label="Text" href="/models?output_modalities=text" />
-              <FilterLink label="Image" href="/models?output_modalities=image" />
-              <FilterLink label="Embeddings" isNew href="/models?output_modalities=embeddings" />
-            </AccordionItem>
+              <AccordionItem 
+                title="Output Modalities" 
+                icon={<Layers className="size-4" />} 
+                defaultOpen={true}
+              >
+                <FilterLink label="Text" href="/models?output_modalities=text" />
+                <FilterLink label="Image" href="/models?output_modalities=image" />
+                <FilterLink label="Audio" isNew href="/models?output_modalities=audio" />
+                <FilterLink label="Embeddings" isNew href="/models?output_modalities=embeddings" />
+              </AccordionItem>
 
             <AccordionItem 
               title="Context length" 
