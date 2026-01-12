@@ -142,4 +142,6 @@
     font-size: 3rem;
     font-weight: 600;
     line-height: 1.1;
-    letter-spacing
+    letter-spacing: -0.02em;
+  }
+}
