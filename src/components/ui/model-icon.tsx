@@ -1,3 +1,4 @@
+// Model icon component
 import React from 'react';
 import { 
   OpenAI, 
