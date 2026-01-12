@@ -22,7 +22,7 @@ const Navigation = () => {
                       <path d="M256 0L0 256l256 256 256-256L256 0zm0 100.3L411.7 256 256 411.7 100.3 256 256 100.3z" />
                       <path d="M256 170.7L170.7 256 256 341.3 341.3 256 256 170.7z" />
                     </g>
-                    <title>OpenRouter</title>
+                    <title>Radison</title>
                   </svg>
                   <span className="text-[#020617] font-semibold tracking-tight">Radison</span>
                 </span>
