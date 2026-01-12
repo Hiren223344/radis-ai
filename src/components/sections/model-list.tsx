@@ -96,37 +96,40 @@ const ModelList = () => {
               if (isReasoning) type = 'Reasoning';
               else if (isVision) type = 'Vision Model';
 
-              return {
-                id: modelId,
-                name: modelName,
-                description: m.description || `AI model provided by ${m.provider || 'Puter'}.`,
-                pricing: m.pricing || { prompt: "0.00", completion: "0.00" },
-                context_length: m.context_window || m.context || 4096,
-                type: type
-              };
-            });
+                return {
+                  id: modelId,
+                  name: modelName,
+                  description: m.description || `AI model provided by ${m.provider || getProvider(modelId, modelName)}.`,
+                  provider: m.provider || getProvider(modelId, modelName),
+                  pricing: m.pricing || { prompt: "0.00", completion: "0.00" },
+                  context_length: m.context_window || m.context || 4096,
+                  type: type
+                };
+              });
 
-          
-          setModels(formattedModels);
-        } catch (err) {
-          console.error("Error fetching models from Puter:", err);
-          // Fallback static data if API fails
-          setModels([
-            {
-              id: "claude-3-5-sonnet",
-              name: "Claude 3.5 Sonnet",
-              description: "Anthropic's most intelligent model yet.",
-              pricing: { prompt: "0.000003", completion: "0.000015" },
-              context_length: 200000
-            },
-            {
-              id: "gpt-4o",
-              name: "GPT-4o",
-              description: "OpenAI's most advanced multimodal model.",
-              pricing: { prompt: "0.000005", completion: "0.000015" },
-              context_length: 128000
-            }
-          ]);
+            
+            setModels(formattedModels);
+          } catch (err) {
+            console.error("Error fetching models from Puter:", err);
+            // Fallback static data if API fails
+            setModels([
+              {
+                id: "claude-3-5-sonnet",
+                name: "Claude 3.5 Sonnet",
+                description: "Anthropic's most intelligent model yet.",
+                provider: "Anthropic",
+                pricing: { prompt: "0.000003", completion: "0.000015" },
+                context_length: 200000
+              },
+              {
+                id: "gpt-4o",
+                name: "GPT-4o",
+                description: "OpenAI's most advanced multimodal model.",
+                provider: "OpenAI",
+                pricing: { prompt: "0.000005", completion: "0.000015" },
+                context_length: 128000
+              }
+            ]);
         } finally {
           setLoading(false);
         }
