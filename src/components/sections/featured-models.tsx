@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ModelCardProps {
   name: string;
@@ -12,7 +15,11 @@ interface ModelCardProps {
 }
 
 const ModelCard = ({ name, provider, tokens, trend, icon, isPositive = true }: ModelCardProps) => (
-  <div className="group/card flex flex-col justify-between p-6 bg-card border border-border rounded-xl transition-all duration-200 hover:border-primary hover:shadow-lg cursor-pointer h-full">
+  <motion.div 
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+    className="group/card flex flex-col justify-between p-6 bg-card border border-border rounded-xl transition-all duration-200 hover:border-[#5F6FFF] hover:shadow-lg cursor-pointer h-full"
+  >
     <div className="flex items-start justify-between gap-4">
       <div className="flex items-start gap-4">
         <div className="flex items-center justify-center size-10 flex-shrink-0 rounded-full border border-border bg-white shadow-sm overflow-hidden p-0">
@@ -42,12 +49,12 @@ const ModelCard = ({ name, provider, tokens, trend, icon, isPositive = true }: M
       </div>
       <div className="flex flex-col items-end">
         <span className="text-[12px] uppercase tracking-wider text-muted-foreground font-medium">Weekly Trend</span>
-        <span className={`text-[16px] font-bold mt-1 tabular-nums ${isPositive ? 'text-success' : 'text-destructive'}`}>
+        <span className={`text-[16px] font-bold mt-1 tabular-nums ${isPositive ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>
           {isPositive ? '+' : ''}{trend}
         </span>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const FeaturedModels = () => {
@@ -79,22 +86,26 @@ const FeaturedModels = () => {
     <section className="w-full max-w-[1440px] mx-auto px-6 py-12 md:py-20 tabular-nums">
       <div className="flex items-center justify-between mb-8">
         <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2 group cursor-pointer">
+          <motion.div 
+            whileHover={{ x: 5 }}
+            className="flex items-center gap-2 group cursor-pointer"
+          >
             <h2 className="text-[24px] font-semibold text-foreground tracking-tight">
               Featured Models
             </h2>
             <ArrowRight className="size-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
-          </div>
+          </motion.div>
           <p className="text-[14px] text-muted-foreground">
             300+ active models on 60+ providers
           </p>
         </div>
-        <a 
+        <motion.a 
+          whileHover={{ x: 2 }}
           href="/models" 
-          className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5"
+          className="text-sm font-medium text-muted-foreground hover:text-[#5F6FFF] transition-colors flex items-center gap-1.5"
         >
           View all <ArrowRight className="size-3.5" />
-        </a>
+        </motion.a>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
