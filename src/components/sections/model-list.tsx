@@ -32,31 +32,49 @@ const ModelList = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    const fetchModels = async () => {
-      try {
-        const url = "https://openrouter.ai/api/v1/models"; // Using original API for data
-        const res = await fetch(url);
-        const data = await res.json();
-        setModels(data.data || []);
-      } catch (err) {
-        console.error("Error fetching models:", err);
-        // Fallback static data if API fails
-        setModels([
-          {
-            id: "anthropic/claude-3.5-sonnet",
-            name: "Claude 3.5 Sonnet",
-            description: "Anthropic's most intelligent model yet.",
-            pricing: { prompt: "0.000003", completion: "0.000015" },
-            context_length: 200000
-          }
-        ]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchModels();
-  }, []);
+    useEffect(() => {
+      const fetchModels = async () => {
+        try {
+          // @ts-ignore
+          const response = await puter.ai.listModels();
+          console.log("Puter models:", response);
+          
+          // Map Puter models to our Model interface
+          const formattedModels: Model[] = response.map((m: any) => ({
+            id: m.name || m,
+            name: m.name || m,
+            description: m.description || `AI model provided by ${m.provider || 'Puter'}.`,
+            pricing: m.pricing || { prompt: "0.00", completion: "0.00" },
+            context_length: m.context_window || 4096
+          }));
+          
+          setModels(formattedModels);
+        } catch (err) {
+          console.error("Error fetching models from Puter:", err);
+          // Fallback static data if API fails
+          setModels([
+            {
+              id: "claude-3-5-sonnet",
+              name: "Claude 3.5 Sonnet",
+              description: "Anthropic's most intelligent model yet.",
+              pricing: { prompt: "0.000003", completion: "0.000015" },
+              context_length: 200000
+            },
+            {
+              id: "gpt-4o",
+              name: "GPT-4o",
+              description: "OpenAI's most advanced multimodal model.",
+              pricing: { prompt: "0.000005", completion: "0.000015" },
+              context_length: 128000
+            }
+          ]);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchModels();
+    }, []);
+
 
   const filteredModels = models.filter(m => 
     m.name?.toLowerCase().includes(search.toLowerCase()) || 
