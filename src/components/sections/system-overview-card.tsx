@@ -22,7 +22,7 @@ const SystemOverviewCard: React.FC = () => {
         <div className="p-5 sm:p-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
             <p className="text-sm text-[#64748b]">
-              Current status of all A4F services. Last updated: less than a minute ago.
+              Current status of all Radison services. Last updated: less than a minute ago.
             </p>
             <button 
               className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs w-full sm:w-auto shrink-0"
