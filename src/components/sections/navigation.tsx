@@ -20,7 +20,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
   };
 
   return (
-    <nav id="main-nav" className="sticky top-0 z-[100] w-full transition-all duration-500 liquid-glass border-b border-white/60 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)]">
+    <nav id="main-nav" className="fixed top-0 z-[100] w-full transition-all duration-500 liquid-glass border-b border-white/60 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)]">
       <div className="container mx-auto transition-all duration-300 py-3">
         <div className="flex flex-row justify-between items-center text-sm md:text-base">
           {/* Left Section: Logo & Search */}
