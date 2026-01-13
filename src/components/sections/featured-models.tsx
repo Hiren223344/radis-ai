@@ -144,18 +144,19 @@ const FeaturedModels = () => {
         </motion.a>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredModels.map((model) => (
-            <ModelCard
-              key={model.name}
-              name={model.name}
-              provider={model.provider}
-              tokens={model.tokens}
-              trend={model.trend}
-              modelId={model.name}
-            />
-          ))}
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredModels.map((model, index) => (
+              <ModelCard
+                key={model.name}
+                name={model.name}
+                provider={model.provider}
+                tokens={model.tokens}
+                trend={model.trend}
+                modelId={model.name}
+                index={index}
+              />
+            ))}
+        </div>
     </section>
   );
 };
