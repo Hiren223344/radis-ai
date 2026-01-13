@@ -113,7 +113,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
               )}
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
