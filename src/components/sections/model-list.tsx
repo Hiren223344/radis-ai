@@ -281,18 +281,21 @@ const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => 
                                 ) : (
                                   <Tag label="Text" variant="default" color="#10b981" />
                                 )}
-                                <button 
-                                  className="p-1 rounded hover:bg-slate-100 text-slate-11 transition-colors"
-                                  onClick={async () => {
-                                    try {
-                                      if (navigator.clipboard && navigator.clipboard.writeText) {
-                                        await navigator.clipboard.writeText(model.id);
+                                  <button 
+                                    className="p-1 rounded hover:bg-slate-100 text-slate-11 transition-colors"
+                                    onClick={async () => {
+                                      try {
+                                        if (typeof window !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+                                          await navigator.clipboard.writeText(model.id);
+                                        } else {
+                                          throw new Error('Clipboard API not available');
+                                        }
+                                      } catch (err) {
+                                        // Silently handle clipboard errors in restricted environments (iframes)
+                                        console.warn('Clipboard copy restricted:', err);
                                       }
-                                    } catch (err) {
-                                      console.error('Failed to copy to clipboard:', err);
-                                    }
-                                  }}
-                                >
+                                    }}
+                                  >
                                 <Copy className="w-3.5 h-3.5" />
                               </button>
                             </div>
