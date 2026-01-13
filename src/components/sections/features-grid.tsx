@@ -82,70 +82,123 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
             </div>
           )}
 
-              {feature.graphic === "availability-path" && (
-                <div className="relative w-full h-full flex items-center justify-center scale-110">
-                  <svg className="w-full h-full max-w-[280px]" viewBox="0 0 240 160" fill="none">
-                    {/* Background Mesh/Grid */}
-                    <path d="M0 40 H240 M0 80 H240 M0 120 H240 M40 0 V160 M120 0 V160 M200 0 V160" stroke="currentColor" strokeWidth="0.5" className="text-primary/5" />
-                    
-                    {/* High Availability Mesh Network */}
-                    <g className="text-primary/20">
-                      <line x1="120" y1="30" x2="60" y2="80" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="120" y1="30" x2="180" y2="80" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="120" y1="30" x2="120" y2="130" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="60" y1="80" x2="180" y2="80" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="60" y1="80" x2="120" y2="130" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="180" y1="80" x2="120" y2="130" stroke="currentColor" strokeWidth="1.5" />
-                    </g>
+            {feature.graphic === "availability-path" && (
+                  <div className="relative w-full h-full flex items-center justify-center scale-110">
+                    <svg className="w-full h-full max-w-[280px]" viewBox="0 0 240 160" fill="none">
+                      {/* Connection line between AI and User */}
+                      <motion.path 
+                        d="M50 80 C 90 80, 90 80, 120 80 C 150 80, 150 80, 190 80" 
+                        stroke="url(#connectionGradient)" 
+                        strokeWidth="3" 
+                        fill="none"
+                        initial={{ pathLength: 0 }}
+                        whileInView={{ pathLength: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                      />
+                      
+                      {/* Animated data packets flowing */}
+                      <motion.circle 
+                        r="4" 
+                        fill="#8b5cf6"
+                        animate={{ 
+                          cx: [50, 120, 190],
+                          cy: [80, 80, 80]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                      <motion.circle 
+                        r="3" 
+                        fill="#22c55e"
+                        animate={{ 
+                          cx: [190, 120, 50],
+                          cy: [80, 80, 80]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                      />
 
-                    {/* Active Path Animations (Marching Ants) */}
-                    <motion.path 
-                      d="M120 30 L 60 80 L 120 130" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeDasharray="4 6"
-                      className="text-emerald-500"
-                      animate={{ strokeDashoffset: [0, -20] }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    />
-                    <motion.path 
-                      d="M120 30 L 180 80 L 120 130" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeDasharray="4 6"
-                      className="text-primary"
-                      animate={{ strokeDashoffset: [0, -20] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                    />
-
-                    {/* Server Nodes */}
-                    {[
-                      { x: 120, y: 30, color: "primary" },
-                      { x: 60, y: 80, color: "emerald" },
-                      { x: 180, y: 80, color: "primary" },
-                      { x: 120, y: 130, color: "primary" }
-                    ].map((node, i) => (
-                      <g key={i}>
+                      {/* AI Side (Left - Purple) */}
+                      <g>
                         <motion.circle 
                           initial={{ scale: 0 }}
                           whileInView={{ scale: 1 }}
                           viewport={{ once: true }}
-                          transition={{ type: "spring", delay: 0.1 * i }}
-                          cx={node.x} cy={node.y} r="10" 
-                          className="fill-white stroke-white/80 shadow-xl" 
+                          transition={{ type: "spring", delay: 0.1 }}
+                          cx="50" cy="80" r="28" 
+                          className="fill-violet-500/10 stroke-violet-500/30" 
+                          strokeWidth="2"
                         />
                         <motion.circle 
-                          animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
-                          cx={node.x} cy={node.y} r="8" 
-                          className={`fill-${node.color}-500/20`} 
+                          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          cx="50" cy="80" r="28" 
+                          className="fill-violet-500/20" 
                         />
-                        <circle cx={node.x} cy={node.y} r="4" className={`fill-${node.color}-500`} />
+                        <circle cx="50" cy="80" r="18" className="fill-violet-500/20 stroke-violet-500" strokeWidth="2" />
+                        {/* AI Brain Icon */}
+                        <g transform="translate(38, 68)">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.33.15.66.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.34-.11.67-.19 1z" fill="#8b5cf6" />
+                        </g>
+                        <text x="50" y="120" textAnchor="middle" className="fill-violet-600 text-[10px] font-bold">AI</text>
                       </g>
-                    ))}
-                  </svg>
-                </div>
-              )}
+
+                      {/* User/Client Side (Right - Green) */}
+                      <g>
+                        <motion.circle 
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ type: "spring", delay: 0.2 }}
+                          cx="190" cy="80" r="28" 
+                          className="fill-emerald-500/10 stroke-emerald-500/30" 
+                          strokeWidth="2"
+                        />
+                        <motion.circle 
+                          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                          cx="190" cy="80" r="28" 
+                          className="fill-emerald-500/20" 
+                        />
+                        <circle cx="190" cy="80" r="18" className="fill-emerald-500/20 stroke-emerald-500" strokeWidth="2" />
+                        {/* User Icon */}
+                        <g transform="translate(178, 68)">
+                          <circle cx="12" cy="8" r="4" fill="#22c55e" />
+                          <path d="M12 14c-4 0-8 2-8 4v2h16v-2c0-2-4-4-8-4z" fill="#22c55e" />
+                        </g>
+                        <text x="190" y="120" textAnchor="middle" className="fill-emerald-600 text-[10px] font-bold">USER</text>
+                      </g>
+
+                      {/* Center Router/Server */}
+                      <g>
+                        <motion.rect 
+                          initial={{ scale: 0, rotate: 45 }}
+                          whileInView={{ scale: 1, rotate: 45 }}
+                          viewport={{ once: true }}
+                          transition={{ type: "spring", delay: 0.3 }}
+                          x="108" y="68" width="24" height="24" rx="4"
+                          className="fill-white stroke-primary/40" 
+                          strokeWidth="2"
+                          style={{ transformOrigin: '120px 80px' }}
+                        />
+                        <motion.circle 
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                          cx="120" cy="80" r="6" 
+                          className="fill-primary" 
+                        />
+                      </g>
+
+                      {/* Gradient definition */}
+                      <defs>
+                        <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#8b5cf6" />
+                          <stop offset="50%" stopColor="#6366f1" />
+                          <stop offset="100%" stopColor="#22c55e" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                )}
 
           {feature.graphic === "performance-graph" && (
             <div className="w-56 px-6 flex flex-col gap-4 scale-125">
