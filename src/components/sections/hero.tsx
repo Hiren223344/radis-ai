@@ -51,7 +51,7 @@ const HeroSection: React.FC = () => {
               <motion.button 
                 whileHover={{ scale: 1.05, translateY: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-2xl font-bold transition-all bg-primary text-primary-foreground shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] h-14 px-10 gap-2 w-full sm:w-auto text-lg cursor-pointer"
+                  className="inline-flex items-center justify-center whitespace-nowrap rounded-2xl font-bold transition-all bg-primary text-primary-foreground shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] h-14 px-10 gap-2 w-full sm:w-auto text-lg cursor-pointer liquid-glass-button border-primary/20"
               >
                 Get API Key
               </motion.button>
