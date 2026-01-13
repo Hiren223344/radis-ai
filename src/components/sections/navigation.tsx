@@ -19,14 +19,11 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
     e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
   };
 
-    return (
-      <motion.nav 
-        id="main-nav" 
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.21, 1.02, 0.73, 1] }}
-        className="fixed top-0 z-[100] w-full liquid-glass border-b border-white/60 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)]"
-      >
+      return (
+        <motion.nav 
+          id="main-nav" 
+          className="fixed top-0 z-[100] w-full liquid-glass border-b border-white/80 bg-white/70 backdrop-blur-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-300"
+        >
         <div className="container mx-auto py-3">
           <div className="flex flex-row justify-between items-center text-sm md:text-base">
             {/* Left Section: Logo & Search */}
