@@ -19,8 +19,8 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
   };
 
   return (
-    <nav id="main-nav" className="sticky top-0 z-40 transition-all duration-300 liquid-glass w-full">
-      <div className="mx-auto w-full transition-all duration-300 px-6 py-3.5 lg:py-4 max-w-screen-2xl">
+    <nav id="main-nav" className="sticky top-4 z-40 transition-all duration-500 liquid-glass max-w-[95%] xl:max-w-7xl mx-auto rounded-3xl border border-white/50 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.15)] ring-1 ring-white/20">
+      <div className="mx-auto w-full transition-all duration-300 px-6 py-3 lg:py-3.5">
         <div className="align-center relative flex flex-row justify-between items-center text-sm md:text-base">
           {/* Left Section: Logo & Search */}
           <div className="flex flex-1 items-center gap-4">
