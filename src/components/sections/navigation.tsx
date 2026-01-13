@@ -126,7 +126,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch, onRedirect }
           </div>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 
