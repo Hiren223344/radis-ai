@@ -42,25 +42,27 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
             </motion.a>
 
             {/* Command Palette Search */}
-            <div className="relative group">
-              <div 
-                className="flex items-center gap-2 rounded-md h-9 w-0 md:w-48 transition-all relative bg-[#f1f5f9] text-[#64748b] focus-within:bg-white focus-within:ring-1 focus-within:ring-slate-200 border border-transparent focus-within:border-slate-200"
-              >
-                <div className="flex items-center px-3 w-full">
-                  <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-                  <input 
-                    className="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-[#64748b] font-normal" 
-                    placeholder="Search"
-                    type="text"
-                    value={search || ""}
-                    onChange={(e) => setSearch?.(e.target.value)}
-                  />
+            {setSearch && (
+              <div className="relative group">
+                <div 
+                  className="flex items-center gap-2 rounded-md h-9 w-0 md:w-48 transition-all relative bg-[#f1f5f9] text-[#64748b] focus-within:bg-white focus-within:ring-1 focus-within:ring-slate-200 border border-transparent focus-within:border-slate-200"
+                >
+                  <div className="flex items-center px-3 w-full">
+                    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+                    <input 
+                      className="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-[#64748b] font-normal" 
+                      placeholder="Search"
+                      type="text"
+                      value={search || ""}
+                      onChange={(e) => setSearch?.(e.target.value)}
+                    />
+                  </div>
+                  <kbd className="hidden md:flex items-center justify-center aspect-square h-5 w-5 pointer-events-none rounded border bg-white border-slate-200 text-[10px] font-medium text-slate-400 absolute right-2 shadow-sm uppercase">
+                    /
+                  </kbd>
                 </div>
-                <kbd className="hidden md:flex items-center justify-center aspect-square h-5 w-5 pointer-events-none rounded border bg-white border-slate-200 text-[10px] font-medium text-slate-400 absolute right-2 shadow-sm uppercase">
-                  /
-                </kbd>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Right Section: Menu Links & Sign Up */}
