@@ -45,7 +45,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
             {setSearch && (
               <div className="relative group">
                 <div 
-                  className="flex items-center gap-2 rounded-md h-9 w-0 md:w-48 transition-all relative bg-white/40 backdrop-blur-md text-[#64748b] focus-within:bg-white/60 focus-within:ring-1 focus-within:ring-white/50 border border-white/20 focus-within:border-white/40 shadow-sm"
+                  className="flex items-center gap-2 rounded-md h-9 w-0 md:w-56 transition-all relative liquid-glass-button text-[#64748b] focus-within:bg-white/60 focus-within:ring-1 focus-within:ring-white/50 border border-white/20 focus-within:border-white/40 shadow-sm overflow-hidden"
                 >
                   <div className="flex items-center px-3 w-full">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
