@@ -22,12 +22,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
         
         {/* Headline & Subtext */}
         <div className="flex flex-col gap-6 md:gap-8 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            className="flex flex-col gap-4 md:gap-6"
-          >
+          <div className="flex flex-col gap-4 md:gap-6">
             <h1 className="my-0 w-full text-4xl sm:text-6xl md:text-[5rem] font-bold leading-[1] tracking-tight text-primary">
               The Unified Interface <br className="hidden md:block" /> 
               <span className="font-serif italic font-light text-primary/80">For LLMs</span>
@@ -49,15 +44,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
               </button>
               , and no subscriptions.
             </p>
-          </motion.div>
+          </div>
 
           {/* Action Buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
-            className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-4"
-          >
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-4">
             <button 
               onClick={(e) => handleAction(e, "/settings/keys")}
               className="w-full sm:w-auto group border-none bg-transparent p-0 cursor-pointer"
@@ -93,16 +83,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
                 </div>
               </motion.div>
             </button>
-          </motion.div>
+          </div>
         </div>
 
         {/* Key Metrics */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full"
-        >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full">
           {[
             { label: "Monthly Tokens", value: "25T", link: "/rankings" },
             { label: "Global Users", value: "5M+" },
