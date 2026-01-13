@@ -11,8 +11,8 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/10 selection:text-primary relative">
       <div className="bg-mesh" aria-hidden="true" />
       <Navigation />
-        <main id="skip">
-          <HeroSection />
+      <main id="skip" className="pt-24">
+        <HeroSection />
           <FeaturesGrid />
           <FeaturedModels />
         <OnboardingSteps />
