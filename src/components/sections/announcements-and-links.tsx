@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { ArrowRight, LayoutGrid, BarChart3 } from 'lucide-react';
 
 const AnnouncementsAndLinks = () => {
@@ -27,7 +28,7 @@ const AnnouncementsAndLinks = () => {
           
           {/* Left Column: Explore & Rankings Cards */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <a 
+            <Link 
               href="/models" 
               className="group flex flex-col justify-between p-6 h-[220px] bg-card border border-border rounded-xl transition-all duration-200 hover:border-primary hover:shadow-lg"
             >
@@ -43,9 +44,9 @@ const AnnouncementsAndLinks = () => {
               <div className="flex items-center gap-1 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors mt-auto">
                 View models <ArrowRight className="size-4" />
               </div>
-            </a>
+            </Link>
 
-            <a 
+            <Link 
               href="/rankings" 
               className="group flex flex-col justify-between p-6 h-[220px] bg-card border border-border rounded-xl transition-all duration-200 hover:border-primary hover:shadow-lg"
             >
@@ -61,21 +62,21 @@ const AnnouncementsAndLinks = () => {
               <div className="flex items-center gap-1 text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors mt-auto">
                 View rankings <ArrowRight className="size-4" />
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* Right Column: Recent Announcements */}
           <div className="lg:col-span-7">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-foreground">Recent Announcements</h2>
-              <a href="/announcements" className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1 transition-colors">
+              <Link href="/announcements" className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1 transition-colors">
                 View all <ArrowRight className="size-3.5" />
-              </a>
+              </Link>
             </div>
 
             <div className="flex flex-col gap-4">
               {announcements.map((item, index) => (
-                <a 
+                <Link 
                   key={index}
                   href={`/announcements/${index}`} 
                   className="flex flex-col gap-2 p-6 bg-card border border-border rounded-xl transition-all duration-200 hover:border-primary hover:shadow-sm"
@@ -89,7 +90,7 @@ const AnnouncementsAndLinks = () => {
                   <span className="text-[13px] text-muted-foreground mt-1 tabular-nums">
                     {item.date}
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
