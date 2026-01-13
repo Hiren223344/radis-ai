@@ -144,15 +144,18 @@ const ModelsList: React.FC = () => {
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.8 }}
                       className="text-muted-foreground hover:text-foreground transition-colors p-0.5"
-                      onClick={async () => {
-                        try {
-                          if (navigator.clipboard && navigator.clipboard.writeText) {
-                            await navigator.clipboard.writeText(model.id);
+                        onClick={async () => {
+                          try {
+                            if (typeof window !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+                              await navigator.clipboard.writeText(model.id);
+                            } else {
+                              throw new Error('Clipboard API not available');
+                            }
+                          } catch (err) {
+                            // Silently handle clipboard errors in restricted environments (iframes)
+                            console.warn('Clipboard copy restricted:', err);
                           }
-                        } catch (err) {
-                          console.error('Failed to copy to clipboard:', err);
-                        }
-                      }}
+                        }}
                     >
                       <Copy className="size-3.5" strokeWidth={2.5} />
                     </motion.button>
