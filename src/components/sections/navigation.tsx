@@ -35,7 +35,6 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch, onRedirect }
     >
       <div className="container mx-auto py-3">
         <div className="flex flex-row justify-between items-center text-sm md:text-base">
-          {/* Left Section: Logo & Search */}
           <div className="flex items-center gap-8">
             <button 
               onClick={(e) => handleAction(e, "/")}
@@ -66,7 +65,6 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch, onRedirect }
               </motion.div>
             </button>
 
-            {/* Search Bar */}
             {setSearch && (
               <div className="hidden md:block relative group">
                 <div 
@@ -89,7 +87,6 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch, onRedirect }
             )}
           </div>
 
-          {/* Right Section: Menu Links & Sign Up */}
           <div className="hidden lg:flex lg:items-center lg:gap-6">
             <div className="flex items-center gap-1 bg-white/30 p-1.5 rounded-2xl border border-white/60 backdrop-blur-sm">
               <button onClick={(e) => handleAction(e, "/models")} className="border-none bg-transparent p-0 cursor-pointer">
@@ -118,7 +115,6 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch, onRedirect }
             </Button>
           </div>
 
-          {/* Mobile Menu Icon */}
           <div className="lg:hidden">
             <Button variant="outline" size="icon" className="rounded-2xl border-white/60 liquid-glass-button">
               <Menu className="h-5 w-5" />
