@@ -75,13 +75,108 @@ const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
             {feature.graphic === "provider-grid" && (
               <div className="grid grid-cols-5 gap-4 scale-90">
                 {ProviderIcons.slice(0, 15).map((icon, idx) => (
+      <motion.div 
+        whileHover={{ translateY: -10, scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="flex flex-col h-full overflow-hidden rounded-[2.5rem] liquid-glass border border-white/40 shadow-xl transition-all duration-500"
+      >
+        {/* Top Graphic Area */}
+        <div className="relative h-56 w-full flex-shrink-0 overflow-hidden border-b border-white/20 bg-white/10 backdrop-blur-sm">
+          <div className="absolute inset-0 z-20 pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-white/40"></div>
+          </div>
+
+          <div className="flex h-full w-full items-center justify-center p-8 group-hover/card:scale-110 transition-transform duration-700 ease-out">
+            {feature.graphic === "provider-grid" && (
+              <div className="grid grid-cols-4 gap-4 scale-110">
+                {ProviderIcons.slice(0, 12).map((icon, idx) => (
                   <motion.div 
                     key={idx} 
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    className="flex items-center justify-center size-8 rounded-full border bg-white shadow-sm p-1.5 transition-transform duration-500"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: idx * 0.05 }}
+                    whileHover={{ scale: 1.3, rotate: 10, zIndex: 50 }}
+                    className="flex items-center justify-center size-10 rounded-2xl border border-white/60 bg-white/80 shadow-lg p-2 transition-all"
                   >
                     <img src={icon} alt="Provider" className="size-full object-contain" />
                   </motion.div>
+                ))}
+              </div>
+            )}
+            {/* ... other graphics remains same or similar ... */}
+            {feature.graphic !== "provider-grid" && (
+              <div className="scale-125 opacity-90 group-hover/card:opacity-100 transition-opacity">
+                 {feature.graphic === "availability-path" && (
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <svg className="w-48 h-24" viewBox="0 0 200 100" fill="none">
+                      <motion.path 
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        d="M100 20 C 100 20, 100 60, 40 70 M100 20 C 100 20, 100 60, 100 70 M100 20 C 100 20, 100 60, 160 70" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        className="text-primary/20"
+                      />
+                      <circle cx="100" cy="15" r="4" className="fill-primary" />
+                      <rect x="30" y="65" width="24" height="24" rx="8" className="fill-white stroke-white/60" />
+                      <rect x="88" y="65" width="24" height="24" rx="8" className="fill-white stroke-white/60" />
+                      <rect x="146" y="65" width="24" height="24" rx="8" className="fill-white stroke-white/60" />
+                      <circle cx="100" cy="77" r="6" className="fill-primary animate-pulse" />
+                    </svg>
+                  </div>
+                )}
+                {feature.graphic === "performance-graph" && (
+                  <div className="w-56 px-6 flex flex-col gap-4">
+                    <div className="relative h-20 w-full border-l-2 border-b-2 border-primary/10">
+                      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                        <motion.path 
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 3, repeat: Infinity }}
+                          d="M0 60 Q 20 50, 40 55 T 80 40 T 120 45 T 160 30 T 200 35" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          strokeWidth="3" 
+                          className="text-primary"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                )}
+                {feature.graphic === "security-shield" && (
+                  <div className="flex flex-col items-center gap-6">
+                    <div className="size-20 rounded-[2rem] bg-primary/5 border border-primary/10 flex items-center justify-center shadow-inner">
+                      <svg className="size-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                      </svg>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Text Content Area */}
+        <div className="flex flex-1 flex-col p-10">
+          <h3 className="mb-4 text-2xl font-bold text-primary tracking-tight">
+            {feature.title}
+          </h3>
+          <p className="mb-8 text-base text-muted-foreground leading-relaxed font-medium">
+            {feature.description}
+          </p>
+          <div className="mt-auto flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary/60 group-hover/card:text-primary transition-colors">
+            {feature.linkText}
+            <motion.div
+              animate={{ x: [0, 4, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+            >
+              →
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
                 ))}
               </div>
             )}
