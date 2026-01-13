@@ -11,7 +11,7 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
   return (
-    <nav id="main-nav" className="sticky top-0 z-40 transition-all duration-150 bg-white w-full border-b border-border/40">
+    <nav id="main-nav" className="sticky top-0 z-40 transition-all duration-150 liquid-glass w-full">
       <div className="mx-auto w-full transition-all duration-150 px-6 py-3.5 lg:py-4 max-w-screen-2xl">
         <div className="align-center relative flex flex-row justify-between items-center text-sm md:text-base">
           {/* Left Section: Logo & Search */}
@@ -21,7 +21,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
               className="text-muted-foreground flex items-center" 
               href="/"
             >
-              <div className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-slate-100 p-1.5 px-2 rounded-md">
+              <div className="inline-flex items-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring gap-2 leading-6 hover:bg-white/20 p-1.5 px-2 rounded-md">
                 <span className="flex items-center gap-2 text-base transform cursor-pointer font-medium duration-100 ease-in-out">
                   <svg 
                     width="20" 
@@ -45,7 +45,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
             {setSearch && (
               <div className="relative group">
                 <div 
-                  className="flex items-center gap-2 rounded-md h-9 w-0 md:w-48 transition-all relative bg-[#f1f5f9] text-[#64748b] focus-within:bg-white focus-within:ring-1 focus-within:ring-slate-200 border border-transparent focus-within:border-slate-200"
+                  className="flex items-center gap-2 rounded-md h-9 w-0 md:w-48 transition-all relative bg-white/40 backdrop-blur-md text-[#64748b] focus-within:bg-white/60 focus-within:ring-1 focus-within:ring-white/50 border border-white/20 focus-within:border-white/40 shadow-sm"
                 >
                   <div className="flex items-center px-3 w-full">
                     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
@@ -57,7 +57,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
                       onChange={(e) => setSearch?.(e.target.value)}
                     />
                   </div>
-                  <kbd className="hidden md:flex items-center justify-center aspect-square h-5 w-5 pointer-events-none rounded border bg-white border-slate-200 text-[10px] font-medium text-slate-400 absolute right-2 shadow-sm uppercase">
+                  <kbd className="hidden md:flex items-center justify-center aspect-square h-5 w-5 pointer-events-none rounded border bg-white/50 border-white/30 text-[10px] font-medium text-slate-400 absolute right-2 shadow-sm uppercase">
                     /
                   </kbd>
                 </div>
@@ -71,7 +71,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center whitespace-nowrap font-medium transition-colors h-9 rounded-md px-3 text-sm"
+                className="inline-flex items-center whitespace-nowrap font-medium transition-colors h-9 rounded-md px-3 text-sm liquid-glass-button"
               >
                 Models
               </motion.button>
@@ -80,7 +80,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center whitespace-nowrap font-medium transition-colors h-9 rounded-md px-3 text-sm"
+                className="inline-flex items-center whitespace-nowrap font-medium transition-colors h-9 rounded-md px-3 text-sm liquid-glass-button"
               >
                 Rankings
               </motion.button>
@@ -89,17 +89,17 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center whitespace-nowrap font-medium transition-colors h-9 rounded-md px-3 mr-4 text-sm"
+                className="inline-flex items-center whitespace-nowrap font-medium transition-colors h-9 rounded-md px-3 mr-4 text-sm liquid-glass-button"
               >
                 Status
               </motion.button>
             </a>
             
-            <div className="flex pl-2 border-l border-slate-200/60 ml-1">
+            <div className="flex pl-2 border-l border-white/20 ml-1">
               <motion.button 
-                whileHover={{ scale: 1.05, backgroundColor: '#f8fafc' }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-all focus-visible:outline-none border border-[#e2e8f0] bg-white shadow-sm hover:bg-slate-50 px-5 h-9 rounded-full text-sm text-[#020617]"
+                className="inline-flex items-center justify-center whitespace-nowrap font-medium transition-all focus-visible:outline-none px-5 h-9 rounded-full text-sm text-[#020617] liquid-glass-button"
               >
                 Sign up
               </motion.button>
