@@ -1,6 +1,8 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/sections/navigation";
 import HeroSection from "@/components/sections/hero";
 import FeaturesGrid from "@/components/sections/features-grid";
