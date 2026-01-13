@@ -19,34 +19,34 @@ interface ModelCardProps {
 
 const ModelCard = ({ name, provider, tokens, trend, icon, modelId, isPositive = true }: ModelCardProps) => (
   <motion.div 
-    whileHover={{ scale: 1.02 }}
+    whileHover={{ translateY: -8, scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
-    className="group/card flex flex-col justify-between p-6 bg-card border border-border rounded-xl transition-all duration-200 hover:border-[#5F6FFF] hover:shadow-lg cursor-pointer h-full"
+    className="group/card flex flex-col justify-between p-8 liquid-glass border border-white/40 rounded-[2rem] transition-all duration-500 shadow-xl cursor-pointer h-full"
   >
     <div className="flex items-start justify-between gap-4">
       <div className="flex items-start gap-4">
-        <div className="flex items-center justify-center size-10 flex-shrink-0 rounded-full border border-border bg-white shadow-sm overflow-hidden p-1.5">
-          <ModelIcon modelId={modelId || name} size={28} />
+        <div className="flex items-center justify-center size-14 flex-shrink-0 rounded-2xl border border-white/60 bg-white/80 shadow-lg overflow-hidden p-2 transition-transform duration-500 group-hover/card:scale-110 group-hover/card:rotate-3">
+          <ModelIcon modelId={modelId || name} size={40} />
         </div>
         <div className="flex flex-col">
-          <h3 className="text-[18px] font-semibold text-foreground leading-tight tracking-tight">
+          <h3 className="text-xl font-bold text-primary leading-tight tracking-tight">
             {name}
           </h3>
-          <p className="text-[14px] text-muted-foreground mt-0.5">
+          <p className="text-sm font-medium text-muted-foreground mt-1">
             by {provider}
           </p>
         </div>
       </div>
     </div>
 
-    <div className="flex items-end justify-between mt-10">
+    <div className="flex items-end justify-between mt-12">
       <div className="flex flex-col">
-        <span className="text-[12px] uppercase tracking-wider text-muted-foreground font-medium">Tokens</span>
-        <span className="text-[16px] font-bold text-foreground mt-1 tabular-nums">{tokens}</span>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-bold">Tokens</span>
+        <span className="text-xl font-bold text-primary mt-1 tabular-nums">{tokens}</span>
       </div>
       <div className="flex flex-col items-end">
-        <span className="text-[12px] uppercase tracking-wider text-muted-foreground font-medium">Weekly Trend</span>
-        <span className={`text-[16px] font-bold mt-1 tabular-nums ${isPositive ? 'text-[#22C55E]' : 'text-[#EF4444]'}`}>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-bold">Trend</span>
+        <span className={`text-xl font-bold mt-1 tabular-nums ${isPositive ? 'text-emerald-600' : 'text-rose-600'}`}>
           {isPositive ? '+' : ''}{trend}
         </span>
       </div>
