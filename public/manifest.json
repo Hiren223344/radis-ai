@@ -1,0 +1,16 @@
+{
+  "name": "Orchids App",
+  "short_name": "Orchids",
+  "description": "A high-performance Next.js application",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/window.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
