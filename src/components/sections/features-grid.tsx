@@ -82,74 +82,70 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
             </div>
           )}
 
-            {feature.graphic === "availability-path" && (
-              <div className="relative w-full h-full flex items-center justify-center scale-125">
-                <svg className="w-48 h-32" viewBox="0 0 200 130" fill="none">
-                  {/* Multiple redundant paths */}
-                  <motion.path 
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    whileInView={{ pathLength: 1, opacity: 0.2 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 2, delay: index * 0.1 }}
-                    d="M100 20 L 40 80 M100 20 L 100 80 M100 20 L 160 80" 
-                    stroke="currentColor" 
-                    strokeWidth="1.5" 
-                    className="text-primary"
-                  />
-                  
-                  {/* Pulse animations on nodes */}
-                  <motion.circle 
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", delay: index * 0.1 + 0.3 }}
-                    cx="100" cy="20" r="6" className="fill-primary" 
-                  />
-                  
-                  {/* Nodes with status indicators */}
-                  {[40, 100, 160].map((x, i) => (
-                    <React.Fragment key={i}>
-                      <motion.rect 
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 + 0.5 + (i * 0.1) }}
-                        x={x-15} y="75" width="30" height="30" rx="10" 
-                        className="fill-white stroke-white/60 shadow-lg" 
-                      />
-                      <motion.circle 
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        animate={{ opacity: [0.4, 1, 0.4] }}
-                        transition={{ 
-                          opacity: { repeat: Infinity, duration: 2, delay: i * 0.5 },
-                          initial: { delay: index * 0.1 + 0.8 }
-                        }}
-                        cx={x} cy="90" r="4" className="fill-emerald-500" 
-                      />
-                    </React.Fragment>
-                  ))}
+              {feature.graphic === "availability-path" && (
+                <div className="relative w-full h-full flex items-center justify-center scale-110">
+                  <svg className="w-full h-full max-w-[280px]" viewBox="0 0 240 160" fill="none">
+                    {/* Background Mesh/Grid */}
+                    <path d="M0 40 H240 M0 80 H240 M0 120 H240 M40 0 V160 M120 0 V160 M200 0 V160" stroke="currentColor" strokeWidth="0.5" className="text-primary/5" />
+                    
+                    {/* High Availability Mesh Network */}
+                    <g className="text-primary/20">
+                      <line x1="120" y1="30" x2="60" y2="80" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="120" y1="30" x2="180" y2="80" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="120" y1="30" x2="120" y2="130" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="60" y1="80" x2="180" y2="80" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="60" y1="80" x2="120" y2="130" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="180" y1="80" x2="120" y2="130" stroke="currentColor" strokeWidth="1.5" />
+                    </g>
 
-                  {/* Connecting active data flow */}
-                  <motion.path 
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    whileInView={{ pathLength: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    animate={{ strokeDashoffset: [0, -20] }}
-                    transition={{ 
-                      pathLength: { duration: 1.5, delay: index * 0.1 + 1 },
-                      strokeDashoffset: { repeat: Infinity, duration: 1, ease: "linear" }
-                    }}
-                    strokeDasharray="4 4"
-                    d="M100 20 L 40 80 M100 20 L 100 80 M100 20 L 160 80" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    className="text-emerald-500/50"
-                  />
-                </svg>
-              </div>
-            )}
+                    {/* Active Path Animations (Marching Ants) */}
+                    <motion.path 
+                      d="M120 30 L 60 80 L 120 130" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeDasharray="4 6"
+                      className="text-emerald-500"
+                      animate={{ strokeDashoffset: [0, -20] }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    />
+                    <motion.path 
+                      d="M120 30 L 180 80 L 120 130" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeDasharray="4 6"
+                      className="text-primary"
+                      animate={{ strokeDashoffset: [0, -20] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    />
+
+                    {/* Server Nodes */}
+                    {[
+                      { x: 120, y: 30, color: "primary" },
+                      { x: 60, y: 80, color: "emerald" },
+                      { x: 180, y: 80, color: "primary" },
+                      { x: 120, y: 130, color: "primary" }
+                    ].map((node, i) => (
+                      <g key={i}>
+                        <motion.circle 
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ type: "spring", delay: 0.1 * i }}
+                          cx={node.x} cy={node.y} r="10" 
+                          className="fill-white stroke-white/80 shadow-xl" 
+                        />
+                        <motion.circle 
+                          animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
+                          cx={node.x} cy={node.y} r="8" 
+                          className={`fill-${node.color}-500/20`} 
+                        />
+                        <circle cx={node.x} cy={node.y} r="4" className={`fill-${node.color}-500`} />
+                      </g>
+                    ))}
+                  </svg>
+                </div>
+              )}
 
           {feature.graphic === "performance-graph" && (
             <div className="w-56 px-6 flex flex-col gap-4 scale-125">
