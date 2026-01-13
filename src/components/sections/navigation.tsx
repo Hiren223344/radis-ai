@@ -28,11 +28,8 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch, onRedirect }
   };
 
   return (
-    <motion.nav 
+    <nav 
       id="main-nav"
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
       className="fixed top-0 z-[100] w-full liquid-glass border-b border-white/80 bg-white/70 backdrop-blur-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)]"
       style={{ visibility: 'visible', display: 'flex' }}
     >
