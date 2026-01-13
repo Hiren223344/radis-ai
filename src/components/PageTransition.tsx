@@ -6,64 +6,67 @@ import gsap from 'gsap';
 
 const PageTransition = () => {
   const pathname = usePathname();
+  const prevPathnameRef = useRef(pathname);
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
   const textRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
-    useEffect(() => {
-      const panels = panelsRef.current;
-      const text = textRef.current;
-      const overlay = overlayRef.current;
-  
-      if (!overlay || !text || panels.length < 2) return;
-  
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          onStart: () => setIsAnimating(true),
-          onComplete: () => {
-            setIsAnimating(false);
-            gsap.set(overlay, { display: 'none' });
-          }
-        });
-  
-        // Reset visibility and initial states
-        gsap.set(overlay, { display: 'block' });
+  useEffect(() => {
+    const panels = panelsRef.current;
+    const text = textRef.current;
+    const overlay = overlayRef.current;
+
+    if (!overlay || !text || panels.length < 2) return;
+
+    const isFirstLoad = !prevPathnameRef.current || prevPathnameRef.current === pathname;
+    prevPathnameRef.current = pathname;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        onStart: () => setIsAnimating(true),
+        onComplete: () => {
+          setIsAnimating(false);
+          gsap.set(overlay, { display: 'none' });
+        }
+      });
+
+      // Reset visibility
+      gsap.set(overlay, { display: 'block' });
+      
+      if (isFirstLoad) {
+        // Initial load animation (Intro)
         gsap.set(text, { opacity: 0, scale: 0.9, y: 20 });
-        
-        // Initial positions: 2 Panels (Left and Right)
-        gsap.set(panels[0], { x: '-100%' }); // Left
-        gsap.set(panels[1], { x: '100%' });  // Right
-  
-        // 1. Entry Animation: Panels slide in to meet at the center
+        gsap.set(panels[0], { x: '0%' });
+        gsap.set(panels[1], { x: '0%' });
+
+        tl.to(text, {
+          opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'back.out(1.4)'
+        })
+        .to(text, {
+          opacity: 0, y: -20, duration: 0.4, delay: 0.5, ease: 'power2.in'
+        })
+        .addLabel('split')
+        .to(panels[0], { x: '-100%', duration: 0.8, ease: 'power4.inOut' }, 'split')
+        .to(panels[1], { x: '100%', duration: 0.8, ease: 'power4.inOut' }, 'split');
+      } else {
+        // Navigation transition: Only play "closing" part on the current context
+        // and "opening" part immediately to feel like a quick swipe
+        gsap.set(text, { opacity: 0 });
+        gsap.set(panels[0], { x: '-100%' });
+        gsap.set(panels[1], { x: '100%' });
+
         tl.to(panels, {
           x: '0%',
-          duration: 0.5,
+          duration: 0.4,
           ease: 'power4.out',
           stagger: 0.05
         })
-        
-        // 2. Text Reveal
-        .to(text, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.4,
-          ease: 'back.out(1.4)'
-        })
-        .to(text, {
-          opacity: 0,
-          y: -10,
-          duration: 0.3,
-          delay: 0.4,
-          ease: 'power2.in'
-        })
-  
-        // 3. Exit Animation: Panels split back to their respective sides
-        .addLabel('split')
-        .to(panels[0], { x: '-100%', duration: 0.6, ease: 'power4.inOut' }, 'split')
-        .to(panels[1], { x: '100%', duration: 0.6, ease: 'power4.inOut' }, 'split');
-      });
+        .addLabel('split', '+=0.1')
+        .to(panels[0], { x: '-100%', duration: 0.4, ease: 'power4.in' }, 'split')
+        .to(panels[1], { x: '100%', duration: 0.4, ease: 'power4.in' }, 'split');
+      }
+    });
   
       return () => {
         ctx.revert();
