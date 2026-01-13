@@ -33,30 +33,32 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
           <div className="flex flex-row justify-between items-center text-sm md:text-base">
             {/* Left Section: Logo & Search */}
             <div className="flex items-center gap-8">
-              <motion.a 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center" 
-                href="/"
-              >
-                <div 
-                  onMouseMove={handleMouseMove}
-                  className="flex items-center gap-3 liquid-glass-button py-2 px-4 rounded-2xl border border-white/60 shadow-sm"
+              <Link href="/">
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center cursor-pointer" 
                 >
-                  <svg 
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 512 512" 
-                    className="size-6 fill-primary" 
-                    aria-label="Logo"
+                  <div 
+                    onMouseMove={handleMouseMove}
+                    className="flex items-center gap-3 liquid-glass-button py-2 px-4 rounded-2xl border border-white/60 shadow-sm"
                   >
-                    <path d="M256 0L0 256l256 256 256-256L256 0zm0 100.3L411.7 256 256 411.7 100.3 256 256 100.3z" />
-                    <path d="M256 170.7L170.7 256 256 341.3 341.3 256 256 170.7z" />
-                    <title>Radison</title>
-                  </svg>
-                  <span className="text-primary font-bold tracking-tight text-lg">Radison</span>
-                </div>
-              </motion.a>
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 512 512" 
+                      className="size-6 fill-primary" 
+                      aria-label="Logo"
+                    >
+                      <path d="M256 0L0 256l256 256 256-256L256 0zm0 100.3L411.7 256 256 411.7 100.3 256 256 100.3z" />
+                      <path d="M256 170.7L170.7 256 256 341.3 341.3 256 256 170.7z" />
+                      <title>Radison</title>
+                    </svg>
+                    <span className="text-primary font-bold tracking-tight text-lg">Radison</span>
+                  </div>
+                </motion.div>
+              </Link>
+
     
               {/* Search Bar */}
               {setSearch && (
