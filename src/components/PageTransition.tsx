@@ -7,50 +7,62 @@ import gsap from 'gsap';
 const PageTransition = () => {
   const pathname = usePathname();
   const overlayRef = useRef<HTMLDivElement>(null);
-  const leftPanelRef = useRef<HTMLDivElement>(null);
-  const rightPanelRef = useRef<HTMLDivElement>(null);
-  const aiTextRef = useRef<HTMLDivElement>(null);
-  const userTextRef = useRef<HTMLDivElement>(null);
+  const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const textRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
+    const panels = panelsRef.current;
+    const text = textRef.current;
+    const overlay = overlayRef.current;
+
+    if (!overlay || !text || panels.length < 4) return;
+
     const tl = gsap.timeline({
       onStart: () => setIsAnimating(true),
       onComplete: () => {
         setIsAnimating(false);
-        gsap.set(overlayRef.current, { display: 'none' });
+        gsap.set(overlay, { display: 'none' });
       }
     });
 
     // Reset visibility
-    gsap.set(overlayRef.current, { display: 'flex' });
+    gsap.set(overlay, { display: 'block' });
     
-    // Starting state for Panels
-    gsap.set([leftPanelRef.current, rightPanelRef.current], {
-      x: (index) => index === 0 ? '0%' : '0%'
+    // Starting state for Panels (all meeting in middle)
+    gsap.set(panels, {
+      x: '0%',
+      y: '0%',
+      opacity: 1
     });
 
-    // Opening animation (the "Split")
-    tl.to([aiTextRef.current, userTextRef.current], {
+    // Starting state for Text
+    gsap.set(text, {
+      opacity: 0,
+      scale: 0.8,
+      y: 20
+    });
+
+    // Animation Sequence
+    tl.to(text, {
       opacity: 1,
+      scale: 1,
       y: 0,
       duration: 0.6,
       ease: 'power3.out',
       delay: 0.2
     })
-    .to([aiTextRef.current, userTextRef.current], {
+    .to(text, {
       opacity: 0,
-      y: -40,
+      scale: 1.2,
       duration: 0.4,
       delay: 0.5,
       ease: 'power3.in'
     })
-    .to([leftPanelRef.current, rightPanelRef.current], {
-      x: (index) => index === 0 ? '-100%' : '100%',
-      duration: 0.8,
-      ease: 'expo.inOut',
-      stagger: 0.1
-    });
+    .to(panels[0], { x: '-100%', y: '-100%', duration: 0.8, ease: 'expo.inOut' }, 'split')
+    .to(panels[1], { x: '100%', y: '-100%', duration: 0.8, ease: 'expo.inOut' }, 'split')
+    .to(panels[2], { x: '-100%', y: '100%', duration: 0.8, ease: 'expo.inOut' }, 'split')
+    .to(panels[3], { x: '100%', y: '100%', duration: 0.8, ease: 'expo.inOut' }, 'split');
 
     return () => {
       tl.kill();
@@ -60,32 +72,41 @@ const PageTransition = () => {
   return (
     <div 
       ref={overlayRef}
-      className="fixed inset-0 z-[9999] flex flex-row overflow-hidden pointer-events-none"
+      className="fixed inset-0 z-[9999] overflow-hidden pointer-events-none"
     >
-      {/* AI Side (Left) */}
+      {/* Top Left */}
       <div 
-        ref={leftPanelRef}
-        className="relative flex-1 bg-indigo-600 flex items-center justify-center border-r border-white/20"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/50 to-transparent" />
-        <div ref={aiTextRef} className="relative opacity-0 translate-y-10 text-center">
-          <span className="text-6xl md:text-9xl font-black text-white/20 uppercase tracking-tighter">AI</span>
-          <div className="mt-4 px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-            <span className="text-white font-bold tracking-widest uppercase text-sm">Processing Intelligence</span>
-          </div>
-        </div>
-      </div>
+        ref={(el) => { panelsRef.current[0] = el; }}
+        className="absolute top-0 left-0 w-1/2 h-1/2 bg-[#0A0A0B] border-r border-b border-white/5"
+      />
+      {/* Top Right */}
+      <div 
+        ref={(el) => { panelsRef.current[1] = el; }}
+        className="absolute top-0 left-1/2 w-1/2 h-1/2 bg-[#0A0A0B] border-l border-b border-white/5"
+      />
+      {/* Bottom Left */}
+      <div 
+        ref={(el) => { panelsRef.current[2] = el; }}
+        className="absolute top-1/2 left-0 w-1/2 h-1/2 bg-[#0A0A0B] border-r border-t border-white/5"
+      />
+      {/* Bottom Right */}
+      <div 
+        ref={(el) => { panelsRef.current[3] = el; }}
+        className="absolute top-1/2 left-1/2 w-1/2 h-1/2 bg-[#0A0A0B] border-l border-t border-white/5"
+      />
 
-      {/* User Side (Right) */}
-      <div 
-        ref={rightPanelRef}
-        className="relative flex-1 bg-emerald-500 flex items-center justify-center border-l border-white/20"
-      >
-        <div className="absolute inset-0 bg-gradient-to-bl from-emerald-900/50 to-transparent" />
-        <div ref={userTextRef} className="relative opacity-0 translate-y-10 text-center">
-          <span className="text-6xl md:text-9xl font-black text-white/20 uppercase tracking-tighter">USER</span>
-          <div className="mt-4 px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-            <span className="text-white font-bold tracking-widest uppercase text-sm">Experience Ready</span>
+      {/* Central Text */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div ref={textRef} className="text-center">
+          <h1 className="text-7xl md:text-9xl font-black tracking-tighter text-white uppercase italic">
+            RADISON
+          </h1>
+          <div className="mt-4 flex items-center justify-center gap-4">
+            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/20" />
+            <span className="text-white/40 font-mono text-sm tracking-[0.3em] uppercase">
+              Unified Intelligence
+            </span>
+            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-white/20" />
           </div>
         </div>
       </div>
