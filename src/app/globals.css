@@ -193,11 +193,24 @@
     }
 
     .liquid-glass {
-      background: rgba(255, 255, 255, 0.4);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.4) 100%
+      );
+      background-size: 200% 200%;
+      animation: glass-flow 8s ease infinite;
       backdrop-filter: blur(12px) saturate(180%);
       -webkit-backdrop-filter: blur(12px) saturate(180%);
       border: 1px solid rgba(255, 255, 255, 0.3);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    }
+
+    @keyframes glass-flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .liquid-glass-button {
