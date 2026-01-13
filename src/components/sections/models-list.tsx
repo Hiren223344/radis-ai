@@ -118,14 +118,12 @@ const ModelsList: React.FC = () => {
   return (
     <div className="w-full flex-1 tabular-nums">
       <div className="mx-auto max-w-full">
-        {models.map((model) => (
-          <motion.div 
-            key={model.id} 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ backgroundColor: '#f8fafc' }}
-            className="model-list-item border-b border-border py-8 first:pt-4 px-4 transition-colors"
-          >
+          {models.map((model) => (
+            <motion.div 
+              key={model.id} 
+              whileHover={{ backgroundColor: '#f8fafc' }}
+              className="model-list-item border-b border-border py-8 first:pt-4 px-4 transition-colors"
+            >
             {/* Header Row: Title and Aggregate Tokens */}
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-1.5">
               <div className="flex flex-wrap items-center gap-2">
