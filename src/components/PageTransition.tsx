@@ -50,21 +50,15 @@ const PageTransition = () => {
         .to(panels[0], { x: '-100%', duration: 0.8, ease: 'power4.inOut' }, 'split')
         .to(panels[1], { x: '100%', duration: 0.8, ease: 'power4.inOut' }, 'split');
       } else {
-        // Navigation transition: Only play "closing" part on the current context
-        // and "opening" part immediately to feel like a quick swipe
+        // Navigation transition: Quick swipe reveal
+        // This plays when moving between pages. We want it to feel like the new page
+        // is being "revealed" by the panels opening, rather than a full close-then-open.
         gsap.set(text, { opacity: 0 });
-        gsap.set(panels[0], { x: '-100%' });
-        gsap.set(panels[1], { x: '100%' });
+        gsap.set(panels[0], { x: '0%' });
+        gsap.set(panels[1], { x: '0%' });
 
-        tl.to(panels, {
-          x: '0%',
-          duration: 0.4,
-          ease: 'power4.out',
-          stagger: 0.05
-        })
-        .addLabel('split', '+=0.1')
-        .to(panels[0], { x: '-100%', duration: 0.4, ease: 'power4.in' }, 'split')
-        .to(panels[1], { x: '100%', duration: 0.4, ease: 'power4.in' }, 'split');
+        tl.to(panels[0], { x: '-100%', duration: 0.6, ease: 'power4.inOut' })
+          .to(panels[1], { x: '100%', duration: 0.6, ease: 'power4.inOut' }, '<');
       }
     });
   
