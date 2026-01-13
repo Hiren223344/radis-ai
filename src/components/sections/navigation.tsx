@@ -84,24 +84,25 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
             </div>
     
             {/* Right Section: Menu Links & Sign Up */}
-            <div className="hidden lg:flex lg:items-center lg:gap-6">
-              <div className="flex items-center gap-1 bg-white/30 p-1.5 rounded-2xl border border-white/60 backdrop-blur-sm">
-                <a href="/models">
-                  <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
-                    Models
-                  </Button>
-                </a>
-                <a href="/rankings">
-                  <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
-                    Rankings
-                  </Button>
-                </a>
-                <a href="/status">
-                  <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
-                    Status
-                  </Button>
-                </a>
-              </div>
+              <div className="hidden lg:flex lg:items-center lg:gap-6">
+                <div className="flex items-center gap-1 bg-white/30 p-1.5 rounded-2xl border border-white/60 backdrop-blur-sm">
+                  <Link href="/models">
+                    <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
+                      Models
+                    </Button>
+                  </Link>
+                  <Link href="/rankings">
+                    <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
+                      Rankings
+                    </Button>
+                  </Link>
+                  <Link href="/status">
+                    <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
+                      Status
+                    </Button>
+                  </Link>
+                </div>
+
               
               <Button size="lg" className="rounded-2xl font-bold px-8 shadow-xl liquid-glass-button border-white/60 hover:scale-105 transition-transform">
                 Get Started
