@@ -48,10 +48,6 @@ const ProviderIcons = [
 const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: number }) => {
   return (
     <motion.a 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.21, 1.02, 0.73, 1] }}
       whileHover={{ translateY: -12, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       href={feature.href} 
