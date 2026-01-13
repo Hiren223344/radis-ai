@@ -5,10 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/sections/navigation";
 import HeroSection from "@/components/sections/hero";
-import FeaturesGrid from "@/components/sections/features-grid";
 import FeaturedModels from "@/components/sections/featured-models";
-import OnboardingSteps from "@/components/sections/onboarding-steps";
-import BottomContent from "@/components/sections/bottom-content";
 import Footer from "@/components/sections/footer";
 
 const sectionVariants = {
@@ -71,37 +68,7 @@ export default function Home() {
               viewport={{ once: true, margin: "-50px" }}
               variants={sectionVariants}
             >
-              <FeaturesGrid />
-            </motion.div>
-
-            <motion.div
-              custom={2}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={sectionVariants}
-            >
               <FeaturedModels />
-            </motion.div>
-
-            <motion.div
-              custom={3}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={sectionVariants}
-            >
-              <OnboardingSteps />
-            </motion.div>
-
-            <motion.div
-              custom={4}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={sectionVariants}
-            >
-              <BottomContent />
             </motion.div>
           </main>
           <Footer />
