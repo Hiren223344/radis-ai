@@ -63,15 +63,12 @@ export default function Home() {
 
             <motion.div
               custom={1}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
               variants={sectionVariants}
             >
               <FeaturedModels />
+              <Footer />
             </motion.div>
           </main>
-          <Footer />
         </motion.div>
       )}
     </AnimatePresence>
