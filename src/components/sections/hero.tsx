@@ -1,14 +1,11 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
-interface HeroSectionProps {
-  onRedirect?: (path: string) => void;
-}
-
-export default function HeroSection({ onRedirect }: HeroSectionProps) {
+export default function HeroSection() {
   return (
     <section className="relative w-full max-w-[1440px] mx-auto px-6 py-20 lg:py-32 flex flex-col items-center text-center overflow-hidden">
       {/* Background Glows */}
@@ -41,19 +38,19 @@ export default function HeroSection({ onRedirect }: HeroSectionProps) {
 
         {/* CTA Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-          <button
-            onClick={() => onRedirect?.('/models')}
+          <Link
+            href="/models"
             className="h-14 px-8 rounded-2xl bg-primary text-primary-foreground font-bold text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2"
           >
             Explore Models
             <ArrowRight className="size-5" />
-          </button>
-          <button
-            onClick={() => onRedirect?.('/rankings')}
-            className="h-14 px-8 rounded-2xl bg-white border border-border text-foreground font-bold text-lg hover:bg-slate-50 transition-all"
+          </Link>
+          <Link
+            href="/rankings"
+            className="h-14 px-8 rounded-2xl bg-white border border-border text-foreground font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center"
           >
             View Rankings
-          </button>
+          </Link>
         </div>
 
         {/* Stats */}
