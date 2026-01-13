@@ -16,13 +16,13 @@ export default function HeroSection({ onRedirect }: HeroSectionProps) {
   };
 
   return (
-    <div className="relative flex flex-col items-center px-6 pt-24 pb-20 md:px-8 lg:pt-32 bg-transparent overflow-hidden">
+    <section className="relative flex flex-col items-center px-6 pt-24 pb-20 md:px-8 lg:pt-32 bg-transparent overflow-hidden">
       <div className="flex w-full max-w-5xl flex-col justify-center gap-16 md:gap-24">
         
         <div className="flex flex-col gap-6 md:gap-8 text-center relative z-10">
           <div className="flex flex-col gap-4 md:gap-6">
             <h1 className="my-0 w-full text-4xl sm:text-6xl md:text-[5rem] font-bold leading-[1] tracking-tight text-primary">
-              The Unified Interface <br className="hidden md:block" /> 
+              The Unified Interface <br className="hidden md:block" />
               <span className="font-serif italic font-light text-primary/80">For LLMs</span>
             </h1>
             <p className="text-muted-foreground text-lg md:text-2xl font-medium max-w-2xl mx-auto leading-relaxed">
@@ -111,6 +111,6 @@ export default function HeroSection({ onRedirect }: HeroSectionProps) {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
