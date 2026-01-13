@@ -23,12 +23,11 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   transpilePackages: ['@lobehub/icons'],
-  experimental: {
-    turbopack: {
-      rules: {
-        "*.{jsx,tsx}": {
-          loaders: [LOADER]
-        }
+  experimental: {},
+  turbopack: {
+    rules: {
+      "*.{jsx,tsx}": {
+        loaders: [LOADER]
       }
     }
   },
