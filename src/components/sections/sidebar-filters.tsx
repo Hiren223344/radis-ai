@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRight, Type, Image, FileText, Music, Video, Hash, DollarSign, Layers, Tag, Settings2, Sparkles } from 'lucide-react';
 
@@ -12,7 +12,7 @@ interface AccordionItemProps {
 }
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ title, icon, children, defaultOpen = false }) => {
-  const [isOpen, setIsOpen] = React.useState(defaultOpen);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
     <div className="border-b border-none">
