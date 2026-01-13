@@ -52,23 +52,24 @@ export default function Home() {
           className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/10 selection:text-primary relative overflow-x-hidden"
         >
           <div className="bg-mesh" aria-hidden="true" />
-          <Navigation onRedirect={handleRedirect} />
-          <main id="skip" className="pt-24">
-            <motion.div
-              custom={0}
-              variants={sectionVariants}
-            >
+          
+          <motion.div
+            custom={0}
+            variants={sectionVariants}
+          >
+            <Navigation onRedirect={handleRedirect} />
+            <main id="skip" className="pt-24">
               <HeroSection onRedirect={handleRedirect} />
-            </motion.div>
+            </main>
+          </motion.div>
 
-            <motion.div
-              custom={1}
-              variants={sectionVariants}
-            >
-              <FeaturedModels />
-              <Footer />
-            </motion.div>
-          </main>
+          <motion.div
+            custom={1}
+            variants={sectionVariants}
+          >
+            <FeaturedModels />
+            <Footer />
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
