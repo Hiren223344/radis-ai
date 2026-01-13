@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
+import ErrorReporter from "@/components/ErrorReporter";
 import PageTransition from "@/components/PageTransition";
 import Script from "next/script";
 
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
       <html lang="en">
         <body className="antialiased overflow-x-hidden">
+          <ErrorReporter />
           <Script
           id="orchids-browser-logs"
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts/orchids-browser-logs.js"
