@@ -111,7 +111,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
             <motion.button 
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 text-slate-600"
+              className="p-2 text-slate-600 liquid-glass-button rounded-md"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
