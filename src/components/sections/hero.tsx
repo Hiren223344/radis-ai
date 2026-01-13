@@ -63,7 +63,7 @@ export default function HeroSection() {
             <span className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Uptime</span>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
