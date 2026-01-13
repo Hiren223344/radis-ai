@@ -20,8 +20,8 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
   };
 
   return (
-    <nav id="main-nav" className="fixed top-0 z-[100] w-full transition-all duration-500 liquid-glass border-b border-white/60 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)]">
-      <div className="container mx-auto transition-all duration-300 py-3">
+    <nav id="main-nav" className="fixed top-0 z-[100] w-full liquid-glass border-b border-white/60 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)]">
+      <div className="container mx-auto py-3">
         <div className="flex flex-row justify-between items-center text-sm md:text-base">
           {/* Left Section: Logo & Search */}
           <div className="flex items-center gap-8">
@@ -93,7 +93,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
               </a>
             </div>
             
-            <Button size="lg" className="rounded-2xl font-bold px-8 shadow-xl">
+            <Button size="lg" className="rounded-2xl font-bold px-8 shadow-xl liquid-glass-button border-white/60">
               Get Started
             </Button>
           </div>
