@@ -273,14 +273,14 @@ const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => 
                             <h3 className="text-[16px] font-semibold text-foreground tracking-tight">
                               {model.name || model.id}
                             </h3>
-                            <div className="flex items-center gap-2">
-                              {model.type === 'Reasoning' ? (
-                                <Tag label="Reasoning" variant="reasoning" />
-                              ) : model.type === 'Vision Model' ? (
-                                <Tag label="Vision Model" variant="default" color="#3b82f6" />
-                              ) : (
-                                <Tag label="Text Model" variant="default" color="#10b981" />
-                              )}
+                              <div className="flex items-center gap-2">
+                                {model.type === 'Reasoning' ? (
+                                  <Tag label="Reasoning" variant="reasoning" />
+                                ) : model.type === 'Vision' ? (
+                                  <Tag label="Vision" variant="default" color="#3b82f6" />
+                                ) : (
+                                  <Tag label="Text" variant="default" color="#10b981" />
+                                )}
                               <button 
                                 className="p-1 rounded hover:bg-slate-100 text-slate-11 transition-colors"
                                 onClick={() => navigator.clipboard.writeText(model.id)}
