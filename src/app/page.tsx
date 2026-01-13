@@ -8,7 +8,7 @@ import Footer from "@/components/sections/footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/10 selection:text-primary overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/10 selection:text-primary relative">
       <div className="bg-mesh" aria-hidden="true" />
       <Navigation />
         <main id="skip">
