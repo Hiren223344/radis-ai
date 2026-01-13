@@ -45,9 +45,13 @@ const ProviderIcons = [
   "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://huggingface.co/&size=256"
 ];
 
-const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
+const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: number }) => {
   return (
     <motion.a 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.21, 1.02, 0.73, 1] }}
       whileHover={{ translateY: -12, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       href={feature.href} 
@@ -66,8 +70,9 @@ const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
                 <motion.div 
                   key={idx} 
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: idx * 0.05 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (index * 0.1) + (idx * 0.05) }}
                   whileHover={{ scale: 1.3, rotate: 10, zIndex: 50 }}
                   className="flex items-center justify-center size-10 rounded-2xl border border-white/60 bg-white/80 shadow-lg p-2 transition-all"
                 >
@@ -82,14 +87,21 @@ const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
               <svg className="w-48 h-24" viewBox="0 0 200 100" fill="none">
                 <motion.path 
                   initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 3, ease: "easeInOut", delay: index * 0.1 }}
                   d="M100 20 C 100 20, 100 60, 40 70 M100 20 C 100 20, 100 60, 100 70 M100 20 C 100 20, 100 60, 160 70" 
                   stroke="currentColor" 
                   strokeWidth="2" 
                   className="text-primary/10"
                 />
-                <circle cx="100" cy="15" r="4" className="fill-primary" />
+                <motion.circle 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + 0.5 }}
+                  cx="100" cy="15" r="4" className="fill-primary" 
+                />
                 <rect x="30" y="65" width="24" height="24" rx="8" className="fill-white stroke-white/60 shadow-sm" />
                 <rect x="88" y="65" width="24" height="24" rx="8" className="fill-white stroke-white/60 shadow-sm" />
                 <rect x="146" y="65" width="24" height="24" rx="8" className="fill-white stroke-white/60 shadow-sm" />
@@ -104,8 +116,9 @@ const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
                 <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
                   <motion.path 
                     initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 3, ease: "linear", delay: index * 0.1 }}
                     d="M0 60 Q 20 50, 40 55 T 80 40 T 120 45 T 160 30 T 200 35" 
                     fill="none" 
                     stroke="currentColor" 
@@ -118,13 +131,19 @@ const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
           )}
 
           {feature.graphic === "security-shield" && (
-            <div className="flex flex-col items-center gap-6 scale-125">
+            <motion.div 
+              initial={{ scale: 0, rotate: -45 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 200, damping: 15, delay: index * 0.1 }}
+              className="flex flex-col items-center gap-6 scale-125"
+            >
               <div className="size-20 rounded-[2rem] bg-primary/5 border border-primary/10 flex items-center justify-center shadow-inner">
                 <svg className="size-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                 </svg>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>
@@ -156,7 +175,7 @@ export default function FeaturesGrid() {
     <section className="w-full max-w-[1440px] mx-auto px-6 py-20 md:py-32 lg:px-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
         {features.map((feature, index) => (
-          <FeatureCard key={index} feature={feature} />
+          <FeatureCard key={index} feature={feature} index={index} />
         ))}
       </div>
     </section>
