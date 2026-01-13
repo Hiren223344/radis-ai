@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
-import ErrorReporter from "@/components/ErrorReporter";
 import PageTransition from "@/components/PageTransition";
 import Script from "next/script";
 
@@ -24,7 +23,6 @@ export default function RootLayout({
           strategy="afterInteractive"
           data-orchids-project-id="553712b9-2c96-4989-89c0-e47787bf27ac"
         />
-        <ErrorReporter />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
           strategy="afterInteractive"
