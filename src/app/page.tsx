@@ -26,31 +26,19 @@ export default function Home() {
       <div className="bg-mesh" aria-hidden="true" />
       
       {/* Section 1: Navigation and Hero */}
-      <motion.div
-        custom={0}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
+      <div>
         <Navigation />
         <main id="skip" className="pt-24 lg:pt-32">
           <HeroSection />
         </main>
-      </motion.div>
+      </div>
 
       {/* Section 2: Announcements, Models, and Footer */}
-      <motion.div
-        custom={1}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
+      <div>
         <AnnouncementsAndLinks />
         <FeaturedModels />
         <Footer />
-      </motion.div>
+      </div>
     </div>
   );
 }
