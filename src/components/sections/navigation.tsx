@@ -4,7 +4,12 @@ import React from 'react';
 import { Search } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const Navigation = () => {
+interface NavigationProps {
+  search?: string;
+  setSearch?: (value: string) => void;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
   return (
     <nav id="main-nav" className="sticky top-0 z-40 transition-all duration-150 bg-white w-full border-b border-border/40">
       <div className="mx-auto w-full transition-all duration-150 px-6 py-3.5 lg:py-4 max-w-screen-2xl">
@@ -47,6 +52,8 @@ const Navigation = () => {
                     className="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-[#64748b] font-normal" 
                     placeholder="Search"
                     type="text"
+                    value={search || ""}
+                    onChange={(e) => setSearch?.(e.target.value)}
                   />
                 </div>
                 <kbd className="hidden md:flex items-center justify-center aspect-square h-5 w-5 pointer-events-none rounded border bg-white border-slate-200 text-[10px] font-medium text-slate-400 absolute right-2 shadow-sm uppercase">

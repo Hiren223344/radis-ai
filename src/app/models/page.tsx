@@ -13,7 +13,7 @@ export default function ModelsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/10 selection:text-primary">
-      <Navigation />
+      <Navigation search={search} setSearch={setSearch} />
       <div className="mx-auto w-full transition-all duration-150 px-6 max-w-screen-4xl flex gap-10">
         <SidebarFilters />
         <main id="skip" className="flex-1 flex flex-col min-w-0">
