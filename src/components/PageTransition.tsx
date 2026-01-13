@@ -11,62 +11,64 @@ const PageTransition = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  useEffect(() => {
-    const panels = panelsRef.current;
-    const text = textRef.current;
-    const overlay = overlayRef.current;
-
-    if (!overlay || !text || panels.length < 2) return;
-
-    const tl = gsap.timeline({
-      onStart: () => setIsAnimating(true),
-      onComplete: () => {
-        setIsAnimating(false);
-        gsap.set(overlay, { display: 'none' });
-      }
-    });
-
-    // Reset visibility and initial states
-    gsap.set(overlay, { display: 'block' });
-    gsap.set(text, { opacity: 0, scale: 0.9, y: 20 });
-    
-    // Initial positions: 2 Panels (Left and Right)
-    gsap.set(panels[0], { x: '-100%' }); // Left
-    gsap.set(panels[1], { x: '100%' });  // Right
-
-    // 1. Entry Animation: Panels slide in to meet at the center
-    tl.to(panels, {
-      x: '0%',
-      duration: 0.5,
-      ease: 'power4.out',
-      stagger: 0.05
-    })
-    
-    // 2. Text Reveal
-    .to(text, {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 0.4,
-      ease: 'back.out(1.4)'
-    })
-    .to(text, {
-      opacity: 0,
-      y: -10,
-      duration: 0.3,
-      delay: 0.4,
-      ease: 'power2.in'
-    })
-
-    // 3. Exit Animation: Panels split back to their respective sides
-    .addLabel('split')
-    .to(panels[0], { x: '-100%', duration: 0.6, ease: 'power4.inOut' }, 'split')
-    .to(panels[1], { x: '100%', duration: 0.6, ease: 'power4.inOut' }, 'split');
-
-    return () => {
-      tl.kill();
-    };
-  }, [pathname]);
+    useEffect(() => {
+      const panels = panelsRef.current;
+      const text = textRef.current;
+      const overlay = overlayRef.current;
+  
+      if (!overlay || !text || panels.length < 2) return;
+  
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          onStart: () => setIsAnimating(true),
+          onComplete: () => {
+            setIsAnimating(false);
+            gsap.set(overlay, { display: 'none' });
+          }
+        });
+  
+        // Reset visibility and initial states
+        gsap.set(overlay, { display: 'block' });
+        gsap.set(text, { opacity: 0, scale: 0.9, y: 20 });
+        
+        // Initial positions: 2 Panels (Left and Right)
+        gsap.set(panels[0], { x: '-100%' }); // Left
+        gsap.set(panels[1], { x: '100%' });  // Right
+  
+        // 1. Entry Animation: Panels slide in to meet at the center
+        tl.to(panels, {
+          x: '0%',
+          duration: 0.5,
+          ease: 'power4.out',
+          stagger: 0.05
+        })
+        
+        // 2. Text Reveal
+        .to(text, {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.4,
+          ease: 'back.out(1.4)'
+        })
+        .to(text, {
+          opacity: 0,
+          y: -10,
+          duration: 0.3,
+          delay: 0.4,
+          ease: 'power2.in'
+        })
+  
+        // 3. Exit Animation: Panels split back to their respective sides
+        .addLabel('split')
+        .to(panels[0], { x: '-100%', duration: 0.6, ease: 'power4.inOut' }, 'split')
+        .to(panels[1], { x: '100%', duration: 0.6, ease: 'power4.inOut' }, 'split');
+      });
+  
+      return () => {
+        ctx.revert();
+      };
+    }, [pathname]);
 
   return (
     <div 

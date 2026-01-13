@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import Link from 'next/link';
 import { ChevronRight, Type, Image, FileText, Music, Video, Hash, DollarSign, Layers, Tag, Settings2, Sparkles } from 'lucide-react';
 
 interface AccordionItemProps {
@@ -54,7 +54,7 @@ interface FilterLinkProps {
 
 const FilterLink: React.FC<FilterLinkProps> = ({ label, isNew, href }) => (
   <div className="relative flex w-full items-center gap-3">
-    <a 
+    <Link 
       className="text-muted-foreground w-full hover:text-foreground transition-colors" 
       href={href}
     >
@@ -69,7 +69,7 @@ const FilterLink: React.FC<FilterLinkProps> = ({ label, isNew, href }) => (
           )}
         </span>
       </button>
-    </a>
+    </Link>
   </div>
 );
 
