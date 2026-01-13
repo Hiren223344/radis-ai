@@ -29,7 +29,8 @@ export default function Home() {
       <motion.div
         custom={0}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true }}
         variants={sectionVariants}
       >
         <Navigation />
@@ -42,7 +43,8 @@ export default function Home() {
       <motion.div
         custom={1}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true }}
         variants={sectionVariants}
       >
         <AnnouncementsAndLinks />
