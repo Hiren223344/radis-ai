@@ -19,10 +19,6 @@ interface ModelCardProps {
 
 const ModelCard = ({ name, provider, tokens, trend, icon, modelId, isPositive = true, index }: ModelCardProps & { index: number }) => (
   <motion.div 
-    initial={{ opacity: 0, scale: 0.9 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
     whileHover={{ translateY: -8, scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
     className="group/card flex flex-col justify-between p-8 liquid-glass border border-white/40 rounded-[2rem] transition-all duration-500 shadow-xl cursor-pointer h-full"
