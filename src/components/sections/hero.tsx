@@ -1,14 +1,13 @@
 'use client';
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface HeroSectionProps {
   onRedirect?: (path: string) => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
+export default function HeroSection({ onRedirect }: HeroSectionProps) {
   const handleAction = (e: React.MouseEvent, path: string) => {
     if (onRedirect) {
       e.preventDefault();
@@ -17,10 +16,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
   };
 
   return (
-    <section className="relative flex flex-col items-center px-6 pt-24 pb-20 md:px-8 lg:pt-32 bg-transparent overflow-hidden">
+    <div className="relative flex flex-col items-center px-6 pt-24 pb-20 md:px-8 lg:pt-32 bg-transparent overflow-hidden">
       <div className="flex w-full max-w-5xl flex-col justify-center gap-16 md:gap-24">
         
-        {/* Headline & Subtext */}
         <div className="flex flex-col gap-6 md:gap-8 text-center relative z-10">
           <div className="flex flex-col gap-4 md:gap-6">
             <h1 className="my-0 w-full text-4xl sm:text-6xl md:text-[5rem] font-bold leading-[1] tracking-tight text-primary">
@@ -46,7 +44,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
             </p>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-4">
             <button 
               onClick={(e) => handleAction(e, "/settings/keys")}
@@ -86,7 +83,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
           </div>
         </div>
 
-        {/* Key Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full">
           {[
             { label: "Monthly Tokens", value: "25T", link: "/rankings" },
@@ -115,8 +111,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
-};
-
-export default HeroSection;
+}
