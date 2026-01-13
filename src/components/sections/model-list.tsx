@@ -170,13 +170,13 @@ const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => 
                            modelId.toLowerCase().includes('vl') || 
                            modelName.toLowerCase().includes('vision');
 
-          let type = 'Text Model';
-          if (isReasoning) type = 'Reasoning';
-          else if (isVision) type = 'Vision Model';
+            let type = 'Text';
+            if (isReasoning) type = 'Reasoning';
+            else if (isVision) type = 'Vision';
 
-          const rawProvider = m.provider || getProvider(modelId, modelName);
-          // Normalize provider name
-          const provider = getProvider(modelId, modelName) !== 'Cloud Provider' ? getProvider(modelId, modelName) : rawProvider;
+            const rawProvider = m.provider || getProvider(modelId, modelName);
+            // Normalize provider name
+            const provider = getProvider(modelId, modelName) !== 'Cloud Provider' ? getProvider(modelId, modelName) : rawProvider;
 
           return {
             id: modelId,
