@@ -114,7 +114,6 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
         </div>
       </motion.nav>
     );
-  );
 };
 
 export default Navigation;
