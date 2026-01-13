@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Search } from 'lucide-react';
+import { Search, Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 
 interface NavigationProps {
   search?: string;
@@ -19,8 +20,8 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
   };
 
   return (
-    <nav id="main-nav" className="sticky top-0 z-50 w-full transition-all duration-500 liquid-glass border-b border-white/40 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.08)]">
-      <div className="container mx-auto transition-all duration-300 py-4">
+    <nav id="main-nav" className="sticky top-0 z-[100] w-full transition-all duration-500 liquid-glass border-b border-white/60 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)]">
+      <div className="container mx-auto transition-all duration-300 py-3">
         <div className="flex flex-row justify-between items-center text-sm md:text-base">
           {/* Left Section: Logo & Search */}
           <div className="flex items-center gap-8">
@@ -32,7 +33,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
             >
               <div 
                 onMouseMove={handleMouseMove}
-                className="flex items-center gap-3 liquid-glass-button py-2 px-4 rounded-xl border border-white/60 shadow-sm"
+                className="flex items-center gap-3 liquid-glass-button py-2 px-4 rounded-2xl border border-white/60 shadow-sm"
               >
                 <svg 
                   width="24" 
@@ -54,7 +55,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
               <div className="hidden md:block relative group">
                 <div 
                   onMouseMove={handleMouseMove}
-                  className="flex items-center gap-2 rounded-xl h-11 w-80 transition-all liquid-glass-button px-4 border border-white/40 focus-within:ring-2 focus-within:ring-primary/10 focus-within:border-primary/20"
+                  className="flex items-center gap-2 rounded-2xl h-11 w-80 transition-all liquid-glass-button px-4 border border-white/40 focus-within:ring-2 focus-within:ring-primary/10 focus-within:border-primary/20"
                 >
                   <Search className="h-4 w-4 opacity-50" />
                   <input 
@@ -73,60 +74,35 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
           </div>
   
           {/* Right Section: Menu Links & Sign Up */}
-          <div className="hidden lg:flex lg:items-center lg:gap-4">
-            <div className="flex items-center gap-1 bg-white/20 p-1 rounded-2xl border border-white/40">
+          <div className="hidden lg:flex lg:items-center lg:gap-6">
+            <div className="flex items-center gap-1 bg-white/30 p-1.5 rounded-2xl border border-white/60 backdrop-blur-sm">
               <a href="/models">
-                <motion.button 
-                  onMouseMove={handleMouseMove}
-                  whileHover={{ backgroundColor: "rgba(255,255,255,0.6)" }}
-                  className="h-10 px-5 rounded-xl text-sm font-semibold transition-colors"
-                >
+                <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/40">
                   Models
-                </motion.button>
+                </Button>
               </a>
               <a href="/rankings">
-                <motion.button 
-                  onMouseMove={handleMouseMove}
-                  whileHover={{ backgroundColor: "rgba(255,255,255,0.6)" }}
-                  className="h-10 px-5 rounded-xl text-sm font-semibold transition-colors"
-                >
+                <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/40">
                   Rankings
-                </motion.button>
+                </Button>
               </a>
               <a href="/status">
-                <motion.button 
-                  onMouseMove={handleMouseMove}
-                  whileHover={{ backgroundColor: "rgba(255,255,255,0.6)" }}
-                  className="h-10 px-5 rounded-xl text-sm font-semibold transition-colors"
-                >
+                <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/40">
                   Status
-                </motion.button>
+                </Button>
               </a>
             </div>
             
-            <motion.button 
-              onMouseMove={handleMouseMove}
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 20px -5px rgba(0,0,0,0.1)" }}
-              whileTap={{ scale: 0.95 }}
-              className="h-11 px-8 rounded-xl text-sm font-bold bg-primary text-primary-foreground shadow-lg"
-            >
+            <Button size="lg" className="rounded-2xl font-bold px-8 shadow-xl">
               Get Started
-            </motion.button>
+            </Button>
           </div>
   
           {/* Mobile Menu Icon */}
           <div className="lg:hidden">
-            <motion.button 
-              onMouseMove={handleMouseMove}
-              whileTap={{ scale: 0.9 }}
-              className="p-3 liquid-glass-button rounded-xl border border-white/50"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-            </motion.button>
+            <Button variant="outline" size="icon" className="rounded-2xl border-white/60">
+              <Menu className="h-5 w-5" />
+            </Button>
           </div>
         </div>
       </div>
