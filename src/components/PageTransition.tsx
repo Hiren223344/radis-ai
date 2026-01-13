@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 
@@ -11,45 +11,46 @@ const PageTransition = () => {
   const rightPanelRef = useRef<HTMLDivElement>(null);
   const aiTextRef = useRef<HTMLDivElement>(null);
   const userTextRef = useRef<HTMLDivElement>(null);
-  const isInitialRender = useRef(true);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
-      return;
-    }
-
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      onStart: () => setIsAnimating(true),
+      onComplete: () => {
+        setIsAnimating(false);
+        gsap.set(overlayRef.current, { display: 'none' });
+      }
+    });
 
     // Reset visibility
     gsap.set(overlayRef.current, { display: 'flex' });
     
-    tl.to([leftPanelRef.current, rightPanelRef.current], {
-      x: '0%',
-      duration: 0.6,
-      ease: 'expo.inOut',
-      stagger: 0.05
-    })
-    .to([aiTextRef.current, userTextRef.current], {
+    // Starting state for Panels
+    gsap.set([leftPanelRef.current, rightPanelRef.current], {
+      x: (index) => index === 0 ? '0%' : '0%'
+    });
+
+    // Opening animation (the "Split")
+    tl.to([aiTextRef.current, userTextRef.current], {
       opacity: 1,
       y: 0,
-      duration: 0.4,
-      ease: 'power2.out'
-    }, '-=0.2')
+      duration: 0.6,
+      ease: 'power3.out',
+      delay: 0.2
+    })
     .to([aiTextRef.current, userTextRef.current], {
       opacity: 0,
-      y: -20,
-      duration: 0.3,
-      delay: 0.2,
-      ease: 'power2.in'
+      y: -40,
+      duration: 0.4,
+      delay: 0.5,
+      ease: 'power3.in'
     })
     .to([leftPanelRef.current, rightPanelRef.current], {
       x: (index) => index === 0 ? '-100%' : '100%',
-      duration: 0.6,
+      duration: 0.8,
       ease: 'expo.inOut',
-      stagger: 0.05
-    })
-    .set(overlayRef.current, { display: 'none' });
+      stagger: 0.1
+    });
 
     return () => {
       tl.kill();
@@ -59,12 +60,12 @@ const PageTransition = () => {
   return (
     <div 
       ref={overlayRef}
-      className="fixed inset-0 z-[9999] hidden flex-row overflow-hidden pointer-events-none"
+      className="fixed inset-0 z-[9999] flex flex-row overflow-hidden pointer-events-none"
     >
       {/* AI Side (Left) */}
       <div 
         ref={leftPanelRef}
-        className="relative flex-1 bg-indigo-600 flex items-center justify-center -translate-x-full border-r border-white/20"
+        className="relative flex-1 bg-indigo-600 flex items-center justify-center border-r border-white/20"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/50 to-transparent" />
         <div ref={aiTextRef} className="relative opacity-0 translate-y-10 text-center">
@@ -78,7 +79,7 @@ const PageTransition = () => {
       {/* User Side (Right) */}
       <div 
         ref={rightPanelRef}
-        className="relative flex-1 bg-emerald-500 flex items-center justify-center translate-x-full border-l border-white/20"
+        className="relative flex-1 bg-emerald-500 flex items-center justify-center border-l border-white/20"
       >
         <div className="absolute inset-0 bg-gradient-to-bl from-emerald-900/50 to-transparent" />
         <div ref={userTextRef} className="relative opacity-0 translate-y-10 text-center">
