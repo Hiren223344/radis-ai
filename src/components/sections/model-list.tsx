@@ -94,14 +94,13 @@ const ADDITIONAL_MODELS: Model[] = [
   { id: "seamless-m4t-realtime", name: "Seamless M4T Realtime", provider: "Meta", description: "Massively Multilingual Realtime Translation.", category: "Realtime" },
 ];
 
-const getProvider = (id: string, name: string) => {
-  const lowerId = id.toLowerCase();
-  const lowerName = (name || "").toLowerCase();
-  
-  if (lowerId.includes('gpt') || lowerId.includes('o1') || lowerId.includes('o3') || lowerId.includes('openai')) return 'OpenAI';
-  if (lowerId.includes('claude') || lowerId.includes('anthropic')) return 'Anthropic';
-  if (lowerId.includes('gemini') || lowerId.includes('google') || lowerId.includes('gemma') || lowerId.includes('palm')) return 'Google';
-  if (lowerId.includes('llama') || lowerId.includes('meta')) return 'Meta';
+  const getProvider = (id: string, name: string) => {
+    const lowerId = id.toLowerCase();
+    const lowerName = (name || "").toLowerCase();
+    
+    if (lowerId.includes('llama') || lowerId.includes('meta')) return 'Meta';
+    if (lowerId.includes('gpt') || lowerId.includes('o1') || lowerId.includes('o3') || lowerId.includes('openai')) return 'OpenAI';
+    if (lowerId.includes('claude') || lowerId.includes('anthropic')) return 'Anthropic';
   if (lowerId.includes('mistral') || lowerId.includes('mixtral')) return 'Mistral';
   if (lowerId.includes('deepseek')) return 'DeepSeek';
   if (lowerId.includes('qwen') || lowerId.includes('alibaba')) return 'Alibaba';
