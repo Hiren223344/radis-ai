@@ -4,7 +4,18 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  onRedirect?: (path: string) => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ onRedirect }) => {
+  const handleAction = (e: React.MouseEvent, path: string) => {
+    if (onRedirect) {
+      e.preventDefault();
+      onRedirect(path);
+    }
+  };
+
   return (
     <section className="relative flex flex-col items-center px-6 pt-24 pb-20 md:px-8 lg:pt-32 bg-transparent overflow-hidden">
       <div className="flex w-full max-w-5xl flex-col justify-center gap-16 md:gap-24">
@@ -12,9 +23,9 @@ const HeroSection: React.FC = () => {
         {/* Headline & Subtext */}
         <div className="flex flex-col gap-6 md:gap-8 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             className="flex flex-col gap-4 md:gap-6"
           >
             <h1 className="my-0 w-full text-4xl sm:text-6xl md:text-[5rem] font-bold leading-[1] tracking-tight text-primary">
@@ -23,44 +34,50 @@ const HeroSection: React.FC = () => {
             </h1>
             <p className="text-muted-foreground text-lg md:text-2xl font-medium max-w-2xl mx-auto leading-relaxed">
               Experience the future of AI with better{" "}
-              <a 
-                href="/models?order=pricing-low-to-high" 
-                className="text-primary underline decoration-primary/20 hover:decoration-primary transition-all underline-offset-4"
+              <button 
+                onClick={(e) => handleAction(e, "/models?order=pricing-low-to-high")}
+                className="text-primary underline decoration-primary/20 hover:decoration-primary transition-all underline-offset-4 cursor-pointer bg-transparent border-none p-0 inline font-medium"
               >
                 prices
-              </a>
+              </button>
               , better{" "}
-              <a 
-                href="/status" 
-                className="text-primary underline decoration-primary/20 hover:decoration-primary transition-all underline-offset-4"
+              <button 
+                onClick={(e) => handleAction(e, "/status")}
+                className="text-primary underline decoration-primary/20 hover:decoration-primary transition-all underline-offset-4 cursor-pointer bg-transparent border-none p-0 inline font-medium"
               >
                 uptime
-              </a>
+              </button>
               , and no subscriptions.
             </p>
           </motion.div>
 
           {/* Action Buttons */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.4, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
             className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-4"
           >
-            <a href="/settings/keys" className="w-full sm:w-auto">
-              <motion.button 
-                whileHover={{ scale: 1.05, translateY: -2 }}
+            <button 
+              onClick={(e) => handleAction(e, "/settings/keys")}
+              className="w-full sm:w-auto group border-none bg-transparent p-0 cursor-pointer"
+            >
+              <motion.div 
+                whileHover={{ scale: 1.02, translateY: -2 }}
                 whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center whitespace-nowrap rounded-2xl font-bold transition-all bg-primary text-primary-foreground shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] h-14 px-10 gap-2 w-full sm:w-auto text-lg cursor-pointer border border-primary/20"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-2xl font-bold transition-all bg-primary text-primary-foreground shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] h-14 px-10 gap-2 w-full text-lg border border-primary/20"
               >
                 Get API Key
-              </motion.button>
-            </a>
-            <a href="/models" className="w-full sm:w-auto">
-              <motion.button 
-                whileHover={{ scale: 1.05, translateY: -2 }}
+              </motion.div>
+            </button>
+            <button 
+              onClick={(e) => handleAction(e, "/models")}
+              className="w-full sm:w-auto group border-none bg-transparent p-0 cursor-pointer"
+            >
+              <motion.div 
+                whileHover={{ scale: 1.02, translateY: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-2xl font-bold transition-all liquid-glass-button border border-white/60 shadow-lg h-14 px-10 gap-3 text-primary w-full sm:w-auto text-lg cursor-pointer"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-2xl font-bold transition-all liquid-glass-button border border-white/60 shadow-lg h-14 px-10 gap-3 text-primary w-full text-lg"
               >
                 Explore Models
                 <div className="flex -space-x-2 ml-1">
@@ -74,16 +91,16 @@ const HeroSection: React.FC = () => {
                     </div>
                   ))}
                 </div>
-              </motion.button>
-            </a>
+              </motion.div>
+            </button>
           </motion.div>
         </div>
 
         {/* Key Metrics */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full"
         >
           {[
@@ -95,6 +112,7 @@ const HeroSection: React.FC = () => {
             <motion.div
               key={i}
               whileHover={{ scale: 1.05, translateY: -8 }}
+              onClick={(e) => stat.link && handleAction(e, stat.link)}
               className={`relative group p-6 md:p-8 rounded-3xl transition-all duration-500 liquid-glass border border-white/40 shadow-xl ${stat.link ? 'cursor-pointer' : ''}`}
             >
               <div className="flex flex-col items-center gap-2 md:gap-3">
