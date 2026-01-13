@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import Link from 'next/link';
 import { ChevronRight, Type, Image, FileText, Music, Video, Hash, DollarSign, Layers, Tag, Settings2, Sparkles } from 'lucide-react';
 
