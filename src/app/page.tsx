@@ -17,7 +17,7 @@ const sectionVariants = {
     transition: {
       delay: i * 0.1,
       duration: 0.8,
-      ease: [0.21, 1.02, 0.73, 1]
+      ease: [0.21, 1.02, 0.73, 1] as any
     }
   })
 };
