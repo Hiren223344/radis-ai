@@ -82,33 +82,74 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
             </div>
           )}
 
-          {feature.graphic === "availability-path" && (
-            <div className="relative w-full h-full flex items-center justify-center scale-125">
-              <svg className="w-48 h-24" viewBox="0 0 200 100" fill="none">
-                <motion.path 
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 3, ease: "easeInOut", delay: index * 0.1 }}
-                  d="M100 20 C 100 20, 100 60, 40 70 M100 20 C 100 20, 100 60, 100 70 M100 20 C 100 20, 100 60, 160 70" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  className="text-primary/10"
-                />
-                <motion.circle 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 + 0.5 }}
-                  cx="100" cy="15" r="4" className="fill-primary" 
-                />
-                <rect x="30" y="65" width="24" height="24" rx="8" className="fill-white stroke-white/60 shadow-sm" />
-                <rect x="88" y="65" width="24" height="24" rx="8" className="fill-white stroke-white/60 shadow-sm" />
-                <rect x="146" y="65" width="24" height="24" rx="8" className="fill-white stroke-white/60 shadow-sm" />
-                <circle cx="100" cy="77" r="6" className="fill-primary animate-pulse" />
-              </svg>
-            </div>
-          )}
+            {feature.graphic === "availability-path" && (
+              <div className="relative w-full h-full flex items-center justify-center scale-125">
+                <svg className="w-48 h-32" viewBox="0 0 200 130" fill="none">
+                  {/* Multiple redundant paths */}
+                  <motion.path 
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 0.2 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 2, delay: index * 0.1 }}
+                    d="M100 20 L 40 80 M100 20 L 100 80 M100 20 L 160 80" 
+                    stroke="currentColor" 
+                    strokeWidth="1.5" 
+                    className="text-primary"
+                  />
+                  
+                  {/* Pulse animations on nodes */}
+                  <motion.circle 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", delay: index * 0.1 + 0.3 }}
+                    cx="100" cy="20" r="6" className="fill-primary" 
+                  />
+                  
+                  {/* Nodes with status indicators */}
+                  {[40, 100, 160].map((x, i) => (
+                    <React.Fragment key={i}>
+                      <motion.rect 
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 + 0.5 + (i * 0.1) }}
+                        x={x-15} y="75" width="30" height="30" rx="10" 
+                        className="fill-white stroke-white/60 shadow-lg" 
+                      />
+                      <motion.circle 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        animate={{ opacity: [0.4, 1, 0.4] }}
+                        transition={{ 
+                          opacity: { repeat: Infinity, duration: 2, delay: i * 0.5 },
+                          initial: { delay: index * 0.1 + 0.8 }
+                        }}
+                        cx={x} cy="90" r="4" className="fill-emerald-500" 
+                      />
+                    </React.Fragment>
+                  ))}
+
+                  {/* Connecting active data flow */}
+                  <motion.path 
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    animate={{ strokeDashoffset: [0, -20] }}
+                    transition={{ 
+                      pathLength: { duration: 1.5, delay: index * 0.1 + 1 },
+                      strokeDashoffset: { repeat: Infinity, duration: 1, ease: "linear" }
+                    }}
+                    strokeDasharray="4 4"
+                    d="M100 20 L 40 80 M100 20 L 100 80 M100 20 L 160 80" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    className="text-emerald-500/50"
+                  />
+                </svg>
+              </div>
+            )}
 
           {feature.graphic === "performance-graph" && (
             <div className="w-56 px-6 flex flex-col gap-4 scale-125">
