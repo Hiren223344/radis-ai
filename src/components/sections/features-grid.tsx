@@ -191,13 +191,31 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
 
       {/* Text Content Area */}
       <div className="flex flex-1 flex-col p-10">
-        <h3 className="mb-4 text-2xl font-bold text-primary tracking-tight">
+        <motion.h3 
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 + 0.3 }}
+          className="mb-4 text-2xl font-bold text-primary tracking-tight"
+        >
           {feature.title}
-        </h3>
-        <p className="mb-8 text-base text-muted-foreground leading-relaxed font-medium">
+        </motion.h3>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 + 0.5 }}
+          className="mb-8 text-base text-muted-foreground leading-relaxed font-medium"
+        >
           {feature.description}
-        </p>
-        <div className="mt-auto flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary/60 group-hover/card:text-primary transition-colors">
+        </motion.p>
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 + 0.7 }}
+          className="mt-auto flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary/60 group-hover/card:text-primary transition-colors"
+        >
           {feature.linkText}
           <motion.div
             animate={{ x: [0, 4, 0] }}
@@ -205,7 +223,7 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
           >
             →
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </motion.a>
   );
