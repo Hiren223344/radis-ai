@@ -3,6 +3,8 @@ import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import { PageTransitionProvider } from "@/components/PageTransition";
 import Script from "next/script";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 export const metadata: Metadata = {
   title: "Radison | The Unified Interface For LLMs",
@@ -15,6 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en">
         <body className="antialiased overflow-x-hidden">
           <Script
@@ -39,6 +42,7 @@ export default function RootLayout({
         <VisualEditsMessenger />
       </body>
     </html>
+    </ClerkProvider>
   );
 }
 

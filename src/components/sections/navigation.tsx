@@ -5,6 +5,7 @@ import { Search, Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import TransitionLink from '@/components/TransitionLink';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 interface NavigationProps {
   search?: string;
@@ -93,22 +94,45 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
                   Rankings
                 </Button>
               </TransitionLink>
-              <TransitionLink href="/status">
-                <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
-                  Status
-                </Button>
-              </TransitionLink>
-            </div>
+            <TransitionLink href="/status">
+                  <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
+                    Status
+                  </Button>
+                </TransitionLink>
+              </div>
 
-            <TransitionLink href="/settings/keys">
-              <Button 
-                size="lg" 
-                className="rounded-2xl font-bold px-8 shadow-xl liquid-glass-button border-white/60 hover:scale-105 transition-transform"
-              >
-                Get Started
-              </Button>
-            </TransitionLink>
-          </div>
+              <SignedOut>
+                <div className="flex items-center gap-2">
+                  <TransitionLink href="/sign-in">
+                    <Button 
+                      variant="ghost"
+                      className="rounded-2xl font-semibold px-6 hover:bg-white/50"
+                    >
+                      Sign In
+                    </Button>
+                  </TransitionLink>
+                  <TransitionLink href="/sign-up">
+                    <Button 
+                      size="lg" 
+                      className="rounded-2xl font-bold px-8 shadow-xl liquid-glass-button border-white/60 hover:scale-105 transition-transform"
+                    >
+                      Get Started
+                    </Button>
+                  </TransitionLink>
+                </div>
+              </SignedOut>
+
+              <SignedIn>
+                <UserButton 
+                  afterSignOutUrl="/"
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-10 h-10"
+                    }
+                  }}
+                />
+              </SignedIn>
+            </div>
 
           <div className="lg:hidden">
             <Button variant="outline" size="icon" className="rounded-2xl border-white/60 liquid-glass-button">
