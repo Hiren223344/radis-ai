@@ -30,7 +30,7 @@ export default function HeroSection() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[1440px] mx-auto px-6 py-20 lg:py-32 flex flex-col items-start text-left overflow-hidden min-h-[600px]"
+      className="relative w-full flex flex-col items-center justify-center overflow-hidden min-h-screen"
     >
       {/* Reveal Effect Layer */}
       <div 
@@ -39,12 +39,12 @@ export default function HeroSection() {
         style={{
           '--mx': '-9999px',
           '--my': '-9999px',
-          WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 100px, rgba(255,255,255,0.6) 200px, rgba(255,255,255,0.25) 300px, rgba(255,255,255,0) 400px)',
-          maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 100px, rgba(255,255,255,0.6) 200px, rgba(255,255,255,0.25) 300px, rgba(255,255,255,0) 400px)',
+          WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 150px, rgba(255,255,255,0.6) 300px, rgba(255,255,255,0.25) 500px, rgba(255,255,255,0) 700px)',
+          maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 150px, rgba(255,255,255,0.6) 300px, rgba(255,255,255,0.25) 500px, rgba(255,255,255,0) 700px)',
         } as React.CSSProperties}
       >
         <div className="absolute inset-0 bg-primary/10 dark:bg-primary/20 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mx)_var(--my),rgba(255,255,255,0.1)_0%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mx)_var(--my),rgba(255,255,255,0.15)_0%,transparent_100%)]" />
       </div>
 
       {/* Laser Flow Effect */}
@@ -54,26 +54,26 @@ export default function HeroSection() {
           verticalBeamOffset={0.0}
           color="#FFFFFF"
           wispDensity={1.5}
-          fogIntensity={0.8}
-          horizontalSizing={1.2}
-          verticalSizing={2.5}
-          falloffStart={1.8}
-          decay={0.8}
-          mouseTiltStrength={0.02}
+          fogIntensity={0.9}
+          horizontalSizing={2.5}
+          verticalSizing={5.0}
+          falloffStart={3.0}
+          decay={0.4}
+          mouseTiltStrength={0.03}
           mouseSmoothTime={0.1}
         />
       </div>
 
       {/* Right side line that the beam "touches" */}
-      <div className="absolute right-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/20 to-transparent z-0 pointer-events-none" />
+      <div className="absolute right-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent z-0 pointer-events-none" />
 
       {/* Background Glows */}
-      <div className="absolute top-0 left-0 w-full h-full max-w-4xl opacity-20 dark:opacity-40 pointer-events-none -z-10">
-        <div className="absolute top-[-10%] left-0 w-[50%] h-[50%] bg-primary/30 dark:bg-primary/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[20%] left-[10%] w-[40%] h-[40%] bg-indigo-500/20 dark:bg-indigo-500/10 blur-[100px] rounded-full" />
+      <div className="absolute top-0 left-0 w-full h-full opacity-20 dark:opacity-40 pointer-events-none -z-10">
+        <div className="absolute top-[-10%] left-0 w-[60%] h-[60%] bg-primary/30 dark:bg-primary/10 blur-[150px] rounded-full" />
+        <div className="absolute bottom-[20%] left-[10%] w-[50%] h-[50%] bg-indigo-500/20 dark:bg-indigo-500/10 blur-[120px] rounded-full" />
       </div>
 
-      <div className="flex flex-col items-start gap-6 max-w-4xl relative z-10 pl-8 md:pl-16">
+      <div className="flex flex-col items-start gap-6 w-full max-w-[1440px] px-6 relative z-10 pl-8 md:pl-16">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-semibold tracking-wide uppercase">
           <Sparkles className="size-3" />
