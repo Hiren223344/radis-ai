@@ -6,21 +6,21 @@ import gsap from 'gsap';
 
 const PageTransition = () => {
   const pathname = usePathname();
-  const prevPathnameRef = useRef(pathname);
+  const hasPlayedIntroRef = useRef(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
   const textRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  // Initial load animation - runs only once on first mount
   useEffect(() => {
     const panels = panelsRef.current;
     const text = textRef.current;
     const overlay = overlayRef.current;
 
-    if (!overlay || !text || panels.length < 2) return;
-
-    const isFirstLoad = !prevPathnameRef.current || prevPathnameRef.current === pathname;
-    prevPathnameRef.current = pathname;
+    if (!overlay || !text || panels.length < 2 || hasPlayedIntroRef.current) return;
+    
+    hasPlayedIntroRef.current = true;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -31,41 +31,26 @@ const PageTransition = () => {
         }
       });
 
-      // Reset visibility
       gsap.set(overlay, { display: 'block' });
-      
-      if (isFirstLoad) {
-        // Initial load animation (Intro)
-        gsap.set(text, { opacity: 0, scale: 0.9, y: 20 });
-        gsap.set(panels[0], { x: '0%' });
-        gsap.set(panels[1], { x: '0%' });
+      gsap.set(text, { opacity: 0, scale: 0.9, y: 20 });
+      gsap.set(panels[0], { x: '0%' });
+      gsap.set(panels[1], { x: '0%' });
 
-        tl.to(text, {
-          opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'back.out(1.4)'
-        })
-        .to(text, {
-          opacity: 0, y: -20, duration: 0.4, delay: 0.5, ease: 'power2.in'
-        })
-        .addLabel('split')
-        .to(panels[0], { x: '-100%', duration: 0.8, ease: 'power4.inOut' }, 'split')
-        .to(panels[1], { x: '100%', duration: 0.8, ease: 'power4.inOut' }, 'split');
-      } else {
-        // Navigation transition: Quick swipe reveal
-        // This plays when moving between pages. We want it to feel like the new page
-        // is being "revealed" by the panels opening, rather than a full close-then-open.
-        gsap.set(text, { opacity: 0 });
-        gsap.set(panels[0], { x: '0%' });
-        gsap.set(panels[1], { x: '0%' });
-
-        tl.to(panels[0], { x: '-100%', duration: 0.6, ease: 'power4.inOut' })
-          .to(panels[1], { x: '100%', duration: 0.6, ease: 'power4.inOut' }, '<');
-      }
+      tl.to(text, {
+        opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'back.out(1.4)'
+      })
+      .to(text, {
+        opacity: 0, y: -20, duration: 0.4, delay: 0.5, ease: 'power2.in'
+      })
+      .addLabel('split')
+      .to(panels[0], { x: '-100%', duration: 0.8, ease: 'power4.inOut' }, 'split')
+      .to(panels[1], { x: '100%', duration: 0.8, ease: 'power4.inOut' }, 'split');
     });
-  
-      return () => {
-        ctx.revert();
-      };
-    }, [pathname]);
+
+    return () => {
+      ctx.revert();
+    };
+  }, []);
 
   return (
     <div 
