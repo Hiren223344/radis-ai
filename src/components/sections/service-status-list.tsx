@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Cpu, 
   Globe, 
@@ -13,30 +13,56 @@ import {
   TriangleAlert, 
   CheckCircle2, 
   Info,
-  ArrowRight
+  ArrowRight,
+  Loader2
 } from 'lucide-react';
 
 interface StatusBar {
   status: 'operational' | 'degraded' | 'outage';
 }
 
-const generateStatusBars = (degradedIndices: number[] = []): StatusBar[] => {
-  return Array.from({ length: 90 }, (_, i) => ({
+interface UptimeData {
+  status: 'up' | 'down' | 'seems_down' | 'paused';
+  uptime: {
+    last1Hour: number;
+    last24Hours: number;
+    last7Days: number;
+    last30Days: number;
+  };
+  hourlyStatus: { hour: number; status: 'operational' | 'degraded' | 'outage' }[];
+  friendlyName: string;
+  url: string;
+}
+
+const generateStatusBars = (degradedIndices: number[] = [], length: number = 24): StatusBar[] => {
+  return Array.from({ length }, (_, i) => ({
     status: degradedIndices.includes(i) ? 'degraded' : 'operational'
   }));
 };
 
-const StatusBarsDisplay = ({ bars, serviceName }: { bars: StatusBar[], serviceName: string }) => {
-  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+const StatusBarsDisplay = ({ 
+  bars, 
+  uptimePercent,
+  timeLabel = "24-hour",
+  startLabel = "24 hours ago",
+  endLabel = "Now"
+}: { 
+  bars: StatusBar[], 
+  uptimePercent?: number,
+  timeLabel?: string,
+  startLabel?: string,
+  endLabel?: string
+}) => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   
   const operationalCount = bars.filter(b => b.status === 'operational').length;
-  const uptimePercent = ((operationalCount / bars.length) * 100).toFixed(2);
+  const calculatedUptime = uptimePercent ?? ((operationalCount / bars.length) * 100);
   
   return (
     <div className="mt-4">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs text-muted-foreground">90-day uptime history</span>
-        <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{uptimePercent}% uptime</span>
+        <span className="text-xs text-muted-foreground">{timeLabel} uptime history</span>
+        <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{calculatedUptime.toFixed(2)}% uptime</span>
       </div>
       <div className="relative">
         <div className="flex gap-[2px] h-8 bg-muted/30 rounded-md p-1 overflow-hidden">
@@ -52,19 +78,19 @@ const StatusBarsDisplay = ({ bars, serviceName }: { bars: StatusBar[], serviceNa
               } ${hoveredIndex === index ? 'scale-y-110' : ''}`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              title={`Day ${90 - index}: ${bar.status === 'operational' ? 'Operational' : 'Degraded Performance'}`}
+              title={`Hour ${index + 1}: ${bar.status === 'operational' ? 'Operational' : bar.status === 'degraded' ? 'Degraded' : 'Outage'}`}
             />
           ))}
         </div>
         {hoveredIndex !== null && (
           <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-popover border border-border rounded-md px-2 py-1 text-xs shadow-lg whitespace-nowrap z-10">
-            Day {90 - hoveredIndex}: {bars[hoveredIndex].status === 'operational' ? 'Operational' : 'Degraded'}
+            Hour {hoveredIndex + 1}: {bars[hoveredIndex].status === 'operational' ? 'Operational' : bars[hoveredIndex].status === 'degraded' ? 'Degraded' : 'Outage'}
           </div>
         )}
       </div>
       <div className="flex items-center justify-between mt-2 text-[10px] text-muted-foreground">
-        <span>90 days ago</span>
-        <span>Today</span>
+        <span>{startLabel}</span>
+        <span>{endLabel}</span>
       </div>
     </div>
   );
@@ -81,6 +107,8 @@ interface ServiceItemProps {
   extraContent?: React.ReactNode;
   statusBars?: StatusBar[];
   showBars?: boolean;
+  uptimePercent?: number;
+  isLoading?: boolean;
 }
 
 const ServiceItem = ({ 
@@ -93,7 +121,9 @@ const ServiceItem = ({
   isExpandable = false,
   extraContent,
   statusBars,
-  showBars = true
+  showBars = true,
+  uptimePercent,
+  isLoading = false
 }: ServiceItemProps) => {
   const isOperational = status === 'operational';
   const isDegraded = status === 'degraded';
@@ -125,11 +155,18 @@ const ServiceItem = ({
                 </div>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 ml-auto flex-shrink-0">
-                <div className={`status-badge ${statusColors[status]}`}>
-                  {isDegraded && <TriangleAlert className="h-3.5 w-3.5 mr-1.5" />}
-                  {isOperational && <CheckCircle2 className="h-3.5 w-3.5 mr-1.5" />}
-                  {statusText}
-                </div>
+                {isLoading ? (
+                  <div className="status-badge bg-muted text-muted-foreground">
+                    <Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />
+                    Loading...
+                  </div>
+                ) : (
+                  <div className={`status-badge ${statusColors[status]}`}>
+                    {isDegraded && <TriangleAlert className="h-3.5 w-3.5 mr-1.5" />}
+                    {isOperational && <CheckCircle2 className="h-3.5 w-3.5 mr-1.5" />}
+                    {statusText}
+                  </div>
+                )}
               </div>
             </div>
             <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground ml-3 transition-transform duration-200" />
@@ -144,12 +181,19 @@ const ServiceItem = ({
               </div>
             </div>
             <div className="flex flex-col items-start self-stretch sm:items-end sm:flex-row sm:items-center gap-2 sm:gap-3 ml-auto flex-shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
-              <div className={`status-badge w-full justify-center sm:w-auto ${statusColors[status]}`}>
-                {isOperational && <CheckCircle2 className="h-3.5 w-3.5 mr-1.5" />}
-                {isLimited && <TriangleAlert className="h-3.5 w-3.5 mr-1.5" />}
-                {isDegraded && <TriangleAlert className="h-3.5 w-3.5 mr-1.5" />}
-                {statusText}
-              </div>
+              {isLoading ? (
+                <div className="status-badge w-full justify-center sm:w-auto bg-muted text-muted-foreground">
+                  <Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />
+                  Loading...
+                </div>
+              ) : (
+                <div className={`status-badge w-full justify-center sm:w-auto ${statusColors[status]}`}>
+                  {isOperational && <CheckCircle2 className="h-3.5 w-3.5 mr-1.5" />}
+                  {isLimited && <TriangleAlert className="h-3.5 w-3.5 mr-1.5" />}
+                  {isDegraded && <TriangleAlert className="h-3.5 w-3.5 mr-1.5" />}
+                  {statusText}
+                </div>
+              )}
               {lastChecked && (
                 <p className="text-xs text-muted-foreground text-right sm:text-left whitespace-nowrap w-full sm:w-auto">
                   Checked: {lastChecked}
@@ -158,9 +202,22 @@ const ServiceItem = ({
             </div>
           </div>
         )}
-        {showBars && statusBars && (
+        {showBars && statusBars && !isLoading && (
           <div className={`${isExpandable ? 'px-4 sm:px-5 pb-4 sm:pb-5' : ''}`}>
-            <StatusBarsDisplay bars={statusBars} serviceName={name} />
+            <StatusBarsDisplay 
+              bars={statusBars} 
+              uptimePercent={uptimePercent}
+              timeLabel="24-hour"
+              startLabel="24 hours ago"
+              endLabel="Now"
+            />
+          </div>
+        )}
+        {isLoading && showBars && (
+          <div className={`${isExpandable ? 'px-4 sm:px-5 pb-4 sm:pb-5' : 'mt-4'}`}>
+            <div className="flex items-center justify-center h-16 bg-muted/30 rounded-md">
+              <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+            </div>
           </div>
         )}
       </div>
@@ -170,13 +227,40 @@ const ServiceItem = ({
 };
 
 const ServiceStatusList = () => {
-  const apiServicesBars = generateStatusBars([42, 43, 44, 85, 86, 87, 88]);
-  const websiteBars = generateStatusBars([]);
-  const authBars = generateStatusBars([]);
-  const databaseBars = generateStatusBars([]);
-  const providerBars = generateStatusBars([51]);
-  const paymentBars = generateStatusBars([30, 31, 72, 73]);
-  const freeTierBars = generateStatusBars([15, 16, 17, 45, 46, 60, 61, 62]);
+  const [uptimeData, setUptimeData] = useState<UptimeData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUptimeData = async () => {
+      try {
+        const response = await fetch('/api/uptime');
+        if (!response.ok) throw new Error('Failed to fetch');
+        const data = await response.json();
+        setUptimeData(data);
+      } catch {
+        setError('Failed to fetch uptime data');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUptimeData();
+  }, []);
+
+  const apiStatus: 'operational' | 'degraded' = uptimeData?.status === 'up' ? 'operational' : 'degraded';
+  const apiStatusText = uptimeData?.status === 'up' ? 'Operational' : 'Degraded Performance';
+  
+  const apiStatusBars: StatusBar[] = uptimeData?.hourlyStatus 
+    ? uptimeData.hourlyStatus.map(h => ({ status: h.status }))
+    : generateStatusBars([], 24);
+
+  const websiteBars = generateStatusBars([], 24);
+  const authBars = generateStatusBars([], 24);
+  const databaseBars = generateStatusBars([], 24);
+  const providerBars = generateStatusBars([], 24);
+  const paymentBars = generateStatusBars([], 24);
+  const freeTierBars = generateStatusBars([3, 4, 12, 13], 24);
 
   return (
     <div className="w-full space-y-4">
@@ -184,10 +268,12 @@ const ServiceStatusList = () => {
         icon={<Cpu className="h-5 w-5" />}
         name="API Services"
         description="Core API access and model routing."
-        status="degraded"
-        statusText="Degraded Performance"
+        status={isLoading ? 'operational' : apiStatus}
+        statusText={isLoading ? 'Checking...' : apiStatusText}
         isExpandable={true}
-        statusBars={apiServicesBars}
+        statusBars={apiStatusBars}
+        uptimePercent={uptimeData?.uptime.last24Hours}
+        isLoading={isLoading}
       />
 
       <ServiceItem 
@@ -198,6 +284,7 @@ const ServiceStatusList = () => {
         statusText="Operational"
         lastChecked="less than a minute ago"
         statusBars={websiteBars}
+        uptimePercent={100}
       />
 
       <ServiceItem 
@@ -208,6 +295,7 @@ const ServiceStatusList = () => {
         statusText="Operational"
         lastChecked="less than a minute ago"
         statusBars={authBars}
+        uptimePercent={100}
       />
 
       <ServiceItem 
@@ -218,6 +306,7 @@ const ServiceStatusList = () => {
         statusText="Operational"
         lastChecked="less than a minute ago"
         statusBars={databaseBars}
+        uptimePercent={100}
       />
 
       <ServiceItem 
@@ -228,16 +317,18 @@ const ServiceStatusList = () => {
         statusText="Operational"
         lastChecked="less than a minute ago"
         statusBars={providerBars}
+        uptimePercent={100}
       />
 
       <ServiceItem 
         icon={<CreditCard className="h-5 w-5" />}
         name="Payment Services"
         description="Subscription and payment processing."
-        status="degraded"
-        statusText="Degraded Performance"
-        isExpandable={true}
+        status="operational"
+        statusText="Operational"
+        lastChecked="less than a minute ago"
         statusBars={paymentBars}
+        uptimePercent={100}
       />
 
       <ServiceItem 
@@ -248,6 +339,7 @@ const ServiceStatusList = () => {
         statusText="Limited Performance"
         lastChecked="less than a minute ago"
         statusBars={freeTierBars}
+        uptimePercent={83.33}
         extraContent={
           <div className="mt-2 p-4 rounded-lg bg-[#FCF5FF] dark:bg-violet-950/20 border border-violet-100 dark:border-violet-900/50">
             <div className="flex gap-3">
