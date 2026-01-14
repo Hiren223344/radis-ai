@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { LaserFlow } from '@/components/ui/laser-flow';
-import { LaserHoverCard } from '@/components/sections/laser-hover-card';
 
 export default function HeroSection() {
   return (
@@ -15,7 +14,7 @@ export default function HeroSection() {
       {/* Laser Flow Effect */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <LaserFlow
-          horizontalBeamOffset={0.35}
+          horizontalBeamOffset={0}
           verticalBeamOffset={0.0}
           color="#FFFFFF"
           wispDensity={1.5}
@@ -29,17 +28,14 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Right side line that the beam "touches" */}
-      <div className="absolute right-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent z-0 pointer-events-none" />
-
       {/* Background Glows */}
       <div className="absolute top-0 left-0 w-full h-full opacity-20 dark:opacity-40 pointer-events-none -z-10">
-        <div className="absolute top-[-10%] left-0 w-[60%] h-[60%] bg-primary/30 dark:bg-primary/10 blur-[150px] rounded-full" />
-        <div className="absolute bottom-[20%] left-[10%] w-[50%] h-[50%] bg-indigo-500/20 dark:bg-indigo-500/10 blur-[120px] rounded-full" />
+        <div className="absolute top-[-10%] left-[20%] w-[60%] h-[60%] bg-primary/30 dark:bg-primary/10 blur-[150px] rounded-full" />
+        <div className="absolute bottom-[20%] right-[20%] w-[50%] h-[50%] bg-indigo-500/20 dark:bg-indigo-500/10 blur-[120px] rounded-full" />
       </div>
 
-      <div className="w-full max-w-[1440px] px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-        <div className="flex flex-col items-start gap-6 pl-4 md:pl-10">
+      <div className="w-full max-w-[1440px] px-6 relative z-10 flex flex-col items-center text-center">
+        <div className="flex flex-col items-center gap-6">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-semibold tracking-wide uppercase">
             <Sparkles className="size-3" />
@@ -62,7 +58,7 @@ export default function HeroSection() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center justify-start gap-4 mt-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <Link
               href="/rankings"
               className="h-14 px-8 rounded-2xl bg-secondary border border-border text-foreground font-bold text-lg hover:bg-accent transition-all flex items-center justify-center"
@@ -79,7 +75,7 @@ export default function HeroSection() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 mt-20 pt-10 border-t border-border/50 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 mt-20 pt-10 border-t border-border/50 w-full max-w-4xl mx-auto">
             <div className="flex flex-col gap-1">
               <span className="text-3xl font-bold text-primary tracking-tight">300+</span>
               <span className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Active Models</span>
@@ -93,11 +89,6 @@ export default function HeroSection() {
               <span className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Uptime</span>
             </div>
           </div>
-        </div>
-
-        {/* Laser Hover Card */}
-        <div className="hidden lg:block">
-          <LaserHoverCard />
         </div>
       </div>
     </section>
