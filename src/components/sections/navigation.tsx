@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { Search, Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import TransitionLink from '@/components/TransitionLink';
 
 interface NavigationProps {
   search?: string;
@@ -30,7 +30,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
       <div className="container mx-auto py-3">
         <div className="flex flex-row justify-between items-center text-sm md:text-base">
           <div className="flex items-center gap-8">
-            <Link 
+            <TransitionLink 
               href="/"
               className="border-none bg-transparent p-0 cursor-pointer"
             >
@@ -57,7 +57,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
                   <span className="text-primary font-bold tracking-tight text-lg">Radison</span>
                 </div>
               </motion.div>
-            </Link>
+            </TransitionLink>
 
             {setSearch && (
               <div className="hidden md:block relative group">
@@ -83,31 +83,31 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
 
           <div className="hidden lg:flex lg:items-center lg:gap-6">
             <div className="flex items-center gap-1 bg-white/30 p-1.5 rounded-2xl border border-white/60 backdrop-blur-sm">
-              <Link href="/models">
+              <TransitionLink href="/models">
                 <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
                   Models
                 </Button>
-              </Link>
-              <Link href="/rankings">
+              </TransitionLink>
+              <TransitionLink href="/rankings">
                 <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
                   Rankings
                 </Button>
-              </Link>
-              <Link href="/status">
+              </TransitionLink>
+              <TransitionLink href="/status">
                 <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
                   Status
                 </Button>
-              </Link>
+              </TransitionLink>
             </div>
 
-            <Link href="/settings/keys">
+            <TransitionLink href="/settings/keys">
               <Button 
                 size="lg" 
                 className="rounded-2xl font-bold px-8 shadow-xl liquid-glass-button border-white/60 hover:scale-105 transition-transform"
               >
                 Get Started
               </Button>
-            </Link>
+            </TransitionLink>
           </div>
 
           <div className="lg:hidden">
