@@ -4,7 +4,7 @@ import { createServiceClient } from '@/lib/supabase'
 import crypto from 'crypto'
 
 function generateApiKey() {
-  return `rds_${crypto.randomBytes(32).toString('hex')}`
+  return `sk_${crypto.randomBytes(32).toString('hex')}`
 }
 
 export async function GET() {

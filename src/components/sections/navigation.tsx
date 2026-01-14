@@ -1,12 +1,13 @@
 'use client';
 
 import React from 'react';
-import { Search, Menu, Key, CreditCard, LayoutDashboard, LogOut } from 'lucide-react';
+import { Search, Menu, Key, CreditCard, LayoutDashboard, LogOut, Moon, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import TransitionLink from '@/components/TransitionLink';
 import { SignedIn, SignedOut, useUser, useClerk } from '@clerk/nextjs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useTheme } from 'next-themes';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,6 +26,7 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
     const { user } = useUser();
     const { signOut } = useClerk();
+    const { theme, setTheme } = useTheme();
 
     const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -37,7 +39,7 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
   return (
     <nav 
       id="main-nav"
-      className="fixed top-0 z-[100] w-full liquid-glass border-b border-white/80 bg-white/70 backdrop-blur-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)]"
+      className="fixed top-0 z-[100] w-full liquid-glass border-b border-white/80 dark:border-white/10 bg-white/70 dark:bg-black/70 backdrop-blur-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.3)]"
       style={{ visibility: 'visible', display: 'flex' }}
     >
       <div className="container mx-auto py-3">
@@ -95,23 +97,34 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
           </div>
 
           <div className="hidden lg:flex lg:items-center lg:gap-6">
-            <div className="flex items-center gap-1 bg-white/30 p-1.5 rounded-2xl border border-white/60 backdrop-blur-sm">
-              <TransitionLink href="/models">
-                <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
-                  Models
-                </Button>
-              </TransitionLink>
-              <TransitionLink href="/rankings">
-                <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
-                  Rankings
-                </Button>
-              </TransitionLink>
-            <TransitionLink href="/status">
-                  <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 hover:shadow-sm transition-all">
-                    Status
+<div className="flex items-center gap-1 bg-white/30 dark:bg-white/10 p-1.5 rounded-2xl border border-white/60 dark:border-white/20 backdrop-blur-sm">
+                <TransitionLink href="/models">
+                  <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 dark:hover:bg-white/10 hover:shadow-sm transition-all">
+                    Models
                   </Button>
                 </TransitionLink>
-              </div>
+                <TransitionLink href="/rankings">
+                  <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 dark:hover:bg-white/10 hover:shadow-sm transition-all">
+                    Rankings
+                  </Button>
+                </TransitionLink>
+              <TransitionLink href="/status">
+                    <Button variant="ghost" className="h-9 px-5 rounded-xl text-sm font-semibold hover:bg-white/50 dark:hover:bg-white/10 hover:shadow-sm transition-all">
+                      Status
+                    </Button>
+                  </TransitionLink>
+                </div>
+
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                  className="rounded-xl hover:bg-white/50 dark:hover:bg-white/10"
+                >
+                  <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
 
               <SignedOut>
                 <div className="flex items-center gap-2">

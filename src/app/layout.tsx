@@ -5,6 +5,7 @@ import { PageTransitionProvider } from "@/components/PageTransition";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "Radison | The Unified Interface For LLMs",
@@ -47,13 +48,19 @@ export const metadata: Metadata = {
       );
     }
   
-    return (
-      <ClerkProvider 
-        publishableKey={publishableKey}
-        appearance={{ baseTheme: dark }}
-      >
-        <html lang="en">
-          <body className="antialiased overflow-x-hidden">
+  return (
+    <ClerkProvider 
+      publishableKey={publishableKey}
+      appearance={{ baseTheme: dark }}
+    >
+      <html lang="en" suppressHydrationWarning>
+        <body className="antialiased overflow-x-hidden">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
             <Script
               id="orchids-browser-logs"
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts/orchids-browser-logs.js"
@@ -74,10 +81,11 @@ export const metadata: Metadata = {
               {children}
             </PageTransitionProvider>
             <VisualEditsMessenger />
-          </body>
-        </html>
-      </ClerkProvider>
-    );
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
+  );
   }
 
 
