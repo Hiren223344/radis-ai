@@ -28,9 +28,14 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
   const [isAnimating, setIsAnimating] = useState(false);
   const initialAnimDone = useRef(false);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (initialAnimDone.current) return;
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || initialAnimDone.current) return;
     initialAnimDone.current = true;
 
     const left = leftPanelRef.current;
@@ -42,6 +47,7 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
 
     setIsAnimating(true);
     overlay.style.pointerEvents = 'auto';
+    overlay.style.visibility = 'visible';
 
     gsap.set([left, right], { xPercent: 0 });
     gsap.set(text, { opacity: 0, scale: 0.8 });
@@ -58,7 +64,7 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
       .to(left, { xPercent: -100, duration: 0.7, ease: 'power3.inOut' }, '-=0.1')
       .to(right, { xPercent: 100, duration: 0.7, ease: 'power3.inOut' }, '<');
 
-  }, []);
+  }, [mounted]);
 
   const navigateWithTransition = useCallback((href: string) => {
     if (isAnimating || href === pathname) return;
@@ -78,6 +84,7 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
 
     setIsAnimating(true);
     overlay.style.pointerEvents = 'auto';
+    overlay.style.visibility = 'visible';
 
     gsap.set(left, { xPercent: -100 });
     gsap.set(right, { xPercent: 100 });
@@ -103,35 +110,35 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
   return (
     <TransitionContext.Provider value={{ navigateWithTransition }}>
       {children}
-      <div 
-        ref={overlayRef}
-        className="fixed inset-0 z-[9999] pointer-events-none"
-        style={{ overflow: 'hidden' }}
-      >
+      {mounted && (
         <div 
-          ref={leftPanelRef}
-          className="absolute top-0 left-0 w-1/2 h-full bg-[#09090b]"
-          style={{ transform: 'translateX(-100%)' }}
-        />
-        <div 
-          ref={rightPanelRef}
-          className="absolute top-0 right-0 w-1/2 h-full bg-[#09090b]"
-          style={{ transform: 'translateX(100%)' }}
-        />
-        <div 
-          ref={textRef}
-          className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none"
+          ref={overlayRef}
+          className="fixed inset-0 z-[9999] pointer-events-none"
+          style={{ overflow: 'hidden', visibility: 'visible' }}
         >
-          <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white uppercase italic">
-              RADISON
-            </h1>
-            <p className="mt-2 text-xs text-white/40 tracking-[0.3em] uppercase">
-              Unified Intelligence
-            </p>
+          <div 
+            ref={leftPanelRef}
+            className="absolute top-0 left-0 w-1/2 h-full bg-[#09090b]"
+          />
+          <div 
+            ref={rightPanelRef}
+            className="absolute top-0 right-0 w-1/2 h-full bg-[#09090b]"
+          />
+          <div 
+            ref={textRef}
+            className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none"
+          >
+            <div className="text-center">
+              <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white uppercase italic">
+                RADISON
+              </h1>
+              <p className="mt-2 text-xs text-white/40 tracking-[0.3em] uppercase">
+                Unified Intelligence
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </TransitionContext.Provider>
   );
 };
