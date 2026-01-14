@@ -17,10 +17,23 @@ export const usePageTransition = () => {
   return context;
 };
 
+const RadisonLogo = () => (
+  <svg 
+    width="80" 
+    height="80" 
+    viewBox="0 0 512 512" 
+    className="fill-white animate-pulse"
+  >
+    <path d="M256 0L0 256l256 256 256-256L256 0zm0 100.3L411.7 256 256 411.7 100.3 256 256 100.3z" />
+    <path d="M256 170.7L170.7 256 256 341.3 341.3 256 256 170.7z" />
+  </svg>
+);
+
 export const PageTransitionProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
   const circleRef = useRef<HTMLDivElement>(null);
+  const brandRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const initialAnimDone = useRef(false);
   const [mounted, setMounted] = useState(false);
@@ -34,7 +47,8 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
     initialAnimDone.current = true;
 
     const circle = circleRef.current;
-    if (!circle) return;
+    const brand = brandRef.current;
+    if (!circle || !brand) return;
 
     setIsAnimating(true);
     
@@ -45,18 +59,21 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
     circle.style.left = '50%';
     circle.style.transform = 'translate(-50%, 50%) scale(1)';
     circle.style.opacity = '1';
+    brand.style.opacity = '1';
 
-    requestAnimationFrame(() => {
-      circle.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+    setTimeout(() => {
+      circle.style.transition = 'transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), bottom 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
       circle.style.transform = 'translate(-50%, 50%) scale(0)';
       circle.style.bottom = '100%';
-    });
+      brand.style.transition = 'opacity 0.3s ease-out';
+      brand.style.opacity = '0';
+    }, 400);
 
     setTimeout(() => {
       setIsAnimating(false);
       circle.style.transition = 'none';
       circle.style.opacity = '0';
-    }, 800);
+    }, 1200);
 
   }, [mounted]);
 
@@ -64,7 +81,8 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
     if (isAnimating || href === pathname) return;
 
     const circle = circleRef.current;
-    if (!circle) {
+    const brand = brandRef.current;
+    if (!circle || !brand) {
       router.push(href);
       return;
     }
@@ -79,27 +97,37 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
     circle.style.transform = 'translate(-50%, 50%) scale(0)';
     circle.style.opacity = '1';
     circle.style.transition = 'none';
+    brand.style.opacity = '0';
+    brand.style.transition = 'none';
 
     requestAnimationFrame(() => {
-      circle.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+      circle.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), bottom 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
       circle.style.transform = 'translate(-50%, 50%) scale(1)';
       circle.style.bottom = '50%';
+      
+      setTimeout(() => {
+        brand.style.transition = 'opacity 0.3s ease-in';
+        brand.style.opacity = '1';
+      }, 300);
     });
 
     setTimeout(() => {
       router.push(href);
       
       setTimeout(() => {
-        circle.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        brand.style.transition = 'opacity 0.2s ease-out';
+        brand.style.opacity = '0';
+        
+        circle.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), bottom 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
         circle.style.transform = 'translate(-50%, 50%) scale(0)';
         circle.style.bottom = '100%';
         
         setTimeout(() => {
           setIsAnimating(false);
           circle.style.opacity = '0';
-        }, 500);
-      }, 100);
-    }, 500);
+        }, 600);
+      }, 200);
+    }, 700);
 
   }, [router, isAnimating, pathname]);
 
@@ -117,6 +145,13 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
               transform: 'translate(-50%, 50%) scale(0)',
             }}
           />
+          <div 
+            ref={brandRef}
+            className="fixed inset-0 flex flex-col items-center justify-center opacity-0 z-[10000]"
+          >
+            <RadisonLogo />
+            <span className="text-white font-bold text-2xl mt-4 tracking-wide">Radison</span>
+          </div>
         </div>
       )}
     </TransitionContext.Provider>
