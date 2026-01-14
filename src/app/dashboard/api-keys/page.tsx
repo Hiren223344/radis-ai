@@ -193,16 +193,39 @@ export default function ApiKeysPage() {
                 Use your API key to authenticate requests to the Radison API
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <pre className="p-4 bg-muted rounded-lg overflow-x-auto text-sm">
-                <code>{`curl https://api.radison.com/v1/chat/completions \\
-  -H "Authorization: Bearer YOUR_API_KEY" \\
-  -H "Content-Type: application/json" \\
-  -d '{
+            <CardContent className="space-y-4">
+              <div>
+                <p className="text-xs font-medium uppercase text-muted-foreground mb-2">cURL</p>
+                <pre className="p-4 bg-muted rounded-lg overflow-x-auto text-sm">
+                  <code>{`curl https://api.radison.com/v1/chat/completions \\
+    -H "Authorization: Bearer YOUR_API_KEY" \\
+    -H "Content-Type: application/json" \\
+    -d '{
+      "model": "gpt-4",
+      "messages": [{"role": "user", "content": "Hello!"}]
+    }'`}</code>
+                </pre>
+              </div>
+
+              <div>
+                <p className="text-xs font-medium uppercase text-muted-foreground mb-2">Python (requests)</p>
+                <pre className="p-4 bg-muted rounded-lg overflow-x-auto text-sm">
+                  <code>{`import requests
+
+url = "https://api.radison.com/v1/chat/completions"
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
+}
+data = {
     "model": "gpt-4",
     "messages": [{"role": "user", "content": "Hello!"}]
-  }'`}</code>
-              </pre>
+}
+
+response = requests.post(url, json=data, headers=headers)
+print(response.json())`}</code>
+                </pre>
+              </div>
             </CardContent>
           </Card>
         </div>
