@@ -1,24 +1,64 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { LaserFlow } from '@/components/ui/laser-flow';
 
 export default function HeroSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const revealRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current || !revealRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    revealRef.current.style.setProperty('--mx', `${x}px`);
+    revealRef.current.style.setProperty('--my', `${y}px`);
+  };
+
+  const handleMouseLeave = () => {
+    if (!revealRef.current) return;
+    revealRef.current.style.setProperty('--mx', '-9999px');
+    revealRef.current.style.setProperty('--my', '-9999px');
+  };
+
   return (
-    <section className="relative w-full max-w-[1440px] mx-auto px-6 py-20 lg:py-32 flex flex-col items-start text-left overflow-hidden min-h-[600px]">
+    <section 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative w-full max-w-[1440px] mx-auto px-6 py-20 lg:py-32 flex flex-col items-start text-left overflow-hidden min-h-[600px]"
+    >
+      {/* Reveal Effect Layer */}
+      <div 
+        ref={revealRef}
+        className="absolute inset-0 z-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300"
+        style={{
+          '--mx': '-9999px',
+          '--my': '-9999px',
+          WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 80px, rgba(255,255,255,0.6) 160px, rgba(255,255,255,0.25) 240px, rgba(255,255,255,0) 320px)',
+          maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 80px, rgba(255,255,255,0.6) 160px, rgba(255,255,255,0.25) 240px, rgba(255,255,255,0) 320px)',
+        } as React.CSSProperties}
+      >
+        <div className="absolute inset-0 bg-primary/5 dark:bg-primary/10" />
+      </div>
+
       {/* Laser Flow Effect */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <LaserFlow
-          horizontalBeamOffset={-0.35}
+          horizontalBeamOffset={0.35}
           verticalBeamOffset={0.0}
           color="#FFFFFF"
           wispDensity={1.2}
           fogIntensity={0.6}
         />
       </div>
+
+      {/* Right side line that the beam "touches" */}
+      <div className="absolute right-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/20 to-transparent z-0 pointer-events-none" />
 
       {/* Background Glows */}
       <div className="absolute top-0 left-0 w-full h-full max-w-4xl opacity-20 dark:opacity-40 pointer-events-none -z-10">
