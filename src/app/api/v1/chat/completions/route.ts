@@ -3,16 +3,16 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { messages, model, prompt } = body;
+    const { messages, model, stream } = body;
     const PUTER_TOKEN = process.env.PUTER_TOKEN;
 
     if (!PUTER_TOKEN) {
       return NextResponse.json({ error: 'Puter token not configured' }, { status: 500 });
     }
 
-    // Format messages for Puter API
-    // If OpenAI style messages are provided, use them. Otherwise fallback to prompt.
-    const puterMessages = messages || [{ content: prompt || "Hi" }];
+    if (stream) {
+      return NextResponse.json({ error: 'Streaming is not yet supported in this gateway lite' }, { status: 400 });
+    }
 
     const puterResponse = await fetch("https://api.puter.com/drivers/call", {
       method: "POST",
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
         test_mode: false,
         method: "complete",
         args: {
-          messages: puterMessages,
+          messages: messages || [],
           model: model || "gemini-3-pro-preview"
         },
         auth_token: PUTER_TOKEN
@@ -38,17 +38,44 @@ export async function POST(req: Request) {
 
     if (!puterResponse.ok) {
       const errorText = await puterResponse.text();
-      console.error('Puter API error response:', errorText);
-      return NextResponse.json({ error: `Puter API error: ${puterResponse.status}` }, { status: puterResponse.status });
+      return NextResponse.json({ error: `Puter API error: ${puterResponse.status}`, details: errorText }, { status: puterResponse.status });
     }
 
     const data = await puterResponse.json();
+    
+    // Extract actual text from Puter response
+    // Based on observation: data.result.message.content
+    let text = "";
+    if (data?.result?.message?.content) {
+      text = data.result.message.content;
+    } else if (typeof data?.result === 'string') {
+      text = data.result;
+    } else {
+      text = JSON.stringify(data?.result || data);
+    }
 
-    // Map Puter response to OpenAI-like response if needed, 
-    // but for now let's just return what Puter gives to keep it simple as "lite" gateway
-    return NextResponse.json(data);
+    return NextResponse.json({
+      id: `chatcmpl-${Date.now()}`,
+      object: "chat.completion",
+      created: Math.floor(Date.now() / 1000),
+      model: model || "gemini-3-pro-preview",
+      choices: [
+        {
+          index: 0,
+          message: {
+            role: "assistant",
+            content: text
+          },
+          finish_reason: "stop"
+        }
+      ],
+      usage: {
+        prompt_tokens: -1,
+        completion_tokens: -1,
+        total_tokens: -1
+      }
+    });
   } catch (error: any) {
-    console.error('Chat API Error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

@@ -1,1 +1,9 @@
-'{\"prompt\": \"Hi\"}' ; powershell -Command \"Invoke-RestMethod -Uri http://localhost:3000/api/chat -Method Post -ContentType 'application/json' -InFile test_body.json\"
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello, how are you?"
+    }
+  ],
+  "model": "gemini-3-pro-preview"
+}
