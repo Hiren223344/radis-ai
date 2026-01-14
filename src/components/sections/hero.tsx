@@ -35,15 +35,16 @@ export default function HeroSection() {
       {/* Reveal Effect Layer */}
       <div 
         ref={revealRef}
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           '--mx': '-9999px',
           '--my': '-9999px',
-          WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 100px, rgba(255,255,255,0.6) 200px, rgba(255,255,255,0.25) 300px, rgba(255,255,255,0) 450px)',
-          maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 100px, rgba(255,255,255,0.6) 200px, rgba(255,255,255,0.25) 300px, rgba(255,255,255,0) 450px)',
+          WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 100px, rgba(255,255,255,0.6) 200px, rgba(255,255,255,0.25) 300px, rgba(255,255,255,0) 400px)',
+          maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 100px, rgba(255,255,255,0.6) 200px, rgba(255,255,255,0.25) 300px, rgba(255,255,255,0) 400px)',
         } as React.CSSProperties}
       >
-        <div className="absolute inset-0 bg-primary/10 dark:bg-primary/20" />
+        <div className="absolute inset-0 bg-primary/10 dark:bg-primary/20 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mx)_var(--my),rgba(255,255,255,0.1)_0%,transparent_100%)]" />
       </div>
 
       {/* Laser Flow Effect */}
@@ -52,10 +53,14 @@ export default function HeroSection() {
           horizontalBeamOffset={0.35}
           verticalBeamOffset={0.0}
           color="#FFFFFF"
-          wispDensity={1.2}
-          fogIntensity={0.6}
+          wispDensity={1.5}
+          fogIntensity={0.8}
           horizontalSizing={1.2}
-          verticalSizing={3.0}
+          verticalSizing={2.5}
+          falloffStart={1.8}
+          decay={0.8}
+          mouseTiltStrength={0.02}
+          mouseSmoothTime={0.1}
         />
       </div>
 
