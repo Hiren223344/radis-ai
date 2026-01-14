@@ -8,11 +8,11 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 export default function HeroSection() {
   return (
     <section className="relative w-full max-w-[1440px] mx-auto px-6 py-20 lg:py-32 flex flex-col items-center text-center overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-20 pointer-events-none -z-10">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/30 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[20%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/20 blur-[100px] rounded-full" />
-      </div>
+        {/* Background Glows */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-20 dark:opacity-40 pointer-events-none -z-10">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/30 dark:bg-primary/10 blur-[120px] rounded-full" />
+          <div className="absolute bottom-[20%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/20 dark:bg-indigo-500/10 blur-[100px] rounded-full" />
+        </div>
 
       <div className="flex flex-col items-center gap-6 max-w-4xl">
         {/* Badge */}
