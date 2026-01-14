@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState, useCallback, createContext, useContext } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import gsap from 'gsap';
 
 interface TransitionContextType {
   navigateWithTransition: (href: string) => void;
@@ -21,13 +20,9 @@ export const usePageTransition = () => {
 export const PageTransitionProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const leftPanelRef = useRef<HTMLDivElement>(null);
-  const rightPanelRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const initialAnimDone = useRef(false);
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -38,72 +33,73 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
     if (!mounted || initialAnimDone.current) return;
     initialAnimDone.current = true;
 
-    const left = leftPanelRef.current;
-    const right = rightPanelRef.current;
-    const text = textRef.current;
-    const overlay = overlayRef.current;
-    
-    if (!left || !right || !text || !overlay) return;
+    const circle = circleRef.current;
+    if (!circle) return;
 
     setIsAnimating(true);
-    overlay.style.pointerEvents = 'auto';
-    overlay.style.visibility = 'visible';
+    
+    const maxSize = Math.max(window.innerWidth, window.innerHeight) * 2.5;
+    circle.style.width = `${maxSize}px`;
+    circle.style.height = `${maxSize}px`;
+    circle.style.bottom = '50%';
+    circle.style.left = '50%';
+    circle.style.transform = 'translate(-50%, 50%) scale(1)';
+    circle.style.opacity = '1';
 
-    gsap.set([left, right], { xPercent: 0 });
-    gsap.set(text, { opacity: 0, scale: 0.8 });
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setIsAnimating(false);
-        overlay.style.pointerEvents = 'none';
-      }
+    requestAnimationFrame(() => {
+      circle.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+      circle.style.transform = 'translate(-50%, 50%) scale(0)';
+      circle.style.bottom = '100%';
     });
 
-    tl.to(text, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)' })
-      .to(text, { opacity: 0, scale: 0.9, duration: 0.3, delay: 0.4 })
-      .to(left, { xPercent: -100, duration: 0.7, ease: 'power3.inOut' }, '-=0.1')
-      .to(right, { xPercent: 100, duration: 0.7, ease: 'power3.inOut' }, '<');
+    setTimeout(() => {
+      setIsAnimating(false);
+      circle.style.transition = 'none';
+      circle.style.opacity = '0';
+    }, 800);
 
   }, [mounted]);
 
   const navigateWithTransition = useCallback((href: string) => {
     if (isAnimating || href === pathname) return;
 
-    const left = leftPanelRef.current;
-    const right = rightPanelRef.current;
-    const overlay = overlayRef.current;
-    
-    if (!left || !right || !overlay) {
+    const circle = circleRef.current;
+    if (!circle) {
       router.push(href);
       return;
     }
 
-    if (timelineRef.current) {
-      timelineRef.current.kill();
-    }
-
     setIsAnimating(true);
-    overlay.style.pointerEvents = 'auto';
-    overlay.style.visibility = 'visible';
+    
+    const maxSize = Math.max(window.innerWidth, window.innerHeight) * 2.5;
+    circle.style.width = `${maxSize}px`;
+    circle.style.height = `${maxSize}px`;
+    circle.style.bottom = '-50%';
+    circle.style.left = '50%';
+    circle.style.transform = 'translate(-50%, 50%) scale(0)';
+    circle.style.opacity = '1';
+    circle.style.transition = 'none';
 
-    gsap.set(left, { xPercent: -100 });
-    gsap.set(right, { xPercent: 100 });
+    requestAnimationFrame(() => {
+      circle.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+      circle.style.transform = 'translate(-50%, 50%) scale(1)';
+      circle.style.bottom = '50%';
+    });
 
-    const tl = gsap.timeline();
-    timelineRef.current = tl;
-
-    tl.to(left, { xPercent: 0, duration: 0.4, ease: 'power2.inOut' })
-      .to(right, { xPercent: 0, duration: 0.4, ease: 'power2.inOut' }, '<')
-      .call(() => {
-        router.push(href);
-      })
-      .to(left, { xPercent: -100, duration: 0.5, ease: 'power2.inOut' }, '+=0.15')
-      .to(right, { xPercent: 100, duration: 0.5, ease: 'power2.inOut' }, '<')
-      .call(() => {
-        setIsAnimating(false);
-        overlay.style.pointerEvents = 'none';
-        timelineRef.current = null;
-      });
+    setTimeout(() => {
+      router.push(href);
+      
+      setTimeout(() => {
+        circle.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        circle.style.transform = 'translate(-50%, 50%) scale(0)';
+        circle.style.bottom = '100%';
+        
+        setTimeout(() => {
+          setIsAnimating(false);
+          circle.style.opacity = '0';
+        }, 500);
+      }, 100);
+    }, 500);
 
   }, [router, isAnimating, pathname]);
 
@@ -111,32 +107,16 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
     <TransitionContext.Provider value={{ navigateWithTransition }}>
       {children}
       {mounted && (
-        <div 
-          ref={overlayRef}
-          className="fixed inset-0 z-[9999] pointer-events-none"
-          style={{ overflow: 'hidden', visibility: 'visible' }}
-        >
+        <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden">
           <div 
-            ref={leftPanelRef}
-            className="absolute top-0 left-0 w-1/2 h-full bg-[#09090b]"
+            ref={circleRef}
+            className="absolute bg-[#09090b] rounded-full opacity-0"
+            style={{
+              bottom: '-50%',
+              left: '50%',
+              transform: 'translate(-50%, 50%) scale(0)',
+            }}
           />
-          <div 
-            ref={rightPanelRef}
-            className="absolute top-0 right-0 w-1/2 h-full bg-[#09090b]"
-          />
-          <div 
-            ref={textRef}
-            className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none"
-          >
-            <div className="text-center">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white uppercase italic">
-                RADISON
-              </h1>
-              <p className="mt-2 text-xs text-white/40 tracking-[0.3em] uppercase">
-                Unified Intelligence
-              </p>
-            </div>
-          </div>
         </div>
       )}
     </TransitionContext.Provider>
