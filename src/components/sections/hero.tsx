@@ -4,17 +4,21 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { LaserFlow } from '@/components/ui/laser-flow';
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full max-w-[1440px] mx-auto px-6 py-20 lg:py-32 flex flex-col items-start text-left overflow-hidden">
-      {/* Laser Beam Effect */}
-      <motion.div
-        initial={{ height: 0, opacity: 0 }}
-        animate={{ height: '200%', opacity: 1 }}
-        transition={{ duration: 2, ease: "easeInOut" }}
-        className="absolute top-[-50%] left-6 md:left-12 w-[2px] bg-white shadow-[0_0_15px_rgba(255,255,255,1),0_0_30px_rgba(255,255,255,0.6)] z-0"
-      />
+    <section className="relative w-full max-w-[1440px] mx-auto px-6 py-20 lg:py-32 flex flex-col items-start text-left overflow-hidden min-h-[600px]">
+      {/* Laser Flow Effect */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <LaserFlow
+          horizontalBeamOffset={-0.35}
+          verticalBeamOffset={0.0}
+          color="#FFFFFF"
+          wispDensity={1.2}
+          fogIntensity={0.6}
+        />
+      </div>
 
       {/* Background Glows */}
       <div className="absolute top-0 left-0 w-full h-full max-w-4xl opacity-20 dark:opacity-40 pointer-events-none -z-10">
