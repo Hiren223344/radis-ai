@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback, createContext, useContext } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import gsap from 'gsap';
 
 interface TransitionContextType {
   navigateWithTransition: (href: string) => void;
+  triggerOpenAnimation: () => void;
 }
 
 const TransitionContext = createContext<TransitionContextType | null>(null);
@@ -20,11 +21,14 @@ export const usePageTransition = () => {
 
 export const PageTransitionProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const hasPlayedIntroRef = useRef(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
   const textRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const pendingOpenRef = useRef(false);
+  const lastPathnameRef = useRef(pathname);
 
   // Initial load animation - runs only once on first mount
   useEffect(() => {
@@ -66,11 +70,46 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
     };
   }, []);
 
+  // Watch for pathname changes to trigger open animation
+  useEffect(() => {
+    if (pathname !== lastPathnameRef.current && pendingOpenRef.current) {
+      lastPathnameRef.current = pathname;
+      // Small delay to ensure content is rendered
+      const timer = setTimeout(() => {
+        triggerOpenAnimation();
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+    lastPathnameRef.current = pathname;
+  }, [pathname]);
+
+  const triggerOpenAnimation = useCallback(() => {
+    const panels = panelsRef.current;
+    const overlay = overlayRef.current;
+
+    if (!overlay || panels.length < 2 || !pendingOpenRef.current) return;
+
+    pendingOpenRef.current = false;
+
+    const openTl = gsap.timeline({
+      onComplete: () => {
+        setIsAnimating(false);
+        gsap.set(overlay, { pointerEvents: 'none' });
+      }
+    });
+    
+    openTl.to(panels[0], { x: '-100%', duration: 0.6, ease: 'power3.out' })
+          .to(panels[1], { x: '100%', duration: 0.6, ease: 'power3.out' }, '<');
+  }, []);
+
   const navigateWithTransition = useCallback((href: string) => {
     if (isAnimating) return;
 
     const panels = panelsRef.current;
     const overlay = overlayRef.current;
+
+    // If navigating to current page, do nothing
+    if (href === pathname) return;
 
     if (!overlay || panels.length < 2) {
       router.push(href);
@@ -78,23 +117,13 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
     }
 
     setIsAnimating(true);
+    pendingOpenRef.current = true;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
+          // Navigate after close animation completes
           router.push(href);
-          
-          setTimeout(() => {
-            const openTl = gsap.timeline({
-              onComplete: () => {
-                setIsAnimating(false);
-                gsap.set(overlay, { pointerEvents: 'none' });
-              }
-            });
-            
-            openTl.to(panels[0], { x: '-100%', duration: 0.5, ease: 'power3.out' })
-                  .to(panels[1], { x: '100%', duration: 0.5, ease: 'power3.out' }, '<');
-          }, 100);
         }
       });
 
@@ -102,17 +131,18 @@ export const PageTransitionProvider = ({ children }: { children: React.ReactNode
       gsap.set(panels[0], { x: '-100%' });
       gsap.set(panels[1], { x: '100%' });
 
-      tl.to(panels[0], { x: '0%', duration: 0.4, ease: 'power3.in' })
-        .to(panels[1], { x: '0%', duration: 0.4, ease: 'power3.in' }, '<');
+      // Close animation (panels come together)
+      tl.to(panels[0], { x: '0%', duration: 0.5, ease: 'power3.inOut' })
+        .to(panels[1], { x: '0%', duration: 0.5, ease: 'power3.inOut' }, '<');
     });
 
     return () => {
       ctx.revert();
     };
-  }, [router, isAnimating]);
+  }, [router, isAnimating, pathname]);
 
   return (
-    <TransitionContext.Provider value={{ navigateWithTransition }}>
+    <TransitionContext.Provider value={{ navigateWithTransition, triggerOpenAnimation }}>
       {children}
       <div 
         ref={overlayRef}
