@@ -16,8 +16,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2xlcmstZHVtbXktYnVpbGQtcGstMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw';
+
   return (
-    <ClerkProvider appearance={{ baseTheme: dark }}>
+    <ClerkProvider 
+      publishableKey={publishableKey}
+      appearance={{ baseTheme: dark }}
+    >
       <html lang="en">
         <body className="antialiased overflow-x-hidden">
           <Script
