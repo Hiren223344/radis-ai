@@ -7,46 +7,10 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { LaserFlow } from '@/components/ui/laser-flow';
 
 export default function HeroSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const revealRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current || !revealRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    revealRef.current.style.setProperty('--mx', `${x}px`);
-    revealRef.current.style.setProperty('--my', `${y}px`);
-  };
-
-  const handleMouseLeave = () => {
-    if (!revealRef.current) return;
-    revealRef.current.style.setProperty('--mx', '-9999px');
-    revealRef.current.style.setProperty('--my', '-9999px');
-  };
-
   return (
     <section 
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className="relative w-full flex flex-col items-center justify-center overflow-hidden min-h-screen"
     >
-      {/* Reveal Effect Layer */}
-      <div 
-        ref={revealRef}
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          '--mx': '-9999px',
-          '--my': '-9999px',
-          WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 150px, rgba(255,255,255,0.6) 300px, rgba(255,255,255,0.25) 500px, rgba(255,255,255,0) 700px)',
-          maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 150px, rgba(255,255,255,0.6) 300px, rgba(255,255,255,0.25) 500px, rgba(255,255,255,0) 700px)',
-        } as React.CSSProperties}
-      >
-        <div className="absolute inset-0 bg-primary/10 dark:bg-primary/20 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mx)_var(--my),rgba(255,255,255,0.15)_0%,transparent_100%)]" />
-      </div>
-
       {/* Laser Flow Effect */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <LaserFlow
@@ -55,10 +19,10 @@ export default function HeroSection() {
           color="#FFFFFF"
           wispDensity={1.5}
           fogIntensity={0.9}
-          horizontalSizing={2.5}
-          verticalSizing={5.0}
-          falloffStart={3.0}
-          decay={0.4}
+          horizontalSizing={3.5}
+          verticalSizing={6.5}
+          falloffStart={4.0}
+          decay={0.3}
           mouseTiltStrength={0.03}
           mouseSmoothTime={0.1}
         />
