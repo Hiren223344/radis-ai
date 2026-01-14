@@ -65,7 +65,7 @@ const StatusBarsDisplay = ({
         <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{calculatedUptime.toFixed(2)}% uptime</span>
       </div>
       <div className="relative">
-        <div className="flex gap-[2px] h-8 bg-muted/30 rounded-md p-1 overflow-hidden">
+        <div className="flex gap-[2px] h-6 bg-muted/30 rounded-md p-1 overflow-hidden">
           {bars.map((bar, index) => (
             <div
               key={index}
