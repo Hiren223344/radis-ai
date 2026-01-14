@@ -1,16 +1,25 @@
 import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
 const API_KEY = "u2610207-9d370d7c4bd489057c973fd6";
-const MONITOR_ID = "802143959";
 
-export async function GET() {
+const MONITORS: Record<string, string> = {
+  api: "802143959",
+  auth: "802144013",
+};
+
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const service = searchParams.get('service') || 'api';
+  const monitorId = MONITORS[service] || MONITORS.api;
+
   try {
     const response = await fetch("https://api.uptimerobot.com/v2/getMonitors", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         api_key: API_KEY,
-        monitors: MONITOR_ID,
+        monitors: monitorId,
         custom_uptime_ranges: "1-24-168-720",
         response_times: 1,
         response_times_limit: 24,

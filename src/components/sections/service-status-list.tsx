@@ -227,36 +227,57 @@ const ServiceItem = ({
 };
 
 const ServiceStatusList = () => {
-  const [uptimeData, setUptimeData] = useState<UptimeData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [apiUptimeData, setApiUptimeData] = useState<UptimeData | null>(null);
+  const [authUptimeData, setAuthUptimeData] = useState<UptimeData | null>(null);
+  const [isApiLoading, setIsApiLoading] = useState(true);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUptimeData = async () => {
+    const fetchApiUptime = async () => {
       try {
-        const response = await fetch('/api/uptime');
+        const response = await fetch('/api/uptime?service=api');
         if (!response.ok) throw new Error('Failed to fetch');
         const data = await response.json();
-        setUptimeData(data);
+        setApiUptimeData(data);
       } catch {
-        setError('Failed to fetch uptime data');
+        console.error('Failed to fetch API uptime data');
       } finally {
-        setIsLoading(false);
+        setIsApiLoading(false);
       }
     };
 
-    fetchUptimeData();
+    const fetchAuthUptime = async () => {
+      try {
+        const response = await fetch('/api/uptime?service=auth');
+        if (!response.ok) throw new Error('Failed to fetch');
+        const data = await response.json();
+        setAuthUptimeData(data);
+      } catch {
+        console.error('Failed to fetch Auth uptime data');
+      } finally {
+        setIsAuthLoading(false);
+      }
+    };
+
+    fetchApiUptime();
+    fetchAuthUptime();
   }, []);
 
-  const apiStatus: 'operational' | 'degraded' = uptimeData?.status === 'up' ? 'operational' : 'degraded';
-  const apiStatusText = uptimeData?.status === 'up' ? 'Operational' : 'Degraded Performance';
+  const apiStatus: 'operational' | 'degraded' = apiUptimeData?.status === 'up' ? 'operational' : 'degraded';
+  const apiStatusText = apiUptimeData?.status === 'up' ? 'Operational' : 'Degraded Performance';
   
-  const apiStatusBars: StatusBar[] = uptimeData?.hourlyStatus 
-    ? uptimeData.hourlyStatus.map(h => ({ status: h.status }))
+  const apiStatusBars: StatusBar[] = apiUptimeData?.hourlyStatus 
+    ? apiUptimeData.hourlyStatus.map(h => ({ status: h.status }))
+    : generateStatusBars([], 24);
+
+  const authStatus: 'operational' | 'degraded' = authUptimeData?.status === 'up' ? 'operational' : 'degraded';
+  const authStatusText = authUptimeData?.status === 'up' ? 'Operational' : 'Degraded Performance';
+  
+  const authStatusBars: StatusBar[] = authUptimeData?.hourlyStatus 
+    ? authUptimeData.hourlyStatus.map(h => ({ status: h.status }))
     : generateStatusBars([], 24);
 
   const websiteBars = generateStatusBars([], 24);
-  const authBars = generateStatusBars([], 24);
   const databaseBars = generateStatusBars([], 24);
   const providerBars = generateStatusBars([], 24);
   const paymentBars = generateStatusBars([], 24);
@@ -268,12 +289,12 @@ const ServiceStatusList = () => {
         icon={<Cpu className="h-5 w-5" />}
         name="API Services"
         description="Core API access and model routing."
-        status={isLoading ? 'operational' : apiStatus}
-        statusText={isLoading ? 'Checking...' : apiStatusText}
+        status={isApiLoading ? 'operational' : apiStatus}
+        statusText={isApiLoading ? 'Checking...' : apiStatusText}
         isExpandable={true}
         statusBars={apiStatusBars}
-        uptimePercent={uptimeData?.uptime.last24Hours}
-        isLoading={isLoading}
+        uptimePercent={apiUptimeData?.uptime.last24Hours}
+        isLoading={isApiLoading}
       />
 
       <ServiceItem 
@@ -291,11 +312,11 @@ const ServiceStatusList = () => {
         icon={<KeyRound className="h-5 w-5" />}
         name="Authentication Service"
         description="User sign-in and session management."
-        status="operational"
-        statusText="Operational"
-        lastChecked="less than a minute ago"
-        statusBars={authBars}
-        uptimePercent={100}
+        status={isAuthLoading ? 'operational' : authStatus}
+        statusText={isAuthLoading ? 'Checking...' : authStatusText}
+        statusBars={authStatusBars}
+        uptimePercent={authUptimeData?.uptime.last24Hours}
+        isLoading={isAuthLoading}
       />
 
       <ServiceItem 
