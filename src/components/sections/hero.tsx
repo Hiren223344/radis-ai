@@ -35,15 +35,15 @@ export default function HeroSection() {
       {/* Reveal Effect Layer */}
       <div 
         ref={revealRef}
-        className="absolute inset-0 z-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
           '--mx': '-9999px',
           '--my': '-9999px',
-          WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 80px, rgba(255,255,255,0.6) 160px, rgba(255,255,255,0.25) 240px, rgba(255,255,255,0) 320px)',
-          maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 80px, rgba(255,255,255,0.6) 160px, rgba(255,255,255,0.25) 240px, rgba(255,255,255,0) 320px)',
+          WebkitMaskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 100px, rgba(255,255,255,0.6) 200px, rgba(255,255,255,0.25) 300px, rgba(255,255,255,0) 450px)',
+          maskImage: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.95) 100px, rgba(255,255,255,0.6) 200px, rgba(255,255,255,0.25) 300px, rgba(255,255,255,0) 450px)',
         } as React.CSSProperties}
       >
-        <div className="absolute inset-0 bg-primary/5 dark:bg-primary/10" />
+        <div className="absolute inset-0 bg-primary/10 dark:bg-primary/20" />
       </div>
 
       {/* Laser Flow Effect */}
@@ -54,6 +54,8 @@ export default function HeroSection() {
           color="#FFFFFF"
           wispDensity={1.2}
           fogIntensity={0.6}
+          horizontalSizing={1.2}
+          verticalSizing={3.0}
         />
       </div>
 
