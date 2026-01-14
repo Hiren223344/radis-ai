@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { LaserFlow } from '@/components/ui/laser-flow';
-import { CodeSnippet } from '@/components/sections/code-snippet';
+import { LaserHoverCard } from '@/components/sections/laser-hover-card';
 
 export default function HeroSection() {
   return (
@@ -95,9 +95,9 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Code Window */}
+        {/* Laser Hover Card */}
         <div className="hidden lg:block">
-          <CodeSnippet />
+          <LaserHoverCard />
         </div>
       </div>
     </section>
