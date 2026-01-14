@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback, createContext, useContext } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import gsap from 'gsap';
 
 interface TransitionContextType {
@@ -20,111 +20,115 @@ export const usePageTransition = () => {
 
 export const PageTransitionProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const hasPlayedIntroRef = useRef(false);
+  const pathname = usePathname();
   const overlayRef = useRef<HTMLDivElement>(null);
-  const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const leftPanelRef = useRef<HTMLDivElement>(null);
+  const rightPanelRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const initialAnimDone = useRef(false);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
-    const panels = panelsRef.current;
+    if (initialAnimDone.current) return;
+    initialAnimDone.current = true;
+
+    const left = leftPanelRef.current;
+    const right = rightPanelRef.current;
     const text = textRef.current;
     const overlay = overlayRef.current;
-
-    if (!overlay || !text || panels.length < 2 || hasPlayedIntroRef.current) return;
     
-    hasPlayedIntroRef.current = true;
+    if (!left || !right || !text || !overlay) return;
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onStart: () => setIsAnimating(true),
-        onComplete: () => {
-          setIsAnimating(false);
-          gsap.set(overlay, { pointerEvents: 'none' });
-        }
-      });
+    setIsAnimating(true);
+    overlay.style.pointerEvents = 'auto';
 
-      gsap.set(overlay, { pointerEvents: 'auto' });
-      gsap.set(text, { opacity: 0, scale: 0.9, y: 20 });
-      gsap.set(panels[0], { x: '0%' });
-      gsap.set(panels[1], { x: '0%' });
+    gsap.set([left, right], { xPercent: 0 });
+    gsap.set(text, { opacity: 0, scale: 0.8 });
 
-      tl.to(text, {
-        opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'back.out(1.4)'
-      })
-      .to(text, {
-        opacity: 0, y: -20, duration: 0.4, delay: 0.5, ease: 'power2.in'
-      })
-      .addLabel('split')
-      .to(panels[0], { x: '-100%', duration: 0.8, ease: 'power4.inOut' }, 'split')
-      .to(panels[1], { x: '100%', duration: 0.8, ease: 'power4.inOut' }, 'split');
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setIsAnimating(false);
+        overlay.style.pointerEvents = 'none';
+      }
     });
 
-    return () => ctx.revert();
+    tl.to(text, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)' })
+      .to(text, { opacity: 0, scale: 0.9, duration: 0.3, delay: 0.4 })
+      .to(left, { xPercent: -100, duration: 0.7, ease: 'power3.inOut' }, '-=0.1')
+      .to(right, { xPercent: 100, duration: 0.7, ease: 'power3.inOut' }, '<');
+
   }, []);
 
   const navigateWithTransition = useCallback((href: string) => {
-    if (isAnimating) return;
+    if (isAnimating || href === pathname) return;
 
-    const panels = panelsRef.current;
+    const left = leftPanelRef.current;
+    const right = rightPanelRef.current;
     const overlay = overlayRef.current;
-
-    if (!overlay || panels.length < 2) {
+    
+    if (!left || !right || !overlay) {
       router.push(href);
       return;
     }
 
+    if (timelineRef.current) {
+      timelineRef.current.kill();
+    }
+
     setIsAnimating(true);
+    overlay.style.pointerEvents = 'auto';
 
-    gsap.set(overlay, { pointerEvents: 'auto' });
-    gsap.set(panels[0], { x: '-100%' });
-    gsap.set(panels[1], { x: '100%' });
+    gsap.set(left, { xPercent: -100 });
+    gsap.set(right, { xPercent: 100 });
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        window.location.href = href;
-      }
-    });
+    const tl = gsap.timeline();
+    timelineRef.current = tl;
 
-    tl.to(panels[0], { x: '0%', duration: 0.5, ease: 'power3.inOut' })
-      .to(panels[1], { x: '0%', duration: 0.5, ease: 'power3.inOut' }, '<');
+    tl.to(left, { xPercent: 0, duration: 0.4, ease: 'power2.inOut' })
+      .to(right, { xPercent: 0, duration: 0.4, ease: 'power2.inOut' }, '<')
+      .call(() => {
+        router.push(href);
+      })
+      .to(left, { xPercent: -100, duration: 0.5, ease: 'power2.inOut' }, '+=0.15')
+      .to(right, { xPercent: 100, duration: 0.5, ease: 'power2.inOut' }, '<')
+      .call(() => {
+        setIsAnimating(false);
+        overlay.style.pointerEvents = 'none';
+        timelineRef.current = null;
+      });
 
-  }, [router, isAnimating]);
+  }, [router, isAnimating, pathname]);
 
   return (
     <TransitionContext.Provider value={{ navigateWithTransition }}>
       {children}
       <div 
         ref={overlayRef}
-        className="fixed inset-0 z-[9999] overflow-hidden pointer-events-none select-none"
+        className="fixed inset-0 z-[9999] pointer-events-none"
+        style={{ overflow: 'hidden' }}
       >
         <div 
-          ref={(el) => { panelsRef.current[0] = el; }}
-          className="absolute top-0 left-0 w-1/2 h-full bg-[#0A0A0B] border-r border-white/5 shadow-[20px_0_50px_rgba(0,0,0,0.5)]"
+          ref={leftPanelRef}
+          className="absolute top-0 left-0 w-1/2 h-full bg-[#09090b]"
           style={{ transform: 'translateX(-100%)' }}
         />
-        
         <div 
-          ref={(el) => { panelsRef.current[1] = el; }}
-          className="absolute top-0 right-0 w-1/2 h-full bg-[#0A0A0B] border-l border-white/5 shadow-[-20px_0_50px_rgba(0,0,0,0.5)]"
+          ref={rightPanelRef}
+          className="absolute top-0 right-0 w-1/2 h-full bg-[#09090b]"
           style={{ transform: 'translateX(100%)' }}
         />
-
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div ref={textRef} className="text-center opacity-0">
-            <div className="relative">
-              <h1 className="text-6xl md:text-8xl font-black tracking-tight text-white uppercase italic leading-none">
-                RADISON
-              </h1>
-              <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full -z-10" />
-            </div>
-            <div className="mt-4 flex items-center justify-center gap-4">
-              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              <span className="text-white/40 font-mono text-[10px] tracking-[0.4em] uppercase whitespace-nowrap">
-                Unified Intelligence
-              </span>
-              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            </div>
+        <div 
+          ref={textRef}
+          className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none"
+        >
+          <div className="text-center">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white uppercase italic">
+              RADISON
+            </h1>
+            <p className="mt-2 text-xs text-white/40 tracking-[0.3em] uppercase">
+              Unified Intelligence
+            </p>
           </div>
         </div>
       </div>
