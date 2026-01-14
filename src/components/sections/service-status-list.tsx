@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { 
   Cpu, 
@@ -14,6 +16,60 @@ import {
   ArrowRight
 } from 'lucide-react';
 
+interface StatusBar {
+  status: 'operational' | 'degraded' | 'outage';
+}
+
+const generateStatusBars = (degradedIndices: number[] = []): StatusBar[] => {
+  return Array.from({ length: 90 }, (_, i) => ({
+    status: degradedIndices.includes(i) ? 'degraded' : 'operational'
+  }));
+};
+
+const StatusBarsDisplay = ({ bars, serviceName }: { bars: StatusBar[], serviceName: string }) => {
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+  
+  const operationalCount = bars.filter(b => b.status === 'operational').length;
+  const uptimePercent = ((operationalCount / bars.length) * 100).toFixed(2);
+  
+  return (
+    <div className="mt-4">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs text-muted-foreground">90-day uptime history</span>
+        <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{uptimePercent}% uptime</span>
+      </div>
+      <div className="relative">
+        <div className="flex gap-[2px] h-8 bg-muted/30 rounded-md p-1 overflow-hidden">
+          {bars.map((bar, index) => (
+            <div
+              key={index}
+              className={`flex-1 min-w-[3px] rounded-sm cursor-pointer transition-all duration-150 ${
+                bar.status === 'operational' 
+                  ? 'bg-emerald-500 hover:bg-emerald-400' 
+                  : bar.status === 'degraded'
+                  ? 'bg-red-500 hover:bg-red-400'
+                  : 'bg-gray-500 hover:bg-gray-400'
+              } ${hoveredIndex === index ? 'scale-y-110' : ''}`}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              title={`Day ${90 - index}: ${bar.status === 'operational' ? 'Operational' : 'Degraded Performance'}`}
+            />
+          ))}
+        </div>
+        {hoveredIndex !== null && (
+          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-popover border border-border rounded-md px-2 py-1 text-xs shadow-lg whitespace-nowrap z-10">
+            Day {90 - hoveredIndex}: {bars[hoveredIndex].status === 'operational' ? 'Operational' : 'Degraded'}
+          </div>
+        )}
+      </div>
+      <div className="flex items-center justify-between mt-2 text-[10px] text-muted-foreground">
+        <span>90 days ago</span>
+        <span>Today</span>
+      </div>
+    </div>
+  );
+};
+
 interface ServiceItemProps {
   icon: React.ReactNode;
   name: string;
@@ -23,6 +79,8 @@ interface ServiceItemProps {
   lastChecked?: string;
   isExpandable?: boolean;
   extraContent?: React.ReactNode;
+  statusBars?: StatusBar[];
+  showBars?: boolean;
 }
 
 const ServiceItem = ({ 
@@ -33,7 +91,9 @@ const ServiceItem = ({
   statusText, 
   lastChecked, 
   isExpandable = false,
-  extraContent 
+  extraContent,
+  statusBars,
+  showBars = true
 }: ServiceItemProps) => {
   const isOperational = status === 'operational';
   const isDegraded = status === 'degraded';
@@ -87,6 +147,7 @@ const ServiceItem = ({
               <div className={`status-badge w-full justify-center sm:w-auto ${statusColors[status]}`}>
                 {isOperational && <CheckCircle2 className="h-3.5 w-3.5 mr-1.5" />}
                 {isLimited && <TriangleAlert className="h-3.5 w-3.5 mr-1.5" />}
+                {isDegraded && <TriangleAlert className="h-3.5 w-3.5 mr-1.5" />}
                 {statusText}
               </div>
               {lastChecked && (
@@ -97,6 +158,11 @@ const ServiceItem = ({
             </div>
           </div>
         )}
+        {showBars && statusBars && (
+          <div className={`${isExpandable ? 'px-4 sm:px-5 pb-4 sm:pb-5' : ''}`}>
+            <StatusBarsDisplay bars={statusBars} serviceName={name} />
+          </div>
+        )}
       </div>
       {extraContent && <div className="p-4 sm:p-5 pt-0">{extraContent}</div>}
     </div>
@@ -104,9 +170,16 @@ const ServiceItem = ({
 };
 
 const ServiceStatusList = () => {
+  const apiServicesBars = generateStatusBars([42, 43, 44, 85, 86, 87, 88]);
+  const websiteBars = generateStatusBars([]);
+  const authBars = generateStatusBars([]);
+  const databaseBars = generateStatusBars([]);
+  const providerBars = generateStatusBars([51]);
+  const paymentBars = generateStatusBars([30, 31, 72, 73]);
+  const freeTierBars = generateStatusBars([15, 16, 17, 45, 46, 60, 61, 62]);
+
   return (
     <div className="w-full space-y-4">
-      {/* API Services */}
       <ServiceItem 
         icon={<Cpu className="h-5 w-5" />}
         name="API Services"
@@ -114,9 +187,9 @@ const ServiceStatusList = () => {
         status="degraded"
         statusText="Degraded Performance"
         isExpandable={true}
+        statusBars={apiServicesBars}
       />
 
-      {/* Website & Dashboard */}
       <ServiceItem 
         icon={<Globe className="h-5 w-5" />}
         name="Website & Dashboard"
@@ -124,9 +197,9 @@ const ServiceStatusList = () => {
         status="operational"
         statusText="Operational"
         lastChecked="less than a minute ago"
+        statusBars={websiteBars}
       />
 
-      {/* Authentication Service */}
       <ServiceItem 
         icon={<KeyRound className="h-5 w-5" />}
         name="Authentication Service"
@@ -134,9 +207,9 @@ const ServiceStatusList = () => {
         status="operational"
         statusText="Operational"
         lastChecked="less than a minute ago"
+        statusBars={authBars}
       />
 
-      {/* Database Service */}
       <ServiceItem 
         icon={<Database className="h-5 w-5" />}
         name="Database Service"
@@ -144,9 +217,9 @@ const ServiceStatusList = () => {
         status="operational"
         statusText="Operational"
         lastChecked="less than a minute ago"
+        statusBars={databaseBars}
       />
 
-      {/* Provider Connections */}
       <ServiceItem 
         icon={<Cloud className="h-5 w-5" />}
         name="Provider Connections"
@@ -154,9 +227,9 @@ const ServiceStatusList = () => {
         status="operational"
         statusText="Operational"
         lastChecked="less than a minute ago"
+        statusBars={providerBars}
       />
 
-      {/* Payment Services */}
       <ServiceItem 
         icon={<CreditCard className="h-5 w-5" />}
         name="Payment Services"
@@ -164,9 +237,9 @@ const ServiceStatusList = () => {
         status="degraded"
         statusText="Degraded Performance"
         isExpandable={true}
+        statusBars={paymentBars}
       />
 
-      {/* Free Tier API Access */}
       <ServiceItem 
         icon={<Sparkles className="h-5 w-5 text-sky-700 dark:text-sky-300" />}
         name="Free Tier API Access"
@@ -174,6 +247,7 @@ const ServiceStatusList = () => {
         status="limited"
         statusText="Limited Performance"
         lastChecked="less than a minute ago"
+        statusBars={freeTierBars}
         extraContent={
           <div className="mt-2 p-4 rounded-lg bg-[#FCF5FF] dark:bg-violet-950/20 border border-violet-100 dark:border-violet-900/50">
             <div className="flex gap-3">
