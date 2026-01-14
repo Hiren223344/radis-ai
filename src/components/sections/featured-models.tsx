@@ -18,14 +18,14 @@ interface ModelCardProps {
 }
 
 const ModelCard = ({ name, provider, tokens, trend, icon, modelId, isPositive = true, index }: ModelCardProps & { index: number }) => (
-  <motion.div 
-    whileHover={{ translateY: -8, scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-    className="group/card flex flex-col justify-between p-8 liquid-glass border border-white/40 rounded-[2rem] transition-all duration-500 shadow-xl cursor-pointer h-full"
-  >
-    <div className="flex items-start justify-between gap-4">
-      <div className="flex items-start gap-4">
-        <div className="flex items-center justify-center size-14 flex-shrink-0 rounded-2xl border border-white/60 bg-white/80 shadow-lg overflow-hidden p-2 transition-transform duration-500 group-hover/card:scale-110 group-hover/card:rotate-3">
+    <motion.div 
+      whileHover={{ translateY: -8, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className="group/card flex flex-col justify-between p-8 liquid-glass border border-white/20 dark:border-white/5 rounded-[2rem] transition-all duration-500 shadow-xl cursor-pointer h-full"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start gap-4">
+          <div className="flex items-center justify-center size-14 flex-shrink-0 rounded-2xl border border-white/60 dark:border-white/10 bg-white/80 dark:bg-white/5 shadow-lg overflow-hidden p-2 transition-transform duration-500 group-hover/card:scale-110 group-hover/card:rotate-3">
           <ModelIcon modelId={modelId || name} size={40} />
         </div>
         <div className="flex flex-col">

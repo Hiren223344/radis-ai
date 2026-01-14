@@ -67,12 +67,12 @@ const Footer = () => {
 
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-3">
             {footerLinks.map((link) => (
-              <motion.a
-                key={link.name}
-                whileHover={{ scale: 1.1, color: '#000' }}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors"
-              >
+                <motion.a
+                  key={link.name}
+                  whileHover={{ scale: 1.1, color: 'var(--foreground)' }}
+                  href={link.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors"
+                >
                 {link.name}
               </motion.a>
             ))}

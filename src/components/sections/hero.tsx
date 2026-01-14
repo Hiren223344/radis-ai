@@ -40,10 +40,10 @@ export default function HeroSection() {
             Explore Models
             <ArrowRight className="size-5" />
           </Link>
-          <Link
-            href="/rankings"
-            className="h-14 px-8 rounded-2xl bg-white border border-border text-foreground font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center"
-          >
+            <Link
+              href="/rankings"
+              className="h-14 px-8 rounded-2xl bg-secondary border border-border text-foreground font-bold text-lg hover:bg-accent transition-all flex items-center justify-center"
+            >
             View Rankings
           </Link>
         </div>

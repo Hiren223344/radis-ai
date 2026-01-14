@@ -54,10 +54,10 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center" 
               >
-                <div 
-                  onMouseMove={handleMouseMove}
-                  className="flex items-center gap-3 liquid-glass-button py-2 px-4 rounded-2xl border border-white/60 shadow-sm"
-                >
+                  <div 
+                    onMouseMove={handleMouseMove}
+                    className="flex items-center gap-3 liquid-glass-button py-2 px-4 rounded-2xl border border-white/60 dark:border-white/10 shadow-sm"
+                  >
                   <svg 
                     width="24" 
                     height="24" 
@@ -75,24 +75,24 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
             </TransitionLink>
 
             {setSearch && (
-              <div className="hidden md:block relative group">
-                <div 
-                  onMouseMove={handleMouseMove}
-                  className="flex items-center gap-2 rounded-2xl h-11 w-80 transition-all liquid-glass-button px-4 border border-white/40 focus-within:ring-2 focus-within:ring-primary/10 focus-within:border-primary/20"
-                >
-                  <Search className="h-4 w-4 opacity-50" />
-                  <input 
-                    className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground font-medium" 
-                    placeholder="Search anything..."
-                    type="text"
-                    value={search || ""}
-                    onChange={(e) => setSearch?.(e.target.value)}
-                  />
-                  <kbd className="flex items-center justify-center h-5 px-1.5 rounded border bg-white/50 border-white/30 text-[10px] font-bold text-muted-foreground">
-                    ⌘K
-                  </kbd>
+                <div className="hidden md:block relative group">
+                  <div 
+                    onMouseMove={handleMouseMove}
+                    className="flex items-center gap-2 rounded-2xl h-11 w-80 transition-all liquid-glass-button px-4 border border-white/40 dark:border-white/10 focus-within:ring-2 focus-within:ring-primary/10 focus-within:border-primary/20"
+                  >
+                    <Search className="h-4 w-4 opacity-50" />
+                    <input 
+                      className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground font-medium" 
+                      placeholder="Search anything..."
+                      type="text"
+                      value={search || ""}
+                      onChange={(e) => setSearch?.(e.target.value)}
+                    />
+                    <kbd className="flex items-center justify-center h-5 px-1.5 rounded border bg-white/50 dark:bg-white/5 border-white/30 dark:border-white/10 text-[10px] font-bold text-muted-foreground">
+                      ⌘K
+                    </kbd>
+                  </div>
                 </div>
-              </div>
             )}
           </div>
 
