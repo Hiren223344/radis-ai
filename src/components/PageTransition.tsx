@@ -1,11 +1,25 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import React, { useEffect, useRef, useState, useCallback, createContext, useContext } from 'react';
+import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 
-const PageTransition = () => {
-  const pathname = usePathname();
+interface TransitionContextType {
+  navigateWithTransition: (href: string) => void;
+}
+
+const TransitionContext = createContext<TransitionContextType | null>(null);
+
+export const usePageTransition = () => {
+  const context = useContext(TransitionContext);
+  if (!context) {
+    throw new Error('usePageTransition must be used within PageTransitionProvider');
+  }
+  return context;
+};
+
+export const PageTransitionProvider = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
   const hasPlayedIntroRef = useRef(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -27,11 +41,11 @@ const PageTransition = () => {
         onStart: () => setIsAnimating(true),
         onComplete: () => {
           setIsAnimating(false);
-          gsap.set(overlay, { display: 'none' });
+          gsap.set(overlay, { pointerEvents: 'none' });
         }
       });
 
-      gsap.set(overlay, { display: 'block' });
+      gsap.set(overlay, { pointerEvents: 'auto' });
       gsap.set(text, { opacity: 0, scale: 0.9, y: 20 });
       gsap.set(panels[0], { x: '0%' });
       gsap.set(panels[1], { x: '0%' });
@@ -52,44 +66,92 @@ const PageTransition = () => {
     };
   }, []);
 
-  return (
-    <div 
-      ref={overlayRef}
-      className="fixed inset-0 z-[9999] overflow-hidden pointer-events-none select-none"
-    >
-      {/* 2-Section Side Transition */}
-      
-      {/* Left Panel */}
-      <div 
-        ref={(el) => { panelsRef.current[0] = el; }}
-        className="absolute top-0 left-0 w-1/2 h-full bg-[#0A0A0B] border-r border-white/5 shadow-[20px_0_50px_rgba(0,0,0,0.5)]"
-      />
-      
-      {/* Right Panel */}
-      <div 
-        ref={(el) => { panelsRef.current[1] = el; }}
-        className="absolute top-0 right-0 w-1/2 h-full bg-[#0A0A0B] border-l border-white/5 shadow-[-20px_0_50px_rgba(0,0,0,0.5)]"
-      />
+  const navigateWithTransition = useCallback((href: string) => {
+    if (isAnimating) return;
 
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div ref={textRef} className="text-center">
-          <div className="relative">
-            <h1 className="text-6xl md:text-8xl font-black tracking-tight text-white uppercase italic leading-none">
-              RADISON
-            </h1>
-            <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full -z-10" />
-          </div>
-          <div className="mt-4 flex items-center justify-center gap-4">
-            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            <span className="text-white/40 font-mono text-[10px] tracking-[0.4em] uppercase whitespace-nowrap">
-              Unified Intelligence
-            </span>
-            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+    const panels = panelsRef.current;
+    const overlay = overlayRef.current;
+
+    if (!overlay || panels.length < 2) {
+      router.push(href);
+      return;
+    }
+
+    setIsAnimating(true);
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        onComplete: () => {
+          router.push(href);
+          
+          setTimeout(() => {
+            const openTl = gsap.timeline({
+              onComplete: () => {
+                setIsAnimating(false);
+                gsap.set(overlay, { pointerEvents: 'none' });
+              }
+            });
+            
+            openTl.to(panels[0], { x: '-100%', duration: 0.5, ease: 'power3.out' })
+                  .to(panels[1], { x: '100%', duration: 0.5, ease: 'power3.out' }, '<');
+          }, 100);
+        }
+      });
+
+      gsap.set(overlay, { pointerEvents: 'auto' });
+      gsap.set(panels[0], { x: '-100%' });
+      gsap.set(panels[1], { x: '100%' });
+
+      tl.to(panels[0], { x: '0%', duration: 0.4, ease: 'power3.in' })
+        .to(panels[1], { x: '0%', duration: 0.4, ease: 'power3.in' }, '<');
+    });
+
+    return () => {
+      ctx.revert();
+    };
+  }, [router, isAnimating]);
+
+  return (
+    <TransitionContext.Provider value={{ navigateWithTransition }}>
+      {children}
+      <div 
+        ref={overlayRef}
+        className="fixed inset-0 z-[9999] overflow-hidden pointer-events-none select-none"
+      >
+        {/* Left Panel */}
+        <div 
+          ref={(el) => { panelsRef.current[0] = el; }}
+          className="absolute top-0 left-0 w-1/2 h-full bg-[#0A0A0B] border-r border-white/5 shadow-[20px_0_50px_rgba(0,0,0,0.5)]"
+          style={{ transform: 'translateX(-100%)' }}
+        />
+        
+        {/* Right Panel */}
+        <div 
+          ref={(el) => { panelsRef.current[1] = el; }}
+          className="absolute top-0 right-0 w-1/2 h-full bg-[#0A0A0B] border-l border-white/5 shadow-[-20px_0_50px_rgba(0,0,0,0.5)]"
+          style={{ transform: 'translateX(100%)' }}
+        />
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div ref={textRef} className="text-center opacity-0">
+            <div className="relative">
+              <h1 className="text-6xl md:text-8xl font-black tracking-tight text-white uppercase italic leading-none">
+                RADISON
+              </h1>
+              <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full -z-10" />
+            </div>
+            <div className="mt-4 flex items-center justify-center gap-4">
+              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <span className="text-white/40 font-mono text-[10px] tracking-[0.4em] uppercase whitespace-nowrap">
+                Unified Intelligence
+              </span>
+              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </TransitionContext.Provider>
   );
 };
 
-export default PageTransition;
+export default PageTransitionProvider;
