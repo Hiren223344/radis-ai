@@ -10,6 +10,8 @@
     },
     "dependencies": {
         "@babel/parser": "^7.28.5",
+        "@clerk/nextjs": "^6.36.7",
+        "@clerk/themes": "^2.4.47",
         "@headlessui/react": "^2.2.9",
         "@heroicons/react": "^2.2.0",
         "@heyputer/puter.js": "^2.2.5",
