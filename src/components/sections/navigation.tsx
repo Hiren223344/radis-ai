@@ -1,11 +1,20 @@
 'use client';
 
 import React from 'react';
-import { Search, Menu } from 'lucide-react';
+import { Search, Menu, Key, CreditCard, LayoutDashboard, LogOut } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import TransitionLink from '@/components/TransitionLink';
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, useUser, useClerk } from '@clerk/nextjs';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 interface NavigationProps {
   search?: string;
@@ -14,7 +23,10 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const { user } = useUser();
+    const { signOut } = useClerk();
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -123,15 +135,56 @@ const Navigation: React.FC<NavigationProps> = ({ search, setSearch }) => {
               </SignedOut>
 
               <SignedIn>
-                <UserButton 
-                  afterSignOutUrl="/"
-                  appearance={{
-                    elements: {
-                      avatarBox: "w-10 h-10"
-                    }
-                  }}
-                />
-              </SignedIn>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0">
+                        <Avatar className="h-10 w-10">
+                          <AvatarImage src={user?.imageUrl} alt={user?.fullName || 'User'} />
+                          <AvatarFallback>
+                            {user?.firstName?.[0] || user?.emailAddresses?.[0]?.emailAddress?.[0]?.toUpperCase() || 'U'}
+                          </AvatarFallback>
+                        </Avatar>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-56" align="end" forceMount>
+                      <DropdownMenuLabel className="font-normal">
+                        <div className="flex flex-col space-y-1">
+                          <p className="text-sm font-medium leading-none">{user?.fullName || 'User'}</p>
+                          <p className="text-xs leading-none text-muted-foreground">
+                            {user?.primaryEmailAddress?.emailAddress}
+                          </p>
+                        </div>
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <TransitionLink href="/dashboard">
+                        <DropdownMenuItem className="cursor-pointer">
+                          <LayoutDashboard className="mr-2 h-4 w-4" />
+                          Dashboard
+                        </DropdownMenuItem>
+                      </TransitionLink>
+                      <TransitionLink href="/dashboard/api-keys">
+                        <DropdownMenuItem className="cursor-pointer">
+                          <Key className="mr-2 h-4 w-4" />
+                          API Keys
+                        </DropdownMenuItem>
+                      </TransitionLink>
+                      <TransitionLink href="/dashboard/billing">
+                        <DropdownMenuItem className="cursor-pointer">
+                          <CreditCard className="mr-2 h-4 w-4" />
+                          Billing
+                        </DropdownMenuItem>
+                      </TransitionLink>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem 
+                        className="cursor-pointer text-destructive focus:text-destructive"
+                        onClick={() => signOut({ redirectUrl: '/' })}
+                      >
+                        <LogOut className="mr-2 h-4 w-4" />
+                        Logout
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </SignedIn>
             </div>
 
           <div className="lg:hidden">
