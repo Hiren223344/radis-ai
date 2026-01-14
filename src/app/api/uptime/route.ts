@@ -11,9 +11,24 @@ const MONITORS: Record<string, string> = {
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const service = searchParams.get('service') || 'api';
+  const listAll = searchParams.get('list') === 'true';
   const monitorId = MONITORS[service] || MONITORS.api;
 
   try {
+    if (listAll) {
+      const response = await fetch("https://api.uptimerobot.com/v2/getMonitors", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          api_key: API_KEY,
+          format: "json",
+        }),
+        cache: 'no-store',
+      });
+      const data = await response.json();
+      return NextResponse.json(data);
+    }
+
     const response = await fetch("https://api.uptimerobot.com/v2/getMonitors", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
