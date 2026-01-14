@@ -7,12 +7,34 @@ export async function POST(req: Request) {
     const PUTER_TOKEN = process.env.PUTER_TOKEN;
 
     if (!PUTER_TOKEN) {
-      return NextResponse.json({ error: 'Puter token not configured' }, { status: 500 });
+      return NextResponse.json({ 
+        error: {
+          message: 'Puter token not configured in environment variables',
+          type: 'invalid_request_error',
+          param: null,
+          code: 'missing_token'
+        } 
+      }, { status: 500 });
     }
 
     if (stream) {
-      return NextResponse.json({ error: 'Streaming is not yet supported in this gateway lite' }, { status: 400 });
+      return NextResponse.json({ 
+        error: {
+          message: 'Streaming is not yet supported in this AI Gateway Lite',
+          type: 'invalid_request_error',
+          param: 'stream',
+          code: 'not_supported'
+        } 
+      }, { status: 400 });
     }
+
+    // Map OpenAI messages to Puter format (Puter seems to use simple {content: string} or standard OpenAI format)
+    // The user's example uses [{"content": "Hi"}] which is simplified.
+    // However, Puter usually accepts standard OpenAI messages too.
+    const puterMessages = messages?.map((m: any) => ({
+      role: m.role || 'user',
+      content: m.content
+    })) || [];
 
     const puterResponse = await fetch("https://api.puter.com/drivers/call", {
       method: "POST",
@@ -29,7 +51,7 @@ export async function POST(req: Request) {
         test_mode: false,
         method: "complete",
         args: {
-          messages: messages || [],
+          messages: puterMessages,
           model: model || "gemini-3-pro-preview"
         },
         auth_token: PUTER_TOKEN
@@ -38,24 +60,34 @@ export async function POST(req: Request) {
 
     if (!puterResponse.ok) {
       const errorText = await puterResponse.text();
-      return NextResponse.json({ error: `Puter API error: ${puterResponse.status}`, details: errorText }, { status: puterResponse.status });
+      return NextResponse.json({ 
+        error: {
+          message: `Puter API error: ${puterResponse.status}`,
+          type: 'api_error',
+          param: null,
+          code: puterResponse.status.toString(),
+          details: errorText
+        } 
+      }, { status: puterResponse.status });
     }
 
     const data = await puterResponse.json();
     
     // Extract actual text from Puter response
-    // Based on observation: data.result.message.content
     let text = "";
     if (data?.result?.message?.content) {
       text = data.result.message.content;
     } else if (typeof data?.result === 'string') {
       text = data.result;
+    } else if (data?.result?.content) {
+      text = data.result.content;
     } else {
       text = JSON.stringify(data?.result || data);
     }
 
+    // Return OpenAI-compatible response
     return NextResponse.json({
-      id: `chatcmpl-${Date.now()}`,
+      id: `chatcmpl-${Math.random().toString(36).substring(7)}`,
       object: "chat.completion",
       created: Math.floor(Date.now() / 1000),
       model: model || "gemini-3-pro-preview",
@@ -76,6 +108,14 @@ export async function POST(req: Request) {
       }
     });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error('AI Gateway Error:', error);
+    return NextResponse.json({ 
+      error: {
+        message: error.message || 'Internal Server Error',
+        type: 'server_error',
+        param: null,
+        code: 'internal_error'
+      } 
+    }, { status: 500 });
   }
 }

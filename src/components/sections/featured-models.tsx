@@ -61,6 +61,7 @@ const FeaturedModels = () => {
       provider: 'Anthropic',
       tokens: '374.1B',
       trend: '65.1%',
+      modelId: 'claude-3-5-sonnet',
       icon: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/Anthropic-3.svg',
     },
     {
@@ -68,6 +69,7 @@ const FeaturedModels = () => {
       provider: 'OpenAI',
       tokens: '99.1B',
       trend: '11.1%',
+      modelId: 'gpt-4o',
       icon: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/OpenAI-1.svg',
     },
     {
@@ -75,6 +77,7 @@ const FeaturedModels = () => {
       provider: 'Google',
       tokens: '130.9B',
       trend: '2.41%',
+      modelId: 'gemini-1.5-pro',
       icon: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/553712b9-2c96-4989-89c0-e47787bf27ac-openrouter-ai/assets/svgs/GoogleGemini-2.svg',
     },
   ]);
@@ -142,15 +145,16 @@ const FeaturedModels = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredModels.map((model, index) => (
-              <ModelCard
-                key={model.name}
-                name={model.name}
-                provider={model.provider}
-                tokens={model.tokens}
-                trend={model.trend}
-                modelId={model.name}
-                index={index}
-              />
+                <ModelCard
+                  key={model.name}
+                  name={model.name}
+                  provider={model.provider}
+                  tokens={model.tokens}
+                  trend={model.trend}
+                  modelId={model.modelId || model.name}
+                  index={index}
+                />
+
             ))}
         </div>
     </section>
