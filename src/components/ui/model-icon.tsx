@@ -1,27 +1,7 @@
-// Model icon component with colored variants
+'use client';
+
 import React from 'react';
-import { 
-  OpenAI, 
-  Claude, 
-  Google, 
-  Meta, 
-  Mistral, 
-  Perplexity, 
-  Gemini, 
-  Cohere,
-  DeepSeek,
-  Grok,
-  HuggingFace,
-  Minimax,
-  Stability,
-  Moonshot,
-  Qwen,
-  Yi,
-  Baichuan,
-  InternLM,
-  Gemma,
-  XAI
-} from '@lobehub/icons';
+import * as Icons from '@lobehub/icons';
 
 interface ModelIconProps {
   modelId: string;
@@ -32,30 +12,45 @@ interface ModelIconProps {
 const ModelIcon = ({ modelId, size = 24, className }: ModelIconProps) => {
   const id = modelId.toLowerCase();
 
-  // Specific model mappings with colored variants if available
-  // Most lobe-icons components have a .Color subcomponent
-  if (id.includes('gpt') || id.includes('openai')) return <OpenAI.Color size={size} className={className} />;
-  if (id.includes('claude') || id.includes('anthropic')) return <Claude.Color size={size} className={className} />;
-  if (id.includes('gemini')) return <Gemini.Color size={size} className={className} />;
-  if (id.includes('gemma')) return <Gemma.Color size={size} className={className} />;
-  if (id.includes('google') || id.includes('palm')) return <Google.Color size={size} className={className} />;
-  if (id.includes('llama') || id.includes('meta')) return <Meta.Color size={size} className={className} />;
-  if (id.includes('mistral') || id.includes('mixtral')) return <Mistral.Color size={size} className={className} />;
-  if (id.includes('deepseek')) return <DeepSeek.Color size={size} className={className} />;
-  if (id.includes('perplexity')) return <Perplexity.Color size={size} className={className} />;
-  if (id.includes('cohere')) return <Cohere.Color size={size} className={className} />;
-  if (id.includes('grok')) return <Grok.Color size={size} className={className} />;
-  if (id.includes('xai')) return <XAI.Color size={size} className={className} />;
-  if (id.includes('qwen')) return <Qwen.Color size={size} className={className} />;
-  if (id.includes('yi-')) return <Yi.Color size={size} className={className} />;
-  if (id.includes('baichuan')) return <Baichuan.Color size={size} className={className} />;
-  if (id.includes('internlm')) return <InternLM.Color size={size} className={className} />;
-  if (id.includes('moonshot')) return <Moonshot.Color size={size} className={className} />;
-  if (id.includes('minimax')) return <Minimax.Color size={size} className={className} />;
-  if (id.includes('stability')) return <Stability.Color size={size} className={className} />;
-  
-  // Default fallback
-  return <HuggingFace.Color size={size} className={className} />;
+  const getIcon = () => {
+    // Mapping model IDs to LobeHub icon components
+    if (id.includes('gpt') || id.includes('openai')) return Icons.OpenAI;
+    if (id.includes('claude') || id.includes('anthropic')) return Icons.Claude;
+    if (id.includes('gemini')) return Icons.Gemini;
+    if (id.includes('gemma')) return Icons.Gemma;
+    if (id.includes('google') || id.includes('palm')) return Icons.Google;
+    if (id.includes('llama') || id.includes('meta')) return Icons.Meta;
+    if (id.includes('mistral') || id.includes('mixtral')) return Icons.Mistral;
+    if (id.includes('deepseek')) return Icons.DeepSeek;
+    if (id.includes('perplexity')) return Icons.Perplexity;
+    if (id.includes('cohere')) return Icons.Cohere;
+    if (id.includes('grok')) return Icons.Grok;
+    if (id.includes('xai')) return Icons.XAI;
+    if (id.includes('qwen')) return Icons.Qwen;
+    if (id.includes('yi-')) return Icons.Yi;
+    if (id.includes('baichuan')) return Icons.Baichuan;
+    if (id.includes('internlm')) return Icons.InternLM;
+    if (id.includes('moonshot')) return Icons.Moonshot;
+    if (id.includes('minimax')) return Icons.Minimax;
+    if (id.includes('stability')) return Icons.Stability;
+    
+    return Icons.HuggingFace;
+  };
+
+  const IconComponent = getIcon() as any;
+
+  // Fallback if component is undefined
+  if (!IconComponent) {
+    return <Icons.HuggingFace size={size} className={className} />;
+  }
+
+  // Use Avatar variant which is usually colored and looks good in these cards
+  // If Avatar doesn't exist, fallback to the base component
+  if (IconComponent.Avatar) {
+    return <IconComponent.Avatar size={size} className={className} />;
+  }
+
+  return <IconComponent size={size} className={className} />;
 };
 
 export default ModelIcon;
