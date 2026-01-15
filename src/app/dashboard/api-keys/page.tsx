@@ -6,7 +6,7 @@ import Navigation from '@/components/sections/navigation';
 import Footer from '@/components/sections/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Key, Copy, Eye, EyeOff, Trash2, Plus, ArrowLeft } from 'lucide-react';
+import { Key, Copy, Eye, EyeOff, Trash2, Plus, ArrowLeft, Check } from 'lucide-react';
 import TransitionLink from '@/components/TransitionLink';
 import { toast } from 'sonner';
 
@@ -19,6 +19,123 @@ interface ApiKeyData {
   last_used_at: string | null;
 }
 
+const codeExamples = [
+  {
+    lang: 'cURL',
+    code: `curl https://api.radison.com/v1/chat/completions \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "gpt-4",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'`
+  },
+  {
+    lang: 'Python',
+    code: `import requests
+
+url = "https://api.radison.com/v1/chat/completions"
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
+}
+data = {
+    "model": "gpt-4",
+    "messages": [{"role": "user", "content": "Hello!"}]
+}
+
+response = requests.post(url, json=data, headers=headers)
+print(response.json())`
+  },
+  {
+    lang: 'JavaScript',
+    code: `const response = await fetch(
+  "https://api.radison.com/v1/chat/completions",
+  {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: "gpt-4",
+      messages: [{ role: "user", content: "Hello!" }]
+    })
+  }
+);
+
+const data = await response.json();
+console.log(data);`
+  },
+  {
+    lang: 'TypeScript',
+    code: `import OpenAI from 'openai';
+
+const openai = new OpenAI({
+  baseURL: "https://api.radison.com/v1",
+  apiKey: process.env.RADISON_API_KEY,
+});
+
+const completion = await openai.chat.completions.create({
+  model: "gpt-4",
+  messages: [{ role: "user", content: "Hello!" }],
+});
+
+console.log(completion.choices[0].message);`
+  },
+  {
+    lang: 'Go',
+    code: `package main
+
+import (
+    "bytes"
+    "encoding/json"
+    "net/http"
+)
+
+func main() {
+    url := "https://api.radison.com/v1/chat/completions"
+    
+    payload := map[string]interface{}{
+        "model": "gpt-4",
+        "messages": []map[string]string{
+            {"role": "user", "content": "Hello!"},
+        },
+    }
+    
+    body, _ := json.Marshal(payload)
+    req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
+    req.Header.Set("Authorization", "Bearer YOUR_API_KEY")
+    req.Header.Set("Content-Type", "application/json")
+    
+    client := &http.Client{}
+    resp, _ := client.Do(req)
+    defer resp.Body.Close()
+}`
+  },
+  {
+    lang: 'Ruby',
+    code: `require 'net/http'
+require 'json'
+require 'uri'
+
+uri = URI('https://api.radison.com/v1/chat/completions')
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+
+request = Net::HTTP::Post.new(uri)
+request['Authorization'] = 'Bearer YOUR_API_KEY'
+request['Content-Type'] = 'application/json'
+request.body = {
+  model: 'gpt-4',
+  messages: [{ role: 'user', content: 'Hello!' }]
+}.to_json
+
+response = http.request(request)
+puts JSON.parse(response.body)`
+  }
+];
+
 export default function ApiKeysPage() {
   const { user } = useUser();
   const [apiKey, setApiKey] = useState<ApiKeyData | null>(null);
@@ -26,6 +143,8 @@ export default function ApiKeysPage() {
   const [creating, setCreating] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [showKey, setShowKey] = useState(false);
+  const [selectedLang, setSelectedLang] = useState(0);
+  const [copied, setCopied] = useState(false);
 
   const fetchApiKey = async () => {
     try {
@@ -89,6 +208,13 @@ export default function ApiKeysPage() {
       navigator.clipboard.writeText(apiKey.api_key);
       toast.success('API key copied to clipboard');
     }
+  };
+
+  const copyCodeToClipboard = () => {
+    navigator.clipboard.writeText(codeExamples[selectedLang].code);
+    setCopied(true);
+    toast.success('Code copied to clipboard');
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const maskApiKey = (key: string) => {
@@ -188,42 +314,39 @@ export default function ApiKeysPage() {
 
           <Card className="mt-6">
             <CardHeader>
-              <CardTitle>Usage Example</CardTitle>
+              <CardTitle>Usage Examples</CardTitle>
               <CardDescription>
                 Use your API key to authenticate requests to the Radison API
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <p className="text-xs font-medium uppercase text-muted-foreground mb-2">cURL</p>
-                <pre className="p-4 bg-muted rounded-lg overflow-x-auto text-sm">
-                  <code>{`curl https://api.radison.com/v1/chat/completions \\
-    -H "Authorization: Bearer YOUR_API_KEY" \\
-    -H "Content-Type: application/json" \\
-    -d '{
-      "model": "gpt-4",
-      "messages": [{"role": "user", "content": "Hello!"}]
-    }'`}</code>
-                </pre>
+            <CardContent>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {codeExamples.map((example, index) => (
+                  <button
+                    key={example.lang}
+                    onClick={() => setSelectedLang(index)}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                      index === selectedLang
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
+                    }`}
+                  >
+                    {example.lang}
+                  </button>
+                ))}
               </div>
 
-              <div>
-                <p className="text-xs font-medium uppercase text-muted-foreground mb-2">Python (requests)</p>
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={copyCodeToClipboard}
+                  className="absolute top-3 right-3 z-10"
+                >
+                  {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                </Button>
                 <pre className="p-4 bg-muted rounded-lg overflow-x-auto text-sm">
-                  <code>{`import requests
-
-url = "https://api.radison.com/v1/chat/completions"
-headers = {
-    "Authorization": "Bearer YOUR_API_KEY",
-    "Content-Type": "application/json"
-}
-data = {
-    "model": "gpt-4",
-    "messages": [{"role": "user", "content": "Hello!"}]
-}
-
-response = requests.post(url, json=data, headers=headers)
-print(response.json())`}</code>
+                  <code>{codeExamples[selectedLang].code}</code>
                 </pre>
               </div>
             </CardContent>
