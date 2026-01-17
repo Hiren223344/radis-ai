@@ -41,7 +41,7 @@ function DockItem({ children, className = '', onClick, mouseX, spring, distance,
       onFocus={() => isHovered.set(1)}
       onBlur={() => isHovered.set(0)}
       onClick={onClick}
-      className={`dock-item relative inline-flex items-center justify-center rounded-[10px] bg-[#060010] border border-white/10 shadow-lg cursor-pointer outline-none ${className}`}
+      className={`dock-item relative inline-flex items-center justify-center rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors cursor-pointer outline-none ${className}`}
       tabIndex={0}
       role="button"
       aria-haspopup="true"
@@ -81,7 +81,7 @@ function DockLabel({ children, className = '', isHovered }: DockLabelProps) {
           animate={{ opacity: 1, y: -10 }}
           exit={{ opacity: 0, y: 0 }}
           transition={{ duration: 0.2 }}
-          className={`absolute top-[-1.5rem] left-1/2 w-fit whitespace-nowrap rounded-md border border-white/10 bg-[#060010] px-2 py-0.5 text-xs text-white -translate-x-1/2 ${className}`}
+          className={`absolute top-[-1.5rem] left-1/2 w-fit whitespace-nowrap rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-[#060010] px-2 py-0.5 text-xs text-foreground -translate-x-1/2 ${className}`}
           role="tooltip"
         >
           {children}
@@ -131,15 +131,8 @@ export default function Dock({
   const mouseX = useMotionValue(Infinity);
   const isHovered = useMotionValue(0);
 
-  const maxHeight = useMemo(
-    () => Math.max(dockHeight, magnification + magnification / 2 + 4),
-    [magnification, dockHeight]
-  );
-  const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
-  const height = useSpring(heightRow, spring);
-
   return (
-    <motion.div style={{ height, scrollbarWidth: 'none' }} className="mx-2 flex max-w-full items-center">
+    <div className="fixed bottom-6 left-0 w-full z-[10000] pointer-events-none flex justify-center pb-4">
       <motion.div
         onMouseMove={({ pageX }) => {
           isHovered.set(1);
@@ -149,8 +142,7 @@ export default function Dock({
           isHovered.set(0);
           mouseX.set(Infinity);
         }}
-        className={`fixed bottom-4 left-1/2 -translate-x-1/2 flex items-end w-fit gap-4 rounded-2xl bg-black/90 border border-white/10 px-2 pb-2 backdrop-blur-xl ${className}`}
-        style={{ height: panelHeight }}
+        className={`pointer-events-auto flex items-center w-fit gap-3 rounded-full bg-white/80 dark:bg-[#09090b]/80 border border-black/5 dark:border-white/10 px-3 py-3 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] ring-1 ring-black/5 dark:ring-white/5 transition-all duration-300 ${className}`}
         role="toolbar"
         aria-label="Application dock"
       >
@@ -170,6 +162,6 @@ export default function Dock({
           </DockItem>
         ))}
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

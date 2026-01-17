@@ -1,7 +1,6 @@
 'use client';
 
 import { useUser } from '@clerk/nextjs';
-import Navigation from '@/components/sections/navigation';
 import Footer from '@/components/sections/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Key, CreditCard, Activity } from 'lucide-react';
@@ -12,7 +11,6 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
       <main className="pt-24 lg:pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="mb-8">

@@ -6,31 +6,37 @@ export async function POST(req: Request) {
     const { messages, model, stream } = body;
     const PUTER_TOKEN = process.env.PUTER_TOKEN;
 
+    // 🔒 Security: Validate API Key (with 5-minute expiration)
+    const { validateApiKey } = await import('@/lib/api-auth');
+    const authResult = await validateApiKey(req);
+
+    if (!authResult.isValid) {
+      return authResult.response;
+    }
+
     if (!PUTER_TOKEN) {
-      return NextResponse.json({ 
+      return NextResponse.json({
         error: {
           message: 'Puter token not configured in environment variables',
           type: 'invalid_request_error',
           param: null,
           code: 'missing_token'
-        } 
+        }
       }, { status: 500 });
     }
 
     if (stream) {
-      return NextResponse.json({ 
+      return NextResponse.json({
         error: {
           message: 'Streaming is not yet supported in this AI Gateway Lite',
           type: 'invalid_request_error',
           param: 'stream',
           code: 'not_supported'
-        } 
+        }
       }, { status: 400 });
     }
 
     // Map OpenAI messages to Puter format (Puter seems to use simple {content: string} or standard OpenAI format)
-    // The user's example uses [{"content": "Hi"}] which is simplified.
-    // However, Puter usually accepts standard OpenAI messages too.
     const puterMessages = messages?.map((m: any) => ({
       role: m.role || 'user',
       content: m.content
@@ -60,19 +66,19 @@ export async function POST(req: Request) {
 
     if (!puterResponse.ok) {
       const errorText = await puterResponse.text();
-      return NextResponse.json({ 
+      return NextResponse.json({
         error: {
           message: `Puter API error: ${puterResponse.status}`,
           type: 'api_error',
           param: null,
           code: puterResponse.status.toString(),
           details: errorText
-        } 
+        }
       }, { status: puterResponse.status });
     }
 
     const data = await puterResponse.json();
-    
+
     // Extract actual text from Puter response
     let text = "";
     if (data?.result?.message?.content) {
@@ -109,13 +115,13 @@ export async function POST(req: Request) {
     });
   } catch (error: any) {
     console.error('AI Gateway Error:', error);
-    return NextResponse.json({ 
+    return NextResponse.json({
       error: {
         message: error.message || 'Internal Server Error',
         type: 'server_error',
         param: null,
         code: 'internal_error'
-      } 
+      }
     }, { status: 500 });
   }
 }

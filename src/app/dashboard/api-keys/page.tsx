@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useUser } from '@clerk/nextjs';
-import Navigation from '@/components/sections/navigation';
 import Footer from '@/components/sections/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Key, Copy, Eye, EyeOff, Trash2, Plus, ArrowLeft, Check } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Key, Copy, Eye, EyeOff, Trash2, Plus, ArrowLeft, Check, Info } from 'lucide-react';
 import TransitionLink from '@/components/TransitionLink';
 import { toast } from 'sonner';
 
@@ -19,122 +19,7 @@ interface ApiKeyData {
   last_used_at: string | null;
 }
 
-const codeExamples = [
-  {
-    lang: 'cURL',
-    code: `curl https://api.radison.com/v1/chat/completions \\
-  -H "Authorization: Bearer YOUR_API_KEY" \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "model": "gpt-4",
-    "messages": [{"role": "user", "content": "Hello!"}]
-  }'`
-  },
-  {
-    lang: 'Python',
-    code: `import requests
 
-url = "https://api.radison.com/v1/chat/completions"
-headers = {
-    "Authorization": "Bearer YOUR_API_KEY",
-    "Content-Type": "application/json"
-}
-data = {
-    "model": "gpt-4",
-    "messages": [{"role": "user", "content": "Hello!"}]
-}
-
-response = requests.post(url, json=data, headers=headers)
-print(response.json())`
-  },
-  {
-    lang: 'JavaScript',
-    code: `const response = await fetch(
-  "https://api.radison.com/v1/chat/completions",
-  {
-    method: "POST",
-    headers: {
-      "Authorization": "Bearer YOUR_API_KEY",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: "gpt-4",
-      messages: [{ role: "user", content: "Hello!" }]
-    })
-  }
-);
-
-const data = await response.json();
-console.log(data);`
-  },
-  {
-    lang: 'TypeScript',
-    code: `import OpenAI from 'openai';
-
-const openai = new OpenAI({
-  baseURL: "https://api.radison.com/v1",
-  apiKey: process.env.RADISON_API_KEY,
-});
-
-const completion = await openai.chat.completions.create({
-  model: "gpt-4",
-  messages: [{ role: "user", content: "Hello!" }],
-});
-
-console.log(completion.choices[0].message);`
-  },
-  {
-    lang: 'Go',
-    code: `package main
-
-import (
-    "bytes"
-    "encoding/json"
-    "net/http"
-)
-
-func main() {
-    url := "https://api.radison.com/v1/chat/completions"
-    
-    payload := map[string]interface{}{
-        "model": "gpt-4",
-        "messages": []map[string]string{
-            {"role": "user", "content": "Hello!"},
-        },
-    }
-    
-    body, _ := json.Marshal(payload)
-    req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
-    req.Header.Set("Authorization", "Bearer YOUR_API_KEY")
-    req.Header.Set("Content-Type", "application/json")
-    
-    client := &http.Client{}
-    resp, _ := client.Do(req)
-    defer resp.Body.Close()
-}`
-  },
-  {
-    lang: 'Ruby',
-    code: `require 'net/http'
-require 'json'
-require 'uri'
-
-uri = URI('https://api.radison.com/v1/chat/completions')
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true
-
-request = Net::HTTP::Post.new(uri)
-request['Authorization'] = 'Bearer YOUR_API_KEY'
-request['Content-Type'] = 'application/json'
-request.body = {
-  model: 'gpt-4',
-  messages: [{ role: 'user', content: 'Hello!' }]
-}.to_json
-
-response = http.request(request)
-puts JSON.parse(response.body)`
-  }
-];
 
 export default function ApiKeysPage() {
   const { user } = useUser();
@@ -145,6 +30,125 @@ export default function ApiKeysPage() {
   const [showKey, setShowKey] = useState(false);
   const [selectedLang, setSelectedLang] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [baseUrl, setBaseUrl] = useState(process.env.NEXT_PUBLIC_APP_URL || 'https://api.radison.com');
+
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_APP_URL && typeof window !== 'undefined') {
+      setBaseUrl(window.location.origin);
+    }
+  }, []);
+
+  const displayKey = apiKey?.api_key || 'YOUR_API_KEY';
+
+  const codeExamples = useMemo(() => [
+    {
+      lang: 'cURL',
+      code: `curl ${baseUrl}/api/v1/chat/completions \\
+  -H "Authorization: Bearer ${displayKey}" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "gpt-4o",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'`
+    },
+    {
+      lang: 'Python',
+      code: `import requests
+
+res = requests.post("${baseUrl}/api/v1/chat/completions",
+    headers={"Authorization": "Bearer ${displayKey}"},
+    json={"model": "gpt-4o", "messages": [{"role": "user", "content": "Hello!"}]}
+)
+print(res.json())`
+    },
+    {
+      lang: 'JavaScript',
+      code: `const response = await fetch(
+  "${baseUrl}/api/v1/chat/completions",
+  {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer ${displayKey}",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: "gpt-4o",
+      messages: [{ role: "user", content: "Hello!" }]
+    })
+  }
+);
+
+const data = await response.json();
+console.log(data);`
+    },
+    {
+      lang: 'TypeScript',
+      code: `import OpenAI from 'openai';
+
+const openai = new OpenAI({
+  baseURL: "${baseUrl}/api/v1",
+  apiKey: "${displayKey}",
+});
+
+const completion = await openai.chat.completions.create({
+  model: "gpt-4o",
+  messages: [{ role: "user", content: "Hello!" }],
+});
+
+console.log(completion.choices[0].message);`
+    },
+    {
+      lang: 'Go',
+      code: `package main
+
+import (
+    "bytes"
+    "encoding/json"
+    "net/http"
+)
+
+func main() {
+    url := "${baseUrl}/api/v1/chat/completions"
+    
+    payload := map[string]interface{}{
+        "model": "gpt-4o",
+        "messages": []map[string]string{
+            {"role": "user", "content": "Hello!"},
+        },
+    }
+    
+    body, _ := json.Marshal(payload)
+    req, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
+    req.Header.Set("Authorization", "Bearer ${displayKey}")
+    req.Header.Set("Content-Type", "application/json")
+    
+    client := &http.Client{}
+    resp, _ := client.Do(req)
+    defer resp.Body.Close()
+}`
+    },
+    {
+      lang: 'Ruby',
+      code: `require 'net/http'
+require 'json'
+require 'uri'
+
+uri = URI('${baseUrl}/api/v1/chat/completions')
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = uri.scheme == 'https'
+
+request = Net::HTTP::Post.new(uri)
+request['Authorization'] = 'Bearer ${displayKey}'
+request['Content-Type'] = 'application/json'
+request.body = {
+  model: 'gpt-4o',
+  messages: [{ role: 'user', content: 'Hello!' }]
+}.to_json
+
+response = http.request(request)
+puts JSON.parse(response.body)`
+    }
+  ], [displayKey, baseUrl]);
 
   const fetchApiKey = async () => {
     try {
@@ -223,7 +227,6 @@ export default function ApiKeysPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
       <main className="pt-24 lg:pt-32 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="mb-8">
@@ -237,6 +240,14 @@ export default function ApiKeysPage() {
             </h1>
             <p className="text-muted-foreground mt-2">Manage your API key for accessing Radison services</p>
           </div>
+
+          <Alert className="mb-6 border-blue-500/50 bg-blue-500/10 text-blue-500">
+            <Info className="h-4 w-4" />
+            <AlertTitle>Model Compatibility Notice</AlertTitle>
+            <AlertDescription>
+              Currently, only <strong>chat and text completion models</strong> are supported via the API. Image generation and other modalities are not yet available.
+            </AlertDescription>
+          </Alert>
 
           <Card>
             <CardHeader>
@@ -315,8 +326,13 @@ export default function ApiKeysPage() {
           <Card className="mt-6">
             <CardHeader>
               <CardTitle>Usage Examples</CardTitle>
-              <CardDescription>
-                Use your API key to authenticate requests to the Radison API
+              <CardDescription className="flex flex-col gap-2">
+                <span>Use your API key to authenticate requests to the Radison API</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold px-2 py-0.5 bg-primary/10 text-primary rounded-full border border-primary/20">
+                    API Base URL: {baseUrl}/api/v1
+                  </span>
+                </div>
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -325,11 +341,10 @@ export default function ApiKeysPage() {
                   <button
                     key={example.lang}
                     onClick={() => setSelectedLang(index)}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                      index === selectedLang
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
-                    }`}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${index === selectedLang
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
+                      }`}
                   >
                     {example.lang}
                   </button>

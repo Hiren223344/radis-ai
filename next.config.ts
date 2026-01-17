@@ -24,13 +24,13 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ['@lobehub/icons'],
   experimental: {
-    turbo: {
-      rules: {
-        "*.{jsx,tsx}": {
-          loaders: [LOADER]
-        }
-      }
-    },
+    // turbo: {
+    //   rules: {
+    //     "*.{jsx,tsx}": {
+    //       loaders: [LOADER]
+    //     }
+    //   }
+    // },
   },
 };
 

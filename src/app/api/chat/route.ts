@@ -10,6 +10,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Puter token not configured' }, { status: 500 });
     }
 
+    // 🔒 Security: Validate API Key (with 5-minute expiration)
+    const { validateApiKey } = await import('@/lib/api-auth');
+    const authResult = await validateApiKey(req);
+
+    if (!authResult.isValid) {
+      return authResult.response;
+    }
+
     // Format messages for Puter API
     // If OpenAI style messages are provided, use them. Otherwise fallback to prompt.
     const puterMessages = messages || [{ content: prompt || "Hi" }];

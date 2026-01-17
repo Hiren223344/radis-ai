@@ -94,13 +94,13 @@ const ADDITIONAL_MODELS: Model[] = [
   { id: "seamless-m4t-realtime", name: "Seamless M4T Realtime", provider: "Meta", description: "Massively Multilingual Realtime Translation.", category: "Realtime" },
 ];
 
-  const getProvider = (id: string, name: string) => {
-    const lowerId = id.toLowerCase();
-    const lowerName = (name || "").toLowerCase();
-    
-    if (lowerId.includes('llama') || lowerId.includes('meta')) return 'Meta';
-    if (lowerId.includes('gpt') || lowerId.includes('o1') || lowerId.includes('o3') || lowerId.includes('openai')) return 'OpenAI';
-    if (lowerId.includes('claude') || lowerId.includes('anthropic')) return 'Anthropic';
+const getProvider = (id: string, name: string) => {
+  const lowerId = id.toLowerCase();
+  const lowerName = (name || "").toLowerCase();
+
+  if (lowerId.includes('llama') || lowerId.includes('meta')) return 'Meta';
+  if (lowerId.includes('gpt') || lowerId.includes('o1') || lowerId.includes('o3') || lowerId.includes('openai')) return 'OpenAI';
+  if (lowerId.includes('claude') || lowerId.includes('anthropic')) return 'Anthropic';
   if (lowerId.includes('mistral') || lowerId.includes('mixtral')) return 'Mistral';
   if (lowerId.includes('deepseek')) return 'DeepSeek';
   if (lowerId.includes('qwen') || lowerId.includes('alibaba')) return 'Alibaba';
@@ -108,11 +108,11 @@ const ADDITIONAL_MODELS: Model[] = [
   if (lowerId.includes('grok') || lowerId.includes('xai')) return 'xAI';
   if (lowerId.includes('perplexity')) return 'Perplexity';
   if (lowerId.includes('cohere')) return 'Cohere';
-  
+
   if (lowerName.includes('claude')) return 'Anthropic';
   if (lowerName.includes('gpt')) return 'OpenAI';
   if (lowerName.includes('gemini') || lowerName.includes('google') || lowerName.includes('gemma')) return 'Google';
-  
+
   if (id.includes('/')) return id.split('/')[0];
   return 'Cloud Provider';
 };
@@ -129,7 +129,7 @@ const Tag = ({ label, color = '#64748b', variant = 'default' }: TagProps) => {
     reasoning: "bg-purple-50 text-purple-700 border-purple-200",
     puter: "bg-blue-50 text-blue-700 border-blue-200"
   };
-  
+
   return (
     <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full border text-[11px] font-medium ${styles[variant]}`}>
       {!variant || variant === 'default' ? <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} /> : null}
@@ -152,31 +152,31 @@ const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => 
       try {
         // @ts-ignore
         const response = await puter.ai.listModels();
-        
+
         // Map Puter models to our Model interface
         const formattedModels: Model[] = response.map((m: any) => {
           const modelId = typeof m === 'string' ? m : (m.id || m.name || 'unknown-model');
           const modelName = typeof m.name === 'string' ? m.name : modelId;
-          
+
           // Determine if it's a reasoning model
-          const isReasoning = modelId.toLowerCase().includes('o1') || 
-                             modelId.toLowerCase().includes('o3') || 
-                             modelId.toLowerCase().includes('r1') || 
-                             modelId.toLowerCase().includes('reasoning') ||
-                             modelName.toLowerCase().includes('reasoning') ||
-                             modelName.toLowerCase().includes('o1');
+          const isReasoning = modelId.toLowerCase().includes('o1') ||
+            modelId.toLowerCase().includes('o3') ||
+            modelId.toLowerCase().includes('r1') ||
+            modelId.toLowerCase().includes('reasoning') ||
+            modelName.toLowerCase().includes('reasoning') ||
+            modelName.toLowerCase().includes('o1');
 
-          const isVision = modelId.toLowerCase().includes('vision') || 
-                           modelId.toLowerCase().includes('vl') || 
-                           modelName.toLowerCase().includes('vision');
+          const isVision = modelId.toLowerCase().includes('vision') ||
+            modelId.toLowerCase().includes('vl') ||
+            modelName.toLowerCase().includes('vision');
 
-            let type = 'Text';
-            if (isReasoning) type = 'Reasoning';
-            else if (isVision) type = 'Vision';
+          let type = 'Text';
+          if (isReasoning) type = 'Reasoning';
+          else if (isVision) type = 'Vision';
 
-            const rawProvider = m.provider || getProvider(modelId, modelName);
-            // Normalize provider name
-            const provider = getProvider(modelId, modelName) !== 'Cloud Provider' ? getProvider(modelId, modelName) : rawProvider;
+          const rawProvider = m.provider || getProvider(modelId, modelName);
+          // Normalize provider name
+          const provider = getProvider(modelId, modelName) !== 'Cloud Provider' ? getProvider(modelId, modelName) : rawProvider;
 
           return {
             id: modelId,
@@ -190,7 +190,7 @@ const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => 
         });
 
         const combinedModels = [...formattedModels, ...ADDITIONAL_MODELS];
-        
+
         // Deduplicate by ID
         const uniqueModels = Array.from(new Map(combinedModels.map(item => [item.id, item])).values());
 
@@ -212,11 +212,16 @@ const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => 
 
   const filteredModels = useMemo(() => {
     const filtered = models.filter(m => {
+      const lowerId = m.id.toLowerCase();
+      const lowerName = (m.name || "").toLowerCase();
+      const category = m.category?.toLowerCase() || "";
+      const type = m.type?.toLowerCase() || "";
+
       // Search filter
-      const matchesSearch = !search || 
-        m.name?.toLowerCase().includes(search.toLowerCase()) || 
-        m.id?.toLowerCase().includes(search.toLowerCase());
-      
+      const matchesSearch = !search ||
+        lowerName.includes(search.toLowerCase()) ||
+        lowerId.includes(search.toLowerCase());
+
       if (!matchesSearch) return false;
 
       // Provider filter
@@ -226,10 +231,6 @@ const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => 
 
       // Input Modality filter
       if (inputModality) {
-        const lowerId = m.id.toLowerCase();
-        const lowerName = m.name.toLowerCase();
-        const category = m.category?.toLowerCase();
-
         if (inputModality === 'image' && !lowerId.includes('vision') && !lowerId.includes('vl') && !lowerName.includes('vision') && category !== 'image') return false;
         if (inputModality === 'video' && !lowerId.includes('video') && category !== 'video') return false;
         if (inputModality === 'audio' && !lowerId.includes('audio') && category !== 'tts' && category !== 'stt') return false;
@@ -238,13 +239,15 @@ const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => 
 
       // Output Modality filter
       if (outputModality) {
-        const lowerId = m.id.toLowerCase();
-        const category = m.category?.toLowerCase();
-        
-        if (outputModality === 'image' && !lowerId.includes('dall-e') && !lowerId.includes('stable-diffusion') && !lowerId.includes('flux') && category !== 'image') return false;
         if (outputModality === 'audio' && category !== 'tts' && category !== 'realtime') return false;
-        if (outputModality === 'text' && category === 'image') return false; // Image models usually don't output text
+        if (outputModality === 'text' && category === 'image') return false;
       }
+
+      // Global filter: no img, vid, tts, stt, realtime models
+      if (category === 'image' || category === 'video' || category === 'tts' || category === 'stt' || category === 'realtime') return false;
+      if (type === 'image' || type === 'video') return false;
+      if (lowerId.includes('dall-e') || lowerId.includes('stable-diffusion') || lowerId.includes('flux')) return false;
+      if (lowerName.includes('sora') || lowerName.includes('whisper') || lowerName.includes('tts')) return false;
 
       return true;
     });
@@ -263,68 +266,68 @@ const ModelList: React.FC<ModelListProps> = ({ search, onModelCountChange }) => 
         {filteredModels.map((model) => (
           <div key={model.id} className="py-8 first:pt-4 group">
             <div className="flex flex-col gap-2">
-                <div className="flex items-start justify-between">
-                  <div className="flex flex-col gap-1.5">
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center justify-center size-8 flex-shrink-0 rounded-lg border border-border bg-white shadow-sm overflow-hidden p-1.5">
-                        <ModelIcon modelId={model.id} size={20} />
-                      </div>
-                          <div className="flex items-center gap-2">
-                            <h3 className="text-[16px] font-semibold text-foreground tracking-tight">
-                              {model.name || model.id}
-                            </h3>
-                              <div className="flex items-center gap-2">
-                                {model.type === 'Reasoning' ? (
-                                  <Tag label="Reasoning" variant="reasoning" />
-                                ) : model.type === 'Vision' ? (
-                                  <Tag label="Vision" variant="default" color="#3b82f6" />
-                                ) : (
-                                  <Tag label="Text" variant="default" color="#10b981" />
-                                )}
-                                  <button 
-                                    className="p-1 rounded hover:bg-slate-100 text-slate-11 transition-colors"
-                                    onClick={async () => {
-                                      try {
-                                        if (typeof window !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
-                                          await navigator.clipboard.writeText(model.id);
-                                        } else {
-                                          throw new Error('Clipboard API not available');
-                                        }
-                                      } catch (err) {
-                                        // Silently handle clipboard errors in restricted environments (iframes)
-                                        console.warn('Clipboard copy restricted:', err);
-                                      }
-                                    }}
-                                  >
-                                <Copy className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-                          </div>
-
+              <div className="flex items-start justify-between">
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center size-8 flex-shrink-0 rounded-lg border border-border bg-white shadow-sm overflow-hidden p-1.5">
+                      <ModelIcon modelId={model.id} size={20} />
                     </div>
-                  </div>
-                  <div className="text-[12px] font-medium text-slate-11 tabular-nums pt-1">
-                    {model.context_length ? `${(model.context_length / 1000).toFixed(0)}K context` : 'N/A context'}
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-[16px] font-semibold text-foreground tracking-tight">
+                        {model.name || model.id}
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        {model.type === 'Reasoning' ? (
+                          <Tag label="Reasoning" variant="reasoning" />
+                        ) : model.type === 'Vision' ? (
+                          <Tag label="Vision" variant="default" color="#3b82f6" />
+                        ) : (
+                          <Tag label="Text" variant="default" color="#10b981" />
+                        )}
+                        <button
+                          className="p-1 rounded hover:bg-slate-100 text-slate-11 transition-colors"
+                          onClick={async () => {
+                            try {
+                              if (typeof window !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+                                await navigator.clipboard.writeText(model.id);
+                              } else {
+                                throw new Error('Clipboard API not available');
+                              }
+                            } catch (err) {
+                              // Silently handle clipboard errors in restricted environments (iframes)
+                              console.warn('Clipboard copy restricted:', err);
+                            }
+                          }}
+                        >
+                          <Copy className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
+                <div className="text-[12px] font-medium text-slate-11 tabular-nums pt-1">
+                  {model.context_length ? `${(model.context_length / 1000).toFixed(0)}K context` : 'N/A context'}
+                </div>
+              </div>
 
-                <p className="text-[14px] text-muted-foreground leading-relaxed line-clamp-2 max-w-[850px]">
-                  {model.description}
-                </p>
+              <p className="text-[14px] text-muted-foreground leading-relaxed line-clamp-2 max-w-[850px]">
+                {model.description}
+              </p>
 
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-slate-11">
-                        <span className="flex items-center gap-1">
-                          by <span className="underline cursor-pointer hover:text-foreground">{model.provider}</span>
-                        </span>
-                      {model.pricing && (
-                        <>
-                          <span className="text-slate-300">•</span>
-                          <span>${(Number(model.pricing.prompt) * 1000000).toFixed(2)}/M input</span>
-                          <span className="text-slate-300">•</span>
-                          <span>${(Number(model.pricing.completion) * 1000000).toFixed(2)}/M output</span>
-                        </>
-                      )}
-                    </div>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-slate-11">
+                <span className="flex items-center gap-1">
+                  by <span className="underline cursor-pointer hover:text-foreground">{model.provider}</span>
+                </span>
+                {model.pricing && (
+                  <>
+                    <span className="text-slate-300">•</span>
+                    <span>${(Number(model.pricing.prompt) * 1000000).toFixed(2)}/M input</span>
+                    <span className="text-slate-300">•</span>
+                    <span>${(Number(model.pricing.completion) * 1000000).toFixed(2)}/M output</span>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         ))}

@@ -1,6 +1,6 @@
 'use client';
 
-import Navigation from '@/components/sections/navigation';
+
 import Footer from '@/components/sections/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -55,7 +55,7 @@ const plans = [
 export default function BillingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
+
       <main className="pt-24 lg:pt-32 pb-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="mb-8">
@@ -114,8 +114,8 @@ export default function BillingPage() {
                       </li>
                     ))}
                   </ul>
-                  <Button 
-                    className="w-full" 
+                  <Button
+                    className="w-full"
                     variant={plan.current ? 'outline' : 'default'}
                     disabled={plan.current}
                   >

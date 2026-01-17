@@ -7,10 +7,10 @@ import { LaserHoverCard } from './laser-hover-card';
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-background">
+    <section className="relative w-full h-[100dvh] min-h-[600px] flex items-center overflow-hidden bg-background">
       <div className="w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-12 lg:py-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          
+
           <div className="flex flex-col items-start text-left gap-6 order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 dark:bg-primary/5 border border-primary/20 dark:border-primary/10 text-primary text-xs font-semibold tracking-wide uppercase">
               <Sparkles className="size-3" />
