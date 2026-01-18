@@ -19,6 +19,8 @@
         "@libsql/client": "^0.15.15",
         "@lobehub/icons": "^4.0.3",
         "@lobehub/ui": "latest",
+        "antd": "^5.23.2",
+        "antd-style": "^3.7.1",
         "@number-flow/react": "^0.5.10",
         "@radix-ui/react-accordion": "^1.2.11",
         "@radix-ui/react-alert-dialog": "^1.1.14",
