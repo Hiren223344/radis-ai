@@ -12,10 +12,11 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           <div className="flex flex-col items-start text-left gap-6 order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 dark:bg-primary/5 border border-primary/20 dark:border-primary/10 text-primary text-xs font-semibold tracking-wide uppercase">
-              <Sparkles className="size-3" />
-              The Unified Interface For LLMs
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/20 dark:bg-primary/10 border border-primary/30 dark:border-primary/20 text-primary text-xs font-bold tracking-wide uppercase">
+              <Sparkles className="size-3 animate-pulse" />
+              Radison V2 is now live
             </div>
+
 
             <div className="text-sm font-bold tracking-widest text-primary/80 dark:text-primary uppercase">
               300+ models &bull; 60+ providers

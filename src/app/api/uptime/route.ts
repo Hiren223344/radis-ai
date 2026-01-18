@@ -8,7 +8,28 @@ const MONITORS: Record<string, string> = {
   auth: "802144013",
 };
 
-export async function GET(request: NextRequest) {
+async function handler(request: NextRequest) {
+  const method = request.method;
+
+  if (method === 'OPTIONS') {
+    return new NextResponse(null, {
+      status: 204,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+      },
+    });
+  }
+
+  if (method !== 'GET') {
+    return NextResponse.json({
+      message: `This endpoint supports GET for uptime status. You called it with ${method}.`,
+      endpoint: "/api/uptime",
+      available_methods: ["GET", "OPTIONS"]
+    }, { status: 200 });
+  }
+
   const searchParams = request.nextUrl.searchParams;
   const service = searchParams.get('service') || 'api';
   const listAll = searchParams.get('list') === 'true';
@@ -45,7 +66,7 @@ export async function GET(request: NextRequest) {
     });
 
     const data = await response.json();
-    
+
     if (data.stat !== "ok" || !data.monitors || data.monitors.length === 0) {
       return NextResponse.json({
         status: "up",
@@ -63,7 +84,7 @@ export async function GET(request: NextRequest) {
 
     const monitor = data.monitors[0];
     const uptimeRanges = monitor.custom_uptime_ranges?.split("-") || [];
-    
+
     const logs = monitor.logs || [];
     const last24HoursLogs = logs.filter((log: { datetime: number }) => {
       const logTime = log.datetime * 1000;
@@ -73,16 +94,16 @@ export async function GET(request: NextRequest) {
 
     const hourlyStatus: { hour: number; status: 'operational' | 'degraded' | 'outage' }[] = [];
     const now = new Date();
-    
+
     for (let i = 23; i >= 0; i--) {
       const hourStart = new Date(now.getTime() - i * 60 * 60 * 1000);
       const hourEnd = new Date(hourStart.getTime() + 60 * 60 * 1000);
-      
+
       const logsInHour = last24HoursLogs.filter((log: { datetime: number; type: number }) => {
         const logTime = log.datetime * 1000;
         return logTime >= hourStart.getTime() && logTime < hourEnd.getTime();
       });
-      
+
       let status: 'operational' | 'degraded' | 'outage' = 'operational';
       for (const log of logsInHour) {
         if ((log as { type: number }).type === 1) {
@@ -92,7 +113,7 @@ export async function GET(request: NextRequest) {
           status = 'operational';
         }
       }
-      
+
       hourlyStatus.push({
         hour: 23 - i,
         status
@@ -127,3 +148,12 @@ export async function GET(request: NextRequest) {
     });
   }
 }
+
+export const GET = handler;
+export const POST = handler;
+export const PUT = handler;
+export const DELETE = handler;
+export const PATCH = handler;
+export const HEAD = handler;
+export const OPTIONS = handler;
+

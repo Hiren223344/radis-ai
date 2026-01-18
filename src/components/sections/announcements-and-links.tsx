@@ -5,31 +5,32 @@ import { ArrowRight, LayoutGrid, BarChart3 } from 'lucide-react';
 const AnnouncementsAndLinks = () => {
   const announcements = [
     {
+      title: "Introducing Radison V2: The Next Evolution of the AI Gateway",
+      description: "Radison V2 brings massive performance improvements, automated token rotation, and 100% OpenAI compatibility to your AI workflows.",
+      date: "01/18/2026",
+    },
+    {
       title: "Distillable Models and Synthetic Data Pipelines with NeMo Data Designer",
       description: "How to generate license-safe synthetic data workflows for model specialization",
       date: "12/23/2025",
     },
     {
       title: "Response Healing: Reduce JSON Defects by 80%+",
-        description: "Today we're launching Response Healing, a new feature on Radison that automatically fixes malformed JSON responses from LLMs before they reach your application",
+      description: "Today we're launching Response Healing, a new feature on Radison that automatically fixes malformed JSON responses from LLMs before they reach your application",
       date: "12/17/2025",
     },
-    {
-      title: "The 2025 State of AI Report",
-      description: "Introducing the 2025 State of AI report, in partnership with a16z. The largest empirical look yet at how developers and organizations use language models in the real world.",
-      date: "12/3/2025",
-    },
   ];
+
 
   return (
     <section className="bg-background py-16 px-6 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
+
           {/* Left Column: Explore & Rankings Cards */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <Link 
-              href="/models" 
+            <Link
+              href="/models"
               className="group flex flex-col justify-between p-6 h-[220px] bg-card border border-border rounded-xl transition-all duration-200 hover:border-primary hover:shadow-lg"
             >
               <div>
@@ -46,8 +47,8 @@ const AnnouncementsAndLinks = () => {
               </div>
             </Link>
 
-            <Link 
-              href="/rankings" 
+            <Link
+              href="/rankings"
               className="group flex flex-col justify-between p-6 h-[220px] bg-card border border-border rounded-xl transition-all duration-200 hover:border-primary hover:shadow-lg"
             >
               <div>
@@ -76,9 +77,9 @@ const AnnouncementsAndLinks = () => {
 
             <div className="flex flex-col gap-4">
               {announcements.map((item, index) => (
-                <Link 
+                <Link
                   key={index}
-                  href={`/announcements/${index}`} 
+                  href={`/announcements/${index}`}
                   className="flex flex-col gap-2 p-6 bg-card border border-border rounded-xl transition-all duration-200 hover:border-primary hover:shadow-sm"
                 >
                   <h4 className="text-[17px] font-semibold text-foreground leading-tight group-hover:text-primary transition-colors">

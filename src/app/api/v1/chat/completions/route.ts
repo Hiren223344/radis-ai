@@ -1,7 +1,29 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(req: Request) {
+async function handler(req: Request) {
   try {
+    const method = req.method;
+
+    if (method === 'OPTIONS') {
+      return new NextResponse(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+        },
+      });
+    }
+
+    if (method !== 'POST') {
+      return NextResponse.json({
+        message: `This endpoint supports POST for chat completions. You called it with ${method}.`,
+        endpoint: "/api/v1/chat/completions",
+        available_methods: ["POST", "OPTIONS", "GET (info)"],
+        hint: "OpenAI-compatible clients should use POST."
+      }, { status: 200 }); // Return 200 to avoid "error" states in some clients if that's the goal, or 405 if preferred. User said "no error should come with 405".
+    }
+
     const body = await req.json();
     const { messages, model, stream } = body;
     const PUTER_TOKEN = process.env.PUTER_TOKEN;
@@ -36,7 +58,7 @@ export async function POST(req: Request) {
       }, { status: 400 });
     }
 
-    // Map OpenAI messages to Puter format (Puter seems to use simple {content: string} or standard OpenAI format)
+    // Map OpenAI messages to Puter format
     const puterMessages = messages?.map((m: any) => ({
       role: m.role || 'user',
       content: m.content
@@ -125,3 +147,12 @@ export async function POST(req: Request) {
     }, { status: 500 });
   }
 }
+
+export const GET = handler;
+export const POST = handler;
+export const PUT = handler;
+export const DELETE = handler;
+export const PATCH = handler;
+export const HEAD = handler;
+export const OPTIONS = handler;
+

@@ -1,7 +1,29 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(req: Request) {
+async function handler(req: Request) {
   try {
+    const method = req.method;
+
+    if (method === 'OPTIONS') {
+      return new NextResponse(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+        },
+      });
+    }
+
+    if (method !== 'POST') {
+      return NextResponse.json({
+        message: `This endpoint supports POST for chat. You called it with ${method}.`,
+        endpoint: "/api/chat",
+        available_methods: ["POST", "OPTIONS", "GET (info)"],
+        hint: "Please use POST for chat requests."
+      }, { status: 200 });
+    }
+
     const body = await req.json();
     const { messages, model, prompt } = body;
     const PUTER_TOKEN = process.env.PUTER_TOKEN;
@@ -60,3 +82,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
+export const GET = handler;
+export const POST = handler;
+export const PUT = handler;
+export const DELETE = handler;
+export const PATCH = handler;
+export const HEAD = handler;
+export const OPTIONS = handler;
+

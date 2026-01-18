@@ -18,33 +18,29 @@ async function handler(req: Request) {
         if (method !== 'POST') {
             return NextResponse.json({
                 message: `This endpoint supports POST for image generation. You called it with ${method}.`,
-                endpoint: "/api/v1/images/generations",
-                available_methods: ["POST", "OPTIONS", "GET (info)"],
+                endpoint: "/v1/images/generations",
+                available_methods: ["POST", "OPTIONS"],
                 hint: "OpenAI-compatible clients should use POST."
             }, { status: 200 });
         }
 
         const body = await req.json();
         const { prompt, model, n, size, response_format } = body;
+
         const PUTER_TOKEN = process.env.PUTER_TOKEN;
+        const PUTER_TOKENS = process.env.PUTER_TOKENS?.split(',') || [];
+        const allTokens = PUTER_TOKEN ? [PUTER_TOKEN, ...PUTER_TOKENS] : PUTER_TOKENS;
+
+        if (allTokens.length === 0) {
+            return NextResponse.json({ error: 'Puter token(s) not configured' }, { status: 500 });
+        }
 
         // 🔒 Security: Validate API Key
         const { validateApiKey } = await import('@/lib/api-auth');
         const authResult = await validateApiKey(req);
+        if (!authResult.isValid) return authResult.response;
 
-        if (!authResult.isValid) {
-            return authResult.response;
-        }
-
-        if (!PUTER_TOKEN) {
-            return NextResponse.json({
-                error: {
-                    message: 'Puter token not configured',
-                    type: 'server_error',
-                    code: 'missing_token'
-                }
-            }, { status: 500 });
-        }
+        const tokenToUse = allTokens[Math.floor(Math.random() * allTokens.length)];
 
         // Call Puter API
         const puterResponse = await fetch("https://api.puter.com/drivers/call", {
@@ -65,13 +61,13 @@ async function handler(req: Request) {
                     model: model || "dall-e-3",
                     prompt: prompt
                 },
-                auth_token: PUTER_TOKEN
+                auth_token: tokenToUse
             })
         });
 
         if (!puterResponse.ok) {
             const errorText = await puterResponse.text();
-            return NextResponse.json({ error: `Puter API error: ${puterResponse.status}`, details: errorText }, { status: puterResponse.status });
+            return NextResponse.json({ error: `Provider error: ${puterResponse.status}`, details: errorText }, { status: puterResponse.status });
         }
 
         const data = await puterResponse.json();
@@ -89,8 +85,6 @@ async function handler(req: Request) {
             return NextResponse.json({
                 error: {
                     message: 'Failed to generate image URL from provider',
-                    type: 'provider_error',
-                    code: 'image_generation_failed',
                     details: data
                 }
             }, { status: 500 });
@@ -99,61 +93,40 @@ async function handler(req: Request) {
         // ⬇️ DOWNLOAD & STORE (5 Minute Expiry)
         let finalImageUrl = originalImageUrl;
         try {
-            // 1. Download image
             const imgRes = await fetch(originalImageUrl);
             if (!imgRes.ok) throw new Error("Failed to download image from provider");
             const imgBuffer = await imgRes.arrayBuffer();
 
-            // 2. Upload to Supabase 'temp_images' bucket
             const { createServiceClient } = await import('@/lib/supabase');
             const supabase = createServiceClient();
-
-            // Ensure bucket exists (best effort)
             await supabase.storage.createBucket('temp_images', { public: false }).catch(() => { });
 
             const filename = `${Date.now()}-${Math.random().toString(36).substring(7)}.png`;
             const { error: uploadError } = await supabase.storage
                 .from('temp_images')
-                .upload(filename, imgBuffer, {
-                    contentType: 'image/png',
-                    upsert: false
-                });
+                .upload(filename, imgBuffer, { contentType: 'image/png', upsert: false });
 
             if (uploadError) throw new Error(`Storage upload failed: ${uploadError.message}`);
 
-            // 3. Generate Signed URL (valid for 5 minutes = 300 seconds)
             const { data: signedData, error: signError } = await supabase.storage
                 .from('temp_images')
-                .createSignedUrl(filename, 300); // 300 seconds
+                .createSignedUrl(filename, 300);
 
             if (signError || !signedData?.signedUrl) throw new Error("Failed to sign URL");
-
             finalImageUrl = signedData.signedUrl;
 
         } catch (err: any) {
             console.error("Image Storage Error:", err);
-            console.warn("Falling back to original provider URL due to storage error.");
         }
 
-        // Map to OpenAI Response Format
         return NextResponse.json({
             created: Math.floor(Date.now() / 1000),
-            data: [
-                {
-                    url: finalImageUrl
-                }
-            ]
+            data: [{ url: finalImageUrl }]
         });
 
     } catch (error: any) {
         console.error('Image Generation API Error:', error);
-        return NextResponse.json({
-            error: {
-                message: error.message || 'Internal Server Error',
-                type: 'server_error',
-                code: 'internal_error'
-            }
-        }, { status: 500 });
+        return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
     }
 }
 
@@ -164,4 +137,5 @@ export const DELETE = handler;
 export const PATCH = handler;
 export const HEAD = handler;
 export const OPTIONS = handler;
+
 

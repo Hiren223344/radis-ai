@@ -27,24 +27,29 @@ async function handler(req: Request) {
         if (method !== 'POST') {
             return NextResponse.json({
                 message: `This endpoint supports POST for text-to-speech. You called it with ${method}.`,
-                endpoint: "/api/v1/audio/speech",
-                available_methods: ["POST", "OPTIONS", "GET (info)"],
+                endpoint: "/v1/audio/speech",
+                available_methods: ["POST", "OPTIONS"],
                 hint: "OpenAI-compatible clients should use POST."
             }, { status: 200 });
         }
 
         const body = await req.json();
         const { model, input, voice, response_format, speed } = body;
+
         const PUTER_TOKEN = process.env.PUTER_TOKEN;
+        const PUTER_TOKENS = process.env.PUTER_TOKENS?.split(',') || [];
+        const allTokens = PUTER_TOKEN ? [PUTER_TOKEN, ...PUTER_TOKENS] : PUTER_TOKENS;
+
+        if (allTokens.length === 0) {
+            return NextResponse.json({ error: 'Puter token(s) not configured' }, { status: 500 });
+        }
 
         // 🔒 Security: Validate API Key
         const { validateApiKey } = await import('@/lib/api-auth');
         const authResult = await validateApiKey(req);
         if (!authResult.isValid) return authResult.response;
 
-        if (!PUTER_TOKEN) {
-            return NextResponse.json({ error: { message: 'Puter token missing', type: 'server_error' } }, { status: 500 });
-        }
+        const tokenToUse = allTokens[Math.floor(Math.random() * allTokens.length)];
 
         // Map Voice
         const pollyVoice = OPENAI_TO_POLLY_VOICE_MAP[voice] || "Joanna";
@@ -69,13 +74,13 @@ async function handler(req: Request) {
                     engine: "standard",
                     language: "en-US"
                 },
-                auth_token: PUTER_TOKEN
+                auth_token: tokenToUse
             })
         });
 
         if (!puterResponse.ok) {
             const err = await puterResponse.text();
-            return NextResponse.json({ error: `Puter API error: ${puterResponse.status}`, details: err }, { status: puterResponse.status });
+            return NextResponse.json({ error: `Provider error: ${puterResponse.status}`, details: err }, { status: puterResponse.status });
         }
 
         const data = await puterResponse.json();
@@ -93,12 +98,10 @@ async function handler(req: Request) {
         // ⬇️ DOWNLOAD & STORE (5 Minute Expiry)
         let finalUrl = srcUrl;
         try {
-            // 1. Download audio
             const audioRes = await fetch(srcUrl);
             if (!audioRes.ok) throw new Error("Failed to download audio from provider");
             const audioBuffer = await audioRes.arrayBuffer();
 
-            // 2. Upload to Supabase 'temp_audio' bucket
             const { createServiceClient } = await import('@/lib/supabase');
             const supabase = createServiceClient();
             await supabase.storage.createBucket('temp_audio', { public: false }).catch(() => { });
@@ -110,21 +113,17 @@ async function handler(req: Request) {
 
             if (uploadError) throw new Error(`Storage upload failed: ${uploadError.message}`);
 
-            // 3. Generate Signed URL (300s expiry)
             const { data: signedData, error: signError } = await supabase.storage
                 .from('temp_audio')
                 .createSignedUrl(filename, 300);
 
             if (signError || !signedData?.signedUrl) throw new Error("Failed to sign URL");
-
             finalUrl = signedData.signedUrl;
 
         } catch (err: any) {
             console.error("Audio Storage Error:", err);
-            console.warn("Falling back to provider URL");
         }
 
-        // Return JSON with URL (User requested "store it... for 5 mins", likely expects a link like images)
         return NextResponse.json({
             created: Math.floor(Date.now() / 1000),
             data: [{ url: finalUrl }],
@@ -133,7 +132,7 @@ async function handler(req: Request) {
 
     } catch (error: any) {
         console.error('TTS API Error:', error);
-        return NextResponse.json({ error: { message: error.message || 'Server Error' } }, { status: 500 });
+        return NextResponse.json({ error: error.message || 'Server Error' }, { status: 500 });
     }
 }
 
@@ -144,4 +143,5 @@ export const DELETE = handler;
 export const PATCH = handler;
 export const HEAD = handler;
 export const OPTIONS = handler;
+
 
