@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 const API_DOCS = {
   gateway_status: "Operational",
-  version: "1.0.2-Only-Chat",
+  version: "1.0.3-Fix-403",
   endpoints: [
     { path: "/v1/chat/completions", type: "Chat", description: "OpenAI-compatible Chat (Streaming & Non-Streaming)" },
   ],

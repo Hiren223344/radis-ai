@@ -65,7 +65,10 @@ async function handler(req: Request) {
         const puterResponse = await fetch("https://api.puter.com/drivers/call", {
           method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            'content-type': 'text/plain;actually=json',
+            'origin': 'https://docs.puter.com',
+            'referer': 'https://docs.puter.com/',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36'
           },
           body: JSON.stringify({
             interface: "puter-chat-completion",
@@ -82,7 +85,6 @@ async function handler(req: Request) {
               frequency_penalty: body.frequency_penalty,
               stop: body.stop
             },
-            token: token,
             auth_token: token
           })
         });
