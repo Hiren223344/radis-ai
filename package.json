@@ -21,6 +21,7 @@
         "@lobehub/ui": "latest",
         "antd": "^5.23.2",
         "antd-style": "^3.7.1",
+        "@lobehub/fluent-emoji": "latest",
         "@number-flow/react": "^0.5.10",
         "@radix-ui/react-accordion": "^1.2.11",
         "@radix-ui/react-alert-dialog": "^1.1.14",
