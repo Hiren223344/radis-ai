@@ -102,29 +102,47 @@ async function handler(req: Request) {
         let responseContent = "";
         let reasoning = "";
 
+        // Puter can return results in different formats:
+        // 1. data.result.message.content (can be string or array)
+        // 2. data.result as a string
+        // 3. data.result.content
         if (data?.result?.message?.content) {
           const content = data.result.message.content;
-          responseContent = Array.isArray(content) ? content.map((c: any) => c.text || JSON.stringify(c)).join("") : content;
+          if (Array.isArray(content)) {
+            responseContent = content.map((c: any) => {
+              if (typeof c === 'string') return c;
+              return c.text || c.content || JSON.stringify(c);
+            }).join("");
+          } else {
+            responseContent = content;
+          }
           reasoning = data.result.message.reasoning || "";
         } else if (typeof data?.result === 'string') {
           responseContent = data.result;
+        } else if (data?.result?.content) {
+          responseContent = typeof data.result.content === 'string' ? data.result.content : JSON.stringify(data.result.content);
         } else {
-          responseContent = JSON.stringify(data.result || data);
+          responseContent = JSON.stringify(data.result || data || "");
         }
 
-        // Only flag as limited if the content is EXACTLY or starts with the specific Puter limit message
-        const lowerContent = responseContent.toLowerCase();
-        const isLimited = lowerContent.includes("reached your ai usage limit") ||
+        // Ensure responseContent is a string for detection
+        const finalContentStr = String(responseContent);
+        const lowerContent = finalContentStr.toLowerCase();
+
+        const isLimited =
+          lowerContent.includes("reached your ai usage limit") ||
           lowerContent.includes("quota exceeded") ||
-          (data?.success === false && lowerContent.includes("limit"));
+          lowerContent.includes("rate limit") ||
+          lowerContent.includes("too many requests") ||
+          (data?.success === false && (lowerContent.includes("limit") || lowerContent.includes("error")));
 
         if (isLimited) {
-          lastError = `Token [${token.substring(0, 10)}...] reached limit.`;
+          lastError = `Token [${token.substring(0, 10)}...] reached limit. Content: ${finalContentStr.substring(0, 50)}...`;
           continue;
         }
 
         // SUCCESS!
-        finalData = { text: responseContent, reasoning: reasoning, rawData: data };
+        finalData = { text: finalContentStr, reasoning: reasoning, rawData: data };
         break;
 
       } catch (err: any) {

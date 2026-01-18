@@ -25,106 +25,152 @@ async function handler(req: Request) {
     }
 
     const body = await req.json();
-    const { messages, model, stream } = body;
-    const PUTER_TOKEN = process.env.PUTER_TOKEN;
+    const { messages, model } = body;
 
-    // 🔒 Security: Validate API Key (with 5-minute expiration)
-    const { validateApiKey } = await import('@/lib/api-auth');
-    const authResult = await validateApiKey(req);
+    // 3. Token Management (Split by comma in case user put multiple in one variable)
+    const rawMainToken = process.env.PUTER_TOKEN || "";
+    const rawOtherTokens = process.env.PUTER_TOKENS || "";
 
-    if (!authResult.isValid) {
-      return authResult.response;
-    }
+    const allTokens = [
+      ...rawMainToken.split(','),
+      ...rawOtherTokens.split(',')
+    ].map(t => t.trim()).filter(Boolean);
 
-    if (!PUTER_TOKEN) {
+    // De-duplicate and Shuffle
+    const uniqueTokens = Array.from(new Set(allTokens)).sort(() => Math.random() - 0.5);
+
+    if (uniqueTokens.length === 0) {
       return NextResponse.json({
-        error: {
-          message: 'Puter token not configured in environment variables',
-          type: 'invalid_request_error',
-          param: null,
-          code: 'missing_token'
-        }
+        error: { message: 'No Puter token(s) configured. Please check PUTER_TOKEN in .env.local', type: 'invalid_request_error' }
       }, { status: 500 });
     }
 
-    if (stream) {
-      return NextResponse.json({
-        error: {
-          message: 'Streaming is not yet supported in this AI Gateway Lite',
-          type: 'invalid_request_error',
-          param: 'stream',
-          code: 'not_supported'
-        }
-      }, { status: 400 });
-    }
+    // 🔒 Security: Validate API Key
+    const { validateApiKey } = await import('@/lib/api-auth');
+    const authResult = await validateApiKey(req);
+    if (!authResult.isValid) return authResult.response;
 
     // Map OpenAI messages to Puter format
     const puterMessages = messages?.map((m: any) => ({
       role: m.role || 'user',
-      content: m.content
+      content: typeof m.content === 'string' ? m.content : JSON.stringify(m.content)
     })) || [];
 
-    const puterResponse = await fetch("https://api.puter.com/drivers/call", {
-      method: "POST",
-      headers: {
-        'accept': '*/*',
-        'content-type': 'text/plain;actually=json',
-        'origin': 'https://docs.puter.com',
-        'referer': 'https://docs.puter.com/',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36'
-      },
-      body: JSON.stringify({
-        interface: "puter-chat-completion",
-        driver: "ai-chat",
-        test_mode: false,
-        method: "complete",
-        args: {
-          messages: puterMessages,
-          model: model || "gemini-3-pro-preview"
-        },
-        auth_token: PUTER_TOKEN
-      })
-    });
+    // --- AUTO-RETRY LOOP ---
+    let lastError: any = null;
+    let finalData: any = null;
 
-    if (!puterResponse.ok) {
-      const errorText = await puterResponse.text();
-      return NextResponse.json({
-        error: {
-          message: `Puter API error: ${puterResponse.status}`,
-          type: 'api_error',
-          param: null,
-          code: puterResponse.status.toString(),
-          details: errorText
+    for (const token of uniqueTokens) {
+      try {
+        const puterResponse = await fetch("https://api.puter.com/drivers/call", {
+          method: "POST",
+          headers: {
+            'content-type': 'text/plain;actually=json',
+            'origin': 'https://docs.puter.com',
+            'referer': 'https://docs.puter.com/',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36'
+          },
+          body: JSON.stringify({
+            interface: "puter-chat-completion",
+            driver: "ai-chat",
+            test_mode: false,
+            method: "complete",
+            args: {
+              messages: puterMessages,
+              model: model || "gemini-3-pro-preview",
+              temperature: body.temperature,
+              max_tokens: body.max_tokens,
+              top_p: body.top_p,
+              presence_penalty: body.presence_penalty,
+              frequency_penalty: body.frequency_penalty,
+              stop: body.stop
+            },
+            auth_token: token
+          })
+        });
+
+        if (!puterResponse.ok) {
+          lastError = `Provider HTTP Error ${puterResponse.status}`;
+          continue;
         }
-      }, { status: puterResponse.status });
+
+        const data = await puterResponse.json();
+
+        // --- 🧪 SMART DETECTION ---
+        let responseContent = "";
+        let reasoning = "";
+
+        if (data?.result?.message?.content) {
+          const content = data.result.message.content;
+          if (Array.isArray(content)) {
+            responseContent = content.map((c: any) => {
+              if (typeof c === 'string') return c;
+              return c.text || c.content || JSON.stringify(c);
+            }).join("");
+          } else {
+            responseContent = content;
+          }
+          reasoning = data.result.message.reasoning || "";
+        } else if (typeof data?.result === 'string') {
+          responseContent = data.result;
+        } else if (data?.result?.content) {
+          responseContent = typeof data.result.content === 'string' ? data.result.content : JSON.stringify(data.result.content);
+        } else {
+          responseContent = JSON.stringify(data.result || data || "");
+        }
+
+        const finalContentStr = String(responseContent);
+        const lowerContent = finalContentStr.toLowerCase();
+
+        const isLimited =
+          lowerContent.includes("reached your ai usage limit") ||
+          lowerContent.includes("quota exceeded") ||
+          lowerContent.includes("rate limit") ||
+          lowerContent.includes("too many requests") ||
+          (data?.success === false && (lowerContent.includes("limit") || lowerContent.includes("error")));
+
+        if (isLimited) {
+          lastError = `Token [${token.substring(0, 10)}...] reached limit. Content: ${finalContentStr.substring(0, 50)}...`;
+          continue;
+        }
+
+        // SUCCESS!
+        finalData = { text: finalContentStr, reasoning: reasoning, rawData: data };
+        break;
+
+      } catch (err: any) {
+        lastError = err.message;
+      }
     }
 
-    const data = await puterResponse.json();
-
-    // Extract actual text from Puter response
-    let text = "";
-    if (data?.result?.message?.content) {
-      text = data.result.message.content;
-    } else if (typeof data?.result === 'string') {
-      text = data.result;
-    } else if (data?.result?.content) {
-      text = data.result.content;
-    } else {
-      text = JSON.stringify(data?.result || data);
+    if (!finalData) {
+      return NextResponse.json({
+        id: `chatcmpl-${Math.random().toString(36).substring(7)}`,
+        object: "chat.completion",
+        created: Math.floor(Date.now() / 1000),
+        model: model,
+        choices: [{
+          index: 0,
+          message: { role: "assistant", content: lastError || "All providers exhausted." },
+          finish_reason: "stop"
+        }],
+        usage: { prompt_tokens: -1, completion_tokens: -1, total_tokens: -1 }
+      });
     }
 
-    // Return OpenAI-compatible response
+    // OpenAI Compatibility
     return NextResponse.json({
       id: `chatcmpl-${Math.random().toString(36).substring(7)}`,
       object: "chat.completion",
       created: Math.floor(Date.now() / 1000),
-      model: model || "gemini-3-pro-preview",
+      model: model,
       choices: [
         {
           index: 0,
           message: {
             role: "assistant",
-            content: text
+            content: finalData.text,
+            reasoning: finalData.reasoning
           },
           finish_reason: "stop"
         }
@@ -135,6 +181,7 @@ async function handler(req: Request) {
         total_tokens: -1
       }
     });
+
   } catch (error: any) {
     console.error('AI Gateway Error:', error);
     return NextResponse.json({
