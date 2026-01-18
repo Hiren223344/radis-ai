@@ -65,10 +65,7 @@ async function handler(req: Request) {
         const puterResponse = await fetch("https://api.puter.com/drivers/call", {
           method: "POST",
           headers: {
-            'content-type': 'text/plain;actually=json',
-            'origin': 'https://docs.puter.com',
-            'referer': 'https://docs.puter.com/',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36'
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             interface: "puter-chat-completion",
@@ -85,6 +82,7 @@ async function handler(req: Request) {
               frequency_penalty: body.frequency_penalty,
               stop: body.stop
             },
+            token: token,
             auth_token: token
           })
         });
@@ -96,7 +94,7 @@ async function handler(req: Request) {
 
         const data = await puterResponse.json();
 
-        // --- 🧪 SMART DETECTION ---
+        // --- 🧪 DETECTION & EXTRACTION ---
         let responseContent = "";
         let reasoning = "";
 
@@ -119,23 +117,19 @@ async function handler(req: Request) {
           responseContent = JSON.stringify(data.result || data || "");
         }
 
-        const finalContentStr = String(responseContent);
-        const lowerContent = finalContentStr.toLowerCase();
-
+        const lowerContent = String(responseContent).toLowerCase();
         const isLimited =
           lowerContent.includes("reached your ai usage limit") ||
           lowerContent.includes("quota exceeded") ||
-          lowerContent.includes("rate limit") ||
-          lowerContent.includes("too many requests") ||
-          (data?.success === false && (lowerContent.includes("limit") || lowerContent.includes("error")));
+          (data?.success === false && lowerContent.includes("limit"));
 
-        if (isLimited) {
-          lastError = `Token [${token.substring(0, 10)}...] reached limit. Content: ${finalContentStr.substring(0, 50)}...`;
+        if (isLimited && token !== uniqueTokens[uniqueTokens.length - 1]) {
+          lastError = responseContent;
           continue;
         }
 
         // SUCCESS!
-        finalData = { text: finalContentStr, reasoning: reasoning, rawData: data };
+        finalData = { text: String(responseContent), reasoning: reasoning, rawData: data };
         break;
 
       } catch (err: any) {

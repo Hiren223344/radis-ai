@@ -5,11 +5,6 @@ const API_DOCS = {
   version: "1.0.1-Robust-Rotation",
   endpoints: [
     { path: "/v1/chat/completions", type: "Chat", description: "OpenAI-compatible Chat (Streaming & Non-Streaming)" },
-    { path: "/v1/completions", type: "Legacy", description: "Legacy OpenAI Text Completions" },
-    { path: "/v1/embeddings", type: "Search", description: "Convert text to high-dimensional vectors" },
-    { path: "/v1/images/generations", type: "Visual", description: "DALL-E 3 Style Image Generation" },
-    { path: "/v1/audio/speech", type: "Audio", description: "Text-to-Speech (TTS)" },
-    { path: "/v1/models", type: "Meta", description: "List all available AI personalities" },
   ],
   fetch_examples: {
     javascript: `
